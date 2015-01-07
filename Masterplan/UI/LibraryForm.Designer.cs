@@ -32,14 +32,13 @@
 			this.CancelBtn = new System.Windows.Forms.Button();
 			this.NameLbl = new System.Windows.Forms.Label();
 			this.NameBox = new System.Windows.Forms.TextBox();
-			this.InfoLbl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// OKBtn
 			// 
 			this.OKBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.OKBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.OKBtn.Location = new System.Drawing.Point(226, 69);
+			this.OKBtn.Location = new System.Drawing.Point(203, 46);
 			this.OKBtn.Name = "OKBtn";
 			this.OKBtn.Size = new System.Drawing.Size(75, 23);
 			this.OKBtn.TabIndex = 2;
@@ -51,7 +50,7 @@
 			// 
 			this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.CancelBtn.Location = new System.Drawing.Point(307, 69);
+			this.CancelBtn.Location = new System.Drawing.Point(284, 46);
 			this.CancelBtn.Name = "CancelBtn";
 			this.CancelBtn.Size = new System.Drawing.Size(75, 23);
 			this.CancelBtn.TabIndex = 3;
@@ -69,26 +68,13 @@
 			// 
 			// NameBox
 			// 
-			this.NameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.NameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.NameBox.Location = new System.Drawing.Point(56, 12);
 			this.NameBox.Name = "NameBox";
-			this.NameBox.Size = new System.Drawing.Size(326, 20);
+			this.NameBox.Size = new System.Drawing.Size(303, 20);
 			this.NameBox.TabIndex = 1;
 			this.NameBox.TextChanged += new System.EventHandler(this.NameBox_TextChanged);
-			// 
-			// InfoLbl
-			// 
-			this.InfoLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.InfoLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.InfoLbl.Location = new System.Drawing.Point(12, 35);
-			this.InfoLbl.Name = "InfoLbl";
-			this.InfoLbl.Size = new System.Drawing.Size(370, 31);
-			this.InfoLbl.TabIndex = 4;
-			this.InfoLbl.Text = "Note that when you create a library it will be usable only by this user (xxx) on " +
-				"this computer (xxx).";
 			// 
 			// LibraryForm
 			// 
@@ -96,8 +82,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.CancelBtn;
-			this.ClientSize = new System.Drawing.Size(394, 104);
-			this.Controls.Add(this.InfoLbl);
+			this.ClientSize = new System.Drawing.Size(371, 81);
 			this.Controls.Add(this.NameBox);
 			this.Controls.Add(this.NameLbl);
 			this.Controls.Add(this.CancelBtn);
@@ -121,6 +106,5 @@
 		private System.Windows.Forms.Button CancelBtn;
 		private System.Windows.Forms.Label NameLbl;
 		private System.Windows.Forms.TextBox NameBox;
-		private System.Windows.Forms.Label InfoLbl;
 	}
 }

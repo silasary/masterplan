@@ -122,45 +122,11 @@ namespace Masterplan
 					Program.SplashScreen.Progress += 1;
 				}
 
-				string sec_data = Program.SimplifySecurityData(Program.SecurityData);
-
 				Library lib = Serialisation<Library>.Load(filename, SerialisationMode.Binary);
 				if (lib != null)
 				{
 					lib.Name = Utils.FileName.Name(filename);
 					lib.Update();
-
-					if (Program.CopyProtection)
-					{
-						// Add protection to this unprotected library
-						if ((lib.SecurityData == null) || (lib.SecurityData == ""))
-						{
-							lib.SecurityData = sec_data;
-							bool ok = Serialisation<Library>.Save(filename, lib, SerialisationMode.Binary);
-							if (!ok)
-								LogSystem.Trace("Could not save " + lib.Name);
-						}
-
-						// Check whether we can use this library
-						string lib_data = Program.SimplifySecurityData(lib.SecurityData);
-						if (lib_data != sec_data)
-						{
-							LogSystem.Trace("Could not load " + lib.Name + ": " + lib_data + " vs " + sec_data);
-							Session.DisabledLibraries.Add(lib.Name);
-
-							return null;
-						}
-					}
-					else
-					{
-						// Remove protection from this library
-						if (lib.SecurityData != "")
-						{
-							lib.SecurityData = "";
-							Serialisation<Library>.Save(filename, lib, SerialisationMode.Binary);
-						}
-					}
-
 					Session.Libraries.Add(lib);
 				}
 				else

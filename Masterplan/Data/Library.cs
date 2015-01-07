@@ -32,13 +32,6 @@ namespace Masterplan.Data
 		}
 		string fName = "";
 
-		internal string SecurityData
-		{
-			get { return fSecurityData; }
-			set { fSecurityData = value; }
-		}
-		string fSecurityData = Program.SecurityData;
-
 		#region Lists
 
 		/// <summary>

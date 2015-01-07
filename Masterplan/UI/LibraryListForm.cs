@@ -602,7 +602,6 @@ namespace Masterplan.UI
 			{
 				Library newlib = new Library();
 				newlib.Name = dlg.LibraryName;
-				newlib.SecurityData = Program.SecurityData;
 
 				foreach (Library lib in dlg.SelectedLibraries)
 				{

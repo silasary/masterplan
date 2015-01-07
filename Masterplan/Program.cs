@@ -18,6 +18,13 @@ namespace Masterplan
 {
 	static class Program
 	{
+		internal static bool IsBeta
+		{
+			get
+			{
+				return fIsBeta;
+			}
+		}
 		internal static bool fIsBeta = false;
 
 		[STAThread]
@@ -419,58 +426,6 @@ namespace Masterplan
 			}
 
 			return list;
-		}
-
-		#endregion
-
-		#region Security
-
-		internal static bool IsBeta
-		{
-			get
-			{
-				return fIsBeta;
-			}
-		}
-
-		internal static string SecurityData
-		{
-			get
-			{
-				string user = SystemInformation.UserName.ToLower();
-				string machine = SystemInformation.ComputerName.ToLower();
-
-				return user + " on " + machine;
-			}
-		}
-
-		internal static bool CopyProtection
-		{
-			get
-			{
-				return (!IsBeta);
-			}
-		}
-
-		internal static string SimplifySecurityData(string raw_data)
-		{
-			string[] breaks = { " on " };
-			string[] tokens = raw_data.Split(breaks, StringSplitOptions.RemoveEmptyEntries);
-
-			if (tokens.Length != 2)
-				return "";
-
-			string user = tokens[0].ToLower();
-			int user_index = user.IndexOf(".");
-			if (user_index != -1)
-				user = user.Substring(0, user_index);
-
-			string machine = tokens[1].ToLower();
-			int machine_index = machine.IndexOf(".");
-			if (machine_index != -1)
-				machine = machine.Substring(0, machine_index);
-
-			return user + " on " + machine;
 		}
 
 		#endregion
