@@ -15,10 +15,6 @@ namespace Masterplan.UI
 
 			fLibrary = lib;
 
-			string user = SystemInformation.UserName;
-			string machine = SystemInformation.ComputerName;
-			InfoLbl.Text = "Note that when you create a library it will be usable only by this user (" + user + ") on this computer (" + machine + ").";
-
 			NameBox.Text = fLibrary.Name;
 			NameBox_TextChanged(null, null);
 		}
