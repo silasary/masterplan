@@ -18,7 +18,8 @@ namespace Masterplan.UI
 		enum SidebarType
 		{
 			Advice,
-			Powers
+			Powers,
+			Category
 		}
 
 		const int SAMPLE_POWERS = 5;
@@ -28,6 +29,7 @@ namespace Masterplan.UI
 			InitializeComponent();
 
 			Application.Idle += new EventHandler(Application_Idle);
+			StatBlockBrowser.DocumentText = "";
 
 			if (creature is Creature)
 			{
@@ -572,9 +574,62 @@ namespace Masterplan.UI
 					update_statblock();
 				}
 			}
+
+			if (e.Url.Scheme == "category")
+			{
+				if (e.Url.LocalPath == "set")
+				{
+					List<string> cats = new List<string>();
+					foreach (Creature c in Session.Creatures)
+					{
+						if ((c.Category == null) || (c.Category == ""))
+							continue;
+
+						if (cats.Contains(c.Category))
+							continue;
+
+						cats.Add(c.Category);
+					}
+
+					CategoryForm dlg = new CategoryForm(cats, fCreature.Category);
+					if (dlg.ShowDialog() == DialogResult.OK)
+					{
+						fCreature.Category = dlg.Category;
+						update_statblock();
+					}
+				}
+			}
+
+			if (e.Url.Scheme == "creature")
+			{
+				Guid id = new Guid(e.Url.LocalPath);
+				EncounterCard card = new EncounterCard(id);
+				CreatureDetailsForm dlg = new CreatureDetailsForm(card);
+				dlg.ShowDialog();
+			}
 		}
 
 		#region Menu
+
+		private void FileExport_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog dlg = new SaveFileDialog();
+			dlg.Title = "Export Creature";
+			dlg.FileName = fCreature.Name;
+			dlg.Filter = Program.CreatureFilter;
+
+			if (dlg.ShowDialog() == DialogResult.OK)
+			{
+				Creature c = new Creature(fCreature);
+				bool ok = Serialisation<Creature>.Save(dlg.FileName, c, SerialisationMode.Binary);
+
+				if (!ok)
+				{
+					string error = "The creature could not be exported.";
+					MessageBox.Show(error, "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+		}
 
 		private void OptionsImport_Click(object sender, EventArgs e)
 		{
@@ -645,6 +700,15 @@ namespace Masterplan.UI
 			if (fSidebar != SidebarType.Powers)
 			{
 				fSidebar = SidebarType.Powers;
+				update_statblock();
+			}
+		}
+
+		private void CategoryBtn_Click(object sender, EventArgs e)
+		{
+			if (fSidebar != SidebarType.Category)
+			{
+				fSidebar = SidebarType.Category;
 				update_statblock();
 			}
 		}
@@ -731,7 +795,6 @@ namespace Masterplan.UI
 				case SidebarType.Advice:
 					{
 						lines.Add("<TD class=clear>");
-						lines.Add("<P class=table>");
 
 						#region Create A New Creature
 
@@ -865,7 +928,6 @@ namespace Masterplan.UI
 				case SidebarType.Powers:
 					{
 						lines.Add("<TD class=clear>");
-						lines.Add("<P class=table>");
 
 						#region Powers
 
@@ -935,6 +997,55 @@ namespace Masterplan.UI
 							lines.Add("</TABLE>");
 							lines.Add("</P>");
 						}
+						else
+						{
+							lines.Add("<P text-align=left>");
+							lines.Add("We couldn't find any creatures of the same level and role.");
+							lines.Add("</P>");
+						}
+
+						#endregion
+
+						lines.Add("</TD>");
+					}
+					break;
+				case SidebarType.Category:
+					{
+						lines.Add("<TD class=clear>");
+
+						#region Category
+
+						if (fCreature.Category != "")
+						{
+							List<ICreature> creatures = find_matching_creatures(fCreature.Category);
+							if (creatures.Count != 0)
+							{
+								lines.Add("<P text-align=left>");
+								lines.Add("The following creatures belong to the same category as this creature.");
+								lines.Add("</P>");
+
+								foreach (ICreature c in creatures)
+								{
+									lines.Add("<P class=table>");
+									lines.AddRange(new EncounterCard(c).AsText(null, CardMode.View, false));
+									lines.Add("Click <A href=creature:" + c.ID + ">here</A> to view this creature's stat block.");
+									lines.Add("</P>");
+								}
+							}
+							else
+							{
+								lines.Add("<P text-align=left>");
+								lines.Add("There aren't any other creatures in this category.");
+								lines.Add("</P>");
+							}
+						}
+						else
+						{
+							lines.Add("<P text-align=left>");
+							lines.Add("This creature isn't part of a category.");
+							lines.Add("Click <A href=category:set>here</A> to set a category.");
+							lines.Add("</P>");
+						}
 
 						#endregion
 
@@ -949,7 +1060,9 @@ namespace Masterplan.UI
 			lines.Add("</BODY>");
 			lines.Add("</HTML>");
 
-			StatBlockBrowser.DocumentText = HTML.Concatenate(lines);
+			string html = HTML.Concatenate(lines);
+			StatBlockBrowser.Document.OpenNew(true);
+			StatBlockBrowser.Document.Write(html);
 		}
 
 		void update_picture()
@@ -1054,6 +1167,7 @@ namespace Masterplan.UI
 			}
 
 			List<ICreature> creatures = find_matching_creatures(fCreature.Role, fCreature.Level, false);
+			creatures.AddRange(find_matching_creatures(fCreature.Category));
 			foreach (ICreature creature in creatures)
 			{
 				foreach (CreaturePower power in creature.CreaturePowers)
@@ -1125,6 +1239,36 @@ namespace Masterplan.UI
 
 				if (match_level && match_role)
 					list.Add(creature);
+			}
+
+			return list;
+		}
+
+		List<ICreature> find_matching_creatures(string category)
+		{
+			List<ICreature> list = new List<ICreature>();
+
+			if (category != "")
+			{
+				List<ICreature> creatures = new List<ICreature>();
+				List<Creature> all_creatures = Session.Creatures;
+				foreach (ICreature c in all_creatures)
+					creatures.Add(c);
+				if (Session.Project != null)
+				{
+					foreach (ICreature c in Session.Project.CustomCreatures)
+						creatures.Add(c);
+					foreach (ICreature c in Session.Project.NPCs)
+						creatures.Add(c);
+				}
+
+				foreach (ICreature creature in creatures)
+				{
+					bool match_category = (category != "") ? (creature.Category == category) : false;
+
+					if (match_category)
+						list.Add(creature);
+				}
 			}
 
 			return list;
@@ -1591,26 +1735,6 @@ namespace Masterplan.UI
 			}
 
 			return selected;
-		}
-
-		private void FileExport_Click(object sender, EventArgs e)
-		{
-			SaveFileDialog dlg = new SaveFileDialog();
-			dlg.Title = "Export Creature";
-			dlg.FileName = fCreature.Name;
-			dlg.Filter = Program.CreatureFilter;
-
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				Creature c = new Creature(fCreature);
-				bool ok = Serialisation<Creature>.Save(dlg.FileName, c, SerialisationMode.Binary);
-
-				if (!ok)
-				{
-					string error = "The creature could not be exported.";
-					MessageBox.Show(error, "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
 		}
 	}
 }

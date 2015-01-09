@@ -1,13 +1,7 @@
 ﻿===============================================================================
-New in this version (11.11)
+New in this version (11.12)
 
-Tiles checklist
-Miniatures checklist
-Move up / down tree in plot view
-Improved creature power builder
-Waves in encounter builder / combat manager
-Ability to cut / copy / paste encounter elements
-Allow the use of markdown in plot points / encyclopedia entries / background items / encounter notes
+Removed copy protection
 
 ===============================================================================
 Plans for this version

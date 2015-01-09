@@ -2319,63 +2319,6 @@ namespace Masterplan.Data
 				}
 
 				#endregion
-
-				#region References / copyright
-
-				Creature c = creature as Creature;
-
-				List<string> references = new List<string>();
-
-				if (c != null)
-				{
-					Library lib = Session.FindLibrary(c);
-					if ((lib != null) && (lib.Name != ""))
-					{
-						if ((Session.Project == null) || (lib != Session.Project.Library))
-						{
-							string reference = HTML.Process(lib.Name, true);
-							references.Add(reference);
-						}
-					}
-				}
-
-				foreach (Guid template_id in fTemplateIDs)
-				{
-					CreatureTemplate ct = Session.FindTemplate(template_id, SearchType.Global);
-					Library ct_lib = Session.FindLibrary(ct);
-
-					if ((ct_lib != null) && (ct_lib != Session.Project.Library))
-					{
-						if (references.Count != 0)
-							references.Add("<BR>");
-
-						string reference = HTML.Process(ct_lib.Name, true);
-						references.Add(ct.Name + " template: " + reference);
-					}
-				}
-
-				if (references.Count != 0)
-				{
-					content.Add("<TR class=shaded>");
-					content.Add("<TD colspan=3>");
-					foreach (string reference in references)
-					{
-						content.Add(reference);
-					}
-					content.Add("</TD>");
-					content.Add("</TR>");
-				}
-
-				if ((c != null) && (c.URL != ""))
-				{
-					content.Add("<TR>");
-					content.Add("<TD colspan=3>");
-					content.Add("Copyright <A href=\"" + c.URL + "\">Wizards of the Coast</A> 2010");
-					content.Add("</TD>");
-					content.Add("</TR>");
-				}
-
-				#endregion
 			}
 
 			if (mode != CardMode.Text)

@@ -1519,19 +1519,29 @@ namespace Masterplan.UI
 
 		private void CreatureList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			string html = "";
+			List<string> lines = HTML.GetHead("Creature", "", DisplaySize.Small);
+			lines.Add("<BODY>");
 
-			if (SelectedCreatures.Count == 1)
+			if (SelectedCreatures.Count == 0)
 			{
-				html = HTML.StatBlock(new EncounterCard(SelectedCreatures[0]), null, null, true, false, true, CardMode.View, DisplaySize.Medium);
+				lines.Add("<P class=instruction>");
+				lines.Add("Select a creature to see its stat block here");
+				lines.Add("</P>");
 			}
 			else
 			{
-				html = HTML.StatBlock(null, null, null, true, false, true, CardMode.View, DisplaySize.Medium);
+				foreach (Creature c in SelectedCreatures)
+				{
+					EncounterCard card = new EncounterCard(c);
+
+					lines.Add("<P class=table>");
+					lines.AddRange(card.AsText(null, CardMode.View, true));
+					lines.Add("</P>");
+				}
 			}
 
 			CreatureBrowser.Document.OpenNew(true);
-			CreatureBrowser.Document.Write(html);
+			CreatureBrowser.Document.Write(HTML.Concatenate(lines));
 		}
 
 		#region Templates page

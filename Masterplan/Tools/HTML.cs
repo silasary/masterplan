@@ -12,6 +12,7 @@ using Masterplan.Data;
 using Masterplan.Tools.Generators;
 using Masterplan.UI;
 using Masterplan.Properties;
+using System.Text;
 
 namespace Masterplan.Tools
 {
@@ -2637,16 +2638,10 @@ namespace Masterplan.Tools
 
 		public static string Concatenate(List<string> lines)
 		{
-			string text = "";
+			StringBuilder sb = new StringBuilder();
 			foreach (string line in lines)
-			{
-				if (text != "")
-					text += Environment.NewLine;
-
-				text += line;
-			}
-
-			return text;
+				sb.AppendLine(line);
+			return sb.ToString();
 		}
 
 		public static string Process(string raw_text, bool strip_html)
