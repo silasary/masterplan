@@ -61,14 +61,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.Serialization">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -314,7 +307,6 @@
     <Compile Include="Tools\Generators\Book.cs" />
     <Compile Include="Tools\GoalBuilder.cs" />
     <Compile Include="Tools\HeroGroup.cs" />
-    <Compile Include="Tools\IO\CompendiumHelper.cs" />
     <Compile Include="Tools\Conditions.cs" />
     <Compile Include="Tools\CreatureHelper.cs" />
     <Compile Include="Tools\Generators\DelveBuilder.cs" />
@@ -333,7 +325,6 @@
     <Compile Include="Tools\Generators\Treasure.cs" />
     <Compile Include="Tools\TextHelper.cs" />
     <Compile Include="Tools\Workspace.cs" />
-    <Compile Include="Tools\IO\CompendiumImport.cs" />
     <Compile Include="UI\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1724,11 +1715,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\Compendium\compendiumsearch.wsdl" />
-    <None Include="Web References\Compendium\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -1763,11 +1749,6 @@
     </Compile>
     <Compile Include="UI\ParcelListForm.Designer.cs">
       <DependentUpon>ParcelListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\Compendium\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Wizards\MapSizePage.cs">
       <SubType>UserControl</SubType>
@@ -2157,22 +2138,6 @@
     <None Include="Resources\Z3a.gif" />
     <None Include="Resources\Z4a.gif" />
     <Content Include="Docs\To Do.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://www.wizards.com/dndinsider/compendium/compendiumsearch.asmx%3fWSDL">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\Compendium\</RelPath>
-      <UpdateFromURL>http://www.wizards.com/dndinsider/compendium/compendiumsearch.asmx%3fWSDL</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Masterplan_Compendium_CompendiumSearch</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
