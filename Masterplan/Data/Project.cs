@@ -840,9 +840,6 @@ namespace Masterplan.Data
 			if (p.Goals == null)
 				p.Goals = new PartyGoals();
 
-			if (p.FiveByFive == null)
-				p.FiveByFive = new FiveByFiveData();
-
 			foreach (PlotPoint pp in p.Points)
 			{
 				if (pp.ReadAloud == null)

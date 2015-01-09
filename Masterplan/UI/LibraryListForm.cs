@@ -19,12 +19,14 @@ namespace Masterplan.UI
 			InitializeComponent();
 
 			CreatureSearchToolbar.Visible = false;
-			CompendiumBtn.Visible = Program.IsBeta;
+
+			CreatureBrowser.DocumentText = "";
+			CreatureList_SelectedIndexChanged(null, null);
 
 			foreach (Library lib in Session.Libraries)
 				fModified[lib] = false;
 
-			Application.Idle += new EventHandler(Application_Idle);
+			Application.Idle += Application_Idle;
 
 			update_libraries();
 		}
@@ -635,13 +637,6 @@ namespace Masterplan.UI
 				return;
 
 			DoDragDrop(lib, DragDropEffects.Move);
-		}
-
-		private void CompendiumBtn_Click(object sender, EventArgs e)
-		{
-			CompendiumForm dlg = new CompendiumForm();
-			if (dlg.ShowDialog() == DialogResult.OK)
-				update_content(true);
 		}
 
 		private void HelpBtn_Click(object sender, EventArgs e)
@@ -1521,6 +1516,23 @@ namespace Masterplan.UI
 		}
 
 		#endregion
+
+		private void CreatureList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string html = "";
+
+			if (SelectedCreatures.Count == 1)
+			{
+				html = HTML.StatBlock(new EncounterCard(SelectedCreatures[0]), null, null, true, false, true, CardMode.View, DisplaySize.Medium);
+			}
+			else
+			{
+				html = HTML.StatBlock(null, null, null, true, false, true, CardMode.View, DisplaySize.Medium);
+			}
+
+			CreatureBrowser.Document.OpenNew(true);
+			CreatureBrowser.Document.Write(html);
+		}
 
 		#region Templates page
 

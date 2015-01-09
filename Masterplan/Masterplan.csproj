@@ -103,12 +103,6 @@
     <Compile Include="Controls\FilterPanel.Designer.cs">
       <DependentUpon>FilterPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FiveByFivePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\FiveByFivePanel.Designer.cs">
-      <DependentUpon>FiveByFivePanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\InfoPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -311,7 +305,6 @@
     </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Tools\AI.cs" />
-    <Compile Include="Tools\FiveByFive.cs" />
     <Compile Include="Tools\Generators\ElfName.cs" />
     <Compile Include="Tools\Generators\HalflingName.cs" />
     <Compile Include="Tools\Generators\DwarfName.cs" />
@@ -388,12 +381,6 @@
     </Compile>
     <Compile Include="UI\CombatForm.Designer.cs">
       <DependentUpon>CombatForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\CompendiumItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\CompendiumItemForm.Designer.cs">
-      <DependentUpon>CompendiumItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CombatantSelectForm.cs">
       <SubType>Form</SubType>
@@ -701,12 +688,6 @@
     <Compile Include="UI\DieRollerForm.Designer.cs">
       <DependentUpon>DieRollerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FiveByFiveForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\FiveByFiveForm.Designer.cs">
-      <DependentUpon>FiveByFiveForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\MergeLibrariesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -970,12 +951,6 @@
     </Compile>
     <Compile Include="UI\EffectListForm.Designer.cs">
       <DependentUpon>EffectListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\CompendiumForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\CompendiumForm.Designer.cs">
-      <DependentUpon>CompendiumForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CreatureClassForm.cs">
       <SubType>Form</SubType>
@@ -1474,10 +1449,6 @@
     <EmbeddedResource Include="UI\EffectListForm.resx">
       <DependentUpon>EffectListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CompendiumForm.resx">
-      <DependentUpon>CompendiumForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\CreatureClassForm.resx">
       <DependentUpon>CreatureClassForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1888,9 +1859,6 @@
     <EmbeddedResource Include="UI\CampaignSettingsForm.resx">
       <DependentUpon>CampaignSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CompendiumItemForm.resx">
-      <DependentUpon>CompendiumItemForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\CombatantSelectForm.resx">
       <DependentUpon>CombatantSelectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2043,9 +2011,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DieRollerForm.resx">
       <DependentUpon>DieRollerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\FiveByFiveForm.resx">
-      <DependentUpon>FiveByFiveForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MergeLibrariesForm.resx">
       <DependentUpon>MergeLibrariesForm.cs</DependentUpon>

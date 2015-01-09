@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -25,7 +24,7 @@ namespace Masterplan
 				return fIsBeta;
 			}
 		}
-		internal static bool fIsBeta = false;
+		internal static bool fIsBeta = true;
 
 		[STAThread]
 		static void Main(string[] args)
@@ -451,6 +450,8 @@ namespace Masterplan
 
         public static ProgressScreen SplashScreen = null;
 
+		#region File filters
+
 		public static string ProjectFilter = "Masterplan Project|*.masterplan";
 		public static string LibraryFilter = "Masterplan Library|*.library";
 		public static string EncounterFilter = "Masterplan Encounter|*.encounter";
@@ -473,5 +474,7 @@ namespace Masterplan
 
 		public static string HTMLFilter = "HTML File|*.htm";
 		public static string ImageFilter = "Image File|*.bmp;*.jpg;*.jpeg;*.gif;*.png;*.tga";
+
+		#endregion
 	}
 }

@@ -800,28 +800,6 @@ namespace Masterplan.UI
 						}
 					}
 
-					if (e.Url.LocalPath == "5x5")
-					{
-						if (PlotView.Plot.FiveByFive.Columns.Count == 0)
-							PlotView.Plot.FiveByFive.Initialise();
-
-						FiveByFiveForm dlg = new FiveByFiveForm(PlotView.Plot.FiveByFive);
-						if (dlg.ShowDialog() == DialogResult.OK)
-						{
-							PlotView.Plot.FiveByFive = dlg.FiveByFive;
-							Session.Modified = true;
-
-							if (dlg.CreatePlot)
-							{
-								PlotView.Plot.Points.Clear();
-								FiveByFive.Build(PlotView.Plot);
-								PlotView.RecalculateLayout();
-							}
-
-							UpdateView();
-						}
-					}
-
 					if (e.Url.LocalPath == "element")
 						edit_element(sender, e);
 

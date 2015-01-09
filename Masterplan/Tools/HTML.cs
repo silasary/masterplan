@@ -1106,18 +1106,6 @@ namespace Masterplan.Tools
 							lines.Add("<TR>");
 							lines.Add("<TD>Build a plot by setting the <A href=\"plot:goals\">party goals</A>.</TD>");
 							lines.Add("</TR>");
-
-							//lines.Add("<TR>");
-							//lines.Add("<TD>Use these tools to build an entire plot line:</TD>");
-							//lines.Add("</TR>");
-
-							//lines.Add("<TR>");
-							//lines.Add("<TD class=indent>Set the <A href=\"plot:goals\">party goals</A>.</TD>");
-							//lines.Add("</TR>");
-
-							//lines.Add("<TR>");
-							//lines.Add("<TD class=indent>Use the <A href=\"plot:5x5\">5x5 method</A>.</TD>");
-							//lines.Add("</TR>");
 						}
 
 						if (parent_point != null)
