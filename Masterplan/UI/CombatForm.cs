@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
@@ -319,6 +320,8 @@ namespace Masterplan.UI
 			{
 				fLog.Active = true;
 				fLog.AddResumeEntry();
+
+				TurnTimer.Enabled = true;
 			}
 			update_log();
 
@@ -1351,55 +1354,6 @@ namespace Masterplan.UI
 					// We do this in case they had temp HP
 					update_list();
 					update_maps();
-
-					/*
-					// Show start screen
-					List<CombatData> heroes = new List<CombatData>();
-					//foreach (Guid id in fHeroData.Keys)
-					//	heroes.Add(fHeroData[id]);
-					foreach (Hero hero in Session.Project.Heroes)
-						heroes.Add(hero.CombatData);
-					List<CombatData> traps = new List<CombatData>();
-					foreach (Guid id in fTrapData.Keys)
-					{
-						Trap trap = fEncounter.FindTrap(id);
-						if ((trap != null) && (trap.Initiative != int.MinValue))
-							traps.Add(fTrapData[id]);
-					}
-					CombatStartForm dlg = new CombatStartForm(fEncounter, heroes, traps);
-					if (dlg.ShowDialog() == DialogResult.OK)
-					{
-						Session.Preferences.InitiativeMode = dlg.OpponentMode;
-						roll_initiative();
-
-						if (dlg.HeroMode == InitiativeMode.Individual)
-						{
-							foreach (Hero hero in Session.Project.Heroes)
-							{
-								int init = hero.InitBonus + Session.Dice(1, 20);
-								//fHeroData[hero.ID].Initiative = init;
-								hero.CombatData.Initiative = init;
-							}
-						}
-
-						if (dlg.TrapMode == InitiativeMode.Individual)
-						{
-							foreach (Trap trap in fEncounter.Traps)
-							{
-								if (trap.Initiative == int.MinValue)
-									continue;
-
-								int init = trap.Initiative + Session.Dice(1, 20);
-								fTrapData[trap.ID].Initiative = init;
-							}
-						}
-					}
-					else
-					{
-						Close();
-						return;
-					}
-					*/
 				}
 			}
 			catch (Exception ex)
@@ -3408,6 +3362,7 @@ namespace Masterplan.UI
 				if (fCurrentActor != null)
 				{
 					fCombatStarted = true;
+					TurnTimer.Enabled = true;
 
 					InitiativePanel.CurrentInitiative = fCurrentActor.Initiative;
 					select_current_actor();
@@ -6768,5 +6723,29 @@ namespace Masterplan.UI
 		}
 
 		#endregion
+
+		private void TurnTimer_Tick(object sender, EventArgs e)
+		{
+			if (fCombatStarted)
+			{
+				// Get last 'start turn' entry
+				StartTurnLogEntry entry = fLog.Entries.Last(x => x is StartTurnLogEntry) as StartTurnLogEntry;
+				if (entry != null)
+				{
+					// TODO: Handle paused + resumed encounters
+
+					TimeSpan diff = DateTime.Now - entry.Timestamp;
+					TurnTimerLbl.Text = diff.Minutes + ":" + diff.Seconds.ToString("D2");
+				}
+				else
+				{
+					TurnTimerLbl.Text = "-";
+				}
+			}
+			else
+			{
+				TurnTimerLbl.Text = "-";
+			}
+		}
 	}
 }

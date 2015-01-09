@@ -2,13 +2,13 @@
 New in this version (11.12)
 
 Removed copy protection
+Show creatures from the same category in creature builder
+Combat turn timer
 
 ===============================================================================
 Plans for this version
 
-Show creatures from the same category in creature builder
-
-Combat turn timer
+Hourglass / countdown for player view
 
 Better way to add / change / remove encyclopedia entry attachments
 Add encyclopedia links to background items
@@ -55,8 +55,6 @@ Party breakdown:
 
 Track current day in reference screen
 
-Hourglass / countdown for player view
-
 Soundboard:
 * SFX soundboard / scream
 * ambient sounds
@@ -65,17 +63,6 @@ Soundboard:
 Add the ability to add PCs in the combat manager
 Add the ability to edit the map in the combat manager
 Ability to edit combat data from the encounter builder
-
-5x5
-* grid
-  * start with 5x5
-  * can edit this
-* common links between these points (such as locations or NPCs)
-  * encyclopedia entries
-  * create them here
-  * highlight items for a given link
-* create plot points for this
-  * different colours for each plotline
 
 Encounter log
 * X condition added to / removed from X

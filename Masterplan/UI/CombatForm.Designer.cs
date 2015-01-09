@@ -55,12 +55,12 @@
 			this.CombatantsAddToken = new System.Windows.Forms.ToolStripMenuItem();
 			this.CombatantsAddOverlay = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+			this.CombatantsWaves = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
 			this.CombatantsRemove = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
 			this.CombatantsHideAll = new System.Windows.Forms.ToolStripMenuItem();
 			this.CombatantsShowAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
-			this.CombatantsWaves = new System.Windows.Forms.ToolStripMenuItem();
 			this.MapMenu = new System.Windows.Forms.ToolStripDropDownButton();
 			this.ShowMap = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -135,11 +135,11 @@
 			this.CombatantsPage = new System.Windows.Forms.TabPage();
 			this.ListSplitter = new System.Windows.Forms.SplitContainer();
 			this.CombatList = new Masterplan.UI.CombatForm.CombatListControl();
-			this.NameHdr = new System.Windows.Forms.ColumnHeader();
-			this.InitHdr = new System.Windows.Forms.ColumnHeader();
-			this.HPHdr = new System.Windows.Forms.ColumnHeader();
-			this.DefHdr = new System.Windows.Forms.ColumnHeader();
-			this.EffectsHdr = new System.Windows.Forms.ColumnHeader();
+			this.NameHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.InitHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.HPHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DefHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.EffectsHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ListContext = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.ListDetails = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
@@ -161,7 +161,7 @@
 			this.Preview = new System.Windows.Forms.WebBrowser();
 			this.TemplatesPage = new System.Windows.Forms.TabPage();
 			this.TemplateList = new System.Windows.Forms.ListView();
-			this.TemplateHdr = new System.Windows.Forms.ColumnHeader();
+			this.TemplateHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.LogPage = new System.Windows.Forms.TabPage();
 			this.LogBrowser = new System.Windows.Forms.WebBrowser();
 			this.MapView = new Masterplan.Controls.MapView();
@@ -203,6 +203,8 @@
 			this.InfoBtn = new System.Windows.Forms.Button();
 			this.DieRollerBtn = new System.Windows.Forms.Button();
 			this.ReportBtn = new System.Windows.Forms.Button();
+			this.TurnTimerLbl = new System.Windows.Forms.ToolStripStatusLabel();
+			this.TurnTimer = new System.Windows.Forms.Timer(this.components);
 			this.Toolbar.SuspendLayout();
 			this.MapSplitter.Panel1.SuspendLayout();
 			this.MapSplitter.Panel2.SuspendLayout();
@@ -370,6 +372,17 @@
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
 			this.toolStripSeparator6.Size = new System.Drawing.Size(172, 6);
 			// 
+			// CombatantsWaves
+			// 
+			this.CombatantsWaves.Name = "CombatantsWaves";
+			this.CombatantsWaves.Size = new System.Drawing.Size(175, 22);
+			this.CombatantsWaves.Text = "Waves";
+			// 
+			// toolStripSeparator26
+			// 
+			this.toolStripSeparator26.Name = "toolStripSeparator26";
+			this.toolStripSeparator26.Size = new System.Drawing.Size(172, 6);
+			// 
 			// CombatantsRemove
 			// 
 			this.CombatantsRemove.Name = "CombatantsRemove";
@@ -395,17 +408,6 @@
 			this.CombatantsShowAll.Size = new System.Drawing.Size(175, 22);
 			this.CombatantsShowAll.Text = "Show All";
 			this.CombatantsShowAll.Click += new System.EventHandler(this.CombatantsShowAll_Click);
-			// 
-			// toolStripSeparator26
-			// 
-			this.toolStripSeparator26.Name = "toolStripSeparator26";
-			this.toolStripSeparator26.Size = new System.Drawing.Size(172, 6);
-			// 
-			// CombatantsWaves
-			// 
-			this.CombatantsWaves.Name = "CombatantsWaves";
-			this.CombatantsWaves.Size = new System.Drawing.Size(175, 22);
-			this.CombatantsWaves.Text = "Waves";
 			// 
 			// MapMenu
 			// 
@@ -1011,8 +1013,8 @@
 			this.ListSplitter.Size = new System.Drawing.Size(354, 330);
 			this.ListSplitter.SplitterDistance = 159;
 			this.ListSplitter.TabIndex = 1;
-			this.ListSplitter.Resize += new System.EventHandler(this.ListSplitter_Resize);
 			this.ListSplitter.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.ListSplitter_SplitterMoved);
+			this.ListSplitter.Resize += new System.EventHandler(this.ListSplitter_Resize);
 			// 
 			// CombatList
 			// 
@@ -1059,11 +1061,11 @@
 			this.CombatList.View = System.Windows.Forms.View.Details;
 			this.CombatList.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.CombatList_DrawColumnHeader);
 			this.CombatList.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.CombatList_DrawItem);
+			this.CombatList.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.CombatList_DrawSubItem);
+			this.CombatList.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.CombatList_ItemDrag);
+			this.CombatList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.CombatList_ItemSelectionChanged);
 			this.CombatList.SelectedIndexChanged += new System.EventHandler(this.CombatList_SelectedIndexChanged);
 			this.CombatList.DoubleClick += new System.EventHandler(this.CombatList_DoubleClick);
-			this.CombatList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.CombatList_ItemSelectionChanged);
-			this.CombatList.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.CombatList_ItemDrag);
-			this.CombatList.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.CombatList_DrawSubItem);
 			// 
 			// NameHdr
 			// 
@@ -1332,7 +1334,7 @@
 			this.MapView.Mode = Masterplan.Controls.MapViewMode.Thumbnail;
 			this.MapView.Name = "MapView";
 			this.MapView.Plot = null;
-			this.MapView.ScalingFactor = 1;
+			this.MapView.ScalingFactor = 1D;
 			this.MapView.SelectedArea = null;
 			this.MapView.SelectedTiles = null;
 			this.MapView.Selection = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -1350,16 +1352,16 @@
 			this.MapView.Tactical = true;
 			this.MapView.TokenLinks = null;
 			this.MapView.Viewpoint = new System.Drawing.Rectangle(0, 0, 0, 0);
-			this.MapView.TokenDragged += new Masterplan.Events.DraggedTokenEventHandler(this.MapView_TokenDragged);
-			this.MapView.CancelledScrolling += new System.EventHandler(this.MapView_CancelledScrolling);
+			this.MapView.ItemMoved += new Masterplan.Events.MovementEventHandler(this.MapView_ItemMoved);
+			this.MapView.HoverTokenChanged += new System.EventHandler(this.MapView_HoverTokenChanged);
+			this.MapView.SelectedTokensChanged += new System.EventHandler(this.MapView_SelectedTokensChanged);
 			this.MapView.TokenActivated += new Masterplan.Events.TokenEventHandler(this.MapView_TokenActivated);
+			this.MapView.TokenDragged += new Masterplan.Events.DraggedTokenEventHandler(this.MapView_TokenDragged);
 			this.MapView.CreateTokenLink += new Masterplan.Events.CreateTokenLinkEventHandler(this.MapView_CreateTokenLink);
 			this.MapView.EditTokenLink += new Masterplan.Events.TokenLinkEventHandler(this.MapView_EditTokenLink);
-			this.MapView.MouseZoomed += new System.Windows.Forms.MouseEventHandler(this.MapView_MouseZoomed);
-			this.MapView.SelectedTokensChanged += new System.EventHandler(this.MapView_SelectedTokensChanged);
-			this.MapView.HoverTokenChanged += new System.EventHandler(this.MapView_HoverTokenChanged);
-			this.MapView.ItemMoved += new Masterplan.Events.MovementEventHandler(this.MapView_ItemMoved);
 			this.MapView.SketchCreated += new Masterplan.Events.MapSketchEventHandler(this.MapView_SketchCreated);
+			this.MapView.MouseZoomed += new System.Windows.Forms.MouseEventHandler(this.MapView_MouseZoomed);
+			this.MapView.CancelledScrolling += new System.EventHandler(this.MapView_CancelledScrolling);
 			// 
 			// MapContext
 			// 
@@ -1571,7 +1573,8 @@
 			this.Statusbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RoundLbl,
             this.XPLbl,
-            this.LevelLbl});
+            this.LevelLbl,
+            this.TurnTimerLbl});
 			this.Statusbar.Location = new System.Drawing.Point(0, 362);
 			this.Statusbar.Name = "Statusbar";
 			this.Statusbar.Size = new System.Drawing.Size(826, 22);
@@ -1600,9 +1603,9 @@
 			// 
 			// MainPanel
 			// 
-			this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.MainPanel.Controls.Add(this.MapSplitter);
 			this.MainPanel.Controls.Add(this.InitiativePanel);
 			this.MainPanel.Controls.Add(this.Statusbar);
@@ -1679,6 +1682,18 @@
 			this.ReportBtn.UseVisualStyleBackColor = true;
 			this.ReportBtn.Click += new System.EventHandler(this.ReportBtn_Click);
 			// 
+			// TurnTimerLbl
+			// 
+			this.TurnTimerLbl.Name = "TurnTimerLbl";
+			this.TurnTimerLbl.Size = new System.Drawing.Size(697, 17);
+			this.TurnTimerLbl.Spring = true;
+			this.TurnTimerLbl.Text = "[turn timer]";
+			this.TurnTimerLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// TurnTimer
+			// 
+			this.TurnTimer.Tick += new System.EventHandler(this.TurnTimer_Tick);
+			// 
 			// CombatForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1696,8 +1711,8 @@
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Combat Encounter";
-			this.Shown += new System.EventHandler(this.CombatForm_Shown);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CombatForm_FormClosing);
+			this.Shown += new System.EventHandler(this.CombatForm_Shown);
 			this.Toolbar.ResumeLayout(false);
 			this.Toolbar.PerformLayout();
 			this.MapSplitter.Panel1.ResumeLayout(false);
@@ -1889,5 +1904,7 @@
 		private System.Windows.Forms.Button ReportBtn;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
 		private System.Windows.Forms.ToolStripMenuItem CombatantsWaves;
+		private System.Windows.Forms.ToolStripStatusLabel TurnTimerLbl;
+		private System.Windows.Forms.Timer TurnTimer;
 	}
 }
