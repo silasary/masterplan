@@ -62,8 +62,6 @@ namespace Masterplan.Tools.Generators
 					break;
 			}
 
-			// TODO: Advanced: layered / varigated / alternating colours
-
 			return potion;
 		}
 
@@ -193,33 +191,33 @@ namespace Masterplan.Tools.Generators
 				values.Add("transparent");
 			}
 
-			if (complex)
-			{
-				// TODO: Two colours
-				// TODO: Marbled (two colours)
-			}
-
 			int index = Session.Random.Next(values.Count);
 			return values[index];
 		}
 
 		static string feature()
 		{
-			switch (Session.Random.Next(5))
+			switch (Session.Random.Next(8))
 			{
 				case 0:
 					return "with " + colour(true) + " specks";
 				case 1:
 					return "with flecks of " + colour(false);
 				case 2:
+					return "with streaks of " + colour(false);
+				case 3:
+					return "marbled with " + colour(false);
+				case 4:
 					{
 						string col = colour(true);
 						string article = TextHelper.StartsWithVowel(col) ? "an" : "a";
 						return "with " + article + " " + col + " suspension";
 					}
-				case 3:
-					return "with a floating " + colour(true) + " layer";
-				case 4:
+				case 5:
+					return "floating on a " + colour(true) + " layer";
+				case 6:
+					return "floating above a " + colour(true) + " layer";
+				case 7:
 					return "with a ribbon of " + colour(false);
 			}
 

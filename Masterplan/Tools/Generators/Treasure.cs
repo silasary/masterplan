@@ -660,8 +660,6 @@ namespace Masterplan.Tools.Generators
 						string medium = media[medium_index];
 
 						result = adjective + " " + artwork + " on " + medium;
-
-						// TODO: Subject
 					}
 					#endregion
 					break;

@@ -295,8 +295,6 @@ namespace Masterplan.Controls
 
 							e.Graphics.FillEllipse(Brushes.Red, source_rect);
 							e.Graphics.FillEllipse(Brushes.Red, dest_rect);
-
-							// TODO: Draw an arrow
 						}
 					}
 				}

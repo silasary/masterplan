@@ -1118,9 +1118,7 @@ namespace Masterplan.Tools
 						}
 					}
 
-					// TODO: Sustain
-					// TODO: Aftereffect
-					// TODO: FailedSavingThrows
+					// Not handled: Sustain, Aftereffect, FailedSavingThrows
 
 					string rng_tgt = range;
 					if (target != "")
