@@ -72,6 +72,57 @@ namespace Masterplan.Tools
 			}
 		}
 
+		public static void CopyFields(ICreature copy_from, CreatureTemplate copy_to)
+		{
+			try
+			{
+				if (copy_from != null)
+				{
+					copy_to.ID = copy_from.ID;
+					copy_to.Name = copy_from.Name;
+					copy_to.Senses = copy_from.Senses;
+					copy_to.Movement = copy_from.Movement;
+
+					if (copy_from.Role is ComplexRole)
+					{
+						ComplexRole role = copy_from.Role as ComplexRole;
+						copy_to.Role = role.Type;
+					}
+					if (copy_from.Role is Minion)
+					{
+						Minion role = copy_from.Role as Minion;
+						copy_to.Role = role.Type;
+					}
+
+					copy_to.HP = copy_from.HP;
+					copy_to.Initiative = copy_from.Initiative;
+					copy_to.AC = copy_from.AC;
+					copy_to.Fortitude = copy_from.Fortitude;
+					copy_to.Reflex = copy_from.Reflex;
+					copy_to.Will = copy_from.Will;
+
+					copy_to.Regeneration = (copy_from.Regeneration != null) ? copy_from.Regeneration.Copy() : null;
+
+					copy_to.Auras.Clear();
+					foreach (Aura aura in copy_from.Auras)
+						copy_to.Auras.Add(aura.Copy());
+
+					copy_to.CreaturePowers.Clear();
+					foreach (CreaturePower cp in copy_from.CreaturePowers)
+						copy_to.CreaturePowers.Add(cp.Copy());
+
+					copy_to.Resist = copy_from.Resist;
+					copy_to.Vulnerable = copy_from.Vulnerable;
+					copy_to.Immune = copy_from.Immune;
+					copy_to.Tactics = copy_from.Tactics;
+				}
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
 		public static void UpdateRegen(ICreature c)
 		{
 			Aura regen_aura = FindAura(c, "Regeneration");

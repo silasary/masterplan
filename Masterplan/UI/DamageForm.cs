@@ -115,6 +115,8 @@ namespace Masterplan.UI
 
 		void update_type()
 		{
+			fTypes.Remove(DamageType.Untyped);
+
 			string str = "";
 			foreach (DamageType dt in fTypes)
 			{
@@ -123,8 +125,13 @@ namespace Masterplan.UI
 
 				str += dt.ToString();
 			}
+
 			if (str == "")
+			{
 				str = "(untyped)";
+				fTypes.Add(DamageType.Untyped);
+			}
+
 			TypeBox.Text = str;
 		}
 

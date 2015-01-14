@@ -1022,8 +1022,12 @@ namespace Masterplan.Tools
 					if (parent_point.Date != null)
 						lines.Add("<P>" + parent_point.Date + "</P>");
 
-					if (parent_point.Details != "")
-						lines.Add("<P>" + Process(parent_point.Details, false) + "</P>");
+					string details = Process(parent_point.Details, false);
+					if (details != "")
+					{
+						details = fMarkdown.Transform(details);
+						lines.Add(details);
+					}
 				}
 				else
 				{
@@ -1290,11 +1294,7 @@ namespace Masterplan.Tools
 				lines.Add("<H3>" + name + "</H3>");
 
 				if (area.Details != "")
-				{
-					lines.Add("<P>");
-					lines.Add(Process(area.Details, true));
-					lines.Add("</P>");
-				}
+					lines.Add(fMarkdown.Transform(Process(area.Details, true)));
 				
 				lines.Add("<P class=table>");
 				lines.Add("<TABLE>");
@@ -3046,7 +3046,7 @@ namespace Masterplan.Tools
 			foreach (EncyclopediaEntry e in Session.Project.Encyclopedia.Entries)
 			{
 				lines.Add(wrap(Process(e.Name, true), "h3"));
-				lines.Add("<P class=encyclopedia_entry>" + Process(e.Details, false) + "</P>");
+				lines.Add("<P class=encyclopedia_entry>" + fMarkdown.Transform(Process(e.Details, false)) + "</P>");
 			}
 
 			return lines;
@@ -3182,7 +3182,7 @@ namespace Masterplan.Tools
 				lines.Add("<P class=readaloud>" + Process(pp.ReadAloud, false) + "</P>");
 
 			if (pp.Details != "")
-				lines.Add("<P>" + Process(pp.Details, false) + "</P>");
+				lines.Add("<P>" + fMarkdown.Transform(Process(pp.Details, false)) + "</P>");
 
 			if (pp.Date != null)
 				lines.Add("<P>Date: " + pp.Date + "</P>");
@@ -3252,7 +3252,7 @@ namespace Masterplan.Tools
 			if ((map != null) && (map_area != null) && (map_area.Details != ""))
 			{
 				lines.Add("<P><B>" + Process(map_area.Name, true) + "</B>:</P>");
-				lines.Add("<P>" + Process(map_area.Details, true) + "</P>");
+				lines.Add("<P>" + fMarkdown.Transform(Process(map_area.Details, true)) + "</P>");
 			}
 
 			return lines;

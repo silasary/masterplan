@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 using Utils;
@@ -327,7 +326,6 @@ namespace Masterplan.UI
 
 		private void OptionsVariant_Click(object sender, EventArgs e)
 		{
-			/*
 			VariantWizard wizard = new VariantWizard();
 			if (wizard.Show() == DialogResult.OK)
 			{
@@ -402,11 +400,10 @@ namespace Masterplan.UI
 				foreach (DamageModifier mod in mods)
 					custom.DamageModifiers.Add(mod.Copy());
 
-				CreatureHelper.CopyFields(custom, fCreature);
-				//fCreature = custom;
-				update_view();
+				CreatureHelper.CopyFields(custom, fTemplate);
+
+				update_statblock();
 			}
-			*/
 		}
 
 		#endregion

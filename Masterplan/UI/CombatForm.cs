@@ -10,6 +10,7 @@ using System.Net;
 using System.Windows.Forms;
 
 using Utils;
+using Utils.Text;
 
 using Masterplan.Controls;
 using Masterplan.Data;
@@ -6460,8 +6461,10 @@ namespace Masterplan.UI
 				MapArea area = MapView.Map.FindArea(fEncounter.MapAreaID);
 				if ((area != null) && (area.Details != ""))
 				{
+					Markdown markdown = new Markdown();
+
 					lines.Add("<P class=encounter_note><B>" + HTML.Process(area.Name, true) + "</B>:</P>");
-					lines.Add("<P class=encounter_note>" + HTML.Process(area.Details, true) + "</P>");
+					lines.Add("<P class=encounter_note>" + markdown.Transform(HTML.Process(area.Details, true)) + "</P>");
 				}
 			}
 
