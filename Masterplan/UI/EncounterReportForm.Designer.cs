@@ -43,10 +43,10 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.PlayerViewBtn = new System.Windows.Forms.ToolStripButton();
 			this.ExportBtn = new System.Windows.Forms.ToolStripButton();
-			this.Splitter = new System.Windows.Forms.SplitContainer();
-			this.Graph = new Masterplan.Controls.DemographicsPanel();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.MVPLbl = new System.Windows.Forms.ToolStripLabel();
+			this.Splitter = new System.Windows.Forms.SplitContainer();
+			this.Graph = new Masterplan.Controls.DemographicsPanel();
 			this.Toolbar.SuspendLayout();
 			this.Splitter.Panel1.SuspendLayout();
 			this.Splitter.Panel2.SuspendLayout();
@@ -60,7 +60,7 @@
 			this.Browser.Location = new System.Drawing.Point(0, 0);
 			this.Browser.Name = "Browser";
 			this.Browser.ScriptErrorsSuppressed = true;
-			this.Browser.Size = new System.Drawing.Size(404, 266);
+			this.Browser.Size = new System.Drawing.Size(404, 320);
 			this.Browser.TabIndex = 2;
 			this.Browser.WebBrowserShortcutsEnabled = false;
 			// 
@@ -181,6 +181,17 @@
 			this.ExportBtn.Text = "Export";
 			this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
 			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// MVPLbl
+			// 
+			this.MVPLbl.Name = "MVPLbl";
+			this.MVPLbl.Size = new System.Drawing.Size(39, 22);
+			this.MVPLbl.Text = "[mvp]";
+			// 
 			// Splitter
 			// 
 			this.Splitter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -194,7 +205,7 @@
 			// Splitter.Panel2
 			// 
 			this.Splitter.Panel2.Controls.Add(this.Graph);
-			this.Splitter.Size = new System.Drawing.Size(811, 266);
+			this.Splitter.Size = new System.Drawing.Size(811, 320);
 			this.Splitter.SplitterDistance = 404;
 			this.Splitter.TabIndex = 4;
 			// 
@@ -205,26 +216,15 @@
 			this.Graph.Location = new System.Drawing.Point(0, 0);
 			this.Graph.Mode = Masterplan.Controls.DemographicsMode.Level;
 			this.Graph.Name = "Graph";
-			this.Graph.Size = new System.Drawing.Size(403, 266);
+			this.Graph.Size = new System.Drawing.Size(403, 320);
 			this.Graph.Source = Masterplan.Controls.DemographicsSource.Creatures;
 			this.Graph.TabIndex = 0;
-			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-			// 
-			// MVPLbl
-			// 
-			this.MVPLbl.Name = "MVPLbl";
-			this.MVPLbl.Size = new System.Drawing.Size(39, 22);
-			this.MVPLbl.Text = "[mvp]";
 			// 
 			// EncounterReportForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(811, 291);
+			this.ClientSize = new System.Drawing.Size(811, 345);
 			this.Controls.Add(this.Splitter);
 			this.Controls.Add(this.Toolbar);
 			this.MaximizeBox = false;

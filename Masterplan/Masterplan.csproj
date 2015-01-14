@@ -415,6 +415,12 @@
     <Compile Include="UI\ArtifactConcordanceForm.Designer.cs">
       <DependentUpon>ArtifactConcordanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\EncounterReportListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EncounterReportListForm.Designer.cs">
+      <DependentUpon>EncounterReportListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\TileChecklistForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1433,6 +1439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CombatForm.resx">
       <DependentUpon>CombatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EncounterReportListForm.resx">
+      <DependentUpon>EncounterReportListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TokenLinkListForm.resx">
       <DependentUpon>TokenLinkListForm.cs</DependentUpon>

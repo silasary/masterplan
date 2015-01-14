@@ -52,14 +52,13 @@ namespace Masterplan.UI
 
 		class InitiativeSorter : IComparer, IComparer<ListViewItem>
 		{
-			public InitiativeSorter(/*Dictionary<Guid, CombatData> hero_data,*/ Dictionary<Guid, CombatData> trap_data, Encounter enc)
+			public InitiativeSorter(Dictionary<Guid, CombatData> trap_data, Encounter enc)
 			{
 				//fHeroData = hero_data;
 				fTrapData = trap_data;
 				fEncounter = enc;
 			}
 
-			//Dictionary<Guid, CombatData> fHeroData = null;
 			Dictionary<Guid, CombatData> fTrapData = null;
 			Encounter fEncounter = null;
 
@@ -721,6 +720,26 @@ namespace Masterplan.UI
 			show_or_hide_all(true);
 		}
 
+		private void CombatantsEffects_Click(object sender, EventArgs e)
+		{
+			EffectListForm dlg = new EffectListForm(fEncounter, fCurrentActor, fCurrentRound);
+			dlg.ShowDialog();
+
+			update_list();
+			update_preview_panel();
+			update_maps();
+		}
+
+		private void CombatantsLinks_Click(object sender, EventArgs e)
+		{
+			TokenLinkListForm dlg = new TokenLinkListForm(MapView.TokenLinks);
+			dlg.ShowDialog();
+
+			update_list();
+			update_preview_panel();
+			update_maps();
+		}
+
 		#endregion
 
 		#region Map
@@ -979,6 +998,133 @@ namespace Masterplan.UI
 			}
 		}
 
+		private void MapDrawing_Click(object sender, EventArgs e)
+		{
+			MapView.AllowDrawing = !MapView.AllowDrawing;
+
+			if (PlayerMap != null)
+				PlayerMap.AllowDrawing = MapView.AllowDrawing;
+		}
+
+		private void MapClearDrawings_Click(object sender, EventArgs e)
+		{
+			MapView.Sketches.Clear();
+			MapView.Invalidate();
+
+			if (PlayerMap != null)
+			{
+				PlayerMap.Sketches.Clear();
+				PlayerMap.Invalidate();
+			}
+		}
+
+		private void MapContextOverlay_Click(object sender, EventArgs e)
+		{
+			CustomToken overlay = new CustomToken();
+			overlay.Name = "New Overlay";
+			overlay.Type = CustomTokenType.Overlay;
+
+			if (MapView.SelectedTokens.Count == 1)
+			{
+				IToken token = MapView.SelectedTokens[0];
+
+				CreatureToken creature = token as CreatureToken;
+				if (creature != null)
+				{
+					overlay.Name = "Zone: " + creature.Data.DisplayName;
+					overlay.CreatureID = creature.Data.ID;
+					overlay.Colour = Color.Red;
+				}
+
+				Hero hero = token as Hero;
+				if (hero != null)
+				{
+					overlay.Name = hero.Name + " zone";
+					overlay.CreatureID = hero.ID;
+					overlay.Colour = Color.DarkGreen;
+				}
+			}
+
+			CustomOverlayForm dlg = new CustomOverlayForm(overlay);
+			if (dlg.ShowDialog() == DialogResult.OK)
+			{
+				overlay = dlg.Token;
+
+				if (overlay.CreatureID == Guid.Empty)
+				{
+					Point menu_pt = new Point(MapContext.Left, MapContext.Top);
+					Point mouse = MapView.PointToClient(menu_pt);
+					Point square = MapView.LayoutData.GetSquareAtPoint(mouse);
+
+					int x = square.X - ((overlay.OverlaySize.Width - 1) / 2);
+					int y = square.Y - ((overlay.OverlaySize.Height - 1) / 2);
+					overlay.Data.Location = new Point(x, y);
+				}
+
+				fEncounter.CustomTokens.Add(overlay);
+
+				update_list();
+				update_maps();
+			}
+		}
+
+		private void MapSetPicture_Click(object sender, EventArgs e)
+		{
+			if (MapView.SelectedTokens.Count != 1)
+				return;
+
+			CreatureToken ct = MapView.SelectedTokens[0] as CreatureToken;
+			if (ct != null)
+			{
+				EncounterSlot slot = fEncounter.FindSlot(ct.SlotID);
+
+				ICreature creature = Session.FindCreature(slot.Card.CreatureID, SearchType.Global);
+				if (creature != null)
+				{
+					OpenFileDialog dlg = new OpenFileDialog();
+					dlg.Filter = Program.ImageFilter;
+					if (dlg.ShowDialog() == DialogResult.OK)
+					{
+						creature.Image = Image.FromFile(dlg.FileName);
+						Program.SetResolution(creature.Image);
+
+						if (creature is Creature)
+						{
+							Creature c = creature as Creature;
+							Library lib = Session.FindLibrary(c);
+							if (lib != null)
+							{
+								string filename = Session.GetLibraryFilename(lib);
+								Serialisation<Library>.Save(filename, lib, SerialisationMode.Binary);
+							}
+						}
+						else
+						{
+							Session.Modified = true;
+						}
+
+						update_list();
+					}
+				}
+			}
+
+			Hero hero = MapView.SelectedTokens[0] as Hero;
+			if (hero != null)
+			{
+				OpenFileDialog dlg = new OpenFileDialog();
+				dlg.Filter = Program.ImageFilter;
+				if (dlg.ShowDialog() == DialogResult.OK)
+				{
+					hero.Portrait = Image.FromFile(dlg.FileName);
+					Program.SetResolution(hero.Portrait);
+
+					Session.Modified = true;
+
+					update_list();
+				}
+			}
+		}
+
 		#endregion
 
 		#region Player View
@@ -988,30 +1134,6 @@ namespace Masterplan.UI
 			try
 			{
 				show_player_view(PlayerMap == null, PlayerInitiative != null);
-				//Session.Preferences.PlayerViewMap = !Session.Preferences.PlayerViewMap;
-
-				//if ((PlayerMap != null) && (PlayerInitiative == null))
-				//{
-				//    // It's all we're showing; turn it off
-				//    Session.PlayerView.ShowDefault();
-				//}
-				//else
-				//{
-				//    if (Session.PlayerView == null)
-				//        Session.PlayerView = new PlayerViewForm(this);
-
-				//    if (PlayerInitiative == null)
-				//    {
-				//        Session.PlayerView.ShowTacticalMap(MapView, InitiativeView());
-				//        //Activate();
-				//    }
-				//    else
-				//    {
-				//        // We're already showing the initiative list
-				//        SplitContainer splitter = Session.PlayerView.Controls[0] as SplitContainer;
-				//        splitter.Panel1Collapsed = false;
-				//    }
-				//}
 			}
 			catch (Exception ex)
 			{
@@ -1024,16 +1146,6 @@ namespace Masterplan.UI
 			try
 			{
 				show_player_view(PlayerMap != null, PlayerInitiative == null);
-				//Session.Preferences.PlayerViewInitiative = !Session.Preferences.PlayerViewInitiative;
-
-				//if (Session.PlayerView == null)
-				//    return;
-
-				//if (Session.PlayerView.Controls.Count == 0)
-				//    return;
-
-				//SplitContainer splitter = Session.PlayerView.Controls[0] as SplitContainer;
-				//splitter.Panel2Collapsed = !Session.Preferences.PlayerViewInitiative;
 			}
 			catch (Exception ex)
 			{
@@ -1210,6 +1322,32 @@ namespace Masterplan.UI
 
 		#endregion
 
+		#region No map
+
+		private void PlayerViewNoMapShowInitiativeList_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				show_player_view(false, PlayerInitiative == null);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void PlayerViewNoMapShowLabels_Click(object sender, EventArgs e)
+		{
+			Session.Preferences.PlayerViewCreatureLabels = !Session.Preferences.PlayerViewCreatureLabels;
+
+			if (PlayerInitiative != null)
+			{
+				PlayerInitiative.DocumentText = InitiativeView();
+			}
+		}
+
+		#endregion
+
 		#endregion
 
 		#region Options
@@ -1229,8 +1367,6 @@ namespace Masterplan.UI
 				ListSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
 				ListSplitter.SplitterDistance = ListSplitter.Height / 2;
 
-				//if (MapSplitter.SplitterDistance > 350)
-				//	MapSplitter.SplitterDistance -= 350;
 				MapSplitter.SplitterDistance = 350;
 			}
 			catch (Exception ex)
@@ -1258,8 +1394,6 @@ namespace Masterplan.UI
 				{
 					ListSplitter.SplitterDistance = ListSplitter.Width / 2;
 				}
-				//MapSplitter.SplitterDistance += 350;
-				//ListSplitter.SplitterDistance = ListSplitter.Width - 350;
 			}
 			catch (Exception ex)
 			{
@@ -1277,11 +1411,92 @@ namespace Masterplan.UI
 			Session.Preferences.iPlay4E = !Session.Preferences.iPlay4E;
 		}
 
+		private void OptionsMapRight_Click(object sender, EventArgs e)
+		{
+			if (MapSplitter.Orientation == System.Windows.Forms.Orientation.Vertical)
+				return;
+
+			bool one_col = (ListSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal);
+
+			MapSplitter.Orientation = System.Windows.Forms.Orientation.Vertical;
+			MapSplitter.SplitterDistance = (one_col ? 355 : 700);
+			MapSplitter.FixedPanel = FixedPanel.Panel1;
+
+			Session.Preferences.CombatMapRight = true;
+		}
+
+		private void OptionsMapBelow_Click(object sender, EventArgs e)
+		{
+			if (MapSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal)
+				return;
+
+			MapSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			MapSplitter.SplitterDistance = MapSplitter.Height / 2;
+			MapSplitter.FixedPanel = FixedPanel.None;
+
+			Session.Preferences.CombatMapRight = false;
+		}
+
+		private void OptionsLandscape_Click(object sender, EventArgs e)
+		{
+			SuspendLayout();
+
+			OneColumn_Click(sender, e);
+			OptionsMapRight_Click(sender, e);
+
+			ResumeLayout();
+		}
+
+		private void OptionsPortrait_Click(object sender, EventArgs e)
+		{
+			SuspendLayout();
+
+			TwoColumns_Click(sender, e);
+			OptionsMapBelow_Click(sender, e);
+
+			ResumeLayout();
+		}
+
+		private void OptionsShowInit_Click(object sender, EventArgs e)
+		{
+			InitiativePanel.Visible = !InitiativePanel.Visible;
+		}
+
 		#endregion
+
+		#endregion
+
+		#region Tools menu
+
+		private void ToolsColumnsInit_Click(object sender, EventArgs e)
+		{
+			InitHdr.Width = (InitHdr.Width > 0) ? 0 : 60;
+			Session.Preferences.CombatColumnInitiative = (InitHdr.Width > 0);
+		}
+
+		private void ToolsColumnsHP_Click(object sender, EventArgs e)
+		{
+			HPHdr.Width = (HPHdr.Width > 0) ? 0 : 60;
+			Session.Preferences.CombatColumnHP = (HPHdr.Width > 0);
+		}
+
+		private void ToolsColumnsDefences_Click(object sender, EventArgs e)
+		{
+			DefHdr.Width = (DefHdr.Width > 0) ? 0 : 200;
+			Session.Preferences.CombatColumnDefences = (DefHdr.Width > 0);
+		}
+
+		private void ToolsColumnsConditions_Click(object sender, EventArgs e)
+		{
+			EffectsHdr.Width = (EffectsHdr.Width > 0) ? 0 : 175;
+			Session.Preferences.CombatColumnEffects = (EffectsHdr.Width > 0);
+		}
 
 		#endregion
 
 		#region Event handlers
+
+		#region Form
 
 		void Application_Idle(object sender, EventArgs e)
 		{
@@ -1401,12 +1616,19 @@ namespace Masterplan.UI
 					Session.PlayerView.ShowDefault();
 
 				Session.CurrentEncounter = null;
+
+				Session.Project.EncounterReports.Add(new Pair<Encounter, EncounterLog>(fEncounter, fLog));
+				Session.Modified = true;
 			}
 			catch (Exception ex)
 			{
 				LogSystem.Trace(ex);
 			}
 		}
+
+		#endregion
+
+		#region CombatList
 
 		private void CombatList_ItemDrag(object sender, ItemDragEventArgs e)
 		{
@@ -1538,6 +1760,10 @@ namespace Masterplan.UI
 			}
 		}
 
+		#endregion
+
+		#region MapView
+
 		private void MapView_ItemMoved(object sender, MovementEventArgs e)
 		{
 			try
@@ -1659,6 +1885,777 @@ namespace Masterplan.UI
 			if (PlayerMap != null)
 				PlayerMap.SetDragInfo(e.OldLocation, e.NewLocation);
 		}
+
+		private void MapView_SketchCreated(object sender, MapSketchEventArgs e)
+		{
+			if (PlayerMap != null)
+			{
+				PlayerMap.Sketches.Add(e.Sketch);
+				PlayerMap.Invalidate();
+			}
+		}
+
+		private void MapView_MouseZoomed(object sender, MouseEventArgs e)
+		{
+			ZoomGauge.Visible = true;
+			ZoomGauge.Value -= Math.Sign(e.Delta);
+			ZoomGauge_Scroll(sender, e);
+		}
+
+		private void MapView_CancelledScrolling(object sender, EventArgs e)
+		{
+			cancelled_scrolling();
+		}
+
+		#endregion
+
+		#region Draw combat list
+
+		private void CombatList_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+		{
+			e.DrawDefault = true;
+		}
+
+		private void CombatList_DrawItem(object sender, DrawListViewItemEventArgs e)
+		{
+		}
+
+		private void CombatList_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+		{
+			e.Graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+			e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+			Brush text = (e.Item.Selected) ? SystemBrushes.HighlightText : new SolidBrush(e.Item.ForeColor);
+			Brush bg = (e.Item.Selected) ? SystemBrushes.Highlight : new SolidBrush(e.Item.BackColor);
+
+			StringFormat format = (e.Header.TextAlign == HorizontalAlignment.Left) ? fLeft : fRight;
+
+			e.Graphics.FillRectangle(bg, e.Bounds);
+
+			if (e.ColumnIndex == 0)
+			{
+				CreatureState state = CreatureState.Defeated;
+				int max_value = 0;
+				int current_value = 0;
+				int temp_value = 0;
+
+				if (e.Item.Tag is CreatureToken)
+				{
+					CreatureToken ct = e.Item.Tag as CreatureToken;
+					CombatData cd = ct.Data;
+
+					EncounterSlot slot = fEncounter.FindSlot(cd);
+
+					state = slot.GetState(cd);
+					max_value = slot.Card.HP;
+					current_value = max_value - cd.Damage;
+					temp_value = cd.TempHP;
+				}
+
+				if (e.Item.Tag is Hero)
+				{
+					Hero hero = e.Item.Tag as Hero;
+					//CombatData cd = fHeroData[hero.ID];
+					CombatData cd = hero.CombatData;
+
+					state = CreatureState.Active;
+					max_value = hero.HP;
+					current_value = max_value - cd.Damage;
+					temp_value = cd.TempHP;
+				}
+
+				if (e.Item.Tag is SkillChallenge)
+				{
+					SkillChallenge sc = e.Item.Tag as SkillChallenge;
+
+					if (sc.Results.Fails >= 3)
+					{
+						state = CreatureState.Bloodied;
+						current_value = 3;
+						max_value = 3;
+					}
+					else if (sc.Results.Successes >= sc.Successes)
+					{
+						state = CreatureState.Defeated;
+						current_value = sc.Successes;
+						max_value = sc.Successes;
+					}
+					else
+					{
+						state = CreatureState.Active;
+						max_value = sc.Successes;
+						current_value = sc.Successes - sc.Results.Successes;
+					}
+				}
+
+				if (current_value < 0)
+					current_value = 0;
+				if (current_value > max_value)
+					current_value = max_value;
+
+				if ((max_value > 1) && (state != CreatureState.Defeated))
+				{
+					int width = e.Bounds.Width - 1;
+					int height = e.Bounds.Height / 4;
+
+					Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Bottom - height, width, height);
+
+					Color c = (state == CreatureState.Bloodied) ? Color.Red : Color.DarkGray;
+					Brush b = new LinearGradientBrush(rect, Color.White, Color.FromArgb(10, c), LinearGradientMode.Vertical);
+					e.Graphics.FillRectangle(b, rect);
+					e.Graphics.DrawRectangle(Pens.DarkGray, rect);
+
+					int hp_width = (width * current_value) / (max_value + temp_value);
+					Rectangle hp_rect = new Rectangle(rect.X, rect.Y, hp_width, height);
+
+					Brush hp_b = new LinearGradientBrush(hp_rect, Color.Transparent, c, LinearGradientMode.Vertical);
+
+					e.Graphics.FillRectangle(hp_b, hp_rect);
+
+					if (temp_value > 0)
+					{
+						int temp_width = (width * temp_value) / (max_value + temp_value);
+						Rectangle temp_rect = new Rectangle(hp_rect.Right, hp_rect.Y, temp_width, height);
+
+						Brush temp_b = new LinearGradientBrush(temp_rect, Color.Transparent, Color.Blue, LinearGradientMode.Vertical);
+
+						e.Graphics.FillRectangle(temp_b, temp_rect);
+					}
+				}
+				else
+				{
+					e.Graphics.DrawLine(Pens.DarkGray, e.Bounds.Left, e.Bounds.Bottom, e.Bounds.Right, e.Bounds.Bottom);
+				}
+			}
+
+			e.Graphics.DrawString(e.SubItem.Text, e.Item.Font, text, e.Bounds, format);
+		}
+
+		#endregion
+
+		#region List context menu
+
+		private void ListContext_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			try
+			{
+				bool mob = false;
+				bool delayed = false;
+				bool on_map = false;
+				bool custom = false;
+
+				if (SelectedTokens.Count != 0)
+				{
+					mob = true;
+					delayed = true;
+					on_map = true;
+
+					foreach (IToken token in SelectedTokens)
+					{
+						bool token_is_mob = ((token is CreatureToken) || (token is Hero));
+						if (!token_is_mob)
+							mob = false;
+
+						if (token is CreatureToken)
+						{
+							CreatureToken ct = token as CreatureToken;
+
+							if (!ct.Data.Delaying)
+								delayed = false;
+
+							if ((MapView.Map != null) && (ct.Data.Location == CombatData.NoPoint))
+								on_map = false;
+						}
+
+						if (token is Hero)
+						{
+							Hero hero = token as Hero;
+							//CombatData cd = fHeroData[hero.ID];
+							CombatData cd = hero.CombatData;
+
+							if (!cd.Delaying)
+								delayed = false;
+
+							if ((MapView.Map != null) && (cd.Location == CombatData.NoPoint))
+								on_map = false;
+						}
+
+						if (token is CustomToken)
+						{
+							CustomToken ct = token as CustomToken;
+
+							custom = true;
+
+							if ((MapView.Map != null) && (ct.Data.Location == CombatData.NoPoint))
+								on_map = false;
+
+							if (ct.CreatureID != Guid.Empty)
+								on_map = false;
+						}
+					}
+				}
+
+				bool non_hero = false;
+				foreach (IToken token in SelectedTokens)
+				{
+					if (!(token is Hero))
+						non_hero = true;
+				}
+
+				ListDetails.Enabled = (SelectedTokens.Count == 1);
+				ListDamage.Enabled = mob;
+				ListHeal.Enabled = mob;
+				ListCondition.Enabled = mob;
+				ListRemoveEffect.Enabled = (SelectedTokens.Count == 1);
+				ListRemoveMap.Enabled = on_map;
+				ListRemoveCombat.Enabled = (SelectedTokens.Count != 0);
+				ListCreateCopy.Enabled = custom;
+				ListVisible.Enabled = non_hero;
+
+				if (ListVisible.Enabled && (SelectedTokens.Count == 1))
+				{
+					if (SelectedTokens[0] is CreatureToken)
+					{
+						CreatureToken ct = SelectedTokens[0] as CreatureToken;
+						ListVisible.Checked = ct.Data.Visible;
+					}
+
+					if (SelectedTokens[0] is CustomToken)
+					{
+						CustomToken ct = SelectedTokens[0] as CustomToken;
+						ListVisible.Checked = ct.Data.Visible;
+					}
+				}
+				else
+				{
+					ListVisible.Checked = false;
+				}
+
+				ListDelay.Enabled = mob;
+				ListDelay.Checked = delayed;
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void ListDetails_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				edit_token(SelectedTokens[0]);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void ListDamage_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				do_damage(SelectedTokens);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void ListRemoveMap_Click(object sender, EventArgs e)
+		{
+			remove_from_map(SelectedTokens);
+		}
+
+		private void ListRemoveCombat_Click(object sender, EventArgs e)
+		{
+			remove_from_combat(SelectedTokens);
+		}
+
+		private void ListVisible_Click(object sender, EventArgs e)
+		{
+			toggle_visibility(SelectedTokens);
+		}
+
+		private void ListDelay_Click(object sender, EventArgs e)
+		{
+			set_delay(SelectedTokens);
+		}
+
+		private void ListHeal_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				do_heal(SelectedTokens);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void ListCreateCopy_Click(object sender, EventArgs e)
+		{
+			copy_custom_token();
+		}
+
+		#endregion
+
+		#region Map context menu
+
+		private void MapContext_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			try
+			{
+				bool mob = false;
+				bool delayed = false;
+				bool on_map = false;
+				bool custom = false;
+
+				if (MapView.SelectedTokens.Count != 0)
+				{
+					mob = true;
+					delayed = true;
+					on_map = true;
+
+					foreach (IToken token in MapView.SelectedTokens)
+					{
+						bool token_is_mob = ((token is CreatureToken) || (token is Hero));
+						if (!token_is_mob)
+							mob = false;
+
+						if (token is CreatureToken)
+						{
+							CreatureToken ct = token as CreatureToken;
+
+							if (!ct.Data.Delaying)
+								delayed = false;
+
+							if (ct.Data.Location == CombatData.NoPoint)
+								on_map = false;
+						}
+
+						if (token is Hero)
+						{
+							Hero hero = token as Hero;
+							//CombatData cd = fHeroData[hero.ID];
+							CombatData cd = hero.CombatData;
+
+							if (!cd.Delaying)
+								delayed = false;
+
+							if (cd.Location == CombatData.NoPoint)
+								on_map = false;
+						}
+
+						if (token is CustomToken)
+						{
+							CustomToken ct = token as CustomToken;
+
+							custom = true;
+
+							if (ct.Data.Location == CombatData.NoPoint)
+								on_map = false;
+						}
+					}
+				}
+
+				bool non_hero = false;
+				foreach (IToken token in MapView.SelectedTokens)
+				{
+					if (!(token is Hero))
+						non_hero = true;
+				}
+
+				MapDetails.Enabled = (MapView.SelectedTokens.Count == 1);
+				MapDamage.Enabled = mob;
+				MapHeal.Enabled = mob;
+				MapAddEffect.Enabled = mob;
+				MapRemoveEffect.Enabled = mob;
+				MapRemoveMap.Enabled = on_map;
+				MapRemoveCombat.Enabled = (MapView.SelectedTokens.Count != 0);
+				MapCreateCopy.Enabled = custom;
+				MapVisible.Enabled = non_hero;
+
+				if (MapVisible.Enabled && (MapView.SelectedTokens.Count == 1))
+				{
+					if (MapView.SelectedTokens[0] is CreatureToken)
+					{
+						CreatureToken ct = MapView.SelectedTokens[0] as CreatureToken;
+						MapVisible.Checked = ct.Data.Visible;
+					}
+
+					if (MapView.SelectedTokens[0] is CustomToken)
+					{
+						CustomToken ct = MapView.SelectedTokens[0] as CustomToken;
+						MapVisible.Checked = ct.Data.Visible;
+					}
+				}
+				else
+				{
+					MapVisible.Checked = false;
+				}
+
+				MapDelay.Enabled = mob;
+				MapDelay.Checked = delayed;
+
+				MapContextDrawing.Checked = MapView.AllowDrawing;
+				MapContextClearDrawings.Enabled = (MapView.Sketches.Count != 0);
+
+				MapContextLOS.Checked = MapView.LineOfSight;
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void MapDetails_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				if (MapView.SelectedTokens.Count == 0)
+					return;
+
+				edit_token(MapView.SelectedTokens[0]);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void MapDamage_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				do_damage(MapView.SelectedTokens);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void MapRemoveMap_Click(object sender, EventArgs e)
+		{
+			remove_from_map(MapView.SelectedTokens);
+		}
+
+		private void MapRemoveCombat_Click(object sender, EventArgs e)
+		{
+			remove_from_combat(MapView.SelectedTokens);
+		}
+
+		private void MapVisible_Click(object sender, EventArgs e)
+		{
+			toggle_visibility(MapView.SelectedTokens);
+		}
+
+		private void MapDelay_Click(object sender, EventArgs e)
+		{
+			set_delay(MapView.SelectedTokens);
+		}
+
+		private void MapHeal_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				do_heal(MapView.SelectedTokens);
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void MapCreateCopy_Click(object sender, EventArgs e)
+		{
+			copy_custom_token();
+		}
+
+		#endregion
+
+		#region Drop-down opening
+
+		private void CombatantsBtn_DropDownOpening(object sender, EventArgs e)
+		{
+			CombatantsAddToken.Visible = (fEncounter.MapID != Guid.Empty);
+			CombatantsAddOverlay.Visible = (fEncounter.MapID != Guid.Empty);
+			CombatantsRemove.Enabled = (SelectedTokens.Count != 0);
+
+			CombatantsWaves.DropDownItems.Clear();
+
+			foreach (EncounterWave ew in fEncounter.Waves)
+			{
+				if (ew.Count == 0)
+					continue;
+
+				ToolStripMenuItem tsmi = new ToolStripMenuItem(ew.Name);
+				tsmi.Checked = ew.Active;
+				tsmi.Tag = ew;
+				tsmi.Click += new EventHandler(wave_activated);
+				CombatantsWaves.DropDownItems.Add(tsmi);
+			}
+			if (CombatantsWaves.DropDownItems.Count == 0)
+			{
+				ToolStripMenuItem tsmi = new ToolStripMenuItem("(none set)");
+				tsmi.Enabled = false;
+				CombatantsWaves.DropDownItems.Add(tsmi);
+			}
+		}
+
+		void wave_activated(object sender, EventArgs e)
+		{
+			ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
+			EncounterWave ew = tsmi.Tag as EncounterWave;
+			ew.Active = !ew.Active;
+
+			update_list();
+			update_maps();
+			update_statusbar();
+		}
+
+		private void MapMenu_DropDownOpening(object sender, EventArgs e)
+		{
+			ShowMap.Checked = !MapSplitter.Panel2Collapsed;
+			MapLOS.Checked = MapView.LineOfSight;
+			MapGrid.Checked = (MapView.ShowGrid != MapGridMode.None);
+			MapGridLabels.Checked = MapView.ShowGridLabels;
+			MapHealth.Checked = MapView.ShowHealthBars;
+			MapConditions.Checked = MapView.ShowConditions;
+			MapPictureTokens.Checked = MapView.ShowPictureTokens;
+			MapNavigate.Checked = MapView.AllowScrolling;
+
+			MapFogAllCreatures.Checked = (MapView.ShowCreatures == CreatureViewMode.All);
+			MapFogVisibleCreatures.Checked = (MapView.ShowCreatures == CreatureViewMode.Visible);
+			MapFogHideCreatures.Checked = (MapView.ShowCreatures == CreatureViewMode.None);
+
+			MapDrawing.Checked = MapView.AllowDrawing;
+			MapClearDrawings.Enabled = (MapView.Sketches.Count != 0);
+		}
+
+		private void PlayerViewMapMenu_DropDownOpening(object sender, EventArgs e)
+		{
+			PlayerViewMap.Checked = (PlayerMap != null);
+			PlayerViewInitList.Checked = (PlayerInitiative != null);
+
+			PlayerViewLOS.Enabled = (PlayerMap != null);
+			PlayerViewLOS.Checked = ((PlayerMap != null) && PlayerMap.LineOfSight);
+			PlayerViewGrid.Enabled = (PlayerMap != null);
+			PlayerViewGrid.Checked = ((PlayerMap != null) && (PlayerMap.ShowGrid != MapGridMode.None));
+			PlayerViewGridLabels.Enabled = (PlayerMap != null);
+			PlayerViewGridLabels.Checked = ((PlayerMap != null) && (PlayerMap.ShowGridLabels));
+			PlayerHealth.Enabled = (PlayerMap != null);
+			PlayerHealth.Checked = ((PlayerMap != null) && (PlayerMap.ShowHealthBars));
+			PlayerConditions.Enabled = (PlayerMap != null);
+			PlayerConditions.Checked = ((PlayerMap != null) && (PlayerMap.ShowConditions));
+			PlayerPictureTokens.Enabled = (PlayerMap != null);
+			PlayerPictureTokens.Checked = ((PlayerMap != null) && (PlayerMap.ShowPictureTokens));
+			PlayerLabels.Enabled = ((PlayerMap != null) || (PlayerInitiative != null));
+			PlayerLabels.Checked = (((PlayerMap != null) && (PlayerMap.ShowCreatureLabels)) || ((PlayerInitiative != null) && (Session.Preferences.PlayerViewCreatureLabels)));
+
+			PlayerViewFog.Enabled = (PlayerMap != null);
+			PlayerFogAll.Checked = ((PlayerMap != null) && (PlayerMap.ShowCreatures == CreatureViewMode.All));
+			PlayerFogVisible.Checked = ((PlayerMap != null) && (PlayerMap.ShowCreatures == CreatureViewMode.Visible));
+			PlayerFogNone.Checked = ((PlayerMap != null) && (PlayerMap.ShowCreatures == CreatureViewMode.None));
+		}
+
+		private void ToolsMenu_DopDownOpening(object sender, EventArgs e)
+		{
+			ToolsAddIns.DropDownItems.Clear();
+			foreach (IAddIn addin in Session.AddIns)
+			{
+				ToolStripMenuItem addin_item = new ToolStripMenuItem(addin.Name);
+				addin_item.ToolTipText = TextHelper.Wrap(addin.Description);
+				addin_item.Tag = addin;
+
+				ToolsAddIns.DropDownItems.Add(addin_item);
+
+				foreach (ICommand command in addin.CombatCommands)
+				{
+					ToolStripMenuItem command_item = new ToolStripMenuItem(command.Name);
+					command_item.ToolTipText = TextHelper.Wrap(command.Description);
+					command_item.Enabled = command.Available;
+					command_item.Checked = command.Active;
+					command_item.Click += new EventHandler(add_in_command_clicked);
+					command_item.Tag = command;
+
+					addin_item.DropDownItems.Add(command_item);
+				}
+
+				if (addin.Commands.Count == 0)
+				{
+					ToolStripItem command_item = ToolsAddIns.DropDownItems.Add("(no commands)");
+					command_item.Enabled = false;
+				}
+			}
+
+			if (Session.AddIns.Count == 0)
+			{
+				ToolStripItem addin_item = ToolsAddIns.DropDownItems.Add("(none)");
+				addin_item.Enabled = false;
+			}
+		}
+
+		private void OptionsMenu_DropDownOpening(object sender, EventArgs e)
+		{
+			bool show_map = !MapSplitter.Panel2Collapsed;
+
+			OptionsShowInit.Checked = InitiativePanel.Visible;
+
+			OneColumn.Checked = (ListSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal);
+			TwoColumns.Checked = (ListSplitter.Orientation == System.Windows.Forms.Orientation.Vertical);
+			OneColumn.Enabled = show_map;
+			TwoColumns.Enabled = show_map;
+
+			MapRight.Enabled = show_map;
+			MapBelow.Enabled = show_map;
+			MapRight.Checked = (MapSplitter.Orientation == System.Windows.Forms.Orientation.Vertical);
+			MapBelow.Checked = (MapSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal);
+
+			OptionsLandscape.Enabled = show_map;
+			OptionsPortrait.Enabled = show_map;
+			OptionsLandscape.Checked = (OneColumn.Checked && MapRight.Checked);
+			OptionsPortrait.Checked = (TwoColumns.Checked && MapBelow.Checked);
+
+			ToolsAutoRemove.Checked = Session.Preferences.CreatureAutoRemove;
+			OptionsIPlay4e.Checked = Session.Preferences.iPlay4E;
+		}
+
+		private void EffectMenu_DropDownOpening(object sender, EventArgs e)
+		{
+			update_effects_list(EffectMenu, true);
+		}
+
+		private void ListCondition_DropDownOpening(object sender, EventArgs e)
+		{
+			update_effects_list(ListCondition, true);
+		}
+
+		private void MapCondition_DropDownOpening(object sender, EventArgs e)
+		{
+			update_effects_list(MapAddEffect, false);
+		}
+
+		private void ListRemoveEffect_DropDownOpening(object sender, EventArgs e)
+		{
+			update_remove_effect_list(ListRemoveEffect, true);
+		}
+
+		private void MapRemoveEffect_DropDownOpening(object sender, EventArgs e)
+		{
+			update_remove_effect_list(MapRemoveEffect, false);
+		}
+
+		private void PlayerViewNoMapMenu_DropDownOpening(object sender, EventArgs e)
+		{
+			PlayerViewNoMapShowInitiativeList.Checked = (PlayerInitiative != null);
+
+			PlayerViewNoMapShowLabels.Enabled = (PlayerInitiative != null);
+			PlayerViewNoMapShowLabels.Checked = Session.Preferences.PlayerViewCreatureLabels;
+		}
+
+		private void ToolsColumns_DropDownOpening(object sender, EventArgs e)
+		{
+			ToolsColumnsInit.Checked = InitHdr.Width > 0;
+			ToolsColumnsHP.Checked = HPHdr.Width > 0;
+			ToolsColumnsDefences.Checked = DefHdr.Width > 0;
+			ToolsColumnsConditions.Checked = EffectsHdr.Width > 0;
+		}
+
+		#endregion
+
+		#region Form buttons
+
+		private void CloseBtn_Click(object sender, EventArgs e)
+		{
+			fPromptOnClose = false;
+			Close();
+		}
+
+		private void PauseBtn_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// Ask to save encounter
+
+				string msg = "Would you like to be able to resume this encounter later?";
+				msg += Environment.NewLine;
+				msg += Environment.NewLine;
+				msg += "If you click Yes, the encounter can be restarted by selecting Paused Encounters from the Project menu.";
+
+				if (MessageBox.Show(msg, "Masterplan", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				{
+					CombatState cs = new CombatState();
+
+					fLog.AddPauseEntry();
+
+					Dictionary<Guid, CombatData> hero_data = new Dictionary<Guid, CombatData>();
+					foreach (Hero hero in Session.Project.Heroes)
+						hero_data[hero.ID] = hero.CombatData;
+
+					cs.Encounter = fEncounter;
+					cs.CurrentRound = fCurrentRound;
+					cs.PartyLevel = fPartyLevel;
+					cs.HeroData = hero_data;
+					cs.TrapData = fTrapData;
+					cs.TokenLinks = MapView.TokenLinks;
+					cs.RemovedCreatureXP = fRemovedCreatureXP;
+					cs.Viewpoint = MapView.Viewpoint;
+					cs.Log = fLog;
+
+					if (fCurrentActor != null)
+						cs.CurrentActor = fCurrentActor.ID;
+
+					foreach (MapSketch sketch in MapView.Sketches)
+						cs.Sketches.Add(sketch.Copy());
+
+					foreach (OngoingCondition oc in fEffects)
+						cs.QuickEffects.Add(oc.Copy());
+
+					Session.Project.SavedCombats.Add(cs);
+					Session.Modified = true;
+
+					foreach (Form form in Application.OpenForms)
+					{
+						PausedCombatListForm dlg = form as PausedCombatListForm;
+						if (dlg != null)
+							dlg.UpdateEncounters();
+					}
+
+					fPromptOnClose = false;
+					Close();
+				}
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void InfoBtn_Click(object sender, EventArgs e)
+		{
+			InfoForm dlg = new InfoForm();
+			dlg.Level = fPartyLevel;
+			dlg.ShowDialog();
+		}
+
+		private void DieRollerBtn_Click(object sender, EventArgs e)
+		{
+			DieRollerForm dlg = new DieRollerForm();
+			dlg.ShowDialog();
+		}
+
+		private void ReportBtn_Click(object sender, EventArgs e)
+		{
+			EncounterReportForm dlg = new EncounterReportForm(fLog, fEncounter);
+			dlg.ShowDialog();
+		}
+
+		#endregion
 
 		private void ZoomGauge_Scroll(object sender, EventArgs e)
 		{
@@ -1979,9 +2976,6 @@ namespace Masterplan.UI
 
 					if (cd == null)
 					{
-						//if (fHeroData.ContainsKey(id))
-						//    cd = fHeroData[id];
-
 						Hero hero = Session.Project.FindHero(id);
 						if (hero != null)
 						{
@@ -2035,10 +3029,7 @@ namespace Masterplan.UI
 						{
 							Hero hero = Session.Project.FindHero(id);
 							if (hero != null)
-							{
-								//cd = fHeroData[hero.ID];
 								cd = hero.CombatData;
-							}
 						}
 
 						if (cd != null)
@@ -2066,38 +3057,6 @@ namespace Masterplan.UI
 					OngoingCondition oc = hero.Effects[index];
 
 					apply_effect(oc.Copy(), SelectedTokens, false);
-
-					/*
-					foreach (IToken token in SelectedTokens)
-					{
-						if (token == hero)
-							continue;
-
-						CombatData cd = null;
-
-						if (token is CreatureToken)
-						{
-							CreatureToken ct = token as CreatureToken;
-							cd = ct.Data;
-						}
-
-						if (token is Hero)
-						{
-							Hero h = token as Hero;
-							cd = h.CombatData;
-							//if (fHeroData.ContainsKey(h.ID))
-							//    cd = fHeroData[h.ID];
-						}
-
-						if (cd != null)
-						{
-							apply_effect(oc.Copy(), SelectedTokens, false);
-							fLog.AddEffectEntry(cd.ID, oc.ToString(fEncounter, false), true);
-
-							cd.Conditions.Add(oc.Copy());
-						}
-					}
-					*/
 
 					update_list();
 					update_preview_panel();
@@ -2283,289 +3242,6 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void CombatantsEffects_Click(object sender, EventArgs e)
-		{
-			EffectListForm dlg = new EffectListForm(fEncounter, fCurrentActor, fCurrentRound);
-			dlg.ShowDialog();
-
-			update_list();
-			update_preview_panel();
-			update_maps();
-		}
-
-		private void CombatantsLinks_Click(object sender, EventArgs e)
-		{
-			TokenLinkListForm dlg = new TokenLinkListForm(MapView.TokenLinks);
-			dlg.ShowDialog();
-
-			update_list();
-			update_preview_panel();
-			update_maps();
-		}
-
-		void add_in_command_clicked(object sender, EventArgs e)
-		{
-			try
-			{
-				ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
-				ICommand command = tsmi.Tag as ICommand;
-
-				command.Execute();
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void ListDelay_Click(object sender, EventArgs e)
-		{
-			set_delay(SelectedTokens);
-		}
-
-		private void MapDelay_Click(object sender, EventArgs e)
-		{
-			set_delay(MapView.SelectedTokens);
-		}
-
-		private void OptionsMapRight_Click(object sender, EventArgs e)
-		{
-			if (MapSplitter.Orientation == System.Windows.Forms.Orientation.Vertical)
-				return;
-
-			bool one_col = (ListSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal);
-
-			MapSplitter.Orientation = System.Windows.Forms.Orientation.Vertical;
-			MapSplitter.SplitterDistance = (one_col ? 355 : 700);
-			MapSplitter.FixedPanel = FixedPanel.Panel1;
-
-			Session.Preferences.CombatMapRight = true;
-		}
-
-		private void OptionsMapBelow_Click(object sender, EventArgs e)
-		{
-			if (MapSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal)
-				return;
-
-			MapSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			MapSplitter.SplitterDistance = MapSplitter.Height / 2;
-			MapSplitter.FixedPanel = FixedPanel.None;
-
-			Session.Preferences.CombatMapRight = false;
-		}
-
-		private void OptionsLandscape_Click(object sender, EventArgs e)
-		{
-			SuspendLayout();
-
-			OneColumn_Click(sender, e);
-			OptionsMapRight_Click(sender, e);
-
-			ResumeLayout();
-		}
-
-		private void OptionsPortrait_Click(object sender, EventArgs e)
-		{
-			SuspendLayout();
-
-			TwoColumns_Click(sender, e);
-			OptionsMapBelow_Click(sender, e);
-
-			ResumeLayout();
-		}
-
-		private void MapDrawing_Click(object sender, EventArgs e)
-		{
-			MapView.AllowDrawing = !MapView.AllowDrawing;
-
-			if (PlayerMap != null)
-				PlayerMap.AllowDrawing = MapView.AllowDrawing;
-		}
-
-		private void MapClearDrawings_Click(object sender, EventArgs e)
-		{
-			MapView.Sketches.Clear();
-			MapView.Invalidate();
-
-			if (PlayerMap != null)
-			{
-				PlayerMap.Sketches.Clear();
-				PlayerMap.Invalidate();
-			}
-		}
-
-		private void MapView_SketchCreated(object sender, MapSketchEventArgs e)
-		{
-			if (PlayerMap != null)
-			{
-				PlayerMap.Sketches.Add(e.Sketch);
-				PlayerMap.Invalidate();
-			}
-		}
-
-		private void MapContextOverlay_Click(object sender, EventArgs e)
-		{
-			CustomToken overlay = new CustomToken();
-			overlay.Name = "New Overlay";
-			overlay.Type = CustomTokenType.Overlay;
-
-			if (MapView.SelectedTokens.Count == 1)
-			{
-				IToken token = MapView.SelectedTokens[0];
-
-				CreatureToken creature = token as CreatureToken;
-				if (creature != null)
-				{
-					overlay.Name = "Zone: " + creature.Data.DisplayName;
-					overlay.CreatureID = creature.Data.ID;
-					overlay.Colour = Color.Red;
-				}
-
-				Hero hero = token as Hero;
-				if (hero != null)
-				{
-					overlay.Name = hero.Name + " zone";
-					overlay.CreatureID = hero.ID;
-					overlay.Colour = Color.DarkGreen;
-				}
-			}
-
-			CustomOverlayForm dlg = new CustomOverlayForm(overlay);
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				overlay = dlg.Token;
-
-				if (overlay.CreatureID == Guid.Empty)
-				{
-					Point menu_pt = new Point(MapContext.Left, MapContext.Top);
-					Point mouse = MapView.PointToClient(menu_pt);
-					Point square = MapView.LayoutData.GetSquareAtPoint(mouse);
-
-					int x = square.X - ((overlay.OverlaySize.Width - 1) / 2);
-					int y = square.Y - ((overlay.OverlaySize.Height - 1) / 2);
-					overlay.Data.Location = new Point(x, y);
-				}
-
-				fEncounter.CustomTokens.Add(overlay);
-
-				update_list();
-				update_maps();
-			}
-		}
-
-		private void MapHeal_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				do_heal(MapView.SelectedTokens);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void ListHeal_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				do_heal(SelectedTokens);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void ListCreateCopy_Click(object sender, EventArgs e)
-		{
-			copy_custom_token();
-		}
-
-		private void MapCreateCopy_Click(object sender, EventArgs e)
-		{
-			copy_custom_token();
-		}
-
-		private void MapSetPicture_Click(object sender, EventArgs e)
-		{
-			if (MapView.SelectedTokens.Count != 1)
-				return;
-
-			CreatureToken ct = MapView.SelectedTokens[0] as CreatureToken;
-			if (ct != null)
-			{
-				EncounterSlot slot = fEncounter.FindSlot(ct.SlotID);
-
-				ICreature creature = Session.FindCreature(slot.Card.CreatureID, SearchType.Global);
-				if (creature != null)
-				{
-					OpenFileDialog dlg = new OpenFileDialog();
-					dlg.Filter = Program.ImageFilter;
-					if (dlg.ShowDialog() == DialogResult.OK)
-					{
-						creature.Image = Image.FromFile(dlg.FileName);
-						Program.SetResolution(creature.Image);
-
-						if (creature is Creature)
-						{
-							Creature c = creature as Creature;
-							Library lib = Session.FindLibrary(c);
-							if (lib != null)
-							{
-								string filename = Session.GetLibraryFilename(lib);
-								Serialisation<Library>.Save(filename, lib, SerialisationMode.Binary);
-							}
-						}
-						else
-						{
-							Session.Modified = true;
-						}
-
-						update_list();
-					}
-				}
-			}
-
-			Hero hero = MapView.SelectedTokens[0] as Hero;
-			if (hero != null)
-			{
-				OpenFileDialog dlg = new OpenFileDialog();
-				dlg.Filter = Program.ImageFilter;
-				if (dlg.ShowDialog() == DialogResult.OK)
-				{
-					hero.Portrait = Image.FromFile(dlg.FileName);
-					Program.SetResolution(hero.Portrait);
-
-					Session.Modified = true;
-
-					update_list();
-				}
-			}
-		}
-
-		private void PlayerViewNoMapShowInitiativeList_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				show_player_view(false, PlayerInitiative == null);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void PlayerViewNoMapShowLabels_Click(object sender, EventArgs e)
-		{
-			Session.Preferences.PlayerViewCreatureLabels = !Session.Preferences.PlayerViewCreatureLabels;
-
-			if (PlayerInitiative != null)
-			{
-				PlayerInitiative.DocumentText = InitiativeView();
-			}
-		}
-
 		private void TemplateList_ItemDrag(object sender, ItemDragEventArgs e)
 		{
 			CustomToken ct = TemplateList.SelectedItems[0].Tag as CustomToken;
@@ -2584,11 +3260,6 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void OptionsShowInit_Click(object sender, EventArgs e)
-		{
-			InitiativePanel.Visible = !InitiativePanel.Visible;
-		}
-
 		private void ListSplitter_SplitterMoved(object sender, SplitterEventArgs e)
 		{
 			list_splitter_changed();
@@ -2599,749 +3270,29 @@ namespace Masterplan.UI
 			list_splitter_changed();
 		}
 
-		private void MapView_MouseZoomed(object sender, MouseEventArgs e)
+		private void TurnTimer_Tick(object sender, EventArgs e)
 		{
-			ZoomGauge.Visible = true;
-			ZoomGauge.Value -= Math.Sign(e.Delta);
-			ZoomGauge_Scroll(sender, e);
-		}
-
-		private void MapView_CancelledScrolling(object sender, EventArgs e)
-		{
-			cancelled_scrolling();
-		}
-
-		#region Draw combat list
-
-		private void CombatList_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
-		{
-			e.DrawDefault = true;
-		}
-
-		private void CombatList_DrawItem(object sender, DrawListViewItemEventArgs e)
-		{
-		}
-
-		private void CombatList_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
-		{
-			e.Graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-			e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-			Brush text = (e.Item.Selected) ? SystemBrushes.HighlightText : new SolidBrush(e.Item.ForeColor);
-			Brush bg = (e.Item.Selected) ? SystemBrushes.Highlight : new SolidBrush(e.Item.BackColor);
-
-			StringFormat format = (e.Header.TextAlign == HorizontalAlignment.Left) ? fLeft : fRight;
-
-			e.Graphics.FillRectangle(bg, e.Bounds);
-
-			if (e.ColumnIndex == 0)
+			if (fCombatStarted)
 			{
-				CreatureState state = CreatureState.Defeated;
-				int max_value = 0;
-				int current_value = 0;
-				int temp_value = 0;
-
-				if (e.Item.Tag is CreatureToken)
+				// Get last 'start turn' entry
+				StartTurnLogEntry entry = fLog.Entries.Last(x => x is StartTurnLogEntry) as StartTurnLogEntry;
+				if (entry != null)
 				{
-					CreatureToken ct = e.Item.Tag as CreatureToken;
-					CombatData cd = ct.Data;
+					// TODO: Handle paused + resumed encounters
 
-					EncounterSlot slot = fEncounter.FindSlot(cd);
-
-					state = slot.GetState(cd);
-					max_value = slot.Card.HP;
-					current_value = max_value - cd.Damage;
-					temp_value = cd.TempHP;
-				}
-
-				if (e.Item.Tag is Hero)
-				{
-					Hero hero = e.Item.Tag as Hero;
-					//CombatData cd = fHeroData[hero.ID];
-					CombatData cd = hero.CombatData;
-
-					state = CreatureState.Active;
-					max_value = hero.HP;
-					current_value = max_value - cd.Damage;
-					temp_value = cd.TempHP;
-				}
-
-				if (e.Item.Tag is SkillChallenge)
-				{
-					SkillChallenge sc = e.Item.Tag as SkillChallenge;
-
-					if (sc.Results.Fails >= 3)
-					{
-						state = CreatureState.Bloodied;
-						current_value = 3;
-						max_value = 3;
-					}
-					else if (sc.Results.Successes >= sc.Successes)
-					{
-						state = CreatureState.Defeated;
-						current_value = sc.Successes;
-						max_value = sc.Successes;
-					}
-					else
-					{
-						state = CreatureState.Active;
-						max_value = sc.Successes;
-						current_value = sc.Successes - sc.Results.Successes;
-					}
-				}
-
-				if (current_value < 0)
-					current_value = 0;
-				if (current_value > max_value)
-					current_value = max_value;
-
-				if ((max_value > 1) && (state != CreatureState.Defeated))
-				{
-					int width = e.Bounds.Width - 1;
-					int height = e.Bounds.Height / 4;
-
-					Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Bottom - height, width, height);
-
-					Color c = (state == CreatureState.Bloodied) ? Color.Red : Color.DarkGray;
-					Brush b = new LinearGradientBrush(rect, Color.White, Color.FromArgb(10, c), LinearGradientMode.Vertical);
-					e.Graphics.FillRectangle(b, rect);
-					e.Graphics.DrawRectangle(Pens.DarkGray, rect);
-
-					int hp_width = (width * current_value) / (max_value + temp_value);
-					Rectangle hp_rect = new Rectangle(rect.X, rect.Y, hp_width, height);
-
-					Brush hp_b = new LinearGradientBrush(hp_rect, Color.Transparent, c, LinearGradientMode.Vertical);
-
-					e.Graphics.FillRectangle(hp_b, hp_rect);
-
-					if (temp_value > 0)
-					{
-						int temp_width = (width * temp_value) / (max_value + temp_value);
-						Rectangle temp_rect = new Rectangle(hp_rect.Right, hp_rect.Y, temp_width, height);
-
-						Brush temp_b = new LinearGradientBrush(temp_rect, Color.Transparent, Color.Blue, LinearGradientMode.Vertical);
-
-						e.Graphics.FillRectangle(temp_b, temp_rect);
-					}
+					TimeSpan diff = DateTime.Now - entry.Timestamp;
+					TurnTimerLbl.Text = diff.Minutes + ":" + diff.Seconds.ToString("D2");
 				}
 				else
 				{
-					e.Graphics.DrawLine(Pens.DarkGray, e.Bounds.Left, e.Bounds.Bottom, e.Bounds.Right, e.Bounds.Bottom);
+					TurnTimerLbl.Text = "-";
 				}
 			}
-
-			e.Graphics.DrawString(e.SubItem.Text, e.Item.Font, text, e.Bounds, format);
-		}
-
-		#endregion
-
-		#region Tools menu
-
-		private void ToolsColumnsInit_Click(object sender, EventArgs e)
-		{
-			InitHdr.Width = (InitHdr.Width > 0) ? 0 : 60;
-			Session.Preferences.CombatColumnInitiative = (InitHdr.Width > 0);
-		}
-
-		private void ToolsColumnsHP_Click(object sender, EventArgs e)
-		{
-			HPHdr.Width = (HPHdr.Width > 0) ? 0 : 60;
-			Session.Preferences.CombatColumnHP = (HPHdr.Width > 0);
-		}
-
-		private void ToolsColumnsDefences_Click(object sender, EventArgs e)
-		{
-			DefHdr.Width = (DefHdr.Width > 0) ? 0 : 200;
-			Session.Preferences.CombatColumnDefences = (DefHdr.Width > 0);
-		}
-
-		private void ToolsColumnsConditions_Click(object sender, EventArgs e)
-		{
-			EffectsHdr.Width = (EffectsHdr.Width > 0) ? 0 : 175;
-			Session.Preferences.CombatColumnEffects = (EffectsHdr.Width > 0);
-		}
-
-		#endregion
-
-		#region List context menu
-
-		private void ListContext_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			try
+			else
 			{
-				bool mob = false;
-				bool delayed = false;
-				bool on_map = false;
-				bool custom = false;
-
-				if (SelectedTokens.Count != 0)
-				{
-					mob = true;
-					delayed = true;
-					on_map = true;
-
-					foreach (IToken token in SelectedTokens)
-					{
-						bool token_is_mob = ((token is CreatureToken) || (token is Hero));
-						if (!token_is_mob)
-							mob = false;
-
-						if (token is CreatureToken)
-						{
-							CreatureToken ct = token as CreatureToken;
-
-							if (!ct.Data.Delaying)
-								delayed = false;
-
-							if ((MapView.Map != null) && (ct.Data.Location == CombatData.NoPoint))
-								on_map = false;
-						}
-
-						if (token is Hero)
-						{
-							Hero hero = token as Hero;
-							//CombatData cd = fHeroData[hero.ID];
-							CombatData cd = hero.CombatData;
-
-							if (!cd.Delaying)
-								delayed = false;
-
-							if ((MapView.Map != null) && (cd.Location == CombatData.NoPoint))
-								on_map = false;
-						}
-
-						if (token is CustomToken)
-						{
-							CustomToken ct = token as CustomToken;
-
-							custom = true;
-
-							if ((MapView.Map != null) && (ct.Data.Location == CombatData.NoPoint))
-								on_map = false;
-
-							if (ct.CreatureID != Guid.Empty)
-								on_map = false;
-						}
-					}
-				}
-
-				bool non_hero = false;
-				foreach (IToken token in SelectedTokens)
-				{
-					if (!(token is Hero))
-						non_hero = true;
-				}
-
-				ListDetails.Enabled = (SelectedTokens.Count == 1);
-				ListDamage.Enabled = mob;
-				ListHeal.Enabled = mob;
-				ListCondition.Enabled = mob;
-				ListRemoveEffect.Enabled = (SelectedTokens.Count == 1);
-				ListRemoveMap.Enabled = on_map;
-				ListRemoveCombat.Enabled = (SelectedTokens.Count != 0);
-				ListCreateCopy.Enabled = custom;
-				ListVisible.Enabled = non_hero;
-
-				if (ListVisible.Enabled && (SelectedTokens.Count == 1))
-				{
-					if (SelectedTokens[0] is CreatureToken)
-					{
-						CreatureToken ct = SelectedTokens[0] as CreatureToken;
-						ListVisible.Checked = ct.Data.Visible;
-					}
-
-					if (SelectedTokens[0] is CustomToken)
-					{
-						CustomToken ct = SelectedTokens[0] as CustomToken;
-						ListVisible.Checked = ct.Data.Visible;
-					}
-				}
-				else
-				{
-					ListVisible.Checked = false;
-				}
-
-				ListDelay.Enabled = mob;
-				ListDelay.Checked = delayed;
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
+				TurnTimerLbl.Text = "-";
 			}
 		}
-
-		private void ListDetails_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				edit_token(SelectedTokens[0]);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void ListDamage_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				do_damage(SelectedTokens);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void ListRemoveMap_Click(object sender, EventArgs e)
-		{
-			remove_from_map(SelectedTokens);
-		}
-
-		private void ListRemoveCombat_Click(object sender, EventArgs e)
-		{
-			remove_from_combat(SelectedTokens);
-		}
-
-		private void ListVisible_Click(object sender, EventArgs e)
-		{
-			toggle_visibility(SelectedTokens);
-		}
-
-		#endregion
-
-		#region Map context menu
-
-		private void MapContext_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			try
-			{
-				bool mob = false;
-				bool delayed = false;
-				bool on_map = false;
-				bool custom = false;
-
-				if (MapView.SelectedTokens.Count != 0)
-				{
-					mob = true;
-					delayed = true;
-					on_map = true;
-
-					foreach (IToken token in MapView.SelectedTokens)
-					{
-						bool token_is_mob = ((token is CreatureToken) || (token is Hero));
-						if (!token_is_mob)
-							mob = false;
-
-						if (token is CreatureToken)
-						{
-							CreatureToken ct = token as CreatureToken;
-
-							if (!ct.Data.Delaying)
-								delayed = false;
-
-							if (ct.Data.Location == CombatData.NoPoint)
-								on_map = false;
-						}
-
-						if (token is Hero)
-						{
-							Hero hero = token as Hero;
-							//CombatData cd = fHeroData[hero.ID];
-							CombatData cd = hero.CombatData;
-
-							if (!cd.Delaying)
-								delayed = false;
-
-							if (cd.Location == CombatData.NoPoint)
-								on_map = false;
-						}
-
-						if (token is CustomToken)
-						{
-							CustomToken ct = token as CustomToken;
-
-							custom = true;
-
-							if (ct.Data.Location == CombatData.NoPoint)
-								on_map = false;
-						}
-					}
-				}
-
-				bool non_hero = false;
-				foreach (IToken token in MapView.SelectedTokens)
-				{
-					if (!(token is Hero))
-						non_hero = true;
-				}
-
-				MapDetails.Enabled = (MapView.SelectedTokens.Count == 1);
-				MapDamage.Enabled = mob;
-				MapHeal.Enabled = mob;
-				MapAddEffect.Enabled = mob;
-				MapRemoveEffect.Enabled = mob;
-				MapRemoveMap.Enabled = on_map;
-				MapRemoveCombat.Enabled = (MapView.SelectedTokens.Count != 0);
-				MapCreateCopy.Enabled = custom;
-				MapVisible.Enabled = non_hero;
-
-				if (MapVisible.Enabled && (MapView.SelectedTokens.Count == 1))
-				{
-					if (MapView.SelectedTokens[0] is CreatureToken)
-					{
-						CreatureToken ct = MapView.SelectedTokens[0] as CreatureToken;
-						MapVisible.Checked = ct.Data.Visible;
-					}
-
-					if (MapView.SelectedTokens[0] is CustomToken)
-					{
-						CustomToken ct = MapView.SelectedTokens[0] as CustomToken;
-						MapVisible.Checked = ct.Data.Visible;
-					}
-				}
-				else
-				{
-					MapVisible.Checked = false;
-				}
-
-				MapDelay.Enabled = mob;
-				MapDelay.Checked = delayed;
-
-				MapContextDrawing.Checked = MapView.AllowDrawing;
-				MapContextClearDrawings.Enabled = (MapView.Sketches.Count != 0);
-
-				MapContextLOS.Checked = MapView.LineOfSight;
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void MapDetails_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				if (MapView.SelectedTokens.Count == 0)
-					return;
-
-				edit_token(MapView.SelectedTokens[0]);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void MapDamage_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				do_damage(MapView.SelectedTokens);
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void MapRemoveMap_Click(object sender, EventArgs e)
-		{
-			remove_from_map(MapView.SelectedTokens);
-		}
-
-		private void MapRemoveCombat_Click(object sender, EventArgs e)
-		{
-			remove_from_combat(MapView.SelectedTokens);
-		}
-
-		private void MapVisible_Click(object sender, EventArgs e)
-		{
-			toggle_visibility(MapView.SelectedTokens);
-		}
-
-		#endregion
-
-		#region Drop-down opening
-
-		private void CombatantsBtn_DropDownOpening(object sender, EventArgs e)
-		{
-			CombatantsAddToken.Visible = (fEncounter.MapID != Guid.Empty);
-			CombatantsAddOverlay.Visible = (fEncounter.MapID != Guid.Empty);
-			CombatantsRemove.Enabled = (SelectedTokens.Count != 0);
-
-			CombatantsWaves.DropDownItems.Clear();
-
-			foreach (EncounterWave ew in fEncounter.Waves)
-			{
-				if (ew.Count == 0)
-					continue;
-
-				ToolStripMenuItem tsmi = new ToolStripMenuItem(ew.Name);
-				tsmi.Checked = ew.Active;
-				tsmi.Tag = ew;
-				tsmi.Click += new EventHandler(wave_activated);
-				CombatantsWaves.DropDownItems.Add(tsmi);
-			}
-			if (CombatantsWaves.DropDownItems.Count == 0)
-			{
-				ToolStripMenuItem tsmi = new ToolStripMenuItem("(none set)");
-				tsmi.Enabled = false;
-				CombatantsWaves.DropDownItems.Add(tsmi);
-			}
-		}
-
-		void wave_activated(object sender, EventArgs e)
-		{
-			ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
-			EncounterWave ew = tsmi.Tag as EncounterWave;
-			ew.Active = !ew.Active;
-
-			update_list();
-			update_maps();
-			update_statusbar();
-		}
-
-		private void MapMenu_DropDownOpening(object sender, EventArgs e)
-		{
-			ShowMap.Checked = !MapSplitter.Panel2Collapsed;
-			MapLOS.Checked = MapView.LineOfSight;
-			MapGrid.Checked = (MapView.ShowGrid != MapGridMode.None);
-			MapGridLabels.Checked = MapView.ShowGridLabels;
-			MapHealth.Checked = MapView.ShowHealthBars;
-			MapConditions.Checked = MapView.ShowConditions;
-			MapPictureTokens.Checked = MapView.ShowPictureTokens;
-			MapNavigate.Checked = MapView.AllowScrolling;
-
-			MapFogAllCreatures.Checked = (MapView.ShowCreatures == CreatureViewMode.All);
-			MapFogVisibleCreatures.Checked = (MapView.ShowCreatures == CreatureViewMode.Visible);
-			MapFogHideCreatures.Checked = (MapView.ShowCreatures == CreatureViewMode.None);
-
-			MapDrawing.Checked = MapView.AllowDrawing;
-			MapClearDrawings.Enabled = (MapView.Sketches.Count != 0);
-		}
-
-		private void PlayerViewMapMenu_DropDownOpening(object sender, EventArgs e)
-		{
-			PlayerViewMap.Checked = (PlayerMap != null);
-			PlayerViewInitList.Checked = (PlayerInitiative != null);
-
-			PlayerViewLOS.Enabled = (PlayerMap != null);
-			PlayerViewLOS.Checked = ((PlayerMap != null) && PlayerMap.LineOfSight);
-			PlayerViewGrid.Enabled = (PlayerMap != null);
-			PlayerViewGrid.Checked = ((PlayerMap != null) && (PlayerMap.ShowGrid != MapGridMode.None));
-			PlayerViewGridLabels.Enabled = (PlayerMap != null);
-			PlayerViewGridLabels.Checked = ((PlayerMap != null) && (PlayerMap.ShowGridLabels));
-			PlayerHealth.Enabled = (PlayerMap != null);
-			PlayerHealth.Checked = ((PlayerMap != null) && (PlayerMap.ShowHealthBars));
-			PlayerConditions.Enabled = (PlayerMap != null);
-			PlayerConditions.Checked = ((PlayerMap != null) && (PlayerMap.ShowConditions));
-			PlayerPictureTokens.Enabled = (PlayerMap != null);
-			PlayerPictureTokens.Checked = ((PlayerMap != null) && (PlayerMap.ShowPictureTokens));
-			PlayerLabels.Enabled = ((PlayerMap != null) || (PlayerInitiative != null));
-			PlayerLabels.Checked = (((PlayerMap != null) && (PlayerMap.ShowCreatureLabels)) || ((PlayerInitiative != null) && (Session.Preferences.PlayerViewCreatureLabels)));
-
-			PlayerViewFog.Enabled = (PlayerMap != null);
-			PlayerFogAll.Checked = ((PlayerMap != null) && (PlayerMap.ShowCreatures == CreatureViewMode.All));
-			PlayerFogVisible.Checked = ((PlayerMap != null) && (PlayerMap.ShowCreatures == CreatureViewMode.Visible));
-			PlayerFogNone.Checked = ((PlayerMap != null) && (PlayerMap.ShowCreatures == CreatureViewMode.None));
-		}
-
-		private void ToolsMenu_DopDownOpening(object sender, EventArgs e)
-		{
-			ToolsAddIns.DropDownItems.Clear();
-			foreach (IAddIn addin in Session.AddIns)
-			{
-				ToolStripMenuItem addin_item = new ToolStripMenuItem(addin.Name);
-				addin_item.ToolTipText = TextHelper.Wrap(addin.Description);
-				addin_item.Tag = addin;
-
-				ToolsAddIns.DropDownItems.Add(addin_item);
-
-				foreach (ICommand command in addin.CombatCommands)
-				{
-					ToolStripMenuItem command_item = new ToolStripMenuItem(command.Name);
-					command_item.ToolTipText = TextHelper.Wrap(command.Description);
-					command_item.Enabled = command.Available;
-					command_item.Checked = command.Active;
-					command_item.Click += new EventHandler(add_in_command_clicked);
-					command_item.Tag = command;
-
-					addin_item.DropDownItems.Add(command_item);
-				}
-
-				if (addin.Commands.Count == 0)
-				{
-					ToolStripItem command_item = ToolsAddIns.DropDownItems.Add("(no commands)");
-					command_item.Enabled = false;
-				}
-			}
-
-			if (Session.AddIns.Count == 0)
-			{
-				ToolStripItem addin_item = ToolsAddIns.DropDownItems.Add("(none)");
-				addin_item.Enabled = false;
-			}
-		}
-
-		private void OptionsMenu_DropDownOpening(object sender, EventArgs e)
-		{
-			bool show_map = !MapSplitter.Panel2Collapsed;
-
-			OptionsShowInit.Checked = InitiativePanel.Visible;
-
-			OneColumn.Checked = (ListSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal);
-			TwoColumns.Checked = (ListSplitter.Orientation == System.Windows.Forms.Orientation.Vertical);
-			OneColumn.Enabled = show_map;
-			TwoColumns.Enabled = show_map;
-
-			MapRight.Enabled = show_map;
-			MapBelow.Enabled = show_map;
-			MapRight.Checked = (MapSplitter.Orientation == System.Windows.Forms.Orientation.Vertical);
-			MapBelow.Checked = (MapSplitter.Orientation == System.Windows.Forms.Orientation.Horizontal);
-
-			OptionsLandscape.Enabled = show_map;
-			OptionsPortrait.Enabled = show_map;
-			OptionsLandscape.Checked = (OneColumn.Checked && MapRight.Checked);
-			OptionsPortrait.Checked = (TwoColumns.Checked && MapBelow.Checked);
-
-			ToolsAutoRemove.Checked = Session.Preferences.CreatureAutoRemove;
-			OptionsIPlay4e.Checked = Session.Preferences.iPlay4E;
-		}
-
-		private void EffectMenu_DropDownOpening(object sender, EventArgs e)
-		{
-			update_effects_list(EffectMenu, true);
-		}
-
-		private void ListCondition_DropDownOpening(object sender, EventArgs e)
-		{
-			update_effects_list(ListCondition, true);
-		}
-
-		private void MapCondition_DropDownOpening(object sender, EventArgs e)
-		{
-			update_effects_list(MapAddEffect, false);
-		}
-
-		private void ListRemoveEffect_DropDownOpening(object sender, EventArgs e)
-		{
-			update_remove_effect_list(ListRemoveEffect, true);
-		}
-
-		private void MapRemoveEffect_DropDownOpening(object sender, EventArgs e)
-		{
-			update_remove_effect_list(MapRemoveEffect, false);
-		}
-
-		private void PlayerViewNoMapMenu_DropDownOpening(object sender, EventArgs e)
-		{
-			PlayerViewNoMapShowInitiativeList.Checked = (PlayerInitiative != null);
-
-			PlayerViewNoMapShowLabels.Enabled = (PlayerInitiative != null);
-			PlayerViewNoMapShowLabels.Checked = Session.Preferences.PlayerViewCreatureLabels;
-		}
-
-		private void ToolsColumns_DropDownOpening(object sender, EventArgs e)
-		{
-			ToolsColumnsInit.Checked = InitHdr.Width > 0;
-			ToolsColumnsHP.Checked = HPHdr.Width > 0;
-			ToolsColumnsDefences.Checked = DefHdr.Width > 0;
-			ToolsColumnsConditions.Checked = EffectsHdr.Width > 0;
-		}
-
-		#endregion
-
-		#region Form buttons
-
-		private void CloseBtn_Click(object sender, EventArgs e)
-		{
-			fPromptOnClose = false;
-			Close();
-		}
-
-		private void PauseBtn_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				// Ask to save encounter
-
-				string msg = "Would you like to be able to resume this encounter later?";
-				msg += Environment.NewLine;
-				msg += Environment.NewLine;
-				msg += "If you click Yes, the encounter can be restarted by selecting Paused Encounters from the Project menu.";
-
-				if (MessageBox.Show(msg, "Masterplan", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-				{
-					CombatState cs = new CombatState();
-
-					fLog.AddPauseEntry();
-
-					Dictionary<Guid, CombatData> hero_data = new Dictionary<Guid, CombatData>();
-					foreach (Hero hero in Session.Project.Heroes)
-						hero_data[hero.ID] = hero.CombatData;
-
-					cs.Encounter = fEncounter;
-					cs.CurrentRound = fCurrentRound;
-					cs.PartyLevel = fPartyLevel;
-					cs.HeroData = hero_data;
-					cs.TrapData = fTrapData;
-					cs.TokenLinks = MapView.TokenLinks;
-					cs.RemovedCreatureXP = fRemovedCreatureXP;
-					cs.Viewpoint = MapView.Viewpoint;
-					cs.Log = fLog;
-
-					if (fCurrentActor != null)
-						cs.CurrentActor = fCurrentActor.ID;
-
-					foreach (MapSketch sketch in MapView.Sketches)
-						cs.Sketches.Add(sketch.Copy());
-
-					foreach (OngoingCondition oc in fEffects)
-						cs.QuickEffects.Add(oc.Copy());
-
-					Session.Project.SavedCombats.Add(cs);
-					Session.Modified = true;
-
-					foreach (Form form in Application.OpenForms)
-					{
-						PausedCombatListForm dlg = form as PausedCombatListForm;
-						if (dlg != null)
-							dlg.UpdateEncounters();
-					}
-
-					fPromptOnClose = false;
-					Close();
-				}
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
-
-		private void InfoBtn_Click(object sender, EventArgs e)
-		{
-			InfoForm dlg = new InfoForm();
-			dlg.Level = fPartyLevel;
-			dlg.ShowDialog();
-		}
-
-		private void DieRollerBtn_Click(object sender, EventArgs e)
-		{
-			DieRollerForm dlg = new DieRollerForm();
-			dlg.ShowDialog();
-		}
-
-		private void ReportBtn_Click(object sender, EventArgs e)
-		{
-			EncounterReportForm dlg = new EncounterReportForm(fLog, fEncounter);
-			dlg.ShowDialog();
-		}
-
-		#endregion
 
 		#endregion
 
@@ -3521,7 +3472,6 @@ namespace Masterplan.UI
 		{
 			Map m = Session.Project.FindTacticalMap(fEncounter.MapID);
 			MapView.Map = m;
-			//MapView.HeroData = fHeroData;
 
 			if (token_links != null)
 			{
@@ -3722,8 +3672,6 @@ namespace Masterplan.UI
 			}
 
 			update_list();
-			//update_preview_panel();
-			//update_maps();
 		}
 
 		void show_player_view(bool map, bool initiative)
@@ -3745,7 +3693,6 @@ namespace Masterplan.UI
 					{
 						// We're not showing anything; turn it on
 						Session.PlayerView.ShowTacticalMap(MapView, InitiativeView());
-						//Activate();
 					}
 
 					SplitContainer splitter = Session.PlayerView.Controls[0] as SplitContainer;
@@ -3767,10 +3714,7 @@ namespace Masterplan.UI
 			try
 			{
 				if (Visible)
-				{
-					//update_list();
 					update_preview_panel();
-				}
 			}
 			catch (Exception ex)
 			{
@@ -3828,7 +3772,6 @@ namespace Masterplan.UI
 					if (token is Hero)
 					{
 						Hero hero = token as Hero;
-						//cd = fHeroData[hero.ID];
 						cd = hero.CombatData;
 					}
 
@@ -3892,7 +3835,6 @@ namespace Masterplan.UI
 				str += "Player: " + hero.Player;
 			}
 
-			//CombatData cd = fHeroData[hero.ID];
 			CombatData cd = hero.CombatData;
 			if (cd != null)
 			{
@@ -3982,7 +3924,6 @@ namespace Masterplan.UI
 				}
 				else
 				{
-					//CombatData cd = fHeroData[h.ID];
 					CombatData cd = h.CombatData;
 
 					int dmg = cd.Damage;
@@ -3995,7 +3936,6 @@ namespace Masterplan.UI
 					CombatDataForm dlg = new CombatDataForm(cd, null, fEncounter, fCurrentActor, fCurrentRound, false);
 					if (dlg.ShowDialog() == DialogResult.OK)
 					{
-						//fHeroData[h.ID] = dlg.Data;
 						h.CombatData = dlg.Data;
 
 						if (dmg != dlg.Data.Damage)
@@ -4124,7 +4064,6 @@ namespace Masterplan.UI
 					if (token is Hero)
 					{
 						Hero hero = token as Hero;
-						//MapView.HeroData[hero.ID].Location = CombatData.NoPoint;
 						hero.CombatData.Location = CombatData.NoPoint;
 
 						remove_effects(token);
@@ -4174,8 +4113,6 @@ namespace Masterplan.UI
 					{
 						Hero h = token as Hero;
 
-						//MapView.HeroData[h.ID].Initiative = int.MinValue;
-						//MapView.HeroData[h.ID].Location = CombatData.NoPoint;
 						h.CombatData.Initiative = int.MinValue;
 						h.CombatData.Location = CombatData.NoPoint;
 
@@ -4228,11 +4165,6 @@ namespace Masterplan.UI
 				CombatData cd = hero.CombatData;
 				remove_effects(token_id, cd);
 			}
-			//foreach (Guid hero_id in fHeroData.Keys)
-			//{
-			//    CombatData cd = fHeroData[hero_id];
-			//    remove_effects(token_id, cd);
-			//}
 
 			foreach (EncounterSlot slot in fEncounter.AllSlots)
 			{
@@ -4291,7 +4223,6 @@ namespace Masterplan.UI
 			if (token is Hero)
 			{
 				Hero h = token as Hero;
-				//return fHeroData[h.ID].Location;
 				return h.CombatData.Location;
 			}
 
@@ -4589,9 +4520,7 @@ namespace Masterplan.UI
 			}
 
 			foreach (Hero hero in Session.Project.Heroes)
-			//foreach (Guid hero_id in fHeroData.Keys)
 			{
-				//CombatData cd = fHeroData[hero_id];
 				CombatData cd = hero.CombatData;
 
 				foreach (OngoingCondition oc in cd.Conditions)
@@ -4826,13 +4755,9 @@ namespace Masterplan.UI
 			}
 			foreach (Hero hero in Session.Project.Heroes)
 			{
-				//if (!fHeroData.ContainsKey(hero.ID))
-				//	continue;
-
 				if (!data.ContainsKey(hero.InitBonus))
 					data[hero.InitBonus] = new List<CombatData>();
 
-				//CombatData cd = fHeroData[hero.ID];
 				CombatData cd = hero.CombatData;
 
 				if (cd.Initiative == init)
@@ -4936,6 +4861,21 @@ namespace Masterplan.UI
 			PlayerMap.ScalingFactor = MapView.ScalingFactor;
 		}
 
+		void add_in_command_clicked(object sender, EventArgs e)
+		{
+			try
+			{
+				ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
+				ICommand command = tsmi.Tag as ICommand;
+
+				command.Execute();
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
 		#endregion
 
 		#region Updating
@@ -4989,9 +4929,6 @@ namespace Masterplan.UI
 						remove_links(ct);
 
 						cd.Location = CombatData.NoPoint;
-
-						//fRemovedCreatureXP += xp;
-						//slot.CombatData.Remove(cd);
 					}
 				}
 			}
@@ -5657,7 +5594,6 @@ namespace Masterplan.UI
 
 			int count = 0;
 			foreach (Hero hero in Session.Project.Heroes)
-			//foreach (Guid hero_id in fHeroData.Keys)
 			{
 				if (hero.CombatData.Initiative != int.MinValue)
 					count += 1;
@@ -5786,10 +5722,7 @@ namespace Masterplan.UI
 
 			Hero hero = tokens[0] as Hero;
 			if (hero != null)
-			{
-				//cd = fHeroData[hero.ID];
 				cd = hero.CombatData;
-			}
 
 			if (cd != null)
 			{
@@ -5889,7 +5822,6 @@ namespace Masterplan.UI
 					Hero hero = token as Hero;
 					if (hero != null)
 					{
-						//CombatData cd = fHeroData[hero.ID];
 						CombatData cd = hero.CombatData;
 						cd.Conditions.Add(oc.Copy());
 
@@ -5954,10 +5886,7 @@ namespace Masterplan.UI
 
 			Hero hero = SelectedTokens[0] as Hero;
 			if (hero != null)
-			{
-				//cd = fHeroData[hero.ID];
 				cd = hero.CombatData;
-			}
 
 			if (cd == null)
 				return;
@@ -5988,10 +5917,7 @@ namespace Masterplan.UI
 
 			Hero hero = MapView.SelectedTokens[0] as Hero;
 			if (hero != null)
-			{
-				//cd = fHeroData[hero.ID];
 				cd = hero.CombatData;
-			}
 
 			if (cd == null)
 				return;
@@ -6021,22 +5947,8 @@ namespace Masterplan.UI
 			{
 				List<string> lines = new List<string>();
 
-				//lines.Add("<HTML>");
-
-				//lines.Add("<HEAD>");
-				//lines.AddRange(HTML.GetStyle(DisplaySize.Small));
-				//lines.Add("</HEAD>");
-
-				//lines.Add("<BODY>");
-
 				foreach (IToken token in tokens)
-				{
 					lines.Add(html_token(token, false));
-				}
-
-				//lines.Add("</BODY>");
-
-				//lines.Add("</HTML>");
 
 				html = HTML.Concatenate(lines);
 			}
@@ -6051,7 +5963,6 @@ namespace Masterplan.UI
 			if (token is Hero)
 			{
 				Hero hero = token as Hero;
-				//CombatData cd = fHeroData[hero.ID];
 				CombatData cd = hero.CombatData;
 
 				if ((TwoColumnPreview) && (cd == fCurrentActor))
@@ -6536,7 +6447,6 @@ namespace Masterplan.UI
 				if (lvi.Tag is Hero)
 				{
 					Hero hero = lvi.Tag as Hero;
-					//cd = fHeroData[hero.ID];
 					cd = hero.CombatData;
 
 					name = hero.Name;
@@ -6563,7 +6473,6 @@ namespace Masterplan.UI
 					{
 						active = true;
 
-						//colour = "white";
 						name = "<B>" + name + "</B>";
 					}
 					EncounterSlot slot = fEncounter.FindSlot(cd);
@@ -6621,134 +6530,9 @@ namespace Masterplan.UI
 
 		public string EncounterLogView(bool player_view)
 		{
-			List<string> lines = new List<string>();
-
-			if (!player_view)
-			{
-				lines.AddRange(HTML.GetHead("Encounter Log", "", DisplaySize.Small));
-				lines.Add("<BODY>");
-			}
-
-			if (fLog != null)
-			{
-				lines.Add("<P class=table>");
-				lines.Add("<TABLE class=wide>");
-
-				lines.Add("<TR class=encounterlog>");
-				lines.Add("<TD colspan=2>");
-				lines.Add("<B>Encounter Log</B>");
-				lines.Add("</TD>");
-				lines.Add("<TD align=right>");
-				lines.Add("<B>Round " + fCurrentRound + "</B>");
-				lines.Add("</TD>");
-				lines.Add("</TR>");
-
-				if (!fLog.Active)
-				{
-					lines.Add("<TR class=warning>");
-					lines.Add("<TD colspan=3>");
-					lines.Add("The log is not yet active as the encounter has not started.");
-					lines.Add("</TD>");
-					lines.Add("</TR>");
-				}
-
-				EncounterReport report = fLog.CreateReport(fEncounter, !player_view);
-				foreach (RoundLog round in report.Rounds)
-				{
-					lines.Add("<TR class=shaded>");
-					if (player_view)
-						lines.Add("<TD class=pvlogentry colspan=3>");
-					else
-						lines.Add("<TD colspan=3>");
-					lines.Add("<B>Round " + round.Round + "</B>");
-					lines.Add("</TD>");
-					lines.Add("</TR>");
-
-					if (round.Count == 0)
-					{
-						lines.Add("<TR>");
-						if (player_view)
-							lines.Add("<TD class=pvlogentry align=center colspan=3>");
-						else
-							lines.Add("<TD align=center colspan=3>");
-						lines.Add("(nothing)");
-						lines.Add("</TD>");
-						lines.Add("</TR>");
-					}
-
-					bool detailed_names = !player_view || Session.Preferences.PlayerViewCreatureLabels;
-
-					foreach (TurnLog turn in round.Turns)
-					{
-						if (turn.Entries.Count == 0)
-							continue;
-
-						lines.Add("<TR>");
-						if (player_view)
-							lines.Add("<TD class=pvlogentry colspan=3>");
-						else
-							lines.Add("<TD colspan=2>");
-						lines.Add("<B>" + EncounterLog.GetName(turn.ID, fEncounter, detailed_names) + "</B>");
-						lines.Add("</TD>");
-						if (!player_view)
-						{
-							lines.Add("<TD align=right>");
-							lines.Add(turn.Start.ToString("h:mm:ss"));
-							lines.Add("</TD>");
-						}
-						lines.Add("</TR>");
-
-						foreach (IEncounterLogEntry entry in turn.Entries)
-						{
-							lines.Add("<TR>");
-							if (player_view)
-								lines.Add("<TD class=pvlogindent colspan=3>");
-							else
-								lines.Add("<TD class=indent colspan=3>");
-							lines.Add(entry.Description(fEncounter, detailed_names));
-							lines.Add("</TD>");
-							lines.Add("</TR>");
-						}
-					}
-				}
-
-				lines.Add("</TABLE>");
-				lines.Add("</P>");
-			}
-
-			if (!player_view)
-			{
-				lines.Add("</BODY>");
-				lines.Add("</HTML>");
-			}
-
-			return HTML.Concatenate(lines);
+			return HTML.EncounterLog(fLog, fEncounter, DisplaySize.Small, player_view, fCurrentRound);
 		}
 
 		#endregion
-
-		private void TurnTimer_Tick(object sender, EventArgs e)
-		{
-			if (fCombatStarted)
-			{
-				// Get last 'start turn' entry
-				StartTurnLogEntry entry = fLog.Entries.Last(x => x is StartTurnLogEntry) as StartTurnLogEntry;
-				if (entry != null)
-				{
-					// TODO: Handle paused + resumed encounters
-
-					TimeSpan diff = DateTime.Now - entry.Timestamp;
-					TurnTimerLbl.Text = diff.Minutes + ":" + diff.Seconds.ToString("D2");
-				}
-				else
-				{
-					TurnTimerLbl.Text = "-";
-				}
-			}
-			else
-			{
-				TurnTimerLbl.Text = "-";
-			}
-		}
 	}
 }

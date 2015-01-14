@@ -53,8 +53,7 @@ namespace Masterplan.Tools
 			return Concatenate(lines);
 		}
 
-		public static string StatBlock(EncounterCard card, CombatData data, Encounter enc, bool include_wrapper,
-			bool initiative_holder, bool full, CardMode mode, DisplaySize size)
+		public static string StatBlock(EncounterCard card, CombatData data, Encounter enc, bool include_wrapper, bool initiative_holder, bool full, CardMode mode, DisplaySize size)
 		{
 			List<string> lines = new List<string>();
 
@@ -96,8 +95,7 @@ namespace Masterplan.Tools
 			return Concatenate(lines);
 		}
 
-		public static string StatBlock(Hero hero, Encounter enc, bool include_wrapper,
-			bool initiative_holder, bool show_effects, DisplaySize size)
+		public static string StatBlock(Hero hero, Encounter enc, bool include_wrapper, bool initiative_holder, bool show_effects, DisplaySize size)
 		{
 			List<string> lines = new List<string>();
 
@@ -156,8 +154,7 @@ namespace Masterplan.Tools
             return Concatenate(lines);
         }
 
-		public static string Trap(Trap trap, CombatData cd, bool include_wrapper, bool initiative_holder,
-			bool builder, DisplaySize size)
+		public static string Trap(Trap trap, CombatData cd, bool include_wrapper, bool initiative_holder, bool builder, DisplaySize size)
 		{
 			List<string> lines = new List<string>();
 
@@ -186,8 +183,7 @@ namespace Masterplan.Tools
 			return Concatenate(lines);
 		}
 
-		public static string SkillChallenge(SkillChallenge challenge, bool include_links, bool include_wrapper,
-			DisplaySize size)
+		public static string SkillChallenge(SkillChallenge challenge, bool include_links, bool include_wrapper, DisplaySize size)
 		{
 			List<string> lines = new List<string>();
 
@@ -792,8 +788,7 @@ namespace Masterplan.Tools
 			return Concatenate(lines);
 		}
 
-		public static string PlotPoint(PlotPoint pp, Plot plot, int party_level, bool links, MainForm.ViewType view,
-			DisplaySize size)
+		public static string PlotPoint(PlotPoint pp, Plot plot, int party_level, bool links, MainForm.ViewType view, DisplaySize size)
 		{
 			if (Session.Project == null)
 				return null;
@@ -1494,8 +1489,7 @@ namespace Masterplan.Tools
 			return Concatenate(lines);
 		}
 
-		public static string EncyclopediaEntry(EncyclopediaEntry entry, Encyclopedia encyclopedia, DisplaySize size,
-			bool include_dm_info, bool include_entry_links, bool include_attachment, bool include_picture_links)
+		public static string EncyclopediaEntry(EncyclopediaEntry entry, Encyclopedia encyclopedia, DisplaySize size, bool include_dm_info, bool include_entry_links, bool include_attachment, bool include_picture_links)
 		{
 			List<string> lines = new List<string>();
 
@@ -1691,8 +1685,7 @@ namespace Masterplan.Tools
 			return Concatenate(lines);
 		}
 
-		public static string EncyclopediaGroup(EncyclopediaGroup group, Encyclopedia encyclopedia, DisplaySize size,
-			bool include_dm_info, bool include_entry_links)
+		public static string EncyclopediaGroup(EncyclopediaGroup group, Encyclopedia encyclopedia, DisplaySize size, bool include_dm_info, bool include_entry_links)
 		{
 			List<string> lines = new List<string>();
 
@@ -2466,30 +2459,34 @@ namespace Masterplan.Tools
 
 			for (int round = 0; round <= table.Rounds - 1; ++round)
 			{
-				lines.Add("<TD align=right>");
-				switch (table.ReportType)
+				string entry = "-";
+
+				if (round < table.Rows.Count)
 				{
-					case ReportType.Time:
-						{
-							TimeSpan ts = new TimeSpan(0, 0, table.Rows[round].Total);
-							if (ts.TotalSeconds >= 1)
-								lines.Add(get_time(ts));
-							else
-								lines.Add("-");
-						}
-						break;
-					case ReportType.DamageToEnemies:
-					case ReportType.DamageToAllies:
-					case ReportType.Movement:
-						{
-							int value = table.Rows[round].Total;
-							if (value != 0)
-								lines.Add(value.ToString());
-							else
-								lines.Add("-");
-						}
-						break;
+					ReportRow row = table.Rows[round];
+					switch (table.ReportType)
+					{
+						case ReportType.Time:
+							{
+								TimeSpan ts = new TimeSpan(0, 0, row.Total);
+								if (ts.TotalSeconds >= 1)
+									entry = get_time(ts);
+							}
+							break;
+						case ReportType.DamageToEnemies:
+						case ReportType.DamageToAllies:
+						case ReportType.Movement:
+							{
+								int value = row.Total;
+								if (value != 0)
+									entry = value.ToString();
+							}
+							break;
+					}
 				}
+
+				lines.Add("<TD align=right>");
+				lines.Add(entry);
 				lines.Add("</TD>");
 			}
 
@@ -2543,6 +2540,117 @@ namespace Masterplan.Tools
 			lines.Add("</HTML>");
 
 			return Concatenate(lines);
+		}
+
+		public static string EncounterLog(EncounterLog log, Encounter enc, DisplaySize size, bool player_view = false, int current_round = -1)
+		{
+			List<string> lines = new List<string>();
+
+			if (!player_view)
+			{
+				lines.AddRange(HTML.GetHead("Encounter Log", "", size));
+				lines.Add("<BODY>");
+			}
+
+			if (log != null)
+			{
+				lines.Add("<P class=table>");
+				lines.Add("<TABLE class=wide>");
+
+				lines.Add("<TR class=encounterlog>");
+				lines.Add("<TD colspan=2>");
+				lines.Add("<B>Encounter Log</B>");
+				lines.Add("</TD>");
+				lines.Add("<TD align=right>");
+				if (current_round != -1)
+					lines.Add("<B>Round " + current_round + "</B>");
+				lines.Add("</TD>");
+				lines.Add("</TR>");
+
+				if (!log.Active)
+				{
+					lines.Add("<TR class=warning>");
+					lines.Add("<TD colspan=3>");
+					lines.Add("The log is not yet active as the encounter has not started.");
+					lines.Add("</TD>");
+					lines.Add("</TR>");
+				}
+
+				EncounterReport report = log.CreateReport(enc, !player_view);
+				foreach (RoundLog round in report.Rounds)
+				{
+					lines.Add("<TR class=shaded>");
+					if (player_view)
+						lines.Add("<TD class=pvlogentry colspan=3>");
+					else
+						lines.Add("<TD colspan=3>");
+					lines.Add("<B>Round " + round.Round + "</B>");
+					lines.Add("</TD>");
+					lines.Add("</TR>");
+
+					if (round.Count == 0)
+					{
+						lines.Add("<TR>");
+						if (player_view)
+							lines.Add("<TD class=pvlogentry align=center colspan=3>");
+						else
+							lines.Add("<TD align=center colspan=3>");
+						lines.Add("(nothing)");
+						lines.Add("</TD>");
+						lines.Add("</TR>");
+					}
+
+					bool detailed_names = !player_view || Session.Preferences.PlayerViewCreatureLabels;
+
+					foreach (TurnLog turn in round.Turns)
+					{
+						if (turn.Entries.Count == 0)
+							continue;
+
+						lines.Add("<TR>");
+						if (player_view)
+							lines.Add("<TD class=pvlogentry colspan=3>");
+						else
+							lines.Add("<TD colspan=2>");
+						lines.Add("<B>" + Masterplan.Data.EncounterLog.GetName(turn.ID, enc, detailed_names) + "</B>");
+						lines.Add("</TD>");
+						if (!player_view)
+						{
+							lines.Add("<TD align=right>");
+							lines.Add(turn.Start.ToString("h:mm:ss"));
+							lines.Add("</TD>");
+						}
+						lines.Add("</TR>");
+
+						foreach (IEncounterLogEntry entry in turn.Entries)
+						{
+							lines.Add("<TR>");
+							if (player_view)
+								lines.Add("<TD class=pvlogindent colspan=3>");
+							else
+								lines.Add("<TD class=indent colspan=3>");
+							lines.Add(entry.Description(enc, detailed_names));
+							lines.Add("</TD>");
+							lines.Add("</TR>");
+						}
+					}
+				}
+
+				lines.Add("</TABLE>");
+				lines.Add("</P>");
+			}
+			else
+			{
+				lines.Add("<P class=instruction>Select a report to view.</P>");
+			}
+
+			if (!player_view)
+			{
+				lines.Add("</BODY>");
+				lines.Add("</HTML>");
+			}
+
+			return HTML.Concatenate(lines);
 		}
 
 		#endregion

@@ -205,7 +205,7 @@
 			this.BackgroundPage = new System.Windows.Forms.TabPage();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.BackgroundList = new System.Windows.Forms.ListView();
-			this.InfoHdr = new System.Windows.Forms.ColumnHeader();
+			this.InfoHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.BackgroundPanel = new System.Windows.Forms.Panel();
 			this.BackgroundDetails = new System.Windows.Forms.WebBrowser();
 			this.BackgroundToolbar = new System.Windows.Forms.ToolStrip();
@@ -228,7 +228,7 @@
 			this.EncyclopediaPage = new System.Windows.Forms.TabPage();
 			this.EncyclopediaSplitter = new System.Windows.Forms.SplitContainer();
 			this.EntryList = new System.Windows.Forms.ListView();
-			this.EntryHdr = new System.Windows.Forms.ColumnHeader();
+			this.EntryHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.EncyclopediaEntrySplitter = new System.Windows.Forms.SplitContainer();
 			this.EntryPanel = new System.Windows.Forms.Panel();
 			this.EntryDetails = new System.Windows.Forms.WebBrowser();
@@ -258,7 +258,7 @@
 			this.RulesPage = new System.Windows.Forms.TabPage();
 			this.RulesSplitter = new System.Windows.Forms.SplitContainer();
 			this.RulesList = new System.Windows.Forms.ListView();
-			this.RulesHdr = new System.Windows.Forms.ColumnHeader();
+			this.RulesHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.RulesToolbar = new System.Windows.Forms.ToolStrip();
 			this.RulesAddBtn = new System.Windows.Forms.ToolStripDropDownButton();
 			this.AddRace = new System.Windows.Forms.ToolStripMenuItem();
@@ -293,8 +293,8 @@
 			this.RulesPlayerViewBtn = new System.Windows.Forms.ToolStripButton();
 			this.AttachmentsPage = new System.Windows.Forms.TabPage();
 			this.AttachmentList = new System.Windows.Forms.ListView();
-			this.AttachmentHdr = new System.Windows.Forms.ColumnHeader();
-			this.AttachmentSizeHdr = new System.Windows.Forms.ColumnHeader();
+			this.AttachmentHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.AttachmentSizeHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.AttachmentToolbar = new System.Windows.Forms.ToolStrip();
 			this.AttachmentImportBtn = new System.Windows.Forms.ToolStripButton();
 			this.AttachmentRemoveBtn = new System.Windows.Forms.ToolStripButton();
@@ -307,7 +307,7 @@
 			this.JotterPage = new System.Windows.Forms.TabPage();
 			this.JotterSplitter = new System.Windows.Forms.SplitContainer();
 			this.NoteList = new System.Windows.Forms.ListView();
-			this.NoteHdr = new System.Windows.Forms.ColumnHeader();
+			this.NoteHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.NoteBox = new System.Windows.Forms.TextBox();
 			this.JotterToolbar = new System.Windows.Forms.ToolStrip();
 			this.NoteAddBtn = new System.Windows.Forms.ToolStripButton();
@@ -353,6 +353,7 @@
 			this.InfoPanel = new Masterplan.Controls.InfoPanel();
 			this.ReferenceToolbar = new System.Windows.Forms.ToolStrip();
 			this.DieRollerBtn = new System.Windows.Forms.ToolStripButton();
+			this.ProjectReports = new System.Windows.Forms.ToolStripMenuItem();
 			this.WorkspaceToolbar.SuspendLayout();
 			this.PointMenu.SuspendLayout();
 			this.MainMenu.SuspendLayout();
@@ -1029,7 +1030,8 @@
             this.ProjectCustomCreatures,
             this.ProjectCalendars,
             this.toolStripSeparator37,
-            this.ProjectEncounters});
+            this.ProjectEncounters,
+            this.ProjectReports});
 			this.ProjectMenu.Name = "ProjectMenu";
 			this.ProjectMenu.Size = new System.Drawing.Size(56, 20);
 			this.ProjectMenu.Text = "Project";
@@ -1485,8 +1487,8 @@
 			this.NavigationTree.ShowRootLines = false;
 			this.NavigationTree.Size = new System.Drawing.Size(152, 385);
 			this.NavigationTree.TabIndex = 0;
-			this.NavigationTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.NavigationTree_DragDrop);
 			this.NavigationTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.NavigationTree_AfterSelect);
+			this.NavigationTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.NavigationTree_DragDrop);
 			this.NavigationTree.DragOver += new System.Windows.Forms.DragEventHandler(this.NavigationTree_DragOver);
 			// 
 			// PlotPanel
@@ -1516,10 +1518,10 @@
 			this.PlotView.ShowTooltips = true;
 			this.PlotView.Size = new System.Drawing.Size(350, 336);
 			this.PlotView.TabIndex = 2;
-			this.PlotView.PlotLayoutChanged += new System.EventHandler(this.PlotView_PlotLayoutChanged);
-			this.PlotView.DoubleClick += new System.EventHandler(this.PlotView_DoubleClick);
 			this.PlotView.SelectionChanged += new System.EventHandler(this.PlotView_SelectionChanged);
+			this.PlotView.PlotLayoutChanged += new System.EventHandler(this.PlotView_PlotLayoutChanged);
 			this.PlotView.PlotChanged += new System.EventHandler(this.PlotView_PlotChanged);
+			this.PlotView.DoubleClick += new System.EventHandler(this.PlotView_DoubleClick);
 			// 
 			// BreadcrumbBar
 			// 
@@ -2619,9 +2621,9 @@
 			this.AttachmentList.TabIndex = 1;
 			this.AttachmentList.UseCompatibleStateImageBehavior = false;
 			this.AttachmentList.View = System.Windows.Forms.View.Details;
-			this.AttachmentList.DoubleClick += new System.EventHandler(this.AttachmentExtractAndRun_Click);
 			this.AttachmentList.DragDrop += new System.Windows.Forms.DragEventHandler(this.AttachmentList_DragDrop);
 			this.AttachmentList.DragOver += new System.Windows.Forms.DragEventHandler(this.AttachmentList_DragOver);
+			this.AttachmentList.DoubleClick += new System.EventHandler(this.AttachmentExtractAndRun_Click);
 			// 
 			// AttachmentHdr
 			// 
@@ -3248,6 +3250,13 @@
 			this.DieRollerBtn.Text = "Die Roller";
 			this.DieRollerBtn.Click += new System.EventHandler(this.DieRollerBtn_Click);
 			// 
+			// ProjectReports
+			// 
+			this.ProjectReports.Name = "ProjectReports";
+			this.ProjectReports.Size = new System.Drawing.Size(243, 22);
+			this.ProjectReports.Text = "Encounter Reports";
+			this.ProjectReports.Click += new System.EventHandler(this.ProjectReports_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3260,9 +3269,9 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Masterplan";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			this.Layout += new System.Windows.Forms.LayoutEventHandler(this.MainForm_Layout);
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.WorkspaceToolbar.ResumeLayout(false);
 			this.WorkspaceToolbar.PerformLayout();
 			this.PointMenu.ResumeLayout(false);
@@ -3658,6 +3667,7 @@
 		private System.Windows.Forms.ToolStripMenuItem ToolsTileChecklist;
 		private System.Windows.Forms.ToolStripMenuItem ToolsMiniChecklist;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator49;
+		private System.Windows.Forms.ToolStripMenuItem ProjectReports;
 
 	}
 }

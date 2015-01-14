@@ -408,8 +408,6 @@ namespace Masterplan.UI
 					SearchBtn.Checked = WorkspaceSearchBar.Visible;
 					PlotClearBtn.Visible = (PlotSearchBox.Text != "");
 
-					//EditBtn.Enabled = ((fView == ViewType.Flowchart) && (selected_point != null));
-					//ExploreBtn.Enabled = ((fView == ViewType.Flowchart) && (selected_point != null));
 					EditBtn.Enabled = (selected_point != null);
 					ExploreBtn.Enabled = (selected_point != null);
 					PlotPointMenu.Enabled = (selected_point != null);
@@ -461,7 +459,6 @@ namespace Masterplan.UI
 
 					RulesPlayerViewBtn.Enabled = (SelectedRule != null);
 					RuleEncyclopediaBtn.Enabled = (SelectedRule != null);
-					//RulesExportBtn.Enabled = (SelectedRule != null);
 
 					RulesShareExport.Enabled = ((Session.Project != null) && (Session.Project.PlayerOptions.Count != 0));
 					RulesSharePublish.Enabled = ((Session.Project != null) && (Session.Project.PlayerOptions.Count != 0));
@@ -2772,6 +2769,7 @@ namespace Masterplan.UI
 				ProjectCustomCreatures.Enabled = (Session.Project != null);
 				ProjectCalendars.Enabled = (Session.Project != null);
 				ProjectEncounters.Enabled = ((Session.Project != null) && (Session.Project.SavedCombats.Count != 0));
+				ProjectReports.Enabled = ((Session.Project != null) && (Session.Project.EncounterReports.Count != 0));
 			}
 			catch (Exception ex)
 			{
@@ -3343,6 +3341,21 @@ namespace Masterplan.UI
 					if (form is CombatForm)
 						form.Activate();
 				}
+			}
+			catch (Exception ex)
+			{
+				LogSystem.Trace(ex);
+			}
+		}
+
+		private void ProjectReports_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				EncounterReportListForm dlg = new EncounterReportListForm();
+				dlg.ShowDialog();
+
+				UpdateView();
 			}
 			catch (Exception ex)
 			{

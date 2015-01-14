@@ -227,6 +227,16 @@ namespace Masterplan.Data
 		}
 		CampaignSettings fCampaignSettings = new CampaignSettings();
 
+		/// <summary>
+		/// Gets or sets the list of encounter reports.
+		/// </summary>
+		public List<Pair<Encounter, EncounterLog>> EncounterReports
+		{
+			get { return fEncounterReports; }
+			set { fEncounterReports = value; }
+		}
+		List<Pair<Encounter, EncounterLog>> fEncounterReports = new List<Pair<Encounter, EncounterLog>>();
+
 		#endregion
 
 		#region Password
@@ -831,6 +841,9 @@ namespace Masterplan.Data
 
 			if (fCampaignSettings.XP == 0)
 				fCampaignSettings.XP = 1;
+
+			if (fEncounterReports == null)
+				fEncounterReports = new List<Pair<Encounter, EncounterLog>>();
 
 			update_plot(fPlot);
 		}

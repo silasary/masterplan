@@ -8,8 +8,6 @@ Combat turn timer
 ===============================================================================
 Plans for this version
 
-Save previous encounter logs in encounters
-
 Hourglass / countdown for player view
 
 Better way to add / change / remove encyclopedia entry attachments
