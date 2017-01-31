@@ -204,12 +204,12 @@ namespace Masterplan
 			try
 			{
 				Assembly entryAssembly = Assembly.GetEntryAssembly();
-				string str = FileName.Directory(entryAssembly.Location);
-				string text = str + "Preferences.xml";
-				if (File.Exists(text))
+				string assemblyPath = FileName.Directory(entryAssembly.Location);
+				string prefPath = assemblyPath + "Preferences.xml";
+				if (File.Exists(prefPath))
 				{
 					Program.SplashScreen.CurrentAction = "Loading user preferences";
-					Preferences preferences = Serialisation<Preferences>.Load(text, SerialisationMode.XML);
+					Preferences preferences = Serialisation<Preferences>.Load(prefPath, SerialisationMode.XML);
 					if (preferences != null)
 					{
 						Session.Preferences = preferences;

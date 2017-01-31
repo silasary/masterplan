@@ -44,13 +44,13 @@ namespace Masterplan.UI
 
 			public int Compare(ListViewItem lvi_x, ListViewItem lvi_y)
 			{
-				int num = this.get_score(lvi_x);
-				int value = this.get_score(lvi_y);
+				int num = this.GetScore(lvi_x);
+				int value = this.GetScore(lvi_y);
 				int num2 = num.CompareTo(value);
 				if (num2 == 0)
 				{
-					int num3 = this.get_bonus(lvi_x);
-					int value2 = this.get_bonus(lvi_y);
+					int num3 = this.GetBonus(lvi_x);
+					int value2 = this.GetBonus(lvi_y);
 					num2 = num3.CompareTo(value2);
 				}
 				if (num2 == 0)
@@ -62,7 +62,7 @@ namespace Masterplan.UI
 				return -num2;
 			}
 
-			private int get_score(ListViewItem lvi)
+			private int GetScore(ListViewItem lvi)
 			{
 				try
 				{
@@ -87,7 +87,7 @@ namespace Masterplan.UI
 							result = this.fTrapData[trap.ID].Initiative;
 							return result;
 						}
-						result = -2147483648;
+						result = int.MinValue;
 						return result;
 					}
 				}
@@ -98,7 +98,7 @@ namespace Masterplan.UI
 				return 0;
 			}
 
-			private int get_bonus(ListViewItem lvi)
+			private int GetBonus(ListViewItem lvi)
 			{
 				try
 				{
@@ -666,10 +666,12 @@ namespace Masterplan.UI
 			{
 				if (!this.fTrapData.ContainsKey(current5.ID))
 				{
-					CombatData combatData = new CombatData();
-					combatData.DisplayName = current5.Name;
-					combatData.ID = current5.ID;
-					this.fTrapData[current5.ID] = combatData;
+                    CombatData combatData = new CombatData()
+                    {
+                        DisplayName = current5.Name,
+                        ID = current5.ID
+                    };
+                    this.fTrapData[current5.ID] = combatData;
 				}
 			}
 			if (this.fEncounter.MapID != Guid.Empty)
@@ -687,29 +689,27 @@ namespace Masterplan.UI
 				Array values = Enum.GetValues(typeof(CreatureSize));
 				foreach (CreatureSize creatureSize in values)
 				{
-					CustomToken customToken = new CustomToken();
-					customToken.Type = CustomTokenType.Token;
-					customToken.TokenSize = creatureSize;
-					customToken.Colour = Color.Black;
-					customToken.Name = creatureSize + " Token";
-					ListViewItem listViewItem2 = this.TemplateList.Items.Add(customToken.Name);
+                    CustomToken customToken = new CustomToken()
+                    {
+                        Type = CustomTokenType.Token,
+                        TokenSize = creatureSize,
+                        Colour = Color.Black,
+                        Name = creatureSize + " Token"
+                    };
+                    ListViewItem listViewItem2 = this.TemplateList.Items.Add(customToken.Name);
 					listViewItem2.Tag = customToken;
 					listViewItem2.Group = this.TemplateList.Groups[1];
 				}
 				for (int i = 2; i <= 10; i++)
 				{
-					CustomToken customToken2 = new CustomToken();
-					customToken2.Type = CustomTokenType.Overlay;
-					customToken2.OverlaySize = new Size(i, i);
-					customToken2.Name = string.Concat(new object[]
-					{
-						i,
-						" x ",
-						i,
-						" Zone"
-					});
-					customToken2.Colour = Color.Transparent;
-					ListViewItem listViewItem3 = this.TemplateList.Items.Add(customToken2.Name);
+                    CustomToken customToken2 = new CustomToken()
+                    {
+                        Type = CustomTokenType.Overlay,
+                        OverlaySize = new Size(i, i),
+                        Name = $"{i}x{i} Zone",
+                        Colour = Color.Transparent
+                    };
+                    ListViewItem listViewItem3 = this.TemplateList.Items.Add(customToken2.Name);
 					listViewItem3.Tag = customToken2;
 					listViewItem3.Group = this.TemplateList.Groups[2];
 				}
@@ -748,9 +748,9 @@ namespace Masterplan.UI
 				}
 			}
 			this.CombatList.ListViewItemSorter = new CombatForm.InitiativeSorter(this.fTrapData, this.fEncounter);
-			this.set_map(cs.TokenLinks, cs.Viewpoint, cs.Sketches);
+			this.SetMap(cs.TokenLinks, cs.Viewpoint, cs.Sketches);
 			this.MapMenu.Visible = (this.fEncounter.MapID != Guid.Empty);
-			this.InitiativePanel.InitiativeScores = this.get_initiatives();
+			this.InitiativePanel.InitiativeScores = this.GetInitiatives();
 			this.InitiativePanel.CurrentInitiative = this.InitiativePanel.Maximum;
 			this.PlayerViewMapMenu.Visible = (this.fEncounter.MapID != Guid.Empty);
 			this.PlayerViewNoMapMenu.Visible = (this.fEncounter.MapID == Guid.Empty);
@@ -776,7 +776,7 @@ namespace Masterplan.UI
 				this.OptionsPortrait_Click(null, null);
 			}
 			Session.CurrentEncounter = this.fEncounter;
-			this.update_list();
+			this.UpdateList();
 			this.update_log();
 			this.update_preview_panel();
 			this.update_maps();
@@ -789,7 +789,7 @@ namespace Masterplan.UI
 			{
 				if (this.SelectedTokens.Count == 1)
 				{
-					this.edit_token(this.SelectedTokens[0]);
+					this.EditToken(this.SelectedTokens[0]);
 				}
 			}
 			catch (Exception ex)
@@ -802,7 +802,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.do_damage(this.SelectedTokens);
+				this.DoDamage(this.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -814,7 +814,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.do_heal(this.SelectedTokens);
+				this.DoHeal(this.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -826,7 +826,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.set_delay(this.SelectedTokens);
+				this.SetDelay(this.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -840,16 +840,16 @@ namespace Masterplan.UI
 			{
 				if (!this.fCombatStarted)
 				{
-					this.start_combat();
+					this.StartCombat();
 				}
 				else
 				{
-					List<int> initiatives = this.get_initiatives();
+					List<int> initiatives = this.GetInitiatives();
 					if (initiatives.Count != 0)
 					{
 						this.handle_ended_effects(false);
 						this.handle_saves();
-						this.fCurrentActor = this.get_next_actor(this.fCurrentActor);
+						this.fCurrentActor = this.GetNextActor(this.fCurrentActor);
 						this.fLog.AddStartTurnEntry(this.fCurrentActor.ID);
 						if (this.fCurrentActor.Initiative > this.InitiativePanel.CurrentInitiative)
 						{
@@ -858,18 +858,18 @@ namespace Masterplan.UI
 							this.fLog.AddStartRoundEntry(this.fCurrentRound);
 						}
 						this.InitiativePanel.CurrentInitiative = this.fCurrentActor.Initiative;
-						this.handle_regen();
+						this.HandleRegen();
 						this.handle_ended_effects(true);
 						this.handle_ongoing_damage();
 						this.handle_recharge();
 						if (this.fCurrentActor != null && !this.TwoColumnPreview)
 						{
-							this.select_current_actor();
+							this.SelectCurrentActor();
 						}
-						this.update_list();
+						this.UpdateList();
 						this.update_log();
 						this.update_preview_panel();
-						this.highlight_current_actor();
+						this.HighlightCurrentActor();
 					}
 				}
 			}
@@ -892,7 +892,7 @@ namespace Masterplan.UI
 						this.fEncounter.Slots.Add(current);
 						if (this.fCombatStarted)
 						{
-							this.roll_initiative();
+							this.RollInitiative();
 						}
 					}
 					foreach (Trap current2 in encounterBuilderForm.Encounter.Traps)
@@ -902,7 +902,7 @@ namespace Masterplan.UI
 							this.fTrapData[current2.ID] = new CombatData();
 							if (this.fCombatStarted)
 							{
-								this.roll_initiative();
+								this.RollInitiative();
 							}
 						}
 						this.fEncounter.Traps.Add(current2);
@@ -911,7 +911,7 @@ namespace Masterplan.UI
 					{
 						this.fEncounter.SkillChallenges.Add(current3);
 					}
-					this.update_list();
+					this.UpdateList();
 					this.update_preview_panel();
 					this.update_statusbar();
 				}
@@ -934,7 +934,7 @@ namespace Masterplan.UI
 				if (customTokenForm.ShowDialog() == DialogResult.OK)
 				{
 					this.fEncounter.CustomTokens.Add(customTokenForm.Token);
-					this.update_list();
+					this.UpdateList();
 					this.update_maps();
 				}
 			}
@@ -956,7 +956,7 @@ namespace Masterplan.UI
 				if (customOverlayForm.ShowDialog() == DialogResult.OK)
 				{
 					this.fEncounter.CustomTokens.Add(customOverlayForm.Token);
-					this.update_list();
+					this.UpdateList();
 					this.update_maps();
 				}
 			}
@@ -970,18 +970,18 @@ namespace Masterplan.UI
 		{
 			if (this.SelectedTokens.Count != 0)
 			{
-				this.remove_from_combat(this.SelectedTokens);
+				this.RemoveFromCombat(this.SelectedTokens);
 			}
 		}
 
 		private void CombatantsHideAll_Click(object sender, EventArgs e)
 		{
-			this.show_or_hide_all(false);
+			this.ShowOrHideAll(false);
 		}
 
 		private void CombatantsShowAll_Click(object sender, EventArgs e)
 		{
-			this.show_or_hide_all(true);
+			this.ShowOrHideAll(true);
 		}
 
 		private void ShowMap_Click(object sender, EventArgs e)
@@ -1079,7 +1079,7 @@ namespace Masterplan.UI
 			{
 				this.MapView.ShowCreatures = CreatureViewMode.All;
 				Session.Preferences.CombatFog = CreatureViewMode.All;
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 			}
 			catch (Exception ex)
@@ -1094,7 +1094,7 @@ namespace Masterplan.UI
 			{
 				this.MapView.ShowCreatures = CreatureViewMode.Visible;
 				Session.Preferences.CombatFog = CreatureViewMode.Visible;
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 			}
 			catch (Exception ex)
@@ -1109,7 +1109,7 @@ namespace Masterplan.UI
 			{
 				this.MapView.ShowCreatures = CreatureViewMode.None;
 				Session.Preferences.CombatFog = CreatureViewMode.None;
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 			}
 			catch (Exception ex)
@@ -1188,9 +1188,11 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				SaveFileDialog saveFileDialog = new SaveFileDialog();
-				saveFileDialog.FileName = this.MapView.Map.Name;
-				if (this.fEncounter.MapAreaID != Guid.Empty)
+                SaveFileDialog saveFileDialog = new SaveFileDialog()
+                {
+                    FileName = this.MapView.Map.Name
+                };
+                if (this.fEncounter.MapAreaID != Guid.Empty)
 				{
 					MapArea mapArea = this.MapView.Map.FindArea(this.fEncounter.MapAreaID);
 					SaveFileDialog expr_50 = saveFileDialog;
@@ -1229,7 +1231,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.show_player_view(this.PlayerMap == null, this.PlayerInitiative != null);
+				this.ShowPlayerView(this.PlayerMap == null, this.PlayerInitiative != null);
 			}
 			catch (Exception ex)
 			{
@@ -1241,7 +1243,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.show_player_view(this.PlayerMap != null, this.PlayerInitiative == null);
+				this.ShowPlayerView(this.PlayerMap != null, this.PlayerInitiative == null);
 			}
 			catch (Exception ex)
 			{
@@ -1541,7 +1543,7 @@ namespace Masterplan.UI
 					{
 						current.CombatData.Reset(false);
 					}
-					this.update_list();
+					this.UpdateList();
 					this.update_maps();
 				}
 			}
@@ -1587,6 +1589,7 @@ namespace Masterplan.UI
 				{
 					Session.PlayerView.ShowDefault();
 				}
+
 				Session.CurrentEncounter = null;
 			}
 			catch (Exception ex)
@@ -1608,7 +1611,7 @@ namespace Masterplan.UI
 						if (creatureToken.Data.Location == CombatData.NoPoint)
 						{
 							base.DoDragDrop(creatureToken, DragDropEffects.Move);
-							this.update_list();
+							this.UpdateList();
 							this.update_preview_panel();
 							this.update_maps();
 						}
@@ -1621,7 +1624,7 @@ namespace Masterplan.UI
 							base.DoDragDrop(hero, DragDropEffects.Move);
 							if (hero.CombatData.Location != CombatData.NoPoint)
 							{
-								this.update_list();
+								this.UpdateList();
 								this.update_preview_panel();
 								this.update_maps();
 							}
@@ -1633,7 +1636,7 @@ namespace Masterplan.UI
 						if (customToken.Data.Location == CombatData.NoPoint)
 						{
 							base.DoDragDrop(customToken, DragDropEffects.Move);
-							this.update_list();
+							this.UpdateList();
 							this.update_preview_panel();
 							this.update_maps();
 						}
@@ -1688,7 +1691,7 @@ namespace Masterplan.UI
 			{
 				if (this.SelectedTokens.Count == 1)
 				{
-					this.edit_token(this.SelectedTokens[0]);
+					this.EditToken(this.SelectedTokens[0]);
 				}
 			}
 			catch (Exception ex)
@@ -1733,7 +1736,7 @@ namespace Masterplan.UI
 				this.CombatList.SelectedItems.Clear();
 				foreach (IToken current in this.MapView.SelectedTokens)
 				{
-					this.select_token(current);
+					this.SelectToken(current);
 				}
 				this.fUpdatingList = false;
 				this.update_preview_panel();
@@ -1752,7 +1755,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.set_tooltip(this.MapView.HoverToken, this.MapView);
+				this.SetTooltip(this.MapView.HoverToken, this.MapView);
 				if (this.PlayerMap != null)
 				{
 					this.PlayerMap.HoverToken = this.MapView.HoverToken;
@@ -1770,14 +1773,14 @@ namespace Masterplan.UI
 			{
 				if (e.Token is CreatureToken || e.Token is Hero)
 				{
-					this.do_damage(new List<IToken>
+					this.DoDamage(new List<IToken>
 					{
 						e.Token
 					});
 				}
 				if (e.Token is CustomToken)
 				{
-					this.edit_token(e.Token);
+					this.EditToken(e.Token);
 				}
 			}
 			catch (Exception ex)
@@ -1881,7 +1884,7 @@ namespace Masterplan.UI
 							}
 							if (creaturePower.Attack != null)
 							{
-								this.roll_attack(creaturePower);
+								this.RollAttack(creaturePower);
 							}
 							this.fLog.AddPowerEntry(combatData.ID, creaturePower.Name, true);
 							this.update_log();
@@ -1908,7 +1911,7 @@ namespace Masterplan.UI
 							TrapAttack trapAttack = current.FindAttack(id);
 							if (trapAttack != null)
 							{
-								this.roll_check(trapAttack.Attack.ToString(), trapAttack.Attack.Bonus);
+								this.RollCheck(trapAttack.Attack.ToString(), trapAttack.Attack.Bonus);
 							}
 						}
 					}
@@ -1957,7 +1960,7 @@ namespace Masterplan.UI
 				{
 					e.Cancel = true;
 					int mod = int.Parse(e.Url.LocalPath);
-					this.roll_check("Ability", mod);
+					this.RollCheck("Ability", mod);
 				}
 				if (e.Url.Scheme == "sc")
 				{
@@ -1971,7 +1974,7 @@ namespace Masterplan.UI
 							{
 								current3.Results.Successes = 0;
 								current3.Results.Fails = 0;
-								this.update_list();
+								this.UpdateList();
 								this.update_preview_panel();
 							}
 						}
@@ -1987,7 +1990,7 @@ namespace Masterplan.UI
 						skillChallengeData.Results.Successes++;
 						this.fLog.AddSkillEntry(this.fCurrentActor.ID, e.Url.LocalPath);
 						this.fLog.AddSkillChallengeEntry(this.fCurrentActor.ID, true);
-						this.update_list();
+						this.UpdateList();
 						this.update_preview_panel();
 						this.update_log();
 					}
@@ -2002,7 +2005,7 @@ namespace Masterplan.UI
 						skillChallengeData2.Results.Fails++;
 						this.fLog.AddSkillEntry(this.fCurrentActor.ID, e.Url.LocalPath);
 						this.fLog.AddSkillChallengeEntry(this.fCurrentActor.ID, false);
-						this.update_list();
+						this.UpdateList();
 						this.update_preview_panel();
 						this.update_log();
 					}
@@ -2026,7 +2029,7 @@ namespace Masterplan.UI
 					}
 					if (list.Count != 0)
 					{
-						this.do_damage(list);
+						this.DoDamage(list);
 					}
 				}
 				if (e.Url.Scheme == "kill")
@@ -2038,7 +2041,7 @@ namespace Masterplan.UI
 					{
 						combatData4.Damage = 1;
 						this.fLog.AddStateEntry(combatData4.ID, CreatureState.Defeated);
-						this.update_list();
+						this.UpdateList();
 						this.update_preview_panel();
 						this.update_log();
 						this.update_maps();
@@ -2053,7 +2056,7 @@ namespace Masterplan.UI
 					{
 						combatData5.Damage = 0;
 						this.fLog.AddStateEntry(combatData5.ID, CreatureState.Active);
-						this.update_list();
+						this.UpdateList();
 						this.update_preview_panel();
 						this.update_log();
 						this.update_maps();
@@ -2078,7 +2081,7 @@ namespace Masterplan.UI
 					}
 					if (list2.Count != 0)
 					{
-						this.do_heal(list2);
+						this.DoHeal(list2);
 					}
 				}
 				if (e.Url.Scheme == "init")
@@ -2122,12 +2125,12 @@ namespace Masterplan.UI
 						if (initiativeForm.ShowDialog() == DialogResult.OK)
 						{
 							combatData7.Initiative = initiativeForm.Score;
-							this.InitiativePanel.InitiativeScores = this.get_initiatives();
+							this.InitiativePanel.InitiativeScores = this.GetInitiatives();
 							if (this.fCurrentActor != null)
 							{
 								this.InitiativePanel.CurrentInitiative = this.fCurrentActor.Initiative;
 							}
-							this.update_list();
+							this.UpdateList();
 							this.update_preview_panel();
 							this.update_maps();
 						}
@@ -2158,7 +2161,7 @@ namespace Masterplan.UI
 							OngoingCondition ongoingCondition = combatData8.Conditions[num2];
 							combatData8.Conditions.RemoveAt(num2);
 							this.fLog.AddEffectEntry(combatData8.ID, ongoingCondition.ToString(this.fEncounter, false), false);
-							this.update_list();
+							this.UpdateList();
 							this.update_preview_panel();
 							this.update_log();
 							this.update_maps();
@@ -2171,7 +2174,7 @@ namespace Masterplan.UI
 					int index = int.Parse(e.Url.LocalPath);
 					OngoingCondition ongoingCondition2 = hero5.Effects[index];
 					this.apply_effect(ongoingCondition2.Copy(), this.SelectedTokens, false);
-					this.update_list();
+					this.UpdateList();
 					this.update_preview_panel();
 					this.update_log();
 					this.update_maps();
@@ -2283,7 +2286,7 @@ namespace Masterplan.UI
 					{
 						GroupHealthForm groupHealthForm = new GroupHealthForm();
 						groupHealthForm.ShowDialog();
-						this.update_list();
+						this.UpdateList();
 						this.update_preview_panel();
 						this.update_maps();
 					}
@@ -2296,13 +2299,13 @@ namespace Masterplan.UI
 						}
 						DisplayNameForm displayNameForm = new DisplayNameForm(list3, this.fEncounter);
 						displayNameForm.ShowDialog();
-						this.update_list();
+						this.UpdateList();
 						this.update_preview_panel();
 						this.update_maps();
 					}
 					if (e.Url.LocalPath == "start")
 					{
-						this.start_combat();
+						this.StartCombat();
 					}
 				}
 			}
@@ -2318,16 +2321,16 @@ namespace Masterplan.UI
 			{
 				Guid iD = this.fCurrentActor.ID;
 				this.fCurrentActor = null;
-				this.fCurrentActor = this.get_next_actor(null);
+				this.fCurrentActor = this.GetNextActor(null);
 				if (this.fCurrentActor.ID != iD)
 				{
 					this.fLog.AddStartTurnEntry(this.fCurrentActor.ID);
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_log();
 				this.update_preview_panel();
 				this.update_maps();
-				this.highlight_current_actor();
+				this.HighlightCurrentActor();
 			}
 			catch (Exception ex)
 			{
@@ -2339,7 +2342,7 @@ namespace Masterplan.UI
 		{
 			EffectListForm effectListForm = new EffectListForm(this.fEncounter, this.fCurrentActor, this.fCurrentRound);
 			effectListForm.ShowDialog();
-			this.update_list();
+			this.UpdateList();
 			this.update_preview_panel();
 			this.update_maps();
 		}
@@ -2348,12 +2351,12 @@ namespace Masterplan.UI
 		{
 			TokenLinkListForm tokenLinkListForm = new TokenLinkListForm(this.MapView.TokenLinks);
 			tokenLinkListForm.ShowDialog();
-			this.update_list();
+			this.UpdateList();
 			this.update_preview_panel();
 			this.update_maps();
 		}
 
-		private void add_in_command_clicked(object sender, EventArgs e)
+		private void AddInCommand_clicked(object sender, EventArgs e)
 		{
 			try
 			{
@@ -2369,12 +2372,12 @@ namespace Masterplan.UI
 
 		private void ListDelay_Click(object sender, EventArgs e)
 		{
-			this.set_delay(this.SelectedTokens);
+			this.SetDelay(this.SelectedTokens);
 		}
 
 		private void MapDelay_Click(object sender, EventArgs e)
 		{
-			this.set_delay(this.MapView.SelectedTokens);
+			this.SetDelay(this.MapView.SelectedTokens);
 		}
 
 		private void OptionsMapRight_Click(object sender, EventArgs e)
@@ -2449,10 +2452,12 @@ namespace Masterplan.UI
 
 		private void MapContextOverlay_Click(object sender, EventArgs e)
 		{
-			CustomToken customToken = new CustomToken();
-			customToken.Name = "New Overlay";
-			customToken.Type = CustomTokenType.Overlay;
-			if (this.MapView.SelectedTokens.Count == 1)
+            CustomToken customToken = new CustomToken()
+            {
+                Name = "New Overlay",
+                Type = CustomTokenType.Overlay
+            };
+            if (this.MapView.SelectedTokens.Count == 1)
 			{
 				IToken token = this.MapView.SelectedTokens[0];
 				CreatureToken creatureToken = token as CreatureToken;
@@ -2484,7 +2489,7 @@ namespace Masterplan.UI
 					customToken.Data.Location = new Point(x, y);
 				}
 				this.fEncounter.CustomTokens.Add(customToken);
-				this.update_list();
+				this.UpdateList();
 				this.update_maps();
 			}
 		}
@@ -2493,7 +2498,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.do_heal(this.MapView.SelectedTokens);
+				this.DoHeal(this.MapView.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -2505,7 +2510,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.do_heal(this.SelectedTokens);
+				this.DoHeal(this.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -2515,12 +2520,12 @@ namespace Masterplan.UI
 
 		private void ListCreateCopy_Click(object sender, EventArgs e)
 		{
-			this.copy_custom_token();
+			this.CopyCustomToken();
 		}
 
 		private void MapCreateCopy_Click(object sender, EventArgs e)
 		{
-			this.copy_custom_token();
+			this.CopyCustomToken();
 		}
 
 		private void MapSetPicture_Click(object sender, EventArgs e)
@@ -2536,9 +2541,11 @@ namespace Masterplan.UI
 				ICreature creature = Session.FindCreature(encounterSlot.Card.CreatureID, SearchType.Global);
 				if (creature != null)
 				{
-					OpenFileDialog openFileDialog = new OpenFileDialog();
-					openFileDialog.Filter = Program.ImageFilter;
-					if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    OpenFileDialog openFileDialog = new OpenFileDialog()
+                    {
+                        Filter = Program.ImageFilter
+                    };
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
 					{
 						creature.Image = Image.FromFile(openFileDialog.FileName);
 						Program.SetResolution(creature.Image);
@@ -2556,21 +2563,23 @@ namespace Masterplan.UI
 						{
 							Session.Modified = true;
 						}
-						this.update_list();
+						this.UpdateList();
 					}
 				}
 			}
 			Hero hero = this.MapView.SelectedTokens[0] as Hero;
 			if (hero != null)
 			{
-				OpenFileDialog openFileDialog2 = new OpenFileDialog();
-				openFileDialog2.Filter = Program.ImageFilter;
-				if (openFileDialog2.ShowDialog() == DialogResult.OK)
+                OpenFileDialog openFileDialog2 = new OpenFileDialog()
+                {
+                    Filter = Program.ImageFilter
+                };
+                if (openFileDialog2.ShowDialog() == DialogResult.OK)
 				{
 					hero.Portrait = Image.FromFile(openFileDialog2.FileName);
 					Program.SetResolution(hero.Portrait);
 					Session.Modified = true;
-					this.update_list();
+					this.UpdateList();
 				}
 			}
 		}
@@ -2579,7 +2588,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.show_player_view(false, this.PlayerInitiative == null);
+				this.ShowPlayerView(false, this.PlayerInitiative == null);
 			}
 			catch (Exception ex)
 			{
@@ -2603,7 +2612,7 @@ namespace Masterplan.UI
 			if (customToken.Data.Location == CombatData.NoPoint && base.DoDragDrop(customToken, DragDropEffects.Move) == DragDropEffects.Move)
 			{
 				this.fEncounter.CustomTokens.Add(customToken);
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 				this.update_maps();
 			}
@@ -2616,12 +2625,12 @@ namespace Masterplan.UI
 
 		private void ListSplitter_SplitterMoved(object sender, SplitterEventArgs e)
 		{
-			this.list_splitter_changed();
+			this.ListSplitterChanged();
 		}
 
 		private void ListSplitter_Resize(object sender, EventArgs e)
 		{
-			this.list_splitter_changed();
+			this.ListSplitterChanged();
 		}
 
 		private void MapView_MouseZoomed(object sender, MouseEventArgs e)
@@ -2867,7 +2876,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.edit_token(this.SelectedTokens[0]);
+				this.EditToken(this.SelectedTokens[0]);
 			}
 			catch (Exception ex)
 			{
@@ -2879,7 +2888,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.do_damage(this.SelectedTokens);
+				this.DoDamage(this.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -2889,17 +2898,17 @@ namespace Masterplan.UI
 
 		private void ListRemoveMap_Click(object sender, EventArgs e)
 		{
-			this.remove_from_map(this.SelectedTokens);
+			this.RemoveFromMap(this.SelectedTokens);
 		}
 
 		private void ListRemoveCombat_Click(object sender, EventArgs e)
 		{
-			this.remove_from_combat(this.SelectedTokens);
+			this.RemoveFromCombat(this.SelectedTokens);
 		}
 
 		private void ListVisible_Click(object sender, EventArgs e)
 		{
-			this.toggle_visibility(this.SelectedTokens);
+			this.ToggleVisibility(this.SelectedTokens);
 		}
 
 		private void MapContext_Opening(object sender, CancelEventArgs e)
@@ -3009,7 +3018,7 @@ namespace Masterplan.UI
 			{
 				if (this.MapView.SelectedTokens.Count != 0)
 				{
-					this.edit_token(this.MapView.SelectedTokens[0]);
+					this.EditToken(this.MapView.SelectedTokens[0]);
 				}
 			}
 			catch (Exception ex)
@@ -3022,7 +3031,7 @@ namespace Masterplan.UI
 		{
 			try
 			{
-				this.do_damage(this.MapView.SelectedTokens);
+				this.DoDamage(this.MapView.SelectedTokens);
 			}
 			catch (Exception ex)
 			{
@@ -3032,17 +3041,17 @@ namespace Masterplan.UI
 
 		private void MapRemoveMap_Click(object sender, EventArgs e)
 		{
-			this.remove_from_map(this.MapView.SelectedTokens);
+			this.RemoveFromMap(this.MapView.SelectedTokens);
 		}
 
 		private void MapRemoveCombat_Click(object sender, EventArgs e)
 		{
-			this.remove_from_combat(this.MapView.SelectedTokens);
+			this.RemoveFromCombat(this.MapView.SelectedTokens);
 		}
 
 		private void MapVisible_Click(object sender, EventArgs e)
 		{
-			this.toggle_visibility(this.MapView.SelectedTokens);
+			this.ToggleVisibility(this.MapView.SelectedTokens);
 		}
 
 		private void CombatantsBtn_DropDownOpening(object sender, EventArgs e)
@@ -3055,27 +3064,31 @@ namespace Masterplan.UI
 			{
 				if (current.Count != 0)
 				{
-					ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(current.Name);
-					toolStripMenuItem.Checked = current.Active;
-					toolStripMenuItem.Tag = current;
-					toolStripMenuItem.Click += new EventHandler(this.wave_activated);
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(current.Name)
+                    {
+                        Checked = current.Active,
+                        Tag = current
+                    };
+                    toolStripMenuItem.Click += new EventHandler(WaveActivated);
 					this.CombatantsWaves.DropDownItems.Add(toolStripMenuItem);
 				}
 			}
 			if (this.CombatantsWaves.DropDownItems.Count == 0)
 			{
-				ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem("(none set)");
-				toolStripMenuItem2.Enabled = false;
-				this.CombatantsWaves.DropDownItems.Add(toolStripMenuItem2);
+                ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem("(none set)")
+                {
+                    Enabled = false
+                };
+                this.CombatantsWaves.DropDownItems.Add(toolStripMenuItem2);
 			}
 		}
 
-		private void wave_activated(object sender, EventArgs e)
+		private void WaveActivated(object sender, EventArgs e)
 		{
 			ToolStripMenuItem toolStripMenuItem = sender as ToolStripMenuItem;
 			EncounterWave encounterWave = toolStripMenuItem.Tag as EncounterWave;
 			encounterWave.Active = !encounterWave.Active;
-			this.update_list();
+			this.UpdateList();
 			this.update_maps();
 			this.update_statusbar();
 		}
@@ -3126,17 +3139,21 @@ namespace Masterplan.UI
 			this.ToolsAddIns.DropDownItems.Clear();
 			foreach (IAddIn current in Session.AddIns)
 			{
-				ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(current.Name);
-				toolStripMenuItem.ToolTipText = TextHelper.Wrap(current.Description);
-				toolStripMenuItem.Tag = current;
-				this.ToolsAddIns.DropDownItems.Add(toolStripMenuItem);
+                ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(current.Name)
+                {
+                    ToolTipText = TextHelper.Wrap(current.Description),
+                    Tag = current
+                };
+                this.ToolsAddIns.DropDownItems.Add(toolStripMenuItem);
 				foreach (ICommand current2 in current.CombatCommands)
 				{
-					ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(current2.Name);
-					toolStripMenuItem2.ToolTipText = TextHelper.Wrap(current2.Description);
-					toolStripMenuItem2.Enabled = current2.Available;
-					toolStripMenuItem2.Checked = current2.Active;
-					toolStripMenuItem2.Click += new EventHandler(this.add_in_command_clicked);
+                    ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(current2.Name)
+                    {
+                        ToolTipText = TextHelper.Wrap(current2.Description),
+                        Enabled = current2.Available,
+                        Checked = current2.Active
+                    };
+                    toolStripMenuItem2.Click += new EventHandler(this.AddInCommand_clicked);
 					toolStripMenuItem2.Tag = current2;
 					toolStripMenuItem.DropDownItems.Add(toolStripMenuItem2);
 				}
@@ -3297,14 +3314,14 @@ namespace Masterplan.UI
 			encounterReportForm.ShowDialog();
 		}
 
-		private void start_combat()
+		private void StartCombat()
 		{
-			this.roll_initiative();
-			List<int> initiatives = this.get_initiatives();
+			this.RollInitiative();
+			List<int> initiatives = this.GetInitiatives();
 			if (initiatives.Count != 0)
 			{
 				int init = initiatives[0];
-				List<CombatData> list = this.get_combatants(init, false);
+				List<CombatData> list = this.GetCombatants(init, false);
 				if (list.Count != 0)
 				{
 					this.fCurrentActor = list[0];
@@ -3313,12 +3330,12 @@ namespace Masterplan.UI
 				{
 					this.fCombatStarted = true;
 					this.InitiativePanel.CurrentInitiative = this.fCurrentActor.Initiative;
-					this.select_current_actor();
-					this.update_list();
+					this.SelectCurrentActor();
+					this.UpdateList();
 					this.update_maps();
 					this.update_statusbar();
 					this.update_preview_panel();
-					this.highlight_current_actor();
+					this.HighlightCurrentActor();
 					this.fLog.Active = true;
 					this.fLog.AddStartRoundEntry(this.fCurrentRound);
 					this.fLog.AddStartTurnEntry(this.fCurrentActor.ID);
@@ -3327,7 +3344,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void roll_initiative()
+		private void RollInitiative()
 		{
 			List<Pair<List<CombatData>, int>> list = new List<Pair<List<CombatData>, int>>();
 			Dictionary<string, List<CombatData>> dictionary = new Dictionary<string, List<CombatData>>();
@@ -3453,23 +3470,23 @@ namespace Masterplan.UI
 				GroupInitiativeForm groupInitiativeForm = new GroupInitiativeForm(dictionary, this.fEncounter);
 				groupInitiativeForm.ShowDialog();
 			}
-			this.InitiativePanel.InitiativeScores = this.get_initiatives();
+			this.InitiativePanel.InitiativeScores = this.GetInitiatives();
 		}
 
-		private void select_current_actor()
+		private void SelectCurrentActor()
 		{
 			foreach (ListViewItem listViewItem in this.CombatList.Items)
 			{
 				listViewItem.Selected = false;
 			}
-			ListViewItem listViewItem2 = this.get_combatant(this.fCurrentActor.ID);
+			ListViewItem listViewItem2 = this.GetCombatant(this.fCurrentActor.ID);
 			if (listViewItem2 != null)
 			{
 				listViewItem2.Selected = true;
 			}
 		}
 
-		private void set_map(List<TokenLink> token_links, Rectangle viewpoint, List<MapSketch> sketches)
+		private void SetMap(List<TokenLink> token_links, Rectangle viewpoint, List<MapSketch> sketches)
 		{
 			Map map = Session.Project.FindTacticalMap(this.fEncounter.MapID);
 			this.MapView.Map = map;
@@ -3540,7 +3557,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void do_damage(List<IToken> tokens)
+		private void DoDamage(List<IToken> tokens)
 		{
 			List<Pair<CombatData, EncounterCard>> list = new List<Pair<CombatData, EncounterCard>>();
 			foreach (IToken current in tokens)
@@ -3587,14 +3604,14 @@ namespace Masterplan.UI
 						this.fLog.AddStateEntry(current4.First.ID, creatureState);
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_log();
 				this.update_preview_panel();
 				this.update_maps();
 			}
 		}
 
-		private void do_heal(List<IToken> tokens)
+		private void DoHeal(List<IToken> tokens)
 		{
 			List<Pair<CombatData, EncounterCard>> list = new List<Pair<CombatData, EncounterCard>>();
 			foreach (IToken current in tokens)
@@ -3641,14 +3658,14 @@ namespace Masterplan.UI
 						this.fLog.AddStateEntry(current4.First.ID, creatureState);
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_log();
 				this.update_preview_panel();
 				this.update_maps();
 			}
 		}
 
-		private void copy_custom_token()
+		private void CopyCustomToken()
 		{
 			foreach (IToken current in this.SelectedTokens)
 			{
@@ -3661,10 +3678,10 @@ namespace Masterplan.UI
 					this.fEncounter.CustomTokens.Add(customToken2);
 				}
 			}
-			this.update_list();
+			this.UpdateList();
 		}
 
-		private void show_player_view(bool map, bool initiative)
+		private void ShowPlayerView(bool map, bool initiative)
 		{
 			try
 			{
@@ -3696,7 +3713,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void list_splitter_changed()
+		private void ListSplitterChanged()
 		{
 			try
 			{
@@ -3711,7 +3728,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void select_token(IToken token)
+		private void SelectToken(IToken token)
 		{
 			foreach (ListViewItem listViewItem in this.CombatList.Items)
 			{
@@ -3745,7 +3762,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void set_delay(List<IToken> tokens)
+		private void SetDelay(List<IToken> tokens)
 		{
 			try
 			{
@@ -3767,7 +3784,7 @@ namespace Masterplan.UI
 						combatData.Delaying = !combatData.Delaying;
 						if (combatData.Delaying)
 						{
-							this.InitiativePanel.InitiativeScores = this.get_initiatives();
+							this.InitiativePanel.InitiativeScores = this.GetInitiatives();
 						}
 						else
 						{
@@ -3775,7 +3792,7 @@ namespace Masterplan.UI
 						}
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 			}
 			catch (Exception ex)
 			{
@@ -3783,7 +3800,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private string get_info(CreatureToken token)
+		private string GetInfo(CreatureToken token)
 		{
 			string text = "";
 			EncounterSlot encounterSlot = this.fEncounter.FindSlot(token.SlotID);
@@ -3808,7 +3825,7 @@ namespace Masterplan.UI
 			return text;
 		}
 
-		private string get_info(Hero hero)
+		private string GetInfo(Hero hero)
 		{
 			string text = hero.Race + " " + hero.Class;
 			if (hero.Player != "")
@@ -3829,7 +3846,7 @@ namespace Masterplan.UI
 			return text;
 		}
 
-		private string get_info(CustomToken token)
+		private string GetInfo(CustomToken token)
 		{
 			if (!(token.Details != ""))
 			{
@@ -3838,7 +3855,7 @@ namespace Masterplan.UI
 			return token.Details;
 		}
 
-		private void edit_token(IToken token)
+		private void EditToken(IToken token)
 		{
 			if (token is CreatureToken)
 			{
@@ -3885,11 +3902,11 @@ namespace Masterplan.UI
 							this.fLog.AddEffectEntry(combatDataForm.Data.ID, current4, true);
 						}
 					}
-					this.update_list();
+					this.UpdateList();
 					this.update_log();
 					this.update_preview_panel();
 					this.update_maps();
-					this.InitiativePanel.InitiativeScores = this.get_initiatives();
+					this.InitiativePanel.InitiativeScores = this.GetInitiatives();
 				}
 			}
 			if (token is Hero)
@@ -3897,7 +3914,7 @@ namespace Masterplan.UI
 				Hero hero = token as Hero;
 				if (hero.CombatData.Initiative == -2147483648)
 				{
-					this.edit_initiative(hero);
+					this.EditInitiative(hero);
 				}
 				else
 				{
@@ -3942,11 +3959,11 @@ namespace Masterplan.UI
 								this.fLog.AddEffectEntry(combatDataForm2.Data.ID, current8, true);
 							}
 						}
-						this.update_list();
+						this.UpdateList();
 						this.update_log();
 						this.update_preview_panel();
 						this.update_maps();
-						this.InitiativePanel.InitiativeScores = this.get_initiatives();
+						this.InitiativePanel.InitiativeScores = this.GetInitiatives();
 					}
 				}
 			}
@@ -3964,7 +3981,7 @@ namespace Masterplan.UI
 						if (customTokenForm.ShowDialog() == DialogResult.OK)
 						{
 							this.fEncounter.CustomTokens[num3] = customTokenForm.Token;
-							this.update_list();
+							this.UpdateList();
 							this.update_preview_panel();
 							this.update_maps();
 							return;
@@ -3977,7 +3994,7 @@ namespace Masterplan.UI
 						if (customOverlayForm.ShowDialog() == DialogResult.OK)
 						{
 							this.fEncounter.CustomTokens[num3] = customOverlayForm.Token;
-							this.update_list();
+							this.UpdateList();
 							this.update_preview_panel();
 							this.update_maps();
 						}
@@ -3990,7 +4007,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void set_tooltip(IToken token, Control ctrl)
+		private void SetTooltip(IToken token, Control ctrl)
 		{
 			string toolTipTitle = "";
 			string caption = null;
@@ -3998,25 +4015,25 @@ namespace Masterplan.UI
 			{
 				CreatureToken creatureToken = token as CreatureToken;
 				toolTipTitle = creatureToken.Data.DisplayName;
-				caption = this.get_info(creatureToken);
+				caption = this.GetInfo(creatureToken);
 			}
 			if (token is Hero)
 			{
 				Hero hero = token as Hero;
 				toolTipTitle = hero.Name;
-				caption = this.get_info(hero);
+				caption = this.GetInfo(hero);
 			}
 			if (token is CustomToken)
 			{
 				CustomToken customToken = token as CustomToken;
 				toolTipTitle = customToken.Name;
-				caption = this.get_info(customToken);
+				caption = this.GetInfo(customToken);
 			}
 			this.MapTooltip.ToolTipTitle = toolTipTitle;
 			this.MapTooltip.SetToolTip(ctrl, caption);
 		}
 
-		private void remove_from_map(List<IToken> tokens)
+		private void RemoveFromMap(List<IToken> tokens)
 		{
 			try
 			{
@@ -4026,15 +4043,15 @@ namespace Masterplan.UI
 					{
 						CreatureToken creatureToken = current as CreatureToken;
 						creatureToken.Data.Location = CombatData.NoPoint;
-						this.remove_effects(current);
-						this.remove_links(current);
+						this.RemoveEffects(current);
+						this.RemoveLinks(current);
 					}
 					if (current is Hero)
 					{
 						Hero hero = current as Hero;
 						hero.CombatData.Location = CombatData.NoPoint;
-						this.remove_effects(current);
-						this.remove_links(current);
+						this.RemoveEffects(current);
+						this.RemoveLinks(current);
 					}
 					if (current is CustomToken)
 					{
@@ -4042,11 +4059,11 @@ namespace Masterplan.UI
 						customToken.Data.Location = CombatData.NoPoint;
 						if (customToken.Type == CustomTokenType.Token)
 						{
-							this.remove_links(current);
+							this.RemoveLinks(current);
 						}
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 				this.update_maps();
 			}
@@ -4056,7 +4073,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void remove_from_combat(List<IToken> tokens)
+		private void RemoveFromCombat(List<IToken> tokens)
 		{
 			try
 			{
@@ -4068,16 +4085,16 @@ namespace Masterplan.UI
 						EncounterSlot encounterSlot = this.fEncounter.FindSlot(creatureToken.SlotID);
 						encounterSlot.CombatData.Remove(creatureToken.Data);
 						this.fRemovedCreatureXP += encounterSlot.Card.XP;
-						this.remove_effects(current);
-						this.remove_links(current);
+						this.RemoveEffects(current);
+						this.RemoveLinks(current);
 					}
 					if (current is Hero)
 					{
 						Hero hero = current as Hero;
 						hero.CombatData.Initiative = -2147483648;
 						hero.CombatData.Location = CombatData.NoPoint;
-						this.remove_effects(current);
-						this.remove_links(current);
+						this.RemoveEffects(current);
+						this.RemoveLinks(current);
 					}
 					if (current is CustomToken)
 					{
@@ -4085,11 +4102,11 @@ namespace Masterplan.UI
 						this.fEncounter.CustomTokens.Remove(customToken);
 						if (customToken.Type == CustomTokenType.Token)
 						{
-							this.remove_links(current);
+							this.RemoveLinks(current);
 						}
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 				this.update_maps();
 			}
@@ -4099,7 +4116,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void remove_effects(IToken token)
+		private void RemoveEffects(IToken token)
 		{
 			Guid guid = Guid.Empty;
 			if (token is CreatureToken)
@@ -4119,18 +4136,18 @@ namespace Masterplan.UI
 			foreach (Hero current in Session.Project.Heroes)
 			{
 				CombatData combatData = current.CombatData;
-				this.remove_effects(guid, combatData);
+                RemoveEffects(guid, combatData);
 			}
 			foreach (EncounterSlot current2 in this.fEncounter.AllSlots)
 			{
 				foreach (CombatData current3 in current2.CombatData)
 				{
-					this.remove_effects(guid, current3);
+                    RemoveEffects(guid, current3);
 				}
 			}
 		}
 
-		private void remove_effects(Guid token_id, CombatData data)
+		private void RemoveEffects(Guid token_id, CombatData data)
 		{
 			List<OngoingCondition> list = new List<OngoingCondition>();
 			foreach (OngoingCondition current in data.Conditions)
@@ -4146,15 +4163,15 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void remove_links(IToken token)
+		private void RemoveLinks(IToken token)
 		{
-			Point right = this.get_location(token);
+			Point right = this.GetLocation(token);
 			List<TokenLink> list = new List<TokenLink>();
 			foreach (TokenLink current in this.MapView.TokenLinks)
 			{
 				foreach (IToken current2 in current.Tokens)
 				{
-					if (this.get_location(current2) == right)
+					if (this.GetLocation(current2) == right)
 					{
 						list.Add(current);
 						break;
@@ -4168,7 +4185,7 @@ namespace Masterplan.UI
 			this.update_maps();
 		}
 
-		private Point get_location(IToken token)
+		private Point GetLocation(IToken token)
 		{
 			if (token is CreatureToken)
 			{
@@ -4188,7 +4205,7 @@ namespace Masterplan.UI
 			return CombatData.NoPoint;
 		}
 
-		private void toggle_visibility(List<IToken> tokens)
+		private void ToggleVisibility(List<IToken> tokens)
 		{
 			try
 			{
@@ -4205,7 +4222,7 @@ namespace Masterplan.UI
 						customToken.Data.Visible = !customToken.Data.Visible;
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 				this.update_maps();
 			}
@@ -4215,7 +4232,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void show_or_hide_all(bool visible)
+		private void ShowOrHideAll(bool visible)
 		{
 			foreach (EncounterSlot current in this.fEncounter.AllSlots)
 			{
@@ -4228,22 +4245,22 @@ namespace Masterplan.UI
 			{
 				current3.Data.Visible = visible;
 			}
-			this.update_list();
+			this.UpdateList();
 			this.update_preview_panel();
 			this.update_maps();
 		}
 
-		private void roll_attack(CreaturePower power)
+		private void RollAttack(CreaturePower power)
 		{
 			AttackRollForm attackRollForm = new AttackRollForm(power, this.fEncounter);
 			attackRollForm.ShowDialog();
-			this.update_list();
+			this.UpdateList();
 			this.update_log();
 			this.update_preview_panel();
 			this.update_maps();
 		}
 
-		private void roll_check(string name, int mod)
+		private void RollCheck(string name, int mod)
 		{
 			int num = Session.Dice(1, 20);
 			int num2 = num + mod;
@@ -4267,18 +4284,18 @@ namespace Masterplan.UI
 			MessageBox.Show(text2, name, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 		}
 
-		private bool edit_initiative(Hero hero)
+		private bool EditInitiative(Hero hero)
 		{
 			int initiative = hero.CombatData.Initiative;
 			InitiativeForm initiativeForm = new InitiativeForm(hero.InitBonus, initiative);
 			if (initiativeForm.ShowDialog() == DialogResult.OK)
 			{
 				hero.CombatData.Initiative = initiativeForm.Score;
-				this.update_list();
+				this.UpdateList();
 				this.update_preview_panel();
 				this.update_maps();
 				this.update_statusbar();
-				List<int> initiatives = this.get_initiatives();
+				List<int> initiatives = this.GetInitiatives();
 				this.InitiativePanel.InitiativeScores = initiatives;
 				int arg_67_0 = initiatives[0];
 				return true;
@@ -4286,9 +4303,9 @@ namespace Masterplan.UI
 			return false;
 		}
 
-		private int next_init(int current_init)
+		private int NextInit(int current_init)
 		{
-			List<int> initiatives = this.get_initiatives();
+			List<int> initiatives = this.GetInitiatives();
 			if (!initiatives.Contains(current_init))
 			{
 				initiatives.Add(current_init);
@@ -4303,9 +4320,9 @@ namespace Masterplan.UI
 			return initiatives[num];
 		}
 
-		private int find_max_init()
+		private int FindMaxInitiative()
 		{
-			List<int> initiatives = this.get_initiatives();
+			List<int> initiatives = this.GetInitiatives();
 			if (initiatives.Count != 0)
 			{
 				return initiatives[0];
@@ -4313,9 +4330,9 @@ namespace Masterplan.UI
 			return 0;
 		}
 
-		private int find_min_init()
+		private int FindMinInitiative()
 		{
-			List<int> initiatives = this.get_initiatives();
+			List<int> initiatives = this.GetInitiatives();
 			if (initiatives.Count != 0)
 			{
 				return initiatives[initiatives.Count - 1];
@@ -4323,7 +4340,7 @@ namespace Masterplan.UI
 			return 0;
 		}
 
-		private List<int> get_initiatives()
+		private List<int> GetInitiatives()
 		{
 			List<int> list = new List<int>();
 			foreach (EncounterSlot current in this.fEncounter.AllSlots)
@@ -4333,7 +4350,7 @@ namespace Masterplan.UI
 					if (current.GetState(current2) != CreatureState.Defeated)
 					{
 						int initiative = current2.Initiative;
-						if (initiative != -2147483648 && !list.Contains(initiative))
+						if (initiative != int.MinValue && !list.Contains(initiative))
 						{
 							list.Add(initiative);
 						}
@@ -4365,7 +4382,7 @@ namespace Masterplan.UI
 			return list;
 		}
 
-		private void handle_regen()
+		private void HandleRegen()
 		{
 			if (this.fCurrentActor == null)
 			{
@@ -4380,9 +4397,11 @@ namespace Masterplan.UI
 			{
 				return;
 			}
-			Regeneration regeneration = new Regeneration();
-			regeneration.Value = 0;
-			if (encounterSlot.Card.Regeneration != null)
+            Regeneration regeneration = new Regeneration()
+            {
+                Value = 0
+            };
+            if (encounterSlot.Card.Regeneration != null)
 			{
 				regeneration.Value = encounterSlot.Card.Regeneration.Value;
 				regeneration.Details = encounterSlot.Card.Regeneration.Details;
@@ -4478,7 +4497,7 @@ namespace Masterplan.UI
 			{
 				EndedEffectsForm endedEffectsForm = new EndedEffectsForm(list, this.fEncounter);
 				endedEffectsForm.ShowDialog();
-				this.update_list();
+				this.UpdateList();
 			}
 		}
 
@@ -4513,7 +4532,7 @@ namespace Masterplan.UI
 			SavingThrowForm savingThrowForm = new SavingThrowForm(this.fCurrentActor, card, this.fEncounter);
 			if (savingThrowForm.ShowDialog() == DialogResult.OK)
 			{
-				this.update_list();
+				this.UpdateList();
 			}
 		}
 
@@ -4574,7 +4593,7 @@ namespace Masterplan.UI
 						this.fLog.AddStateEntry(this.fCurrentActor.ID, hero2.GetState(this.fCurrentActor.Damage));
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_log();
 			}
 		}
@@ -4609,19 +4628,19 @@ namespace Masterplan.UI
 			RechargeForm rechargeForm = new RechargeForm(this.fCurrentActor, encounterSlot.Card);
 			if (rechargeForm.ShowDialog() == DialogResult.OK)
 			{
-				this.update_list();
+				this.UpdateList();
 			}
 		}
 
-		private CombatData get_next_actor(CombatData current_actor)
+		private CombatData GetNextActor(CombatData current_actor)
 		{
 			int num = (current_actor != null) ? current_actor.Initiative : this.InitiativePanel.CurrentInitiative;
-			List<int> initiatives = this.get_initiatives();
+			List<int> initiatives = this.GetInitiatives();
 			if (!initiatives.Contains(num))
 			{
-				num = this.next_init(num);
+				num = this.NextInit(num);
 			}
-			List<CombatData> list = this.get_combatants(num, true);
+			List<CombatData> list = this.GetCombatants(num, true);
 			int num2 = list.IndexOf(current_actor);
 			CombatData combatData;
 			if (num2 == -1)
@@ -4630,8 +4649,8 @@ namespace Masterplan.UI
 			}
 			else if (num2 == list.Count - 1)
 			{
-				num = this.next_init(num);
-				list = this.get_combatants(num, false);
+				num = this.NextInit(num);
+				list = this.GetCombatants(num, false);
 				combatData = list[0];
 			}
 			else
@@ -4642,7 +4661,7 @@ namespace Masterplan.UI
 			bool flag2 = combatData != null && combatData.Delaying;
 			if (flag || flag2)
 			{
-				combatData = this.get_next_actor(combatData);
+				combatData = this.GetNextActor(combatData);
 			}
 			return combatData;
 		}
@@ -4667,7 +4686,7 @@ namespace Masterplan.UI
 			return CreatureState.Active;
 		}
 
-		private List<CombatData> get_combatants(int init, bool include_defeated)
+		private List<CombatData> GetCombatants(int init, bool include_defeated)
 		{
 			Dictionary<int, List<CombatData>> dictionary = new Dictionary<int, List<CombatData>>();
 			foreach (EncounterSlot current in this.fEncounter.AllSlots)
@@ -4725,7 +4744,7 @@ namespace Masterplan.UI
 			return list2;
 		}
 
-		private void highlight_current_actor()
+		private void HighlightCurrentActor()
 		{
 			this.MapView.BoxedTokens.Clear();
 			if (this.fCurrentActor != null)
@@ -4748,7 +4767,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private ListViewItem get_combatant(Guid id)
+		private ListViewItem GetCombatant(Guid id)
 		{
 			foreach (ListViewItem listViewItem in this.CombatList.Items)
 			{
@@ -4782,7 +4801,7 @@ namespace Masterplan.UI
 			this.PlayerMap.ScalingFactor = this.MapView.ScalingFactor;
 		}
 
-		private void update_list()
+		private void UpdateList()
 		{
 			List<CombatData> list = new List<CombatData>();
 			if (Session.Preferences.CreatureAutoRemove)
@@ -4808,7 +4827,7 @@ namespace Masterplan.UI
 							if (current3 == this.fCurrentActor)
 							{
 								Guid iD = this.fCurrentActor.ID;
-								this.fCurrentActor = this.get_next_actor(this.fCurrentActor);
+								this.fCurrentActor = this.GetNextActor(this.fCurrentActor);
 								if (this.fCurrentActor.ID != iD)
 								{
 									this.fLog.AddStartTurnEntry(this.fCurrentActor.ID);
@@ -4816,8 +4835,8 @@ namespace Masterplan.UI
 								}
 							}
 							CreatureToken token = new CreatureToken(current.ID, current3);
-							this.remove_effects(token);
-							this.remove_links(token);
+							this.RemoveEffects(token);
+							this.RemoveLinks(token);
 							current3.Location = CombatData.NoPoint;
 						}
 					}
@@ -4830,14 +4849,16 @@ namespace Masterplan.UI
 			int num3 = 4;
 			int num4 = 5;
 			int num5 = 6;
-			List<IToken> selectedTokens = this.SelectedTokens;
-			Trap selectedTrap = this.SelectedTrap;
-			SkillChallenge selectedChallenge = this.SelectedChallenge;
-			this.CombatList.BeginUpdate();
-			this.CombatList.Items.Clear();
-			this.CombatList.SmallImageList = new ImageList();
-			this.CombatList.SmallImageList.ImageSize = new Size(16, 16);
-			foreach (EncounterSlot current4 in this.fEncounter.AllSlots)
+			List<IToken> selectedTokens = SelectedTokens;
+			Trap selectedTrap = SelectedTrap;
+			SkillChallenge selectedChallenge = SelectedChallenge;
+			CombatList.BeginUpdate();
+            CombatList.Items.Clear();
+            CombatList.SmallImageList = new ImageList()
+            {
+                ImageSize = new Size(16, 16)
+            };
+            foreach (EncounterSlot current4 in this.fEncounter.AllSlots)
 			{
 				EncounterWave encounterWave = this.fEncounter.FindWave(current4);
 				if (encounterWave == null || encounterWave.Active)
@@ -5701,7 +5722,7 @@ namespace Masterplan.UI
 						this.add_quick_effect(ongoingCondition);
 					}
 				}
-				this.update_list();
+				this.UpdateList();
 				this.update_log();
 				this.update_preview_panel();
 				this.MapView.MapChanged();
@@ -5741,7 +5762,7 @@ namespace Masterplan.UI
 			}
 			combatData.Conditions.Remove(ongoingCondition);
 			this.fLog.AddEffectEntry(combatData.ID, ongoingCondition.ToString(this.fEncounter, false), false);
-			this.update_list();
+			this.UpdateList();
 			this.update_log();
 			this.update_preview_panel();
 		}
@@ -5775,7 +5796,7 @@ namespace Masterplan.UI
 			}
 			combatData.Conditions.Remove(ongoingCondition);
 			this.fLog.AddEffectEntry(combatData.ID, ongoingCondition.ToString(this.fEncounter, false), false);
-			this.update_list();
+			this.UpdateList();
 			this.update_log();
 			this.update_preview_panel();
 		}

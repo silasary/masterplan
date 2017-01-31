@@ -38,7 +38,7 @@ namespace Utils
 					try
 					{
 						XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-						result = (T)((object)xmlSerializer.Deserialize(xmlTextReader));
+						result = (T)xmlSerializer.Deserialize(xmlTextReader);
 					}
 					catch
 					{

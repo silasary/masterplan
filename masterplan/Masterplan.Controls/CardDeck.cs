@@ -103,11 +103,8 @@ namespace Masterplan.Controls
 
 		protected void OnDeckOrderChanged()
 		{
-			if (this.DeckOrderChanged != null)
-			{
-				this.DeckOrderChanged(this, new EventArgs());
-			}
-		}
+            DeckOrderChanged?.Invoke(this, new EventArgs());
+        }
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
@@ -141,7 +138,7 @@ namespace Masterplan.Controls
 				float width = rectangleF.Width - num2 * (float)(num4 - 1);
 				float height = rectangleF.Height - y;
 				RectangleF rect = new RectangleF(x, y, width, height);
-				this.draw_card(null, 0, false, rect, e.Graphics);
+				this.DrawCard(null, 0, false, rect, e.Graphics);
 			}
 			for (int i = this.fVisibleCards - 1; i >= 0; i--)
 			{
@@ -154,12 +151,12 @@ namespace Masterplan.Controls
 				RectangleF rectangleF2 = new RectangleF(x2, num8, width2, height2);
 				Pair<EncounterCard, int> pair = this.fCards[i];
 				bool topmost = i == 0;
-				this.draw_card(pair.First, pair.Second, topmost, rectangleF2, e.Graphics);
-				this.fRegions.Add(new Pair<RectangleF, EncounterCard>(rectangleF2, pair.First));
+                DrawCard(pair.First, pair.Second, topmost, rectangleF2, e.Graphics);
+                fRegions.Add(new Pair<RectangleF, EncounterCard>(rectangleF2, pair.First));
 			}
 		}
 
-		private void draw_card(EncounterCard card, int count, bool topmost, RectangleF rect, Graphics g)
+		private void DrawCard(EncounterCard card, int count, bool topmost, RectangleF rect, Graphics g)
 		{
 			int alpha = (card != null) ? 255 : 100;
 			GraphicsPath path = RoundedRectangle.Create(rect, this.fRadius, (RoundedRectangle.RectangleCorners)3);
