@@ -436,6 +436,9 @@
     <Compile Include="Masterplan.UI\CombatForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masterplan.UI\CombatForm.Designer.cs">
+      <DependentUpon>CombatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Masterplan.UI\CompendiumForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -656,6 +659,9 @@
     </Compile>
     <Compile Include="Masterplan.UI\MainForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Masterplan.UI\MapAreaForm.cs">
       <SubType>Form</SubType>
