@@ -1,0 +1,1080 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{A33985BD-27A2-402F-BC81-CEF002035889}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Masterplan</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Utils">
+      <HintPath>..\Utils\obj\Debug\Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Masterplan.Compendium\CompendiumSearch.cs" />
+    <Compile Include="Masterplan.Compendium\GetFilterSelectCompletedEventArgs.cs" />
+    <Compile Include="Masterplan.Compendium\GetFilterSelectCompletedEventHandler.cs" />
+    <Compile Include="Masterplan.Compendium\KeywordSearchCompletedEventArgs.cs" />
+    <Compile Include="Masterplan.Compendium\KeywordSearchCompletedEventHandler.cs" />
+    <Compile Include="Masterplan.Compendium\KeywordSearchWithFiltersCompletedEventArgs.cs" />
+    <Compile Include="Masterplan.Compendium\KeywordSearchWithFiltersCompletedEventHandler.cs" />
+    <Compile Include="Masterplan.Compendium\ViewAllCompletedEventArgs.cs" />
+    <Compile Include="Masterplan.Compendium\ViewAllCompletedEventHandler.cs" />
+    <Compile Include="Masterplan.Controls\BreakdownPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\CalendarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\CardDeck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\CreatureViewMode.cs" />
+    <Compile Include="Masterplan.Controls\DeckGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\DemographicsMode.cs" />
+    <Compile Include="Masterplan.Controls\DemographicsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\DemographicsSource.cs" />
+    <Compile Include="Masterplan.Controls\DiceGraphPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\DicePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\EncounterGauge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\EncounterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\FilterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\FiveByFivePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\HitPointGauge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\InfoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\InitiativePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\KeyAbilitiesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\LevelRangePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\LibraryHelpPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\MapData.cs" />
+    <Compile Include="Masterplan.Controls\MapDisplayType.cs" />
+    <Compile Include="Masterplan.Controls\MapElementPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\MapGridMode.cs" />
+    <Compile Include="Masterplan.Controls\MapView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\MapViewMode.cs" />
+    <Compile Include="Masterplan.Controls\PlotView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\PlotViewLinkStyle.cs" />
+    <Compile Include="Masterplan.Controls\PlotViewMode.cs" />
+    <Compile Include="Masterplan.Controls\QuestPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\RegionalMapPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\SkillChallengePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\TilePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\TitlePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\TokenPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\TrapElementPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Controls\WelcomePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Data\Ability.cs" />
+    <Compile Include="Masterplan.Data\ActionType.cs" />
+    <Compile Include="Masterplan.Data\Artifact.cs" />
+    <Compile Include="Masterplan.Data\ArtifactConcordance.cs" />
+    <Compile Include="Masterplan.Data\Attachment.cs" />
+    <Compile Include="Masterplan.Data\AttachmentType.cs" />
+    <Compile Include="Masterplan.Data\Aura.cs" />
+    <Compile Include="Masterplan.Data\AutoBuildData.cs" />
+    <Compile Include="Masterplan.Data\Background.cs" />
+    <Compile Include="Masterplan.Data\BreakdownType.cs" />
+    <Compile Include="Masterplan.Data\Calendar.cs" />
+    <Compile Include="Masterplan.Data\CalendarDate.cs" />
+    <Compile Include="Masterplan.Data\CalendarEvent.cs" />
+    <Compile Include="Masterplan.Data\CampaignSettings.cs" />
+    <Compile Include="Masterplan.Data\CardCategory.cs" />
+    <Compile Include="Masterplan.Data\CardMode.cs" />
+    <Compile Include="Masterplan.Data\Class.cs" />
+    <Compile Include="Masterplan.Data\CombatData.cs" />
+    <Compile Include="Masterplan.Data\CombatState.cs" />
+    <Compile Include="Masterplan.Data\ComplexRole.cs" />
+    <Compile Include="Masterplan.Data\Creature.cs" />
+    <Compile Include="Masterplan.Data\CreatureIssue.cs" />
+    <Compile Include="Masterplan.Data\CreatureLore.cs" />
+    <Compile Include="Masterplan.Data\CreatureOrigin.cs" />
+    <Compile Include="Masterplan.Data\CreaturePower.cs" />
+    <Compile Include="Masterplan.Data\CreaturePowerCategory.cs" />
+    <Compile Include="Masterplan.Data\CreatureSize.cs" />
+    <Compile Include="Masterplan.Data\CreatureState.cs" />
+    <Compile Include="Masterplan.Data\CreatureTemplate.cs" />
+    <Compile Include="Masterplan.Data\CreatureTemplateType.cs" />
+    <Compile Include="Masterplan.Data\CreatureToken.cs" />
+    <Compile Include="Masterplan.Data\CreatureType.cs" />
+    <Compile Include="Masterplan.Data\CustomCreature.cs" />
+    <Compile Include="Masterplan.Data\CustomToken.cs" />
+    <Compile Include="Masterplan.Data\CustomTokenType.cs" />
+    <Compile Include="Masterplan.Data\DamageCategory.cs" />
+    <Compile Include="Masterplan.Data\DamageDegree.cs" />
+    <Compile Include="Masterplan.Data\DamageLogEntry.cs" />
+    <Compile Include="Masterplan.Data\DamageModifier.cs" />
+    <Compile Include="Masterplan.Data\DamageModifierTemplate.cs" />
+    <Compile Include="Masterplan.Data\DamageType.cs" />
+    <Compile Include="Masterplan.Data\DayInfo.cs" />
+    <Compile Include="Masterplan.Data\DefenceType.cs" />
+    <Compile Include="Masterplan.Data\DetailsField.cs" />
+    <Compile Include="Masterplan.Data\Difficulty.cs" />
+    <Compile Include="Masterplan.Data\DifficultyIssue.cs" />
+    <Compile Include="Masterplan.Data\Disease.cs" />
+    <Compile Include="Masterplan.Data\DurationType.cs" />
+    <Compile Include="Masterplan.Data\EffectLogEntry.cs" />
+    <Compile Include="Masterplan.Data\Encounter.cs" />
+    <Compile Include="Masterplan.Data\EncounterCard.cs" />
+    <Compile Include="Masterplan.Data\EncounterDeck.cs" />
+    <Compile Include="Masterplan.Data\EncounterLog.cs" />
+    <Compile Include="Masterplan.Data\EncounterNote.cs" />
+    <Compile Include="Masterplan.Data\EncounterReport.cs" />
+    <Compile Include="Masterplan.Data\EncounterSlot.cs" />
+    <Compile Include="Masterplan.Data\EncounterSlotType.cs" />
+    <Compile Include="Masterplan.Data\EncounterTemplate.cs" />
+    <Compile Include="Masterplan.Data\EncounterTemplateGroup.cs" />
+    <Compile Include="Masterplan.Data\EncounterTemplateSlot.cs" />
+    <Compile Include="Masterplan.Data\EncounterWave.cs" />
+    <Compile Include="Masterplan.Data\Encyclopedia.cs" />
+    <Compile Include="Masterplan.Data\EncyclopediaEntry.cs" />
+    <Compile Include="Masterplan.Data\EncyclopediaGroup.cs" />
+    <Compile Include="Masterplan.Data\EncyclopediaImage.cs" />
+    <Compile Include="Masterplan.Data\EncyclopediaLink.cs" />
+    <Compile Include="Masterplan.Data\EpicDestiny.cs" />
+    <Compile Include="Masterplan.Data\Feat.cs" />
+    <Compile Include="Masterplan.Data\Feature.cs" />
+    <Compile Include="Masterplan.Data\FiveByFiveColumn.cs" />
+    <Compile Include="Masterplan.Data\FiveByFiveData.cs" />
+    <Compile Include="Masterplan.Data\FiveByFiveItem.cs" />
+    <Compile Include="Masterplan.Data\Goal.cs" />
+    <Compile Include="Masterplan.Data\Hero.cs" />
+    <Compile Include="Masterplan.Data\HeroRoleType.cs" />
+    <Compile Include="Masterplan.Data\ICreature.cs" />
+    <Compile Include="Masterplan.Data\IElement.cs" />
+    <Compile Include="Masterplan.Data\IEncounterLogEntry.cs" />
+    <Compile Include="Masterplan.Data\IEncyclopediaItem.cs" />
+    <Compile Include="Masterplan.Data\IIssue.cs" />
+    <Compile Include="Masterplan.Data\IPlayerOption.cs" />
+    <Compile Include="Masterplan.Data\IRole.cs" />
+    <Compile Include="Masterplan.Data\IToken.cs" />
+    <Compile Include="Masterplan.Data\LevelData.cs" />
+    <Compile Include="Masterplan.Data\Library.cs" />
+    <Compile Include="Masterplan.Data\MagicItem.cs" />
+    <Compile Include="Masterplan.Data\MagicItemRarity.cs" />
+    <Compile Include="Masterplan.Data\MagicItemSection.cs" />
+    <Compile Include="Masterplan.Data\Map.cs" />
+    <Compile Include="Masterplan.Data\MapArea.cs" />
+    <Compile Include="Masterplan.Data\MapElement.cs" />
+    <Compile Include="Masterplan.Data\MapLocation.cs" />
+    <Compile Include="Masterplan.Data\MapSketch.cs" />
+    <Compile Include="Masterplan.Data\MapSketchPoint.cs" />
+    <Compile Include="Masterplan.Data\Minion.cs" />
+    <Compile Include="Masterplan.Data\MonsterTheme.cs" />
+    <Compile Include="Masterplan.Data\MonthInfo.cs" />
+    <Compile Include="Masterplan.Data\MoveLogEntry.cs" />
+    <Compile Include="Masterplan.Data\Note.cs" />
+    <Compile Include="Masterplan.Data\NPC.cs" />
+    <Compile Include="Masterplan.Data\OngoingCondition.cs" />
+    <Compile Include="Masterplan.Data\OngoingType.cs" />
+    <Compile Include="Masterplan.Data\OverlayStyle.cs" />
+    <Compile Include="Masterplan.Data\ParagonPath.cs" />
+    <Compile Include="Masterplan.Data\Parcel.cs" />
+    <Compile Include="Masterplan.Data\ParcelIssue.cs" />
+    <Compile Include="Masterplan.Data\Party.cs" />
+    <Compile Include="Masterplan.Data\PartyGoals.cs" />
+    <Compile Include="Masterplan.Data\PauseLogEntry.cs" />
+    <Compile Include="Masterplan.Data\PlayerBackground.cs" />
+    <Compile Include="Masterplan.Data\PlayerPower.cs" />
+    <Compile Include="Masterplan.Data\PlayerPowerSection.cs" />
+    <Compile Include="Masterplan.Data\PlayerPowerType.cs" />
+    <Compile Include="Masterplan.Data\Plot.cs" />
+    <Compile Include="Masterplan.Data\PlotPoint.cs" />
+    <Compile Include="Masterplan.Data\PlotPointColour.cs" />
+    <Compile Include="Masterplan.Data\PlotPointState.cs" />
+    <Compile Include="Masterplan.Data\Poison.cs" />
+    <Compile Include="Masterplan.Data\PowerAction.cs" />
+    <Compile Include="Masterplan.Data\PowerAttack.cs" />
+    <Compile Include="Masterplan.Data\PowerLogEntry.cs" />
+    <Compile Include="Masterplan.Data\PowerType.cs" />
+    <Compile Include="Masterplan.Data\PowerUseType.cs" />
+    <Compile Include="Masterplan.Data\Project.cs" />
+    <Compile Include="Masterplan.Data\Quest.cs" />
+    <Compile Include="Masterplan.Data\QuestType.cs" />
+    <Compile Include="Masterplan.Data\Race.cs" />
+    <Compile Include="Masterplan.Data\Regeneration.cs" />
+    <Compile Include="Masterplan.Data\RegionalMap.cs" />
+    <Compile Include="Masterplan.Data\ReportRow.cs" />
+    <Compile Include="Masterplan.Data\ReportTable.cs" />
+    <Compile Include="Masterplan.Data\ReportType.cs" />
+    <Compile Include="Masterplan.Data\ResumeLogEntry.cs" />
+    <Compile Include="Masterplan.Data\Ritual.cs" />
+    <Compile Include="Masterplan.Data\RitualCategory.cs" />
+    <Compile Include="Masterplan.Data\RoleFlag.cs" />
+    <Compile Include="Masterplan.Data\RoleType.cs" />
+    <Compile Include="Masterplan.Data\RoundLog.cs" />
+    <Compile Include="Masterplan.Data\Satellite.cs" />
+    <Compile Include="Masterplan.Data\SkillChallenge.cs" />
+    <Compile Include="Masterplan.Data\SkillChallengeData.cs" />
+    <Compile Include="Masterplan.Data\SkillChallengeLogEntry.cs" />
+    <Compile Include="Masterplan.Data\SkillChallengeResult.cs" />
+    <Compile Include="Masterplan.Data\SkillIssue.cs" />
+    <Compile Include="Masterplan.Data\SkillLogEntry.cs" />
+    <Compile Include="Masterplan.Data\SkillType.cs" />
+    <Compile Include="Masterplan.Data\StartRoundLogEntry.cs" />
+    <Compile Include="Masterplan.Data\StartTurnLogEntry.cs" />
+    <Compile Include="Masterplan.Data\StateLogEntry.cs" />
+    <Compile Include="Masterplan.Data\TerrainPower.cs" />
+    <Compile Include="Masterplan.Data\TerrainPowerType.cs" />
+    <Compile Include="Masterplan.Data\Theme.cs" />
+    <Compile Include="Masterplan.Data\ThemePowerData.cs" />
+    <Compile Include="Masterplan.Data\ThreatType.cs" />
+    <Compile Include="Masterplan.Data\Tier.cs" />
+    <Compile Include="Masterplan.Data\Tile.cs" />
+    <Compile Include="Masterplan.Data\TileCategory.cs" />
+    <Compile Include="Masterplan.Data\TileData.cs" />
+    <Compile Include="Masterplan.Data\TokenLink.cs" />
+    <Compile Include="Masterplan.Data\Trap.cs" />
+    <Compile Include="Masterplan.Data\TrapAttack.cs" />
+    <Compile Include="Masterplan.Data\TrapElement.cs" />
+    <Compile Include="Masterplan.Data\TrapSkillData.cs" />
+    <Compile Include="Masterplan.Data\TrapType.cs" />
+    <Compile Include="Masterplan.Data\TreasureIssue.cs" />
+    <Compile Include="Masterplan.Data\TurnLog.cs" />
+    <Compile Include="Masterplan.Data\Weapon.cs" />
+    <Compile Include="Masterplan.Data\WeaponCategory.cs" />
+    <Compile Include="Masterplan.Data\WeaponType.cs" />
+    <Compile Include="Masterplan.Events\CardEventArgs.cs" />
+    <Compile Include="Masterplan.Events\CardEventHandler.cs" />
+    <Compile Include="Masterplan.Events\CardListEventArgs.cs" />
+    <Compile Include="Masterplan.Events\CardListEventHandler.cs" />
+    <Compile Include="Masterplan.Events\CreateTokenLinkEventHandler.cs" />
+    <Compile Include="Masterplan.Events\CreatureEventArgs.cs" />
+    <Compile Include="Masterplan.Events\CreatureEventHandler.cs" />
+    <Compile Include="Masterplan.Events\DraggedTokenEventArgs.cs" />
+    <Compile Include="Masterplan.Events\DraggedTokenEventHandler.cs" />
+    <Compile Include="Masterplan.Events\HeroEventArgs.cs" />
+    <Compile Include="Masterplan.Events\HeroEventHandler.cs" />
+    <Compile Include="Masterplan.Events\MapAreaEventArgs.cs" />
+    <Compile Include="Masterplan.Events\MapAreaEventHandler.cs" />
+    <Compile Include="Masterplan.Events\MapSketchEventArgs.cs" />
+    <Compile Include="Masterplan.Events\MapSketchEventHandler.cs" />
+    <Compile Include="Masterplan.Events\MovementEventArgs.cs" />
+    <Compile Include="Masterplan.Events\MovementEventHandler.cs" />
+    <Compile Include="Masterplan.Events\TileEventArgs.cs" />
+    <Compile Include="Masterplan.Events\TileEventHandler.cs" />
+    <Compile Include="Masterplan.Events\TokenEventArgs.cs" />
+    <Compile Include="Masterplan.Events\TokenEventHandler.cs" />
+    <Compile Include="Masterplan.Events\TokenLinkEventArgs.cs" />
+    <Compile Include="Masterplan.Events\TokenLinkEventHandler.cs" />
+    <Compile Include="Masterplan.Events\TokenListEventArgs.cs" />
+    <Compile Include="Masterplan.Extensibility\ExtensibilityManager.cs" />
+    <Compile Include="Masterplan.Extensibility\IAddIn.cs" />
+    <Compile Include="Masterplan.Extensibility\IApplication.cs" />
+    <Compile Include="Masterplan.Extensibility\ICommand.cs" />
+    <Compile Include="Masterplan.Extensibility\IPage.cs" />
+    <Compile Include="Masterplan.Properties\Resources.cs" />
+    <Compile Include="Masterplan.Properties\Settings.cs" />
+    <Compile Include="Masterplan.Tools.Generators\Book.cs" />
+    <Compile Include="Masterplan.Tools.Generators\DelveBuilder.cs" />
+    <Compile Include="Masterplan.Tools.Generators\Direction.cs" />
+    <Compile Include="Masterplan.Tools.Generators\DwarfName.cs" />
+    <Compile Include="Masterplan.Tools.Generators\ElfName.cs" />
+    <Compile Include="Masterplan.Tools.Generators\EncounterBuilder.cs" />
+    <Compile Include="Masterplan.Tools.Generators\Endpoint.cs" />
+    <Compile Include="Masterplan.Tools.Generators\ExoticName.cs" />
+    <Compile Include="Masterplan.Tools.Generators\HalflingName.cs" />
+    <Compile Include="Masterplan.Tools.Generators\MapAutoBuildType.cs" />
+    <Compile Include="Masterplan.Tools.Generators\MapBuilder.cs" />
+    <Compile Include="Masterplan.Tools.Generators\MapBuilderData.cs" />
+    <Compile Include="Masterplan.Tools.Generators\NPCBuilder.cs" />
+    <Compile Include="Masterplan.Tools.Generators\Orientation.cs" />
+    <Compile Include="Masterplan.Tools.Generators\Potion.cs" />
+    <Compile Include="Masterplan.Tools.Generators\RoomBuilder.cs" />
+    <Compile Include="Masterplan.Tools.Generators\Treasure.cs" />
+    <Compile Include="Masterplan.Tools\AI.cs" />
+    <Compile Include="Masterplan.Tools\AppImport.cs" />
+    <Compile Include="Masterplan.Tools\BlankMap.cs" />
+    <Compile Include="Masterplan.Tools\CompendiumHelper.cs" />
+    <Compile Include="Masterplan.Tools\CompendiumImport.cs" />
+    <Compile Include="Masterplan.Tools\Conditions.cs" />
+    <Compile Include="Masterplan.Tools\CreatureHelper.cs" />
+    <Compile Include="Masterplan.Tools\DamageExpressionType.cs" />
+    <Compile Include="Masterplan.Tools\DiceExpression.cs" />
+    <Compile Include="Masterplan.Tools\DiceStatistics.cs" />
+    <Compile Include="Masterplan.Tools\DisplaySize.cs" />
+    <Compile Include="Masterplan.Tools\EncounterExporter.cs" />
+    <Compile Include="Masterplan.Tools\Experience.cs" />
+    <Compile Include="Masterplan.Tools\FiveByFive.cs" />
+    <Compile Include="Masterplan.Tools\GoalBuilder.cs" />
+    <Compile Include="Masterplan.Tools\HTML.cs" />
+    <Compile Include="Masterplan.Tools\MapPrinting.cs" />
+    <Compile Include="Masterplan.Tools\Screenshot.cs" />
+    <Compile Include="Masterplan.Tools\Skills.cs" />
+    <Compile Include="Masterplan.Tools\Statistics.cs" />
+    <Compile Include="Masterplan.Tools\TextHelper.cs" />
+    <Compile Include="Masterplan.Tools\Workspace.cs" />
+    <Compile Include="Masterplan.UI\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ArtifactBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ArtifactConcordanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ArtifactDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ArtifactProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ArtifactSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\AttackRollForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\AuraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\AutoBuildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\BackgroundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CalendarEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CalendarListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CampaignSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CategoryListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CombatantSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CombatDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CombatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CompendiumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CompendiumItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureAbilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureMultipleSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureSkillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureSkillsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureTemplateBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureTemplateDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureTemplateProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureTemplateSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CreatureTemplateStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CustomCreatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CustomCreatureListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CustomOverlayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\CustomTokenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DamageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DamageModifierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DamageModifierTemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DamageModListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DamageTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DeckBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DeckListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DeckViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DemographicsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DieRollerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\DisplayNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EffectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EffectListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncounterBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncounterNoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncounterReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncyclopediaEntryDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncyclopediaEntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncyclopediaEntrySelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncyclopediaGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EncyclopediaImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\EndedEffectsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\FiveByFiveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\GoalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\GoalListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\GroupHealthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\GroupInitiativeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HandoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HealForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HeroDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HeroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HeroIPlay4eForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HeroListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\HeroSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\InitiativeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\InitiativeMode.cs" />
+    <Compile Include="Masterplan.UI\IssuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\LevelAdjustmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\LevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\LibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\LibraryListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\LibrarySelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ListMode.cs" />
+    <Compile Include="Masterplan.UI\MagicItemBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MagicItemDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MagicItemProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MagicItemSectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MagicItemSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapAreaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapAreaSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapLocationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapLocationSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapPrintingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MapSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MergeLibrariesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MiniChecklistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MonsterThemeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MonsterThemePowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MonsterThemeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\MonthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\NPCForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OddsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OngoingDamageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionBackgroundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionCreatureLoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionDiseaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionDiseaseLevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionEpicDestinyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionFeatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionFeatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionInformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionLevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionParagonPathForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionPoisonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionPowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionPowerSectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionRaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionRitualForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionThemeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OptionWeaponForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OverviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\OverviewType.cs" />
+    <Compile Include="Masterplan.UI\ParcelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ParcelListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ParcelSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PartyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PasswordCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PasswordSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PausedCombatListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PlayerViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PlayerViewMode.cs" />
+    <Compile Include="Masterplan.UI\PlotPointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerAttackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerCallback.cs" />
+    <Compile Include="Masterplan.UI\PowerDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerRangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PowerStatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\PremadeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\QuickReferenceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RandomCreatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RechargeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RegenerationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RegionalMapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RegionalMapListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RegionalMapSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\RoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SatelliteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SavingThrowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SeasonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SkillChallengeBreakdownForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SkillChallengeBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SkillChallengeDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SkillChallengeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\SkillChallengeSkillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TerrainPowerDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TerrainPowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TerrainPowerSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ThemeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileBreakdownForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileChecklistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileLibrarySelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileSize.cs" />
+    <Compile Include="Masterplan.UI\TileSizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TileView.cs" />
+    <Compile Include="Masterplan.UI\TokenLinkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TokenLinkListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapAttackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapCountermeasureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TrapSkillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\TreasureListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\AdviceData.cs" />
+    <Compile Include="Masterplan.Wizards\EncounterSelectionPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\EncounterTemplatePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\EncounterTemplateWizard.cs" />
+    <Compile Include="Masterplan.Wizards\MapAreasPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\MapLibrariesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\MapSizePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\MapTypePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\MapWizard.cs" />
+    <Compile Include="Masterplan.Wizards\VariantBasePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\VariantData.cs" />
+    <Compile Include="Masterplan.Wizards\VariantFinishPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\VariantRolePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\VariantTemplatesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masterplan.Wizards\VariantWizard.cs" />
+    <Compile Include="Masterplan\ClassData.cs" />
+    <Compile Include="Masterplan\HeroData.cs" />
+    <Compile Include="Masterplan\HeroGroup.cs" />
+    <Compile Include="Masterplan\PowerSource.cs" />
+    <Compile Include="Masterplan\Preferences.cs" />
+    <Compile Include="Masterplan\PrimaryAbility.cs" />
+    <Compile Include="Masterplan\Program.cs" />
+    <Compile Include="Masterplan\RaceData.cs" />
+    <Compile Include="Masterplan\SearchType.cs" />
+    <Compile Include="Masterplan\Session.cs" />
+    <Compile Include="Masterplan\Sourcebook.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Masterplan.Controls\DicePanel.resx" />
+    <EmbeddedResource Include="Masterplan.Controls\EncounterPanel.resx" />
+    <EmbeddedResource Include="Masterplan.Controls\MapElementPanel.resx" />
+    <EmbeddedResource Include="Masterplan.Controls\SkillChallengePanel.resx" />
+    <EmbeddedResource Include="Masterplan.Controls\TokenPanel.resx" />
+    <EmbeddedResource Include="Masterplan.Controls\TrapElementPanel.resx" />
+    <EmbeddedResource Include="Masterplan.Properties\Resources.resx" />
+    <EmbeddedResource Include="Masterplan.UI\AboutBox.resx" />
+    <EmbeddedResource Include="Masterplan.UI\ArtifactBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\ArtifactDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CalendarForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CalendarListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CategoryListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CombatDataForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CombatForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CreatureBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CreatureDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CreatureSkillsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CreatureTemplateBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CreatureTemplateDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CustomCreatureForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CustomCreatureListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CustomOverlayForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\CustomTokenForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\DamageForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\DamageModListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\DeckBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\DeckListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\DemographicsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EffectListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EncounterBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EncounterReportForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EncyclopediaEntryDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EncyclopediaEntryForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EncyclopediaImageForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\EndedEffectsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\GoalListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\HandoutForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\HeroDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\HeroForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\HeroIPlay4eForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\HeroListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\LibraryListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MagicItemBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MagicItemDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MainForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MapAreaForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MapBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MapListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\MonsterThemeForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\NPCForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionClassForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionCreatureLoreForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionDiseaseForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionEpicDestinyForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionLevelForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionParagonPathForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionPoisonForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionPowerForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionRaceForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OptionThemeForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\OverviewForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\ParcelForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\ParcelListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\ParcelSelectForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\PausedCombatListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\PlayerViewForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\PlotPointForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\PowerBrowserForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\PowerBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\QuickReferenceForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\RechargeForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\RegionalMapForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\RegionalMapListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\SavingThrowForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\SkillChallengeBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\SkillChallengeDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TerrainPowerDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\ThemeForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TileForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TileLibrarySelectForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TileSelectForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TokenLinkListForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TrapBuilderForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TrapDetailsForm.resx" />
+    <EmbeddedResource Include="Masterplan.UI\TreasureListForm.resx" />
+    <EmbeddedResource Include="Masterplan.Wizards\MapLibrariesPage.resx" />
+    <EmbeddedResource Include="Masterplan\Scroll.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
