@@ -1242,7 +1242,7 @@ namespace Masterplan.UI
 				this.fCreature = new NPC();
 			}
 			int num = 2147483647;
-			int num2 = -2147483648;
+			int num2 = int.MinValue;
 			using (List<ICreature>.Enumerator enumerator = genepool.GetEnumerator())
 			{
 				while (enumerator.MoveNext())

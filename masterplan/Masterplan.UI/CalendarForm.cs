@@ -343,7 +343,7 @@ namespace Masterplan.UI
 				10000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.YearBox.Name = "YearBox";
 			this.YearBox.Size = new Size(235, 20);

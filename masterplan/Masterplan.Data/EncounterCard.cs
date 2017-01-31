@@ -1134,7 +1134,7 @@ namespace Masterplan.Data
 				{
 					if (current2.Value == 0)
 					{
-						list2.Add(-2147483648);
+						list2.Add(int.MinValue);
 					}
 					else
 					{
@@ -1143,9 +1143,9 @@ namespace Masterplan.Data
 				}
 			}
 			int result;
-			if (list2.Contains(-2147483648))
+			if (list2.Contains(int.MinValue))
 			{
-				result = -2147483648;
+				result = int.MinValue;
 			}
 			else
 			{
@@ -1184,7 +1184,7 @@ namespace Masterplan.Data
 			foreach (DamageType current2 in types)
 			{
 				int num = dictionary[current2];
-				if (num == -2147483648)
+				if (num == int.MinValue)
 				{
 					list.Add(num);
 				}
@@ -1199,7 +1199,7 @@ namespace Masterplan.Data
 			}
 			if (list.Count == types.Count)
 			{
-				return -2147483648;
+				return int.MinValue;
 			}
 			if (list2.Count == types.Count)
 			{
@@ -1391,7 +1391,7 @@ namespace Masterplan.Data
 				{
 					text3 = "+" + text3;
 				}
-				if (combat_data != null && combat_data.Initiative != -2147483648)
+				if (combat_data != null && combat_data.Initiative != int.MinValue)
 				{
 					text3 = string.Concat(new object[]
 					{

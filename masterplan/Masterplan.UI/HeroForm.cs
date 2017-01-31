@@ -874,7 +874,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.InitBox.Name = "InitBox";
 			this.InitBox.Size = new Size(180, 20);

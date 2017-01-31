@@ -126,7 +126,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.WillBox.Name = "WillBox";
 			this.WillBox.Size = new Size(164, 20);
@@ -144,7 +144,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.RefBox.Name = "RefBox";
 			this.RefBox.Size = new Size(164, 20);
@@ -162,7 +162,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.FortBox.Name = "FortBox";
 			this.FortBox.Size = new Size(164, 20);
@@ -180,7 +180,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.ACBox.Name = "ACBox";
 			this.ACBox.Size = new Size(164, 20);
@@ -198,7 +198,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.HPBox.Name = "HPBox";
 			this.HPBox.Size = new Size(164, 20);
@@ -216,7 +216,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.InitBox.Name = "InitBox";
 			this.InitBox.Size = new Size(164, 20);

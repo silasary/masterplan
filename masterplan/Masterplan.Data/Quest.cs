@@ -47,7 +47,7 @@ namespace Masterplan.Data
 				case QuestType.Minor:
 					return this.fXP;
 				default:
-					return -2147483648;
+					return int.MinValue;
 				}
 			}
 			set

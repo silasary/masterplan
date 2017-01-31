@@ -344,7 +344,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.CurrentHPBox.Name = "CurrentHPBox";
 			this.CurrentHPBox.Size = new Size(78, 20);

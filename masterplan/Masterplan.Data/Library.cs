@@ -548,7 +548,7 @@ namespace Masterplan.Data
 				if (current10.Attack != null)
 				{
 					current10.Attacks.Add(current10.Attack);
-					current10.Initiative = (current10.Attack.HasInitiative ? current10.Attack.Initiative : -2147483648);
+					current10.Initiative = (current10.Attack.HasInitiative ? current10.Attack.Initiative : int.MinValue);
 					current10.Trigger = current10.Attack.Trigger;
 					current10.Attack = null;
 				}

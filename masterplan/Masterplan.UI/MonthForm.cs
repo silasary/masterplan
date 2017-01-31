@@ -152,7 +152,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.LeapModBox.Name = "LeapModBox";
 			this.LeapModBox.Size = new Size(172, 20);

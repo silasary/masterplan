@@ -58,7 +58,7 @@ namespace Masterplan.UI
 			this.TypeBox.SelectedItem = this.fTrap.Type;
 			this.LevelBox.Value = this.fTrap.Level;
 			this.RoleBtn.Text = this.fTrap.Role.ToString();
-			if (this.fTrap.Initiative == -2147483648)
+			if (this.fTrap.Initiative == int.MinValue)
 			{
 				this.HasInitBox.Checked = false;
 				this.InitBox.Value = 0m;
@@ -78,7 +78,7 @@ namespace Masterplan.UI
 			this.fTrap.Name = this.NameBox.Text;
 			this.fTrap.Type = (TrapType)this.TypeBox.SelectedItem;
 			this.fTrap.Level = (int)this.LevelBox.Value;
-			this.fTrap.Initiative = (this.HasInitBox.Checked ? ((int)this.InitBox.Value) : -2147483648);
+			this.fTrap.Initiative = (this.HasInitBox.Checked ? ((int)this.InitBox.Value) : int.MinValue);
 		}
 
 		private void RoleBtn_Click(object sender, EventArgs e)
@@ -197,7 +197,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.InitBox.Name = "InitBox";
 			this.InitBox.Size = new Size(198, 20);

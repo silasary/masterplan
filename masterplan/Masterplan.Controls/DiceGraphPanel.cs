@@ -95,8 +95,8 @@ namespace Masterplan.Controls
 						e.Graphics.DrawString(this.fTitle, new Font(this.Font.FontFamily, (float)(num2 / 3)), Brushes.Black, rectangle2, this.fCentred);
 					}
 					int num3 = 2147483647;
-					int num4 = -2147483648;
-					int num5 = -2147483648;
+					int num4 = int.MinValue;
+					int num5 = int.MinValue;
 					int num6 = 0;
 					foreach (int current in this.fDistribution.Keys)
 					{

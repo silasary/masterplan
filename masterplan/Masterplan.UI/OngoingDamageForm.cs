@@ -218,7 +218,7 @@ namespace Masterplan.UI
 			{
 				return null;
 			}
-			if (num == -2147483648)
+			if (num == int.MinValue)
 			{
 				num = 0;
 			}

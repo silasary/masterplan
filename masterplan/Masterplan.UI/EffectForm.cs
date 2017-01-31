@@ -36,7 +36,7 @@ namespace Masterplan.UI
 
 		private CombatData fCurrentActor;
 
-		private int fCurrentRound = -2147483648;
+		private int fCurrentRound = int.MinValue;
 
 		private IContainer components;
 
@@ -730,7 +730,7 @@ namespace Masterplan.UI
 				20,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.ModBox.Name = "ModBox";
 			this.ModBox.Size = new Size(273, 20);
@@ -890,7 +890,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.DefenceModBox.Name = "DefenceModBox";
 			this.DefenceModBox.Size = new Size(289, 20);

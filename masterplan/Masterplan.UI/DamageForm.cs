@@ -214,7 +214,7 @@ namespace Masterplan.UI
 				return;
 			}
 			DamageForm.Token token = this.fData[0];
-			if (token.Modifier == -2147483648)
+			if (token.Modifier == int.MinValue)
 			{
 				this.ModBox.Text = "Immune";
 				return;
@@ -248,7 +248,7 @@ namespace Masterplan.UI
 			int num = initial_value;
 			if (modifier != 0)
 			{
-				if (modifier == -2147483648)
+				if (modifier == int.MinValue)
 				{
 					num = 0;
 				}

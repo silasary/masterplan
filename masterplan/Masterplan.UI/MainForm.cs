@@ -3813,9 +3813,9 @@ namespace Masterplan.UI
 						mapView.HighlightAreas = false;
 						bool flag = false;
 						int num = 2147483647;
-						int num2 = -2147483648;
+						int num2 = int.MinValue;
 						int num3 = 2147483647;
-						int num4 = -2147483648;
+						int num4 = int.MinValue;
 						foreach (MapArea current in this.fDelveView.Map.Areas)
 						{
 							PlotPoint plotPoint2 = this.PlotView.Plot.FindPointForMapArea(this.fDelveView.Map, current);

@@ -69,7 +69,7 @@ namespace Masterplan.UI
 
 		private CombatData fCurrentActor;
 
-		private int fCurrentRound = -2147483648;
+		private int fCurrentRound = int.MinValue;
 
 		public CombatData Data
 		{
@@ -167,7 +167,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.InitBox.Name = "InitBox";
 			this.InitBox.Size = new Size(276, 20);
@@ -331,7 +331,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.AltitudeBox.Name = "AltitudeBox";
 			this.AltitudeBox.Size = new Size(276, 20);
@@ -392,7 +392,7 @@ namespace Masterplan.UI
 			this.fEncounter = enc;
 			this.fCurrentActor = current_actor;
 			this.fCurrentRound = current_round;
-			if (this.fData.Initiative == -2147483648)
+			if (this.fData.Initiative == int.MinValue)
 			{
 				this.fData.Initiative = 0;
 			}

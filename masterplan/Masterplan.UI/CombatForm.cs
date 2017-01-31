@@ -118,7 +118,7 @@ namespace Masterplan.UI
 					if (lvi.Tag is Trap)
 					{
 						Trap trap = lvi.Tag as Trap;
-						int result = (trap.Initiative != -2147483648) ? trap.Initiative : 0;
+						int result = (trap.Initiative != int.MinValue) ? trap.Initiative : 0;
 						return result;
 					}
 				}
@@ -897,7 +897,7 @@ namespace Masterplan.UI
 					}
 					foreach (Trap current2 in encounterBuilderForm.Encounter.Traps)
 					{
-						if (current2.Initiative != -2147483648)
+						if (current2.Initiative != int.MinValue)
 						{
 							this.fTrapData[current2.ID] = new CombatData();
 							if (this.fCombatStarted)
@@ -1565,7 +1565,7 @@ namespace Masterplan.UI
 						int hP = current.Card.HP;
 						foreach (CombatData current2 in current.CombatData)
 						{
-							if (current2.Initiative != -2147483648)
+							if (current2.Initiative != int.MinValue)
 							{
 								int num = hP + current2.TempHP - current2.Damage;
 								if (num > 0)
@@ -2088,7 +2088,7 @@ namespace Masterplan.UI
 				{
 					e.Cancel = true;
 					Guid guid4 = new Guid(e.Url.LocalPath);
-					int num = -2147483648;
+					int num = int.MinValue;
 					CombatData combatData7 = this.fEncounter.FindCombatData(guid4);
 					if (combatData7 != null)
 					{
@@ -2119,7 +2119,7 @@ namespace Masterplan.UI
 							num = trap.Initiative;
 						}
 					}
-					if (combatData7 != null && num != -2147483648)
+					if (combatData7 != null && num != int.MinValue)
 					{
 						InitiativeForm initiativeForm = new InitiativeForm(num, combatData7.Initiative);
 						if (initiativeForm.ShowDialog() == DialogResult.OK)
@@ -3350,7 +3350,7 @@ namespace Masterplan.UI
 			Dictionary<string, List<CombatData>> dictionary = new Dictionary<string, List<CombatData>>();
 			foreach (Hero current in Session.Project.Heroes)
 			{
-				if (current.CombatData.Initiative == -2147483648)
+				if (current.CombatData.Initiative == int.MinValue)
 				{
 					switch (Session.Preferences.HeroInitiativeMode)
 					{
@@ -3376,7 +3376,7 @@ namespace Masterplan.UI
 					List<CombatData> list2 = new List<CombatData>();
 					foreach (CombatData current3 in current2.CombatData)
 					{
-						if (current3.Initiative == -2147483648)
+						if (current3.Initiative == int.MinValue)
 						{
 							list2.Add(current3);
 						}
@@ -3394,7 +3394,7 @@ namespace Masterplan.UI
 						while (enumerator4.MoveNext())
 						{
 							CombatData current4 = enumerator4.Current;
-							if (current4.Initiative == -2147483648)
+							if (current4.Initiative == int.MinValue)
 							{
 								list.Add(new Pair<List<CombatData>, int>(new List<CombatData>
 								{
@@ -3408,7 +3408,7 @@ namespace Masterplan.UI
 				case InitiativeMode.ManualIndividual:
 					foreach (CombatData current5 in current2.CombatData)
 					{
-						if (current5.Initiative == -2147483648)
+						if (current5.Initiative == int.MinValue)
 						{
 							dictionary[current5.DisplayName] = new List<CombatData>();
 							dictionary[current5.DisplayName].Add(current5);
@@ -3423,7 +3423,7 @@ namespace Masterplan.UI
 				List<CombatData> list3 = new List<CombatData>();
 				foreach (CombatData current6 in current2.CombatData)
 				{
-					if (current6.Initiative == -2147483648)
+					if (current6.Initiative == int.MinValue)
 					{
 						list3.Add(current6);
 					}
@@ -3435,11 +3435,11 @@ namespace Masterplan.UI
 			}
 			foreach (Trap current7 in this.fEncounter.Traps)
 			{
-				bool flag = current7.Initiative != -2147483648;
+				bool flag = current7.Initiative != int.MinValue;
 				if (flag)
 				{
 					CombatData combatData = this.fTrapData[current7.ID];
-					if (combatData.Initiative == -2147483648)
+					if (combatData.Initiative == int.MinValue)
 					{
 						switch (Session.Preferences.TrapInitiativeMode)
 						{
@@ -3912,7 +3912,7 @@ namespace Masterplan.UI
 			if (token is Hero)
 			{
 				Hero hero = token as Hero;
-				if (hero.CombatData.Initiative == -2147483648)
+				if (hero.CombatData.Initiative == int.MinValue)
 				{
 					this.EditInitiative(hero);
 				}
@@ -4091,7 +4091,7 @@ namespace Masterplan.UI
 					if (current is Hero)
 					{
 						Hero hero = current as Hero;
-						hero.CombatData.Initiative = -2147483648;
+						hero.CombatData.Initiative = int.MinValue;
 						hero.CombatData.Location = CombatData.NoPoint;
 						this.RemoveEffects(current);
 						this.RemoveLinks(current);
@@ -4361,7 +4361,7 @@ namespace Masterplan.UI
 			{
 				CombatData combatData = current3.CombatData;
 				int initiative2 = combatData.Initiative;
-				if (initiative2 != -2147483648 && !list.Contains(initiative2))
+				if (initiative2 != int.MinValue && !list.Contains(initiative2))
 				{
 					list.Add(initiative2);
 				}
@@ -4371,7 +4371,7 @@ namespace Masterplan.UI
 				if (!current4.Delaying)
 				{
 					int initiative3 = current4.Initiative;
-					if (initiative3 != -2147483648 && !list.Contains(initiative3))
+					if (initiative3 != int.MinValue && !list.Contains(initiative3))
 					{
 						list.Add(initiative3);
 					}
@@ -4718,7 +4718,7 @@ namespace Masterplan.UI
 			}
 			foreach (Trap current4 in this.fEncounter.Traps)
 			{
-				if (current4.Initiative != -2147483648 && this.fTrapData.ContainsKey(current4.ID))
+				if (current4.Initiative != int.MinValue && this.fTrapData.ContainsKey(current4.ID))
 				{
 					if (!dictionary.ContainsKey(current4.Initiative))
 					{
@@ -4872,13 +4872,7 @@ namespace Masterplan.UI
 						if (current5.TempHP > 0)
 						{
 							object obj = text;
-							text = string.Concat(new object[]
-							{
-								obj,
-								" (+",
-								current5.TempHP,
-								")"
-							});
+                            text = $"{obj} (+{current5.TempHP})";
 						}
 						if (num6 != hP2)
 						{
@@ -4891,7 +4885,7 @@ namespace Masterplan.UI
 						}
 						ListViewItem listViewItem = this.CombatList.Items.Add(current5.DisplayName);
 						listViewItem.Tag = new CreatureToken(current4.ID, current5);
-						if (current5.Initiative == -2147483648)
+						if (current5.Initiative == int.MinValue)
 						{
 							listViewItem.ForeColor = SystemColors.GrayText;
 							text2 = "-";
@@ -4967,7 +4961,7 @@ namespace Masterplan.UI
 							this.add_condition_hint(listViewItem);
 						}
 						int index3 = num;
-						if (current5.Initiative == -2147483648)
+						if (current5.Initiative == int.MinValue)
 						{
 							index3 = num4;
 						}
@@ -5007,10 +5001,10 @@ namespace Masterplan.UI
 				ListViewItem listViewItem2 = this.CombatList.Items.Add(current8.Name);
 				listViewItem2.Tag = current8;
 				this.add_icon(listViewItem2, Color.White);
-				if (current8.Initiative != -2147483648)
+				if (current8.Initiative != int.MinValue)
 				{
 					CombatData combatData = this.fTrapData[current8.ID];
-					if (combatData != null && combatData.Initiative != -2147483648)
+					if (combatData != null && combatData.Initiative != int.MinValue)
 					{
 						string text5 = combatData.Initiative.ToString();
 						listViewItem2.SubItems.Add(text5);
@@ -5103,7 +5097,7 @@ namespace Masterplan.UI
 				}
 				int initiative = combatData2.Initiative;
 				string text6;
-				if (initiative == -2147483648)
+				if (initiative == int.MinValue)
 				{
 					listViewItem4.ForeColor = SystemColors.GrayText;
 					index4 = num4;
@@ -5452,7 +5446,7 @@ namespace Masterplan.UI
 			int num2 = 0;
 			foreach (Hero current in Session.Project.Heroes)
 			{
-				if (current.CombatData.Initiative != -2147483648)
+				if (current.CombatData.Initiative != int.MinValue)
 				{
 					num2++;
 				}
@@ -5991,7 +5985,7 @@ namespace Masterplan.UI
 			bool flag2 = false;
 			foreach (Trap current2 in this.fEncounter.Traps)
 			{
-				if (current2.Initiative != -2147483648)
+				if (current2.Initiative != int.MinValue)
 				{
 					flag2 = true;
 					break;
@@ -6253,7 +6247,7 @@ namespace Masterplan.UI
 				if (current.Tag is Trap)
 				{
 					Trap trap = current.Tag as Trap;
-					if (trap.Initiative != -2147483648)
+					if (trap.Initiative != int.MinValue)
 					{
 						combatData = this.fTrapData[trap.ID];
 						text = combatData.DisplayName;
@@ -6275,7 +6269,7 @@ namespace Masterplan.UI
 					combatData = customToken.Data;
 					text = combatData.DisplayName;
 				}
-				if (combatData != null && combatData.Visible && combatData.Initiative != -2147483648)
+				if (combatData != null && combatData.Visible && combatData.Initiative != int.MinValue)
 				{
 					string text2 = "white";
 					if (combatData == this.fCurrentActor)

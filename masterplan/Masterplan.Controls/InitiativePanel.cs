@@ -16,7 +16,7 @@ namespace Masterplan.Controls
 
 		private IContainer components;
 
-		private int fHoveredInit = -2147483648;
+		private int fHoveredInit = int.MinValue;
 
 		private StringFormat fCentred = new StringFormat();
 
@@ -144,7 +144,7 @@ namespace Masterplan.Controls
 					pointF3
 				});
 			}
-			if (this.fCurrent != -2147483648)
+			if (this.fCurrent != int.MinValue)
 			{
 				float num3 = this.get_y(this.fCurrent);
 				RectangleF rectangleF = new RectangleF(8f, num3 - 8f, (float)(base.ClientRectangle.Width - 16), 16f);
@@ -155,7 +155,7 @@ namespace Masterplan.Controls
 					e.Graphics.DrawString(this.fCurrent.ToString(), this.Font, Brushes.White, rectangleF, this.fCentred);
 				}
 			}
-			if (this.fHoveredInit != -2147483648 && this.fHoveredInit != this.fCurrent)
+			if (this.fHoveredInit != int.MinValue && this.fHoveredInit != this.fCurrent)
 			{
 				float num4 = this.get_y(this.fHoveredInit);
 				RectangleF rectangleF2 = new RectangleF(8f, num4 - 8f, (float)(base.ClientRectangle.Width - 16), 16f);
@@ -179,20 +179,20 @@ namespace Masterplan.Controls
 
 		protected override void OnMouseLeave(EventArgs e)
 		{
-			this.fHoveredInit = -2147483648;
+			this.fHoveredInit = int.MinValue;
 			base.Invalidate();
 		}
 
 		private Pair<int, int> get_range()
 		{
 			int num = 2147483647;
-			int num2 = -2147483648;
+			int num2 = int.MinValue;
 			foreach (int current in this.fInitiatives)
 			{
 				num = Math.Min(num, current);
 				num2 = Math.Max(num2, current);
 			}
-			if (this.fCurrent != -2147483648)
+			if (this.fCurrent != int.MinValue)
 			{
 				num = Math.Min(num, this.fCurrent);
 				num2 = Math.Max(num2, this.fCurrent);
@@ -201,7 +201,7 @@ namespace Masterplan.Controls
 			{
 				num = 0;
 			}
-			if (num2 == -2147483648)
+			if (num2 == int.MinValue)
 			{
 				num2 = 20;
 			}
@@ -243,7 +243,7 @@ namespace Masterplan.Controls
 					return i;
 				}
 			}
-			return -2147483648;
+			return int.MinValue;
 		}
 	}
 }

@@ -246,7 +246,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.ModBox.Name = "ModBox";
 			this.ModBox.Size = new Size(220, 20);

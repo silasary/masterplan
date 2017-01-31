@@ -960,7 +960,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.InitModBox.Name = "InitModBox";
 			this.InitModBox.Size = new Size(100, 20);
@@ -994,7 +994,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.HPModBox.Name = "HPModBox";
 			this.HPModBox.Size = new Size(100, 20);
@@ -1025,7 +1025,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.ACModBox.Name = "ACModBox";
 			this.ACModBox.Size = new Size(100, 20);
@@ -1056,7 +1056,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.FortModBox.Name = "FortModBox";
 			this.FortModBox.Size = new Size(100, 20);
@@ -1087,7 +1087,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.RefModBox.Name = "RefModBox";
 			this.RefModBox.Size = new Size(100, 20);
@@ -1118,7 +1118,7 @@ namespace Masterplan.UI
 				1000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.WillModBox.Name = "WillModBox";
 			this.WillModBox.Size = new Size(100, 20);

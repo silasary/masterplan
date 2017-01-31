@@ -13,7 +13,7 @@ namespace Masterplan.UI
 
 		private CombatData fCurrentActor;
 
-		private int fCurrentRound = -2147483648;
+		private int fCurrentRound = int.MinValue;
 
 		private IContainer components;
 

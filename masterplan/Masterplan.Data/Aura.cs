@@ -15,7 +15,7 @@ namespace Masterplan.Data
 
 		private bool fExtractedData;
 
-		private int fRadius = -2147483648;
+		private int fRadius = int.MinValue;
 
 		private string fDescription = "";
 

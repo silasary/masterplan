@@ -142,7 +142,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.MiscBox.Name = "MiscBox";
 			this.MiscBox.Size = new Size(71, 20);

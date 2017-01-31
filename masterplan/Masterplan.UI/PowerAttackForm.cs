@@ -174,7 +174,7 @@ namespace Masterplan.UI
 				10,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.BonusBox.Name = "BonusBox";
 			this.BonusBox.Size = new Size(231, 20);

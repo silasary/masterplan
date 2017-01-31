@@ -23,9 +23,9 @@ namespace Masterplan.Controls
 
 		public int MinY = 2147483647;
 
-		public int MaxX = -2147483648;
+		public int MaxX = int.MinValue;
 
-		public int MaxY = -2147483648;
+		public int MaxY = int.MinValue;
 
 		public int Width
 		{

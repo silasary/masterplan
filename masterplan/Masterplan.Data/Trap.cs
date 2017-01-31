@@ -25,7 +25,7 @@ namespace Masterplan.Data
 
 		private List<TrapSkillData> fSkills = new List<TrapSkillData>();
 
-		private int fInitiative = -2147483648;
+		private int fInitiative = int.MinValue;
 
 		private string fTrigger = "";
 
@@ -345,7 +345,7 @@ namespace Masterplan.Data
 		{
 			this.fLevel += delta;
 			this.fLevel = Math.Max(1, this.fLevel);
-			if (this.fInitiative != -2147483648)
+			if (this.fInitiative != int.MinValue)
 			{
 				this.Initiative += delta;
 				this.fInitiative = Math.Max(1, this.fInitiative);

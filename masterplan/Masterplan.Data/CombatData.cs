@@ -7,7 +7,7 @@ namespace Masterplan.Data
 	[Serializable]
 	public class CombatData : IComparable<CombatData>
 	{
-		public static Point NoPoint = new Point(-2147483648, -2147483648);
+		public static Point NoPoint = new Point(int.MinValue, int.MinValue);
 
 		private Guid fID = Guid.NewGuid();
 
@@ -17,7 +17,7 @@ namespace Masterplan.Data
 
 		private bool fVisible = true;
 
-		private int fInitiative = -2147483648;
+		private int fInitiative = int.MinValue;
 
 		private bool fDelaying;
 
@@ -167,7 +167,7 @@ namespace Masterplan.Data
 		{
 			this.fLocation = CombatData.NoPoint;
 			this.fVisible = true;
-			this.fInitiative = -2147483648;
+			this.fInitiative = int.MinValue;
 			this.fDelaying = false;
 			this.fTempHP = 0;
 			this.fAltitude = 0;

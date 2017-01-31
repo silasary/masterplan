@@ -40,7 +40,7 @@ namespace Masterplan.UI
 			{
 				this.BonusValueLbl.Text = bonus.ToString();
 			}
-			if (score == -2147483648)
+			if (score == int.MinValue)
 			{
 				score = bonus + 1;
 			}
@@ -114,7 +114,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.InitBox.Name = "InitBox";
 			this.InitBox.Size = new Size(174, 20);

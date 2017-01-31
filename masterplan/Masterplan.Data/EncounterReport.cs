@@ -76,7 +76,7 @@ namespace Masterplan.Data
 			reportTable3.ReduceToPCs();
 			this.add_table(reportTable3, dictionary);
 			List<Guid> list = new List<Guid>();
-			int num = -2147483648;
+			int num = int.MinValue;
 			foreach (Guid current in dictionary.Keys)
 			{
 				int num2 = dictionary[current];

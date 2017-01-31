@@ -231,7 +231,7 @@ namespace Masterplan.UI
 			}
 			int num = this.fRolls[this.SelectedPowerID];
 			this.SavedBtn.Enabled = (num != 2147483647);
-			this.NotSavedBtn.Enabled = (num != -2147483648);
+			this.NotSavedBtn.Enabled = (num != int.MinValue);
 		}
 
 		private void OKBtn_Click(object sender, EventArgs e)
@@ -281,7 +281,7 @@ namespace Masterplan.UI
 		{
 			if (this.SelectedPowerID != Guid.Empty)
 			{
-				this.fRolls[this.SelectedPowerID] = -2147483648;
+				this.fRolls[this.SelectedPowerID] = int.MinValue;
 				this.update_list();
 			}
 		}
@@ -306,7 +306,7 @@ namespace Masterplan.UI
 						{
 							listViewItem.Selected = true;
 						}
-						if (num == -2147483648)
+						if (num == int.MinValue)
 						{
 							listViewItem.SubItems.Add("-");
 							listViewItem.SubItems.Add("Not recharged");

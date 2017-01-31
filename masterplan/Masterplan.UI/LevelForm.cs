@@ -95,7 +95,7 @@ namespace Masterplan.UI
 		public LevelForm(int score)
 		{
 			this.InitializeComponent();
-			if (score == -2147483648)
+			if (score == int.MinValue)
 			{
 				score = 0;
 			}

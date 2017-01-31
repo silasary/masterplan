@@ -982,7 +982,7 @@ namespace Masterplan.Data
 						if (current2.Attack != null)
 						{
 							current2.Attacks.Add(current2.Attack);
-							current2.Initiative = (current2.Attack.HasInitiative ? current2.Attack.Initiative : -2147483648);
+							current2.Initiative = (current2.Attack.HasInitiative ? current2.Attack.Initiative : int.MinValue);
 							current2.Trigger = current2.Attack.Trigger;
 							current2.Attack = null;
 						}
@@ -1060,7 +1060,7 @@ namespace Masterplan.Data
 						current8.SetDefaultDisplayNames();
 						foreach (CombatData current9 in current8.CombatData)
 						{
-							current9.Initiative = -2147483648;
+							current9.Initiative = int.MinValue;
 							if (current9.ID == Guid.Empty)
 							{
 								current9.ID = Guid.NewGuid();
@@ -1117,7 +1117,7 @@ namespace Masterplan.Data
 					if (trapElement.Trap.Attack != null)
 					{
 						trapElement.Trap.Attacks.Add(trapElement.Trap.Attack);
-						trapElement.Trap.Initiative = (trapElement.Trap.Attack.HasInitiative ? trapElement.Trap.Attack.Initiative : -2147483648);
+						trapElement.Trap.Initiative = (trapElement.Trap.Attack.HasInitiative ? trapElement.Trap.Attack.Initiative : int.MinValue);
 						trapElement.Trap.Trigger = trapElement.Trap.Attack.Trigger;
 						trapElement.Trap.Attack = null;
 					}

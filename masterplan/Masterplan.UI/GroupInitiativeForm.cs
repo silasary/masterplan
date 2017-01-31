@@ -167,7 +167,7 @@ namespace Masterplan.UI
 				ListViewItem listViewItem = this.CombatantList.Items.Add(current);
 				List<CombatData> list = this.fCombatants[current];
 				CombatData combatData = list[0];
-				if (combatData.Initiative == -2147483648)
+				if (combatData.Initiative == int.MinValue)
 				{
 					ListViewItem.ListViewSubItem listViewSubItem = listViewItem.SubItems.Add("(not set)");
 					listViewSubItem.ForeColor = SystemColors.GrayText;

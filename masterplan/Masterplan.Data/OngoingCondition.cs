@@ -28,7 +28,7 @@ namespace Masterplan.Data
 
 		private Guid fDurationCreatureID = Guid.Empty;
 
-		private int fDurationRound = -2147483648;
+		private int fDurationRound = int.MinValue;
 
 		private int fSavingThrowModifier;
 

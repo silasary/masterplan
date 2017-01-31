@@ -432,8 +432,8 @@ namespace Masterplan.Tools.Generators
 		{
 			int num = 2147483647;
 			int num2 = 2147483647;
-			int num3 = -2147483648;
-			int num4 = -2147483648;
+			int num3 = int.MinValue;
+			int num4 = int.MinValue;
 			foreach (Pair<Tile, TileData> current in tiles)
 			{
 				Rectangle rectangle = MapBuilder.get_rect(current.First, current.Second);

@@ -111,7 +111,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.AttackBox.Name = "AttackBox";
 			this.AttackBox.Size = new Size(136, 20);
@@ -129,7 +129,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.ACBox.Name = "ACBox";
 			this.ACBox.Size = new Size(136, 20);
@@ -153,7 +153,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.DefenceBox.Name = "DefenceBox";
 			this.DefenceBox.Size = new Size(136, 20);

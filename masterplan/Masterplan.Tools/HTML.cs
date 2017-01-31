@@ -99,7 +99,7 @@ namespace Masterplan.Tools
 			}
 			if (enc != null)
 			{
-				if (enc.MapID == Guid.Empty && hero.CombatData.Initiative == -2147483648)
+				if (enc.MapID == Guid.Empty && hero.CombatData.Initiative == int.MinValue)
 				{
 					list.Add("<P class=instruction>Double-click this character on the list to set its initiative score.</P>");
 				}
@@ -1770,14 +1770,14 @@ namespace Masterplan.Tools
 					int num2 = 2147483647;
 					int num3 = 2147483647;
 					int num4 = 2147483647;
-					int num5 = -2147483648;
-					int num6 = -2147483648;
-					int num7 = -2147483648;
-					int num8 = -2147483648;
+					int num5 = int.MinValue;
+					int num6 = int.MinValue;
+					int num7 = int.MinValue;
+					int num8 = int.MinValue;
 					int num9 = 2147483647;
 					int num10 = 2147483647;
-					int num11 = -2147483648;
-					int num12 = -2147483648;
+					int num11 = int.MinValue;
+					int num12 = int.MinValue;
 					BinarySearchTree<string> binarySearchTree = new BinarySearchTree<string>();
 					foreach (Hero current in Session.Project.Heroes)
 					{
@@ -3381,7 +3381,7 @@ namespace Masterplan.Tools
 					list.Add("</TR>");
 				}
 			}
-			if (trap.Initiative != -2147483648)
+			if (trap.Initiative != int.MinValue)
 			{
 				string text4 = trap.Initiative.ToString();
 				if (trap.Initiative >= 0)
@@ -4033,7 +4033,7 @@ namespace Masterplan.Tools
 			{
 				text = "+" + text;
 			}
-			if (hero.CombatData != null && hero.CombatData.Initiative != -2147483648)
+			if (hero.CombatData != null && hero.CombatData.Initiative != int.MinValue)
 			{
 				text = string.Concat(new object[]
 				{

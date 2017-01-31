@@ -132,7 +132,7 @@ namespace Masterplan.UI
 				100,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.ModBox.Name = "ModBox";
 			this.ModBox.Size = new Size(263, 20);
@@ -303,7 +303,7 @@ namespace Masterplan.UI
 			}
 			int num = this.fRolls[this.SelectedEffect];
 			this.SavedBtn.Enabled = (num != 2147483647);
-			this.NotSavedBtn.Enabled = (num != -2147483648);
+			this.NotSavedBtn.Enabled = (num != int.MinValue);
 		}
 
 		private void ModBox_ValueChanged(object sender, EventArgs e)
@@ -359,7 +359,7 @@ namespace Masterplan.UI
 						listViewItem.SubItems.Add("(not rolled)");
 						listViewItem.ForeColor = SystemColors.GrayText;
 					}
-					else if (num2 == -2147483648)
+					else if (num2 == int.MinValue)
 					{
 						listViewItem.SubItems.Add("-");
 						listViewItem.SubItems.Add("Not saved");
@@ -446,7 +446,7 @@ namespace Masterplan.UI
 		{
 			if (this.SelectedEffect != null)
 			{
-				this.fRolls[this.SelectedEffect] = -2147483648;
+				this.fRolls[this.SelectedEffect] = int.MinValue;
 				this.update_list();
 			}
 		}

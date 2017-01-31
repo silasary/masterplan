@@ -1353,7 +1353,7 @@ namespace Masterplan.UI
 				100000,
 				0,
 				0,
-				-2147483648
+				int.MinValue
 			});
 			this.XPBox.Name = "XPBox";
 			this.XPBox.Size = new Size(155, 20);
