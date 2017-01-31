@@ -96,7 +96,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(OverviewForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(OverviewForm));
 			this.Toolbar = new ToolStrip();
 			this.EncounterBtn = new ToolStripButton();
 			this.TrapBtn = new ToolStripButton();
@@ -123,28 +123,28 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.EncounterBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EncounterBtn.Image = (Image)componentResourceManager.GetObject("EncounterBtn.Image");
+			this.EncounterBtn.Image = (Image)resources.GetObject("EncounterBtn.Image");
 			this.EncounterBtn.ImageTransparentColor = Color.Magenta;
 			this.EncounterBtn.Name = "EncounterBtn";
 			this.EncounterBtn.Size = new Size(70, 22);
 			this.EncounterBtn.Text = "Encounters";
 			this.EncounterBtn.Click += new EventHandler(this.EncounterBtn_Click);
 			this.TrapBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapBtn.Image = (Image)componentResourceManager.GetObject("TrapBtn.Image");
+			this.TrapBtn.Image = (Image)resources.GetObject("TrapBtn.Image");
 			this.TrapBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapBtn.Name = "TrapBtn";
 			this.TrapBtn.Size = new Size(40, 22);
 			this.TrapBtn.Text = "Traps";
 			this.TrapBtn.Click += new EventHandler(this.TrapBtn_Click);
 			this.ChallengeBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengeBtn.Image = (Image)componentResourceManager.GetObject("ChallengeBtn.Image");
+			this.ChallengeBtn.Image = (Image)resources.GetObject("ChallengeBtn.Image");
 			this.ChallengeBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengeBtn.Name = "ChallengeBtn";
 			this.ChallengeBtn.Size = new Size(93, 22);
 			this.ChallengeBtn.Text = "Skill Challenges";
 			this.ChallengeBtn.Click += new EventHandler(this.ChallengeBtn_Click);
 			this.TreasureBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TreasureBtn.Image = (Image)componentResourceManager.GetObject("TreasureBtn.Image");
+			this.TreasureBtn.Image = (Image)resources.GetObject("TreasureBtn.Image");
 			this.TreasureBtn.ImageTransparentColor = Color.Magenta;
 			this.TreasureBtn.Name = "TreasureBtn";
 			this.TreasureBtn.Size = new Size(56, 22);

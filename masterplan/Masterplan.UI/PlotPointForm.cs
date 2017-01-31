@@ -1052,7 +1052,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(PlotPointForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(PlotPointForm));
 			ListViewGroup listViewGroup = new ListViewGroup("Links To This Point", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Links From This Point", HorizontalAlignment.Left);
 			this.NameLbl = new Label();
@@ -1246,7 +1246,7 @@ namespace Masterplan.UI
 				this.SettingsColour,
 				this.SettingsState
 			});
-			this.SettingsMenu.Image = (Image)componentResourceManager.GetObject("SettingsMenu.Image");
+			this.SettingsMenu.Image = (Image)resources.GetObject("SettingsMenu.Image");
 			this.SettingsMenu.ImageTransparentColor = Color.Magenta;
 			this.SettingsMenu.Name = "SettingsMenu";
 			this.SettingsMenu.Size = new Size(62, 22);
@@ -1266,7 +1266,7 @@ namespace Masterplan.UI
 			this.XPSeparator.Name = "XPSeparator";
 			this.XPSeparator.Size = new Size(6, 25);
 			this.LocationBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LocationBtn.Image = (Image)componentResourceManager.GetObject("LocationBtn.Image");
+			this.LocationBtn.Image = (Image)resources.GetObject("LocationBtn.Image");
 			this.LocationBtn.ImageTransparentColor = Color.Magenta;
 			this.LocationBtn.Name = "LocationBtn";
 			this.LocationBtn.Size = new Size(76, 22);
@@ -1280,7 +1280,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
 			this.toolStripSeparator6.Size = new Size(6, 25);
 			this.DateBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DateBtn.Image = (Image)componentResourceManager.GetObject("DateBtn.Image");
+			this.DateBtn.Image = (Image)resources.GetObject("DateBtn.Image");
 			this.DateBtn.ImageTransparentColor = Color.Magenta;
 			this.DateBtn.Name = "DateBtn";
 			this.DateBtn.Size = new Size(54, 22);
@@ -1428,7 +1428,7 @@ namespace Masterplan.UI
 				this.ParcelAddItem,
 				this.ParcelAddArtifact
 			});
-			this.ParcelAddBtn.Image = (Image)componentResourceManager.GetObject("ParcelAddBtn.Image");
+			this.ParcelAddBtn.Image = (Image)resources.GetObject("ParcelAddBtn.Image");
 			this.ParcelAddBtn.ImageTransparentColor = Color.Magenta;
 			this.ParcelAddBtn.Name = "ParcelAddBtn";
 			this.ParcelAddBtn.Size = new Size(42, 22);
@@ -1454,14 +1454,14 @@ namespace Masterplan.UI
 			this.ParcelAddArtifact.Text = "Select an Artifact...";
 			this.ParcelAddArtifact.Click += new EventHandler(this.ParcelAddArtifact_Click);
 			this.ParcelRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ParcelRemoveBtn.Image = (Image)componentResourceManager.GetObject("ParcelRemoveBtn.Image");
+			this.ParcelRemoveBtn.Image = (Image)resources.GetObject("ParcelRemoveBtn.Image");
 			this.ParcelRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.ParcelRemoveBtn.Name = "ParcelRemoveBtn";
 			this.ParcelRemoveBtn.Size = new Size(54, 22);
 			this.ParcelRemoveBtn.Text = "Remove";
 			this.ParcelRemoveBtn.Click += new EventHandler(this.ParcelRemoveBtn_Click);
 			this.ParcelEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ParcelEditBtn.Image = (Image)componentResourceManager.GetObject("ParcelEditBtn.Image");
+			this.ParcelEditBtn.Image = (Image)resources.GetObject("ParcelEditBtn.Image");
 			this.ParcelEditBtn.ImageTransparentColor = Color.Magenta;
 			this.ParcelEditBtn.Name = "ParcelEditBtn";
 			this.ParcelEditBtn.Size = new Size(31, 22);
@@ -1470,14 +1470,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.ChangeItemBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChangeItemBtn.Image = (Image)componentResourceManager.GetObject("ChangeItemBtn.Image");
+			this.ChangeItemBtn.Image = (Image)resources.GetObject("ChangeItemBtn.Image");
 			this.ChangeItemBtn.ImageTransparentColor = Color.Magenta;
 			this.ChangeItemBtn.Name = "ChangeItemBtn";
 			this.ChangeItemBtn.Size = new Size(115, 22);
 			this.ChangeItemBtn.Text = "Change Magic Item";
 			this.ChangeItemBtn.Click += new EventHandler(this.ChangeItemBtn_Click);
 			this.ItemStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ItemStatBlockBtn.Image = (Image)componentResourceManager.GetObject("ItemStatBlockBtn.Image");
+			this.ItemStatBlockBtn.Image = (Image)resources.GetObject("ItemStatBlockBtn.Image");
 			this.ItemStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.ItemStatBlockBtn.Name = "ItemStatBlockBtn";
 			this.ItemStatBlockBtn.Size = new Size(63, 22);
@@ -1490,7 +1490,7 @@ namespace Masterplan.UI
 			{
 				this.heroesToolStripMenuItem
 			});
-			this.AllocateBtn.Image = (Image)componentResourceManager.GetObject("AllocateBtn.Image");
+			this.AllocateBtn.Image = (Image)resources.GetObject("AllocateBtn.Image");
 			this.AllocateBtn.ImageTransparentColor = Color.Magenta;
 			this.AllocateBtn.Name = "AllocateBtn";
 			this.AllocateBtn.Size = new Size(95, 22);
@@ -1547,14 +1547,14 @@ namespace Masterplan.UI
 			this.EncyclopediaToolbar.TabIndex = 0;
 			this.EncyclopediaToolbar.Text = "toolStrip1";
 			this.EncyclopediaAddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EncyclopediaAddBtn.Image = (Image)componentResourceManager.GetObject("EncyclopediaAddBtn.Image");
+			this.EncyclopediaAddBtn.Image = (Image)resources.GetObject("EncyclopediaAddBtn.Image");
 			this.EncyclopediaAddBtn.ImageTransparentColor = Color.Magenta;
 			this.EncyclopediaAddBtn.Name = "EncyclopediaAddBtn";
 			this.EncyclopediaAddBtn.Size = new Size(33, 22);
 			this.EncyclopediaAddBtn.Text = "Add";
 			this.EncyclopediaAddBtn.Click += new EventHandler(this.EncyclopediaAddBtn_Click);
 			this.EncyclopediaRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EncyclopediaRemoveBtn.Image = (Image)componentResourceManager.GetObject("EncyclopediaRemoveBtn.Image");
+			this.EncyclopediaRemoveBtn.Image = (Image)resources.GetObject("EncyclopediaRemoveBtn.Image");
 			this.EncyclopediaRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.EncyclopediaRemoveBtn.Name = "EncyclopediaRemoveBtn";
 			this.EncyclopediaRemoveBtn.Size = new Size(54, 22);
@@ -1588,7 +1588,7 @@ namespace Masterplan.UI
 			this.EncBrowserToolbar.TabIndex = 1;
 			this.EncBrowserToolbar.Text = "toolStrip1";
 			this.EncPlayerViewBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EncPlayerViewBtn.Image = (Image)componentResourceManager.GetObject("EncPlayerViewBtn.Image");
+			this.EncPlayerViewBtn.Image = (Image)resources.GetObject("EncPlayerViewBtn.Image");
 			this.EncPlayerViewBtn.ImageTransparentColor = Color.Magenta;
 			this.EncPlayerViewBtn.Name = "EncPlayerViewBtn";
 			this.EncPlayerViewBtn.Size = new Size(114, 22);
@@ -1644,7 +1644,7 @@ namespace Masterplan.UI
 			this.LinkToolbar.TabIndex = 0;
 			this.LinkToolbar.Text = "toolStrip1";
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);

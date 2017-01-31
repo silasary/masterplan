@@ -2951,7 +2951,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			this.components = new Container();
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(EncounterBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(EncounterBuilderForm));
 			this.DifficultyList = new ListView();
 			this.DiffHdr = new ColumnHeader();
 			this.DiffXPHdr = new ColumnHeader();
@@ -3263,7 +3263,7 @@ namespace Masterplan.UI
 			this.EncToolbar.TabIndex = 0;
 			this.EncToolbar.Text = "toolStrip1";
 			this.AddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(23, 22);
@@ -3271,7 +3271,7 @@ namespace Masterplan.UI
 			this.AddBtn.ToolTipText = "Adjust number (hold shift to adjust level)";
 			this.AddBtn.Click += new EventHandler(this.AddBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(23, 22);
@@ -3285,7 +3285,7 @@ namespace Masterplan.UI
 			{
 				this.StatBlockEdit
 			});
-			this.StatBlockBtn.Image = (Image)componentResourceManager.GetObject("StatBlockBtn.Image");
+			this.StatBlockBtn.Image = (Image)resources.GetObject("StatBlockBtn.Image");
 			this.StatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.StatBlockBtn.Name = "StatBlockBtn";
 			this.StatBlockBtn.Size = new Size(75, 22);
@@ -3304,7 +3304,7 @@ namespace Masterplan.UI
 				this.ToolsAddTrap,
 				this.ToolsAddChallenge
 			});
-			this.AddMenu.Image = (Image)componentResourceManager.GetObject("AddMenu.Image");
+			this.AddMenu.Image = (Image)resources.GetObject("AddMenu.Image");
 			this.AddMenu.ImageTransparentColor = Color.Magenta;
 			this.AddMenu.Name = "AddMenu";
 			this.AddMenu.Size = new Size(42, 22);
@@ -3336,7 +3336,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator13,
 				this.ToolsExport
 			});
-			this.ToolsMenu.Image = (Image)componentResourceManager.GetObject("ToolsMenu.Image");
+			this.ToolsMenu.Image = (Image)resources.GetObject("ToolsMenu.Image");
 			this.ToolsMenu.ImageTransparentColor = Color.Magenta;
 			this.ToolsMenu.Name = "ToolsMenu";
 			this.ToolsMenu.Size = new Size(49, 22);
@@ -3379,7 +3379,7 @@ namespace Masterplan.UI
 			{
 				this.AutoBuildAdvanced
 			});
-			this.AutoBuildBtn.Image = (Image)componentResourceManager.GetObject("AutoBuildBtn.Image");
+			this.AutoBuildBtn.Image = (Image)resources.GetObject("AutoBuildBtn.Image");
 			this.AutoBuildBtn.ImageTransparentColor = Color.Magenta;
 			this.AutoBuildBtn.Name = "AutoBuildBtn";
 			this.AutoBuildBtn.Size = new Size(76, 22);
@@ -3425,21 +3425,21 @@ namespace Masterplan.UI
 			this.ThreatToolbar.TabIndex = 0;
 			this.ThreatToolbar.Text = "toolStrip2";
 			this.CreaturesBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CreaturesBtn.Image = (Image)componentResourceManager.GetObject("CreaturesBtn.Image");
+			this.CreaturesBtn.Image = (Image)resources.GetObject("CreaturesBtn.Image");
 			this.CreaturesBtn.ImageTransparentColor = Color.Magenta;
 			this.CreaturesBtn.Name = "CreaturesBtn";
 			this.CreaturesBtn.Size = new Size(61, 22);
 			this.CreaturesBtn.Text = "Creatures";
 			this.CreaturesBtn.Click += new EventHandler(this.ViewCreatures_Click);
 			this.TrapsBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapsBtn.Image = (Image)componentResourceManager.GetObject("TrapsBtn.Image");
+			this.TrapsBtn.Image = (Image)resources.GetObject("TrapsBtn.Image");
 			this.TrapsBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapsBtn.Name = "TrapsBtn";
 			this.TrapsBtn.Size = new Size(93, 22);
 			this.TrapsBtn.Text = "Traps / Hazards";
 			this.TrapsBtn.Click += new EventHandler(this.ViewTraps_Click);
 			this.ChallengesBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengesBtn.Image = (Image)componentResourceManager.GetObject("ChallengesBtn.Image");
+			this.ChallengesBtn.Image = (Image)resources.GetObject("ChallengesBtn.Image");
 			this.ChallengesBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengesBtn.Name = "ChallengesBtn";
 			this.ChallengesBtn.Size = new Size(93, 22);
@@ -3453,7 +3453,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator12,
 				this.ViewGroups
 			});
-			this.ViewMenu.Image = (Image)componentResourceManager.GetObject("ViewMenu.Image");
+			this.ViewMenu.Image = (Image)resources.GetObject("ViewMenu.Image");
 			this.ViewMenu.ImageTransparentColor = Color.Magenta;
 			this.ViewMenu.Name = "ViewMenu";
 			this.ViewMenu.Size = new Size(48, 22);
@@ -3658,7 +3658,7 @@ namespace Masterplan.UI
 			this.MapToolbar.TabIndex = 0;
 			this.MapToolbar.Text = "toolStrip1";
 			this.MapBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MapBtn.Image = (Image)componentResourceManager.GetObject("MapBtn.Image");
+			this.MapBtn.Image = (Image)resources.GetObject("MapBtn.Image");
 			this.MapBtn.ImageTransparentColor = Color.Magenta;
 			this.MapBtn.Name = "MapBtn";
 			this.MapBtn.Size = new Size(69, 22);
@@ -3677,7 +3677,7 @@ namespace Masterplan.UI
 				this.MapToolsPrint,
 				this.MapToolsScreenshot
 			});
-			this.MapToolsMenu.Image = (Image)componentResourceManager.GetObject("MapToolsMenu.Image");
+			this.MapToolsMenu.Image = (Image)resources.GetObject("MapToolsMenu.Image");
 			this.MapToolsMenu.ImageTransparentColor = Color.Magenta;
 			this.MapToolsMenu.Name = "MapToolsMenu";
 			this.MapToolsMenu.Size = new Size(49, 22);
@@ -3719,7 +3719,7 @@ namespace Masterplan.UI
 				this.CreaturesAddCustom,
 				this.CreaturesAddOverlay
 			});
-			this.MapCreaturesMenu.Image = (Image)componentResourceManager.GetObject("MapCreaturesMenu.Image");
+			this.MapCreaturesMenu.Image = (Image)resources.GetObject("MapCreaturesMenu.Image");
 			this.MapCreaturesMenu.ImageTransparentColor = Color.Magenta;
 			this.MapCreaturesMenu.Name = "MapCreaturesMenu";
 			this.MapCreaturesMenu.Size = new Size(85, 22);
@@ -3815,21 +3815,21 @@ namespace Masterplan.UI
 			this.NoteToolbar.TabIndex = 1;
 			this.NoteToolbar.Text = "toolStrip1";
 			this.NoteAddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NoteAddBtn.Image = (Image)componentResourceManager.GetObject("NoteAddBtn.Image");
+			this.NoteAddBtn.Image = (Image)resources.GetObject("NoteAddBtn.Image");
 			this.NoteAddBtn.ImageTransparentColor = Color.Magenta;
 			this.NoteAddBtn.Name = "NoteAddBtn";
 			this.NoteAddBtn.Size = new Size(33, 22);
 			this.NoteAddBtn.Text = "Add";
 			this.NoteAddBtn.Click += new EventHandler(this.NoteAddBtn_Click);
 			this.NoteRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NoteRemoveBtn.Image = (Image)componentResourceManager.GetObject("NoteRemoveBtn.Image");
+			this.NoteRemoveBtn.Image = (Image)resources.GetObject("NoteRemoveBtn.Image");
 			this.NoteRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.NoteRemoveBtn.Name = "NoteRemoveBtn";
 			this.NoteRemoveBtn.Size = new Size(54, 22);
 			this.NoteRemoveBtn.Text = "Remove";
 			this.NoteRemoveBtn.Click += new EventHandler(this.NoteRemoveBtn_Click);
 			this.NoteEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NoteEditBtn.Image = (Image)componentResourceManager.GetObject("NoteEditBtn.Image");
+			this.NoteEditBtn.Image = (Image)resources.GetObject("NoteEditBtn.Image");
 			this.NoteEditBtn.ImageTransparentColor = Color.Magenta;
 			this.NoteEditBtn.Name = "NoteEditBtn";
 			this.NoteEditBtn.Size = new Size(31, 22);
@@ -3838,14 +3838,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator21.Name = "toolStripSeparator21";
 			this.toolStripSeparator21.Size = new Size(6, 25);
 			this.NoteUpBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NoteUpBtn.Image = (Image)componentResourceManager.GetObject("NoteUpBtn.Image");
+			this.NoteUpBtn.Image = (Image)resources.GetObject("NoteUpBtn.Image");
 			this.NoteUpBtn.ImageTransparentColor = Color.Magenta;
 			this.NoteUpBtn.Name = "NoteUpBtn";
 			this.NoteUpBtn.Size = new Size(59, 22);
 			this.NoteUpBtn.Text = "Move Up";
 			this.NoteUpBtn.Click += new EventHandler(this.NoteUpBtn_Click);
 			this.NoteDownBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NoteDownBtn.Image = (Image)componentResourceManager.GetObject("NoteDownBtn.Image");
+			this.NoteDownBtn.Image = (Image)resources.GetObject("NoteDownBtn.Image");
 			this.NoteDownBtn.ImageTransparentColor = Color.Magenta;
 			this.NoteDownBtn.Name = "NoteDownBtn";
 			this.NoteDownBtn.Size = new Size(75, 22);

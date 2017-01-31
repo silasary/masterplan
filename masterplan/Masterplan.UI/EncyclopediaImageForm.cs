@@ -53,7 +53,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(EncyclopediaImageForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(EncyclopediaImageForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.Panel = new Panel();
@@ -109,7 +109,7 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.BrowseBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.BrowseBtn.Image = (Image)componentResourceManager.GetObject("BrowseBtn.Image");
+			this.BrowseBtn.Image = (Image)resources.GetObject("BrowseBtn.Image");
 			this.BrowseBtn.ImageTransparentColor = Color.Magenta;
 			this.BrowseBtn.Name = "BrowseBtn";
 			this.BrowseBtn.Size = new Size(82, 22);
@@ -118,7 +118,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.PlayerViewBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PlayerViewBtn.Image = (Image)componentResourceManager.GetObject("PlayerViewBtn.Image");
+			this.PlayerViewBtn.Image = (Image)resources.GetObject("PlayerViewBtn.Image");
 			this.PlayerViewBtn.ImageTransparentColor = Color.Magenta;
 			this.PlayerViewBtn.Name = "PlayerViewBtn";
 			this.PlayerViewBtn.Size = new Size(114, 22);
@@ -142,7 +142,7 @@ namespace Masterplan.UI
 			this.CancelBtn.Text = "Cancel";
 			this.CancelBtn.UseVisualStyleBackColor = true;
 			this.PasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PasteBtn.Image = (Image)componentResourceManager.GetObject("PasteBtn.Image");
+			this.PasteBtn.Image = (Image)resources.GetObject("PasteBtn.Image");
 			this.PasteBtn.ImageTransparentColor = Color.Magenta;
 			this.PasteBtn.Name = "PasteBtn";
 			this.PasteBtn.Size = new Size(79, 22);

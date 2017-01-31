@@ -85,7 +85,7 @@ namespace Masterplan.UI
 		{
 			ListViewGroup listViewGroup = new ListViewGroup("Ended effects", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("These effects will not be ended this turn", HorizontalAlignment.Left);
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(EndedEffectsForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(EndedEffectsForm));
 			this.OKBtn = new Button();
 			this.label1 = new Label();
 			this.EffectPanel = new Panel();
@@ -159,7 +159,7 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.ExtendBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ExtendBtn.Image = (Image)componentResourceManager.GetObject("ExtendBtn.Image");
+			this.ExtendBtn.Image = (Image)resources.GetObject("ExtendBtn.Image");
 			this.ExtendBtn.ImageTransparentColor = Color.Magenta;
 			this.ExtendBtn.Name = "ExtendBtn";
 			this.ExtendBtn.Size = new Size(101, 22);

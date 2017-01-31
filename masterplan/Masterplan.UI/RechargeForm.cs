@@ -68,7 +68,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(RechargeForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(RechargeForm));
 			this.CancelBtn = new Button();
 			this.OKBtn = new Button();
 			this.ListPanel = new Panel();
@@ -150,7 +150,7 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 2;
 			this.Toolbar.Text = "toolStrip1";
 			this.RollBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RollBtn.Image = (Image)componentResourceManager.GetObject("RollBtn.Image");
+			this.RollBtn.Image = (Image)resources.GetObject("RollBtn.Image");
 			this.RollBtn.ImageTransparentColor = Color.Magenta;
 			this.RollBtn.Name = "RollBtn";
 			this.RollBtn.Size = new Size(41, 22);
@@ -159,14 +159,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.SavedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SavedBtn.Image = (Image)componentResourceManager.GetObject("SavedBtn.Image");
+			this.SavedBtn.Image = (Image)resources.GetObject("SavedBtn.Image");
 			this.SavedBtn.ImageTransparentColor = Color.Magenta;
 			this.SavedBtn.Name = "SavedBtn";
 			this.SavedBtn.Size = new Size(111, 22);
 			this.SavedBtn.Text = "Mark as Recharged";
 			this.SavedBtn.Click += new EventHandler(this.SavedBtn_Click);
 			this.NotSavedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NotSavedBtn.Image = (Image)componentResourceManager.GetObject("NotSavedBtn.Image");
+			this.NotSavedBtn.Image = (Image)resources.GetObject("NotSavedBtn.Image");
 			this.NotSavedBtn.ImageTransparentColor = Color.Magenta;
 			this.NotSavedBtn.Name = "NotSavedBtn";
 			this.NotSavedBtn.Size = new Size(134, 22);

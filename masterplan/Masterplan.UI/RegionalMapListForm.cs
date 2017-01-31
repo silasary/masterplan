@@ -260,7 +260,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(RegionalMapListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(RegionalMapListForm));
 			this.MapList = new ListView();
 			this.MapHdr = new ColumnHeader();
 			this.ListToolbar = new ToolStrip();
@@ -318,7 +318,7 @@ namespace Masterplan.UI
 			{
 				this.AddImportProject
 			});
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(45, 22);
@@ -329,14 +329,14 @@ namespace Masterplan.UI
 			this.AddImportProject.Text = "Import from Project File...";
 			this.AddImportProject.Click += new EventHandler(this.AddImportProject_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
@@ -382,7 +382,7 @@ namespace Masterplan.UI
 			{
 				this.LocationEntry
 			});
-			this.LocationMenu.Image = (Image)componentResourceManager.GetObject("LocationMenu.Image");
+			this.LocationMenu.Image = (Image)resources.GetObject("LocationMenu.Image");
 			this.LocationMenu.ImageTransparentColor = Color.Magenta;
 			this.LocationMenu.Name = "LocationMenu";
 			this.LocationMenu.Size = new Size(66, 22);
@@ -397,7 +397,7 @@ namespace Masterplan.UI
 				this.ToolsScreenshot,
 				this.ToolsPlayerView
 			});
-			this.ToolsMenu.Image = (Image)componentResourceManager.GetObject("ToolsMenu.Image");
+			this.ToolsMenu.Image = (Image)resources.GetObject("ToolsMenu.Image");
 			this.ToolsMenu.ImageTransparentColor = Color.Magenta;
 			this.ToolsMenu.Name = "ToolsMenu";
 			this.ToolsMenu.Size = new Size(49, 22);

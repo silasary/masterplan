@@ -128,7 +128,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(EffectListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(EffectListForm));
 			this.Toolbar = new ToolStrip();
 			this.RemoveBtn = new ToolStripButton();
 			this.EditBtn = new ToolStripButton();
@@ -147,14 +147,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);

@@ -87,7 +87,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(OptionThemeForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(OptionThemeForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.Pages = new TabControl();
@@ -202,7 +202,7 @@ namespace Masterplan.UI
 			this.LevelToolbar.TabIndex = 0;
 			this.LevelToolbar.Text = "toolStrip1";
 			this.LevelEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LevelEditBtn.Image = (Image)componentResourceManager.GetObject("LevelEditBtn.Image");
+			this.LevelEditBtn.Image = (Image)resources.GetObject("LevelEditBtn.Image");
 			this.LevelEditBtn.ImageTransparentColor = Color.Magenta;
 			this.LevelEditBtn.Name = "LevelEditBtn";
 			this.LevelEditBtn.Size = new Size(31, 22);

@@ -670,7 +670,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			this.components = new Container();
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(LibraryListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(LibraryListForm));
 			ListViewGroup listViewGroup = new ListViewGroup("Functional Templates", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Class Templates", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup3 = new ListViewGroup("Themes", HorizontalAlignment.Left);
@@ -989,7 +989,7 @@ namespace Masterplan.UI
 				this.FileOpen,
 				this.FileClose
 			});
-			this.FileMenu.Image = (Image)componentResourceManager.GetObject("FileMenu.Image");
+			this.FileMenu.Image = (Image)resources.GetObject("FileMenu.Image");
 			this.FileMenu.ImageTransparentColor = Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
 			this.FileMenu.Size = new Size(38, 22);
@@ -1007,14 +1007,14 @@ namespace Masterplan.UI
 			this.FileClose.Text = "Close All Libraries";
 			this.FileClose.Click += new EventHandler(this.FileClose_Click);
 			this.LibraryRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LibraryRemoveBtn.Image = (Image)componentResourceManager.GetObject("LibraryRemoveBtn.Image");
+			this.LibraryRemoveBtn.Image = (Image)resources.GetObject("LibraryRemoveBtn.Image");
 			this.LibraryRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.LibraryRemoveBtn.Name = "LibraryRemoveBtn";
 			this.LibraryRemoveBtn.Size = new Size(54, 22);
 			this.LibraryRemoveBtn.Text = "Remove";
 			this.LibraryRemoveBtn.Click += new EventHandler(this.LibraryRemoveBtn_Click);
 			this.LibraryEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LibraryEditBtn.Image = (Image)componentResourceManager.GetObject("LibraryEditBtn.Image");
+			this.LibraryEditBtn.Image = (Image)resources.GetObject("LibraryEditBtn.Image");
 			this.LibraryEditBtn.ImageTransparentColor = Color.Magenta;
 			this.LibraryEditBtn.Name = "LibraryEditBtn";
 			this.LibraryEditBtn.Size = new Size(31, 22);
@@ -1023,7 +1023,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator17.Name = "toolStripSeparator17";
 			this.toolStripSeparator17.Size = new Size(6, 25);
 			this.LibraryMergeBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LibraryMergeBtn.Image = (Image)componentResourceManager.GetObject("LibraryMergeBtn.Image");
+			this.LibraryMergeBtn.Image = (Image)resources.GetObject("LibraryMergeBtn.Image");
 			this.LibraryMergeBtn.ImageTransparentColor = Color.Magenta;
 			this.LibraryMergeBtn.Name = "LibraryMergeBtn";
 			this.LibraryMergeBtn.Size = new Size(45, 22);
@@ -1131,14 +1131,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator11.Name = "toolStripSeparator11";
 			this.toolStripSeparator11.Size = new Size(6, 25);
 			this.CategorisedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CategorisedBtn.Image = (Image)componentResourceManager.GetObject("CategorisedBtn.Image");
+			this.CategorisedBtn.Image = (Image)resources.GetObject("CategorisedBtn.Image");
 			this.CategorisedBtn.ImageTransparentColor = Color.Magenta;
 			this.CategorisedBtn.Name = "CategorisedBtn";
 			this.CategorisedBtn.Size = new Size(74, 22);
 			this.CategorisedBtn.Text = "Categorised";
 			this.CategorisedBtn.Click += new EventHandler(this.CreatureFilterCategorised_Click);
 			this.UncategorisedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.UncategorisedBtn.Image = (Image)componentResourceManager.GetObject("UncategorisedBtn.Image");
+			this.UncategorisedBtn.Image = (Image)resources.GetObject("UncategorisedBtn.Image");
 			this.UncategorisedBtn.ImageTransparentColor = Color.Magenta;
 			this.UncategorisedBtn.Name = "UncategorisedBtn";
 			this.UncategorisedBtn.Size = new Size(87, 22);
@@ -1170,7 +1170,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator19,
 				this.CreatureImport
 			});
-			this.CreatureAddBtn.Image = (Image)componentResourceManager.GetObject("CreatureAddBtn.Image");
+			this.CreatureAddBtn.Image = (Image)resources.GetObject("CreatureAddBtn.Image");
 			this.CreatureAddBtn.ImageTransparentColor = Color.Magenta;
 			this.CreatureAddBtn.Name = "CreatureAddBtn";
 			this.CreatureAddBtn.Size = new Size(42, 22);
@@ -1186,14 +1186,14 @@ namespace Masterplan.UI
 			this.CreatureImport.Text = "Import...";
 			this.CreatureImport.Click += new EventHandler(this.CreatureImport_Click);
 			this.OppRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.OppRemoveBtn.Image = (Image)componentResourceManager.GetObject("OppRemoveBtn.Image");
+			this.OppRemoveBtn.Image = (Image)resources.GetObject("OppRemoveBtn.Image");
 			this.OppRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.OppRemoveBtn.Name = "OppRemoveBtn";
 			this.OppRemoveBtn.Size = new Size(54, 22);
 			this.OppRemoveBtn.Text = "Remove";
 			this.OppRemoveBtn.Click += new EventHandler(this.OppRemoveBtn_Click);
 			this.OppEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.OppEditBtn.Image = (Image)componentResourceManager.GetObject("OppEditBtn.Image");
+			this.OppEditBtn.Image = (Image)resources.GetObject("OppEditBtn.Image");
 			this.OppEditBtn.ImageTransparentColor = Color.Magenta;
 			this.OppEditBtn.Name = "OppEditBtn";
 			this.OppEditBtn.Size = new Size(31, 22);
@@ -1202,21 +1202,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.CreatureCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CreatureCutBtn.Image = (Image)componentResourceManager.GetObject("CreatureCutBtn.Image");
+			this.CreatureCutBtn.Image = (Image)resources.GetObject("CreatureCutBtn.Image");
 			this.CreatureCutBtn.ImageTransparentColor = Color.Magenta;
 			this.CreatureCutBtn.Name = "CreatureCutBtn";
 			this.CreatureCutBtn.Size = new Size(30, 22);
 			this.CreatureCutBtn.Text = "Cut";
 			this.CreatureCutBtn.Click += new EventHandler(this.CreatureCutBtn_Click);
 			this.CreatureCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CreatureCopyBtn.Image = (Image)componentResourceManager.GetObject("CreatureCopyBtn.Image");
+			this.CreatureCopyBtn.Image = (Image)resources.GetObject("CreatureCopyBtn.Image");
 			this.CreatureCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.CreatureCopyBtn.Name = "CreatureCopyBtn";
 			this.CreatureCopyBtn.Size = new Size(39, 22);
 			this.CreatureCopyBtn.Text = "Copy";
 			this.CreatureCopyBtn.Click += new EventHandler(this.CreatureCopyBtn_Click);
 			this.CreaturePasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CreaturePasteBtn.Image = (Image)componentResourceManager.GetObject("CreaturePasteBtn.Image");
+			this.CreaturePasteBtn.Image = (Image)resources.GetObject("CreaturePasteBtn.Image");
 			this.CreaturePasteBtn.ImageTransparentColor = Color.Magenta;
 			this.CreaturePasteBtn.Name = "CreaturePasteBtn";
 			this.CreaturePasteBtn.Size = new Size(39, 22);
@@ -1225,7 +1225,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
 			this.toolStripSeparator4.Size = new Size(6, 25);
 			this.CreatureStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CreatureStatBlockBtn.Image = (Image)componentResourceManager.GetObject("CreatureStatBlockBtn.Image");
+			this.CreatureStatBlockBtn.Image = (Image)resources.GetObject("CreatureStatBlockBtn.Image");
 			this.CreatureStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.CreatureStatBlockBtn.Name = "CreatureStatBlockBtn";
 			this.CreatureStatBlockBtn.Size = new Size(63, 22);
@@ -1241,7 +1241,7 @@ namespace Masterplan.UI
 				this.CreatureToolsFilterList,
 				this.CreatureToolsExport
 			});
-			this.CreatureTools.Image = (Image)componentResourceManager.GetObject("CreatureTools.Image");
+			this.CreatureTools.Image = (Image)resources.GetObject("CreatureTools.Image");
 			this.CreatureTools.ImageTransparentColor = Color.Magenta;
 			this.CreatureTools.Name = "CreatureTools";
 			this.CreatureTools.Size = new Size(49, 22);
@@ -1360,7 +1360,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator20,
 				this.TemplateImport
 			});
-			this.TemplateAddBtn.Image = (Image)componentResourceManager.GetObject("TemplateAddBtn.Image");
+			this.TemplateAddBtn.Image = (Image)resources.GetObject("TemplateAddBtn.Image");
 			this.TemplateAddBtn.ImageTransparentColor = Color.Magenta;
 			this.TemplateAddBtn.Name = "TemplateAddBtn";
 			this.TemplateAddBtn.Size = new Size(42, 22);
@@ -1380,14 +1380,14 @@ namespace Masterplan.UI
 			this.TemplateImport.Text = "Import...";
 			this.TemplateImport.Click += new EventHandler(this.TemplateImport_Click);
 			this.TemplateRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TemplateRemoveBtn.Image = (Image)componentResourceManager.GetObject("TemplateRemoveBtn.Image");
+			this.TemplateRemoveBtn.Image = (Image)resources.GetObject("TemplateRemoveBtn.Image");
 			this.TemplateRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.TemplateRemoveBtn.Name = "TemplateRemoveBtn";
 			this.TemplateRemoveBtn.Size = new Size(54, 22);
 			this.TemplateRemoveBtn.Text = "Remove";
 			this.TemplateRemoveBtn.Click += new EventHandler(this.TemplateRemoveBtn_Click);
 			this.TemplateEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TemplateEditBtn.Image = (Image)componentResourceManager.GetObject("TemplateEditBtn.Image");
+			this.TemplateEditBtn.Image = (Image)resources.GetObject("TemplateEditBtn.Image");
 			this.TemplateEditBtn.ImageTransparentColor = Color.Magenta;
 			this.TemplateEditBtn.Name = "TemplateEditBtn";
 			this.TemplateEditBtn.Size = new Size(31, 22);
@@ -1396,21 +1396,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.TemplateCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TemplateCutBtn.Image = (Image)componentResourceManager.GetObject("TemplateCutBtn.Image");
+			this.TemplateCutBtn.Image = (Image)resources.GetObject("TemplateCutBtn.Image");
 			this.TemplateCutBtn.ImageTransparentColor = Color.Magenta;
 			this.TemplateCutBtn.Name = "TemplateCutBtn";
 			this.TemplateCutBtn.Size = new Size(30, 22);
 			this.TemplateCutBtn.Text = "Cut";
 			this.TemplateCutBtn.Click += new EventHandler(this.TemplateCutBtn_Click);
 			this.TemplateCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TemplateCopyBtn.Image = (Image)componentResourceManager.GetObject("TemplateCopyBtn.Image");
+			this.TemplateCopyBtn.Image = (Image)resources.GetObject("TemplateCopyBtn.Image");
 			this.TemplateCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.TemplateCopyBtn.Name = "TemplateCopyBtn";
 			this.TemplateCopyBtn.Size = new Size(39, 22);
 			this.TemplateCopyBtn.Text = "Copy";
 			this.TemplateCopyBtn.Click += new EventHandler(this.TemplateCopyBtn_Click);
 			this.TemplatePasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TemplatePasteBtn.Image = (Image)componentResourceManager.GetObject("TemplatePasteBtn.Image");
+			this.TemplatePasteBtn.Image = (Image)resources.GetObject("TemplatePasteBtn.Image");
 			this.TemplatePasteBtn.ImageTransparentColor = Color.Magenta;
 			this.TemplatePasteBtn.Name = "TemplatePasteBtn";
 			this.TemplatePasteBtn.Size = new Size(39, 22);
@@ -1419,7 +1419,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator18.Name = "toolStripSeparator18";
 			this.toolStripSeparator18.Size = new Size(6, 25);
 			this.TemplateStatBlock.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TemplateStatBlock.Image = (Image)componentResourceManager.GetObject("TemplateStatBlock.Image");
+			this.TemplateStatBlock.Image = (Image)resources.GetObject("TemplateStatBlock.Image");
 			this.TemplateStatBlock.ImageTransparentColor = Color.Magenta;
 			this.TemplateStatBlock.Name = "TemplateStatBlock";
 			this.TemplateStatBlock.Size = new Size(63, 22);
@@ -1432,7 +1432,7 @@ namespace Masterplan.UI
 			{
 				this.TemplateToolsExport
 			});
-			this.TemplateTools.Image = (Image)componentResourceManager.GetObject("TemplateTools.Image");
+			this.TemplateTools.Image = (Image)resources.GetObject("TemplateTools.Image");
 			this.TemplateTools.ImageTransparentColor = Color.Magenta;
 			this.TemplateTools.Name = "TemplateTools";
 			this.TemplateTools.Size = new Size(49, 22);
@@ -1535,7 +1535,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator25,
 				this.TrapAddImport
 			});
-			this.TrapAdd.Image = (Image)componentResourceManager.GetObject("TrapAdd.Image");
+			this.TrapAdd.Image = (Image)resources.GetObject("TrapAdd.Image");
 			this.TrapAdd.ImageTransparentColor = Color.Magenta;
 			this.TrapAdd.Name = "TrapAdd";
 			this.TrapAdd.Size = new Size(42, 22);
@@ -1551,14 +1551,14 @@ namespace Masterplan.UI
 			this.TrapAddImport.Text = "Import...";
 			this.TrapAddImport.Click += new EventHandler(this.TrapAddImport_Click);
 			this.TrapRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapRemoveBtn.Image = (Image)componentResourceManager.GetObject("TrapRemoveBtn.Image");
+			this.TrapRemoveBtn.Image = (Image)resources.GetObject("TrapRemoveBtn.Image");
 			this.TrapRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapRemoveBtn.Name = "TrapRemoveBtn";
 			this.TrapRemoveBtn.Size = new Size(54, 22);
 			this.TrapRemoveBtn.Text = "Remove";
 			this.TrapRemoveBtn.Click += new EventHandler(this.TrapRemoveBtn_Click);
 			this.TrapEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapEditBtn.Image = (Image)componentResourceManager.GetObject("TrapEditBtn.Image");
+			this.TrapEditBtn.Image = (Image)resources.GetObject("TrapEditBtn.Image");
 			this.TrapEditBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapEditBtn.Name = "TrapEditBtn";
 			this.TrapEditBtn.Size = new Size(31, 22);
@@ -1567,21 +1567,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
 			this.toolStripSeparator6.Size = new Size(6, 25);
 			this.TrapCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapCutBtn.Image = (Image)componentResourceManager.GetObject("TrapCutBtn.Image");
+			this.TrapCutBtn.Image = (Image)resources.GetObject("TrapCutBtn.Image");
 			this.TrapCutBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapCutBtn.Name = "TrapCutBtn";
 			this.TrapCutBtn.Size = new Size(30, 22);
 			this.TrapCutBtn.Text = "Cut";
 			this.TrapCutBtn.Click += new EventHandler(this.TrapCutBtn_Click);
 			this.TrapCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapCopyBtn.Image = (Image)componentResourceManager.GetObject("TrapCopyBtn.Image");
+			this.TrapCopyBtn.Image = (Image)resources.GetObject("TrapCopyBtn.Image");
 			this.TrapCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapCopyBtn.Name = "TrapCopyBtn";
 			this.TrapCopyBtn.Size = new Size(39, 22);
 			this.TrapCopyBtn.Text = "Copy";
 			this.TrapCopyBtn.Click += new EventHandler(this.TrapCopyBtn_Click);
 			this.TrapPasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapPasteBtn.Image = (Image)componentResourceManager.GetObject("TrapPasteBtn.Image");
+			this.TrapPasteBtn.Image = (Image)resources.GetObject("TrapPasteBtn.Image");
 			this.TrapPasteBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapPasteBtn.Name = "TrapPasteBtn";
 			this.TrapPasteBtn.Size = new Size(39, 22);
@@ -1590,7 +1590,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
 			this.toolStripSeparator8.Size = new Size(6, 25);
 			this.TrapStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrapStatBlockBtn.Image = (Image)componentResourceManager.GetObject("TrapStatBlockBtn.Image");
+			this.TrapStatBlockBtn.Image = (Image)resources.GetObject("TrapStatBlockBtn.Image");
 			this.TrapStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.TrapStatBlockBtn.Name = "TrapStatBlockBtn";
 			this.TrapStatBlockBtn.Size = new Size(63, 22);
@@ -1604,7 +1604,7 @@ namespace Masterplan.UI
 				this.TrapToolsDemographics,
 				this.TrapToolsExport
 			});
-			this.TrapTools.Image = (Image)componentResourceManager.GetObject("TrapTools.Image");
+			this.TrapTools.Image = (Image)resources.GetObject("TrapTools.Image");
 			this.TrapTools.ImageTransparentColor = Color.Magenta;
 			this.TrapTools.Name = "TrapTools";
 			this.TrapTools.Size = new Size(49, 22);
@@ -1683,7 +1683,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator26,
 				this.ChallengeAddImport
 			});
-			this.ChallengeAdd.Image = (Image)componentResourceManager.GetObject("ChallengeAdd.Image");
+			this.ChallengeAdd.Image = (Image)resources.GetObject("ChallengeAdd.Image");
 			this.ChallengeAdd.ImageTransparentColor = Color.Magenta;
 			this.ChallengeAdd.Name = "ChallengeAdd";
 			this.ChallengeAdd.Size = new Size(42, 22);
@@ -1699,14 +1699,14 @@ namespace Masterplan.UI
 			this.ChallengeAddImport.Text = "Import...";
 			this.ChallengeAddImport.Click += new EventHandler(this.ChallengeAddImport_Click);
 			this.ChallengeRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengeRemoveBtn.Image = (Image)componentResourceManager.GetObject("ChallengeRemoveBtn.Image");
+			this.ChallengeRemoveBtn.Image = (Image)resources.GetObject("ChallengeRemoveBtn.Image");
 			this.ChallengeRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengeRemoveBtn.Name = "ChallengeRemoveBtn";
 			this.ChallengeRemoveBtn.Size = new Size(54, 22);
 			this.ChallengeRemoveBtn.Text = "Remove";
 			this.ChallengeRemoveBtn.Click += new EventHandler(this.ChallengeRemoveBtn_Click);
 			this.ChallengeEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengeEditBtn.Image = (Image)componentResourceManager.GetObject("ChallengeEditBtn.Image");
+			this.ChallengeEditBtn.Image = (Image)resources.GetObject("ChallengeEditBtn.Image");
 			this.ChallengeEditBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengeEditBtn.Name = "ChallengeEditBtn";
 			this.ChallengeEditBtn.Size = new Size(31, 22);
@@ -1715,21 +1715,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
 			this.toolStripSeparator7.Size = new Size(6, 25);
 			this.ChallengeCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengeCutBtn.Image = (Image)componentResourceManager.GetObject("ChallengeCutBtn.Image");
+			this.ChallengeCutBtn.Image = (Image)resources.GetObject("ChallengeCutBtn.Image");
 			this.ChallengeCutBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengeCutBtn.Name = "ChallengeCutBtn";
 			this.ChallengeCutBtn.Size = new Size(30, 22);
 			this.ChallengeCutBtn.Text = "Cut";
 			this.ChallengeCutBtn.Click += new EventHandler(this.ChallengeCutBtn_Click);
 			this.ChallengeCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengeCopyBtn.Image = (Image)componentResourceManager.GetObject("ChallengeCopyBtn.Image");
+			this.ChallengeCopyBtn.Image = (Image)resources.GetObject("ChallengeCopyBtn.Image");
 			this.ChallengeCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengeCopyBtn.Name = "ChallengeCopyBtn";
 			this.ChallengeCopyBtn.Size = new Size(39, 22);
 			this.ChallengeCopyBtn.Text = "Copy";
 			this.ChallengeCopyBtn.Click += new EventHandler(this.ChallengeCopyBtn_Click);
 			this.ChallengePasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengePasteBtn.Image = (Image)componentResourceManager.GetObject("ChallengePasteBtn.Image");
+			this.ChallengePasteBtn.Image = (Image)resources.GetObject("ChallengePasteBtn.Image");
 			this.ChallengePasteBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengePasteBtn.Name = "ChallengePasteBtn";
 			this.ChallengePasteBtn.Size = new Size(39, 22);
@@ -1738,7 +1738,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
 			this.toolStripSeparator9.Size = new Size(6, 25);
 			this.ChallengeStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChallengeStatBlockBtn.Image = (Image)componentResourceManager.GetObject("ChallengeStatBlockBtn.Image");
+			this.ChallengeStatBlockBtn.Image = (Image)resources.GetObject("ChallengeStatBlockBtn.Image");
 			this.ChallengeStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.ChallengeStatBlockBtn.Name = "ChallengeStatBlockBtn";
 			this.ChallengeStatBlockBtn.Size = new Size(63, 22);
@@ -1751,7 +1751,7 @@ namespace Masterplan.UI
 			{
 				this.ChallengeToolsExport
 			});
-			this.ChallengeTools.Image = (Image)componentResourceManager.GetObject("ChallengeTools.Image");
+			this.ChallengeTools.Image = (Image)resources.GetObject("ChallengeTools.Image");
 			this.ChallengeTools.ImageTransparentColor = Color.Magenta;
 			this.ChallengeTools.Name = "ChallengeTools";
 			this.ChallengeTools.Size = new Size(49, 22);
@@ -1826,7 +1826,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator27,
 				this.MagicItemAddImport
 			});
-			this.MagicItemAdd.Image = (Image)componentResourceManager.GetObject("MagicItemAdd.Image");
+			this.MagicItemAdd.Image = (Image)resources.GetObject("MagicItemAdd.Image");
 			this.MagicItemAdd.ImageTransparentColor = Color.Magenta;
 			this.MagicItemAdd.Name = "MagicItemAdd";
 			this.MagicItemAdd.Size = new Size(42, 22);
@@ -1849,7 +1849,7 @@ namespace Masterplan.UI
 				this.MagicItemToolsDemographics,
 				this.MagicItemToolsExport
 			});
-			this.MagicItemTools.Image = (Image)componentResourceManager.GetObject("MagicItemTools.Image");
+			this.MagicItemTools.Image = (Image)resources.GetObject("MagicItemTools.Image");
 			this.MagicItemTools.ImageTransparentColor = Color.Magenta;
 			this.MagicItemTools.Name = "MagicItemTools";
 			this.MagicItemTools.Size = new Size(49, 22);
@@ -1909,7 +1909,7 @@ namespace Masterplan.UI
 			this.MagicItemVersionToolbar.TabIndex = 0;
 			this.MagicItemVersionToolbar.Text = "toolStrip1";
 			this.MagicItemRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MagicItemRemoveBtn.Image = (Image)componentResourceManager.GetObject("MagicItemRemoveBtn.Image");
+			this.MagicItemRemoveBtn.Image = (Image)resources.GetObject("MagicItemRemoveBtn.Image");
 			this.MagicItemRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.MagicItemRemoveBtn.Name = "MagicItemRemoveBtn";
 			this.MagicItemRemoveBtn.Size = new Size(54, 22);
@@ -1918,28 +1918,28 @@ namespace Masterplan.UI
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
 			this.toolStripSeparator5.Size = new Size(6, 25);
 			this.MagicItemEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MagicItemEditBtn.Image = (Image)componentResourceManager.GetObject("MagicItemEditBtn.Image");
+			this.MagicItemEditBtn.Image = (Image)resources.GetObject("MagicItemEditBtn.Image");
 			this.MagicItemEditBtn.ImageTransparentColor = Color.Magenta;
 			this.MagicItemEditBtn.Name = "MagicItemEditBtn";
 			this.MagicItemEditBtn.Size = new Size(31, 22);
 			this.MagicItemEditBtn.Text = "Edit";
 			this.MagicItemEditBtn.Click += new EventHandler(this.MagicItemEditBtn_Click);
 			this.MagicItemCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MagicItemCutBtn.Image = (Image)componentResourceManager.GetObject("MagicItemCutBtn.Image");
+			this.MagicItemCutBtn.Image = (Image)resources.GetObject("MagicItemCutBtn.Image");
 			this.MagicItemCutBtn.ImageTransparentColor = Color.Magenta;
 			this.MagicItemCutBtn.Name = "MagicItemCutBtn";
 			this.MagicItemCutBtn.Size = new Size(30, 22);
 			this.MagicItemCutBtn.Text = "Cut";
 			this.MagicItemCutBtn.Click += new EventHandler(this.MagicItemCutBtn_Click);
 			this.MagicItemCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MagicItemCopyBtn.Image = (Image)componentResourceManager.GetObject("MagicItemCopyBtn.Image");
+			this.MagicItemCopyBtn.Image = (Image)resources.GetObject("MagicItemCopyBtn.Image");
 			this.MagicItemCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.MagicItemCopyBtn.Name = "MagicItemCopyBtn";
 			this.MagicItemCopyBtn.Size = new Size(39, 22);
 			this.MagicItemCopyBtn.Text = "Copy";
 			this.MagicItemCopyBtn.Click += new EventHandler(this.MagicItemCopyBtn_Click);
 			this.MagicItemPasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MagicItemPasteBtn.Image = (Image)componentResourceManager.GetObject("MagicItemPasteBtn.Image");
+			this.MagicItemPasteBtn.Image = (Image)resources.GetObject("MagicItemPasteBtn.Image");
 			this.MagicItemPasteBtn.ImageTransparentColor = Color.Magenta;
 			this.MagicItemPasteBtn.Name = "MagicItemPasteBtn";
 			this.MagicItemPasteBtn.Size = new Size(39, 22);
@@ -1948,7 +1948,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator12.Name = "toolStripSeparator12";
 			this.toolStripSeparator12.Size = new Size(6, 25);
 			this.MagicItemStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MagicItemStatBlockBtn.Image = (Image)componentResourceManager.GetObject("MagicItemStatBlockBtn.Image");
+			this.MagicItemStatBlockBtn.Image = (Image)resources.GetObject("MagicItemStatBlockBtn.Image");
 			this.MagicItemStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.MagicItemStatBlockBtn.Name = "MagicItemStatBlockBtn";
 			this.MagicItemStatBlockBtn.Size = new Size(63, 22);
@@ -2065,7 +2065,7 @@ namespace Masterplan.UI
 				this.TileAddImport,
 				this.TileAddFolder
 			});
-			this.TileAddBtn.Image = (Image)componentResourceManager.GetObject("TileAddBtn.Image");
+			this.TileAddBtn.Image = (Image)resources.GetObject("TileAddBtn.Image");
 			this.TileAddBtn.ImageTransparentColor = Color.Magenta;
 			this.TileAddBtn.Name = "TileAddBtn";
 			this.TileAddBtn.Size = new Size(42, 22);
@@ -2085,14 +2085,14 @@ namespace Masterplan.UI
 			this.TileAddFolder.Text = "Import a Folder...";
 			this.TileAddFolder.Click += new EventHandler(this.TileAddFolderBtn_Click);
 			this.TileRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TileRemoveBtn.Image = (Image)componentResourceManager.GetObject("TileRemoveBtn.Image");
+			this.TileRemoveBtn.Image = (Image)resources.GetObject("TileRemoveBtn.Image");
 			this.TileRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.TileRemoveBtn.Name = "TileRemoveBtn";
 			this.TileRemoveBtn.Size = new Size(54, 22);
 			this.TileRemoveBtn.Text = "Remove";
 			this.TileRemoveBtn.Click += new EventHandler(this.TileSetRemoveBtn_Click);
 			this.TileEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TileEditBtn.Image = (Image)componentResourceManager.GetObject("TileEditBtn.Image");
+			this.TileEditBtn.Image = (Image)resources.GetObject("TileEditBtn.Image");
 			this.TileEditBtn.ImageTransparentColor = Color.Magenta;
 			this.TileEditBtn.Name = "TileEditBtn";
 			this.TileEditBtn.Size = new Size(31, 22);
@@ -2101,21 +2101,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new Size(6, 25);
 			this.TileCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TileCutBtn.Image = (Image)componentResourceManager.GetObject("TileCutBtn.Image");
+			this.TileCutBtn.Image = (Image)resources.GetObject("TileCutBtn.Image");
 			this.TileCutBtn.ImageTransparentColor = Color.Magenta;
 			this.TileCutBtn.Name = "TileCutBtn";
 			this.TileCutBtn.Size = new Size(30, 22);
 			this.TileCutBtn.Text = "Cut";
 			this.TileCutBtn.Click += new EventHandler(this.TileCutBtn_Click);
 			this.TileCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TileCopyBtn.Image = (Image)componentResourceManager.GetObject("TileCopyBtn.Image");
+			this.TileCopyBtn.Image = (Image)resources.GetObject("TileCopyBtn.Image");
 			this.TileCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.TileCopyBtn.Name = "TileCopyBtn";
 			this.TileCopyBtn.Size = new Size(39, 22);
 			this.TileCopyBtn.Text = "Copy";
 			this.TileCopyBtn.Click += new EventHandler(this.TileCopyBtn_Click);
 			this.TilePasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TilePasteBtn.Image = (Image)componentResourceManager.GetObject("TilePasteBtn.Image");
+			this.TilePasteBtn.Image = (Image)resources.GetObject("TilePasteBtn.Image");
 			this.TilePasteBtn.ImageTransparentColor = Color.Magenta;
 			this.TilePasteBtn.Name = "TilePasteBtn";
 			this.TilePasteBtn.Size = new Size(39, 22);
@@ -2128,7 +2128,7 @@ namespace Masterplan.UI
 			{
 				this.TileToolsExport
 			});
-			this.TileTools.Image = (Image)componentResourceManager.GetObject("TileTools.Image");
+			this.TileTools.Image = (Image)resources.GetObject("TileTools.Image");
 			this.TileTools.ImageTransparentColor = Color.Magenta;
 			this.TileTools.Name = "TileTools";
 			this.TileTools.Size = new Size(49, 22);
@@ -2214,7 +2214,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator28,
 				this.TPAddImport
 			});
-			this.TPAdd.Image = (Image)componentResourceManager.GetObject("TPAdd.Image");
+			this.TPAdd.Image = (Image)resources.GetObject("TPAdd.Image");
 			this.TPAdd.ImageTransparentColor = Color.Magenta;
 			this.TPAdd.Name = "TPAdd";
 			this.TPAdd.Size = new Size(42, 22);
@@ -2230,14 +2230,14 @@ namespace Masterplan.UI
 			this.TPAddImport.Text = "Import...";
 			this.TPAddImport.Click += new EventHandler(this.TPAddImport_Click);
 			this.TPRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TPRemoveBtn.Image = (Image)componentResourceManager.GetObject("TPRemoveBtn.Image");
+			this.TPRemoveBtn.Image = (Image)resources.GetObject("TPRemoveBtn.Image");
 			this.TPRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.TPRemoveBtn.Name = "TPRemoveBtn";
 			this.TPRemoveBtn.Size = new Size(54, 22);
 			this.TPRemoveBtn.Text = "Remove";
 			this.TPRemoveBtn.Click += new EventHandler(this.TPRemoveBtn_Click);
 			this.TPEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TPEditBtn.Image = (Image)componentResourceManager.GetObject("TPEditBtn.Image");
+			this.TPEditBtn.Image = (Image)resources.GetObject("TPEditBtn.Image");
 			this.TPEditBtn.ImageTransparentColor = Color.Magenta;
 			this.TPEditBtn.Name = "TPEditBtn";
 			this.TPEditBtn.Size = new Size(31, 22);
@@ -2246,21 +2246,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator29.Name = "toolStripSeparator29";
 			this.toolStripSeparator29.Size = new Size(6, 25);
 			this.TPCutBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TPCutBtn.Image = (Image)componentResourceManager.GetObject("TPCutBtn.Image");
+			this.TPCutBtn.Image = (Image)resources.GetObject("TPCutBtn.Image");
 			this.TPCutBtn.ImageTransparentColor = Color.Magenta;
 			this.TPCutBtn.Name = "TPCutBtn";
 			this.TPCutBtn.Size = new Size(30, 22);
 			this.TPCutBtn.Text = "Cut";
 			this.TPCutBtn.Click += new EventHandler(this.TPCutBtn_Click);
 			this.TPCopyBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TPCopyBtn.Image = (Image)componentResourceManager.GetObject("TPCopyBtn.Image");
+			this.TPCopyBtn.Image = (Image)resources.GetObject("TPCopyBtn.Image");
 			this.TPCopyBtn.ImageTransparentColor = Color.Magenta;
 			this.TPCopyBtn.Name = "TPCopyBtn";
 			this.TPCopyBtn.Size = new Size(39, 22);
 			this.TPCopyBtn.Text = "Copy";
 			this.TPCopyBtn.Click += new EventHandler(this.TPCopyBtn_Click);
 			this.TPPasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TPPasteBtn.Image = (Image)componentResourceManager.GetObject("TPPasteBtn.Image");
+			this.TPPasteBtn.Image = (Image)resources.GetObject("TPPasteBtn.Image");
 			this.TPPasteBtn.ImageTransparentColor = Color.Magenta;
 			this.TPPasteBtn.Name = "TPPasteBtn";
 			this.TPPasteBtn.Size = new Size(39, 22);
@@ -2269,7 +2269,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator30.Name = "toolStripSeparator30";
 			this.toolStripSeparator30.Size = new Size(6, 25);
 			this.TPStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TPStatBlockBtn.Image = (Image)componentResourceManager.GetObject("TPStatBlockBtn.Image");
+			this.TPStatBlockBtn.Image = (Image)resources.GetObject("TPStatBlockBtn.Image");
 			this.TPStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.TPStatBlockBtn.Name = "TPStatBlockBtn";
 			this.TPStatBlockBtn.Size = new Size(63, 22);
@@ -2282,7 +2282,7 @@ namespace Masterplan.UI
 			{
 				this.TPToolsExport
 			});
-			this.TPTools.Image = (Image)componentResourceManager.GetObject("TPTools.Image");
+			this.TPTools.Image = (Image)resources.GetObject("TPTools.Image");
 			this.TPTools.ImageTransparentColor = Color.Magenta;
 			this.TPTools.Name = "TPTools";
 			this.TPTools.Size = new Size(49, 22);
@@ -2368,7 +2368,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator31,
 				this.ArtifactAddImport
 			});
-			this.ArtifactAdd.Image = (Image)componentResourceManager.GetObject("ArtifactAdd.Image");
+			this.ArtifactAdd.Image = (Image)resources.GetObject("ArtifactAdd.Image");
 			this.ArtifactAdd.ImageTransparentColor = Color.Magenta;
 			this.ArtifactAdd.Name = "ArtifactAdd";
 			this.ArtifactAdd.Size = new Size(42, 22);
@@ -2384,14 +2384,14 @@ namespace Masterplan.UI
 			this.ArtifactAddImport.Text = "Import...";
 			this.ArtifactAddImport.Click += new EventHandler(this.ArtifactAddImport_Click);
 			this.ArtifactRemove.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ArtifactRemove.Image = (Image)componentResourceManager.GetObject("ArtifactRemove.Image");
+			this.ArtifactRemove.Image = (Image)resources.GetObject("ArtifactRemove.Image");
 			this.ArtifactRemove.ImageTransparentColor = Color.Magenta;
 			this.ArtifactRemove.Name = "ArtifactRemove";
 			this.ArtifactRemove.Size = new Size(54, 22);
 			this.ArtifactRemove.Text = "Remove";
 			this.ArtifactRemove.Click += new EventHandler(this.ArtifactRemove_Click);
 			this.ArtifactEdit.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ArtifactEdit.Image = (Image)componentResourceManager.GetObject("ArtifactEdit.Image");
+			this.ArtifactEdit.Image = (Image)resources.GetObject("ArtifactEdit.Image");
 			this.ArtifactEdit.ImageTransparentColor = Color.Magenta;
 			this.ArtifactEdit.Name = "ArtifactEdit";
 			this.ArtifactEdit.Size = new Size(31, 22);
@@ -2400,21 +2400,21 @@ namespace Masterplan.UI
 			this.toolStripSeparator32.Name = "toolStripSeparator32";
 			this.toolStripSeparator32.Size = new Size(6, 25);
 			this.ArtifactCut.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ArtifactCut.Image = (Image)componentResourceManager.GetObject("ArtifactCut.Image");
+			this.ArtifactCut.Image = (Image)resources.GetObject("ArtifactCut.Image");
 			this.ArtifactCut.ImageTransparentColor = Color.Magenta;
 			this.ArtifactCut.Name = "ArtifactCut";
 			this.ArtifactCut.Size = new Size(30, 22);
 			this.ArtifactCut.Text = "Cut";
 			this.ArtifactCut.Click += new EventHandler(this.ArtifactCut_Click);
 			this.ArtifactCopy.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ArtifactCopy.Image = (Image)componentResourceManager.GetObject("ArtifactCopy.Image");
+			this.ArtifactCopy.Image = (Image)resources.GetObject("ArtifactCopy.Image");
 			this.ArtifactCopy.ImageTransparentColor = Color.Magenta;
 			this.ArtifactCopy.Name = "ArtifactCopy";
 			this.ArtifactCopy.Size = new Size(39, 22);
 			this.ArtifactCopy.Text = "Copy";
 			this.ArtifactCopy.Click += new EventHandler(this.ArtifactCopy_Click);
 			this.ArtifactPaste.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ArtifactPaste.Image = (Image)componentResourceManager.GetObject("ArtifactPaste.Image");
+			this.ArtifactPaste.Image = (Image)resources.GetObject("ArtifactPaste.Image");
 			this.ArtifactPaste.ImageTransparentColor = Color.Magenta;
 			this.ArtifactPaste.Name = "ArtifactPaste";
 			this.ArtifactPaste.Size = new Size(39, 22);
@@ -2423,7 +2423,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator33.Name = "toolStripSeparator33";
 			this.toolStripSeparator33.Size = new Size(6, 25);
 			this.ArtifactStatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ArtifactStatBlockBtn.Image = (Image)componentResourceManager.GetObject("ArtifactStatBlockBtn.Image");
+			this.ArtifactStatBlockBtn.Image = (Image)resources.GetObject("ArtifactStatBlockBtn.Image");
 			this.ArtifactStatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.ArtifactStatBlockBtn.Name = "ArtifactStatBlockBtn";
 			this.ArtifactStatBlockBtn.Size = new Size(63, 22);
@@ -2436,7 +2436,7 @@ namespace Masterplan.UI
 			{
 				this.ArtifactToolsExport
 			});
-			this.ArtifactTools.Image = (Image)componentResourceManager.GetObject("ArtifactTools.Image");
+			this.ArtifactTools.Image = (Image)resources.GetObject("ArtifactTools.Image");
 			this.ArtifactTools.ImageTransparentColor = Color.Magenta;
 			this.ArtifactTools.Name = "ArtifactTools";
 			this.ArtifactTools.Size = new Size(49, 22);
@@ -2466,7 +2466,7 @@ namespace Masterplan.UI
 			base.AutoScaleMode = AutoScaleMode.Font;
 			base.ClientSize = new Size(879, 431);
 			base.Controls.Add(this.Splitter);
-			base.Icon = (Icon)componentResourceManager.GetObject("$this.Icon");
+			base.Icon = (Icon)resources.GetObject("$this.Icon");
 			base.MinimizeBox = false;
 			base.Name = "LibraryListForm";
 			base.ShowInTaskbar = false;

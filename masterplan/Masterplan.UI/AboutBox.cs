@@ -100,7 +100,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(AboutBox));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(AboutBox));
 			this.tableLayoutPanel = new TableLayoutPanel();
 			this.logoPictureBox = new PictureBox();
 			this.labelProductName = new Label();
@@ -133,7 +133,7 @@ namespace Masterplan.UI
 			this.tableLayoutPanel.Size = new Size(417, 265);
 			this.tableLayoutPanel.TabIndex = 0;
 			this.logoPictureBox.Dock = DockStyle.Fill;
-			this.logoPictureBox.Image = (Image)componentResourceManager.GetObject("logoPictureBox.Image");
+			this.logoPictureBox.Image = (Image)resources.GetObject("logoPictureBox.Image");
 			this.logoPictureBox.Location = new Point(3, 3);
 			this.logoPictureBox.Name = "logoPictureBox";
 			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);

@@ -72,7 +72,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(TileForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(TileForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.WidthLbl = new Label();
@@ -188,21 +188,21 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.BrowseBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.BrowseBtn.Image = (Image)componentResourceManager.GetObject("BrowseBtn.Image");
+			this.BrowseBtn.Image = (Image)resources.GetObject("BrowseBtn.Image");
 			this.BrowseBtn.ImageTransparentColor = Color.Magenta;
 			this.BrowseBtn.Name = "BrowseBtn";
 			this.BrowseBtn.Size = new Size(49, 22);
 			this.BrowseBtn.Text = "Browse";
 			this.BrowseBtn.Click += new EventHandler(this.BrowseBtn_Click);
 			this.PasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PasteBtn.Image = (Image)componentResourceManager.GetObject("PasteBtn.Image");
+			this.PasteBtn.Image = (Image)resources.GetObject("PasteBtn.Image");
 			this.PasteBtn.ImageTransparentColor = Color.Magenta;
 			this.PasteBtn.Name = "PasteBtn";
 			this.PasteBtn.Size = new Size(39, 22);
 			this.PasteBtn.Text = "Paste";
 			this.PasteBtn.Click += new EventHandler(this.PasteBtn_Click);
 			this.ClearBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ClearBtn.Image = (Image)componentResourceManager.GetObject("ClearBtn.Image");
+			this.ClearBtn.Image = (Image)resources.GetObject("ClearBtn.Image");
 			this.ClearBtn.ImageTransparentColor = Color.Magenta;
 			this.ClearBtn.Name = "ClearBtn";
 			this.ClearBtn.Size = new Size(38, 22);
@@ -211,7 +211,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.SetColourBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SetColourBtn.Image = (Image)componentResourceManager.GetObject("SetColourBtn.Image");
+			this.SetColourBtn.Image = (Image)resources.GetObject("SetColourBtn.Image");
 			this.SetColourBtn.ImageTransparentColor = Color.Magenta;
 			this.SetColourBtn.Name = "SetColourBtn";
 			this.SetColourBtn.Size = new Size(66, 22);
@@ -220,7 +220,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.GridBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.GridBtn.Image = (Image)componentResourceManager.GetObject("GridBtn.Image");
+			this.GridBtn.Image = (Image)resources.GetObject("GridBtn.Image");
 			this.GridBtn.ImageTransparentColor = Color.Magenta;
 			this.GridBtn.Name = "GridBtn";
 			this.GridBtn.Size = new Size(57, 22);

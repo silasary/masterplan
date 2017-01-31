@@ -51,7 +51,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(PausedCombatListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(PausedCombatListForm));
 			this.Splitter = new SplitContainer();
 			this.EncounterList = new ListView();
 			this.EncounterHdr = new ColumnHeader();
@@ -105,14 +105,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.RunBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RunBtn.Image = (Image)componentResourceManager.GetObject("RunBtn.Image");
+			this.RunBtn.Image = (Image)resources.GetObject("RunBtn.Image");
 			this.RunBtn.ImageTransparentColor = Color.Magenta;
 			this.RunBtn.Name = "RunBtn";
 			this.RunBtn.Size = new Size(32, 22);
 			this.RunBtn.Text = "Run";
 			this.RunBtn.Click += new EventHandler(this.RunBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);

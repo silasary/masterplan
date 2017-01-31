@@ -116,7 +116,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(CategoryListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(CategoryListForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.CatList = new ListView();
@@ -181,14 +181,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.SelectBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectBtn.Image = (Image)componentResourceManager.GetObject("SelectBtn.Image");
+			this.SelectBtn.Image = (Image)resources.GetObject("SelectBtn.Image");
 			this.SelectBtn.ImageTransparentColor = Color.Magenta;
 			this.SelectBtn.Name = "SelectBtn";
 			this.SelectBtn.Size = new Size(59, 22);
 			this.SelectBtn.Text = "Select All";
 			this.SelectBtn.Click += new EventHandler(this.SelectBtn_Click);
 			this.DeselectBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DeselectBtn.Image = (Image)componentResourceManager.GetObject("DeselectBtn.Image");
+			this.DeselectBtn.Image = (Image)resources.GetObject("DeselectBtn.Image");
 			this.DeselectBtn.ImageTransparentColor = Color.Magenta;
 			this.DeselectBtn.Name = "DeselectBtn";
 			this.DeselectBtn.Size = new Size(72, 22);

@@ -119,7 +119,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(PowerBrowserForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(PowerBrowserForm));
 			this.Splitter = new SplitContainer();
 			this.CreatureList = new ListView();
 			this.CreatureHdr = new ColumnHeader();
@@ -197,7 +197,7 @@ namespace Masterplan.UI
 				this.ModeAll,
 				this.ModeSelection
 			});
-			this.ModeBtn.Image = (Image)componentResourceManager.GetObject("ModeBtn.Image");
+			this.ModeBtn.Image = (Image)resources.GetObject("ModeBtn.Image");
 			this.ModeBtn.ImageTransparentColor = Color.Magenta;
 			this.ModeBtn.Name = "ModeBtn";
 			this.ModeBtn.Size = new Size(51, 22);
@@ -238,7 +238,7 @@ namespace Masterplan.UI
 			this.PowerToolbar.TabIndex = 3;
 			this.PowerToolbar.Text = "toolStrip1";
 			this.StatsBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.StatsBtn.Image = (Image)componentResourceManager.GetObject("StatsBtn.Image");
+			this.StatsBtn.Image = (Image)resources.GetObject("StatsBtn.Image");
 			this.StatsBtn.ImageTransparentColor = Color.Magenta;
 			this.StatsBtn.Name = "StatsBtn";
 			this.StatsBtn.Size = new Size(93, 22);

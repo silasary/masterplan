@@ -78,7 +78,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(SavingThrowForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(SavingThrowForm));
 			this.CancelBtn = new Button();
 			this.OKBtn = new Button();
 			this.ModLbl = new Label();
@@ -185,14 +185,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 2;
 			this.Toolbar.Text = "toolStrip1";
 			this.AddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(23, 22);
 			this.AddBtn.Text = "+";
 			this.AddBtn.Click += new EventHandler(this.AddBtn_Click);
 			this.SubtractBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SubtractBtn.Image = (Image)componentResourceManager.GetObject("SubtractBtn.Image");
+			this.SubtractBtn.Image = (Image)resources.GetObject("SubtractBtn.Image");
 			this.SubtractBtn.ImageTransparentColor = Color.Magenta;
 			this.SubtractBtn.Name = "SubtractBtn";
 			this.SubtractBtn.Size = new Size(23, 22);
@@ -201,7 +201,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.RollBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RollBtn.Image = (Image)componentResourceManager.GetObject("RollBtn.Image");
+			this.RollBtn.Image = (Image)resources.GetObject("RollBtn.Image");
 			this.RollBtn.ImageTransparentColor = Color.Magenta;
 			this.RollBtn.Name = "RollBtn";
 			this.RollBtn.Size = new Size(41, 22);
@@ -210,14 +210,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.SavedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SavedBtn.Image = (Image)componentResourceManager.GetObject("SavedBtn.Image");
+			this.SavedBtn.Image = (Image)resources.GetObject("SavedBtn.Image");
 			this.SavedBtn.ImageTransparentColor = Color.Magenta;
 			this.SavedBtn.Name = "SavedBtn";
 			this.SavedBtn.Size = new Size(86, 22);
 			this.SavedBtn.Text = "Mark as Saved";
 			this.SavedBtn.Click += new EventHandler(this.SavedBtn_Click);
 			this.NotSavedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NotSavedBtn.Image = (Image)componentResourceManager.GetObject("NotSavedBtn.Image");
+			this.NotSavedBtn.Image = (Image)resources.GetObject("NotSavedBtn.Image");
 			this.NotSavedBtn.ImageTransparentColor = Color.Magenta;
 			this.NotSavedBtn.Name = "NotSavedBtn";
 			this.NotSavedBtn.Size = new Size(109, 22);

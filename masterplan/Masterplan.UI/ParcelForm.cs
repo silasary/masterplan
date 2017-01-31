@@ -193,7 +193,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ParcelForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(ParcelForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.OKBtn = new Button();
@@ -272,7 +272,7 @@ namespace Masterplan.UI
 				this.ChangeToMagicItem,
 				this.ChangeToArtifact
 			});
-			this.ChangeTo.Image = (Image)componentResourceManager.GetObject("ChangeTo.Image");
+			this.ChangeTo.Image = (Image)resources.GetObject("ChangeTo.Image");
 			this.ChangeTo.ImageTransparentColor = Color.Magenta;
 			this.ChangeTo.Name = "ChangeTo";
 			this.ChangeTo.Size = new Size(78, 22);
@@ -294,14 +294,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.SelectBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectBtn.Image = (Image)componentResourceManager.GetObject("SelectBtn.Image");
+			this.SelectBtn.Image = (Image)resources.GetObject("SelectBtn.Image");
 			this.SelectBtn.ImageTransparentColor = Color.Magenta;
 			this.SelectBtn.Name = "SelectBtn";
 			this.SelectBtn.Size = new Size(42, 22);
 			this.SelectBtn.Text = "Select";
 			this.SelectBtn.Click += new EventHandler(this.SelectBtn_Click);
 			this.RandomiseBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RandomiseBtn.Image = (Image)componentResourceManager.GetObject("RandomiseBtn.Image");
+			this.RandomiseBtn.Image = (Image)resources.GetObject("RandomiseBtn.Image");
 			this.RandomiseBtn.ImageTransparentColor = Color.Magenta;
 			this.RandomiseBtn.Name = "RandomiseBtn";
 			this.RandomiseBtn.Size = new Size(70, 22);

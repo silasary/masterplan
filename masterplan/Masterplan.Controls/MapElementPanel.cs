@@ -78,7 +78,7 @@ namespace Masterplan.Controls
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MapElementPanel));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MapElementPanel));
 			this.Toolbar = new ToolStrip();
 			this.toolStripButton1 = new ToolStripButton();
 			this.MapView = new MapView();
@@ -94,7 +94,7 @@ namespace Masterplan.Controls
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.toolStripButton1.Image = (Image)componentResourceManager.GetObject("toolStripButton1.Image");
+			this.toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
 			this.toolStripButton1.ImageTransparentColor = Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new Size(69, 22);

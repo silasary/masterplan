@@ -231,7 +231,7 @@ namespace Masterplan.UI
 			ListViewGroup listViewGroup2 = new ListViewGroup("Heroic Tier", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup3 = new ListViewGroup("Paragon Tier", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup4 = new ListViewGroup("Epic Tier", HorizontalAlignment.Left);
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(OptionClassForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(OptionClassForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.NameLbl = new Label();
@@ -631,7 +631,7 @@ namespace Masterplan.UI
 			this.LevelToolbar.TabIndex = 0;
 			this.LevelToolbar.Text = "toolStrip1";
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);

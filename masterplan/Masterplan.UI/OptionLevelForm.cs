@@ -217,7 +217,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(OptionLevelForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(OptionLevelForm));
 			this.Pages = new TabControl();
 			this.FeaturesPage = new TabPage();
 			this.FeatureList = new ListView();
@@ -288,21 +288,21 @@ namespace Masterplan.UI
 			this.FeatureToolbar.TabIndex = 0;
 			this.FeatureToolbar.Text = "toolStrip1";
 			this.FeatureAddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.FeatureAddBtn.Image = (Image)componentResourceManager.GetObject("FeatureAddBtn.Image");
+			this.FeatureAddBtn.Image = (Image)resources.GetObject("FeatureAddBtn.Image");
 			this.FeatureAddBtn.ImageTransparentColor = Color.Magenta;
 			this.FeatureAddBtn.Name = "FeatureAddBtn";
 			this.FeatureAddBtn.Size = new Size(33, 22);
 			this.FeatureAddBtn.Text = "Add";
 			this.FeatureAddBtn.Click += new EventHandler(this.FeatureAddBtn_Click);
 			this.FeatureRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.FeatureRemoveBtn.Image = (Image)componentResourceManager.GetObject("FeatureRemoveBtn.Image");
+			this.FeatureRemoveBtn.Image = (Image)resources.GetObject("FeatureRemoveBtn.Image");
 			this.FeatureRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.FeatureRemoveBtn.Name = "FeatureRemoveBtn";
 			this.FeatureRemoveBtn.Size = new Size(54, 22);
 			this.FeatureRemoveBtn.Text = "Remove";
 			this.FeatureRemoveBtn.Click += new EventHandler(this.FeatureRemoveBtn_Click);
 			this.FeatureEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.FeatureEditBtn.Image = (Image)componentResourceManager.GetObject("FeatureEditBtn.Image");
+			this.FeatureEditBtn.Image = (Image)resources.GetObject("FeatureEditBtn.Image");
 			this.FeatureEditBtn.ImageTransparentColor = Color.Magenta;
 			this.FeatureEditBtn.Name = "FeatureEditBtn";
 			this.FeatureEditBtn.Size = new Size(31, 22);
@@ -347,21 +347,21 @@ namespace Masterplan.UI
 			this.PowerToolbar.TabIndex = 1;
 			this.PowerToolbar.Text = "toolStrip2";
 			this.PowerAddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerAddBtn.Image = (Image)componentResourceManager.GetObject("PowerAddBtn.Image");
+			this.PowerAddBtn.Image = (Image)resources.GetObject("PowerAddBtn.Image");
 			this.PowerAddBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerAddBtn.Name = "PowerAddBtn";
 			this.PowerAddBtn.Size = new Size(33, 22);
 			this.PowerAddBtn.Text = "Add";
 			this.PowerAddBtn.Click += new EventHandler(this.PowerAddBtn_Click);
 			this.PowerRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerRemoveBtn.Image = (Image)componentResourceManager.GetObject("PowerRemoveBtn.Image");
+			this.PowerRemoveBtn.Image = (Image)resources.GetObject("PowerRemoveBtn.Image");
 			this.PowerRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerRemoveBtn.Name = "PowerRemoveBtn";
 			this.PowerRemoveBtn.Size = new Size(54, 22);
 			this.PowerRemoveBtn.Text = "Remove";
 			this.PowerRemoveBtn.Click += new EventHandler(this.PowerRemoveBtn_Click);
 			this.PowerEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerEditBtn.Image = (Image)componentResourceManager.GetObject("PowerEditBtn.Image");
+			this.PowerEditBtn.Image = (Image)resources.GetObject("PowerEditBtn.Image");
 			this.PowerEditBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerEditBtn.Name = "PowerEditBtn";
 			this.PowerEditBtn.Size = new Size(31, 22);

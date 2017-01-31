@@ -147,7 +147,7 @@ namespace Masterplan.Wizards
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MapLibrariesPage));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MapLibrariesPage));
 			this.InfoLbl = new Label();
 			this.LibraryList = new ListView();
 			this.LibHdr = new ColumnHeader();
@@ -192,14 +192,14 @@ namespace Masterplan.Wizards
 			this.Toolbar.TabIndex = 3;
 			this.Toolbar.Text = "toolStrip1";
 			this.SelectAllBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectAllBtn.Image = (Image)componentResourceManager.GetObject("SelectAllBtn.Image");
+			this.SelectAllBtn.Image = (Image)resources.GetObject("SelectAllBtn.Image");
 			this.SelectAllBtn.ImageTransparentColor = Color.Magenta;
 			this.SelectAllBtn.Name = "SelectAllBtn";
 			this.SelectAllBtn.Size = new Size(59, 22);
 			this.SelectAllBtn.Text = "Select All";
 			this.SelectAllBtn.Click += new EventHandler(this.SelectAllBtn_Click);
 			this.DeselectAllBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DeselectAllBtn.Image = (Image)componentResourceManager.GetObject("DeselectAllBtn.Image");
+			this.DeselectAllBtn.Image = (Image)resources.GetObject("DeselectAllBtn.Image");
 			this.DeselectAllBtn.ImageTransparentColor = Color.Magenta;
 			this.DeselectAllBtn.Name = "DeselectAllBtn";
 			this.DeselectAllBtn.Size = new Size(72, 22);

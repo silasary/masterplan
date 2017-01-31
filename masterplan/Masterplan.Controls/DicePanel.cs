@@ -427,7 +427,7 @@ namespace Masterplan.Controls
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(DicePanel));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(DicePanel));
 			this.DiceToolbar = new ToolStrip();
 			this.RollBtn = new ToolStripButton();
 			this.ClearBtn = new ToolStripButton();
@@ -452,21 +452,21 @@ namespace Masterplan.Controls
 			this.DiceToolbar.TabIndex = 8;
 			this.DiceToolbar.Text = "toolStrip1";
 			this.RollBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RollBtn.Image = (Image)componentResourceManager.GetObject("RollBtn.Image");
+			this.RollBtn.Image = (Image)resources.GetObject("RollBtn.Image");
 			this.RollBtn.ImageTransparentColor = Color.Magenta;
 			this.RollBtn.Name = "RollBtn";
 			this.RollBtn.Size = new Size(41, 22);
 			this.RollBtn.Text = "Reroll";
 			this.RollBtn.Click += new EventHandler(this.RollBtn_Click);
 			this.ClearBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ClearBtn.Image = (Image)componentResourceManager.GetObject("ClearBtn.Image");
+			this.ClearBtn.Image = (Image)resources.GetObject("ClearBtn.Image");
 			this.ClearBtn.ImageTransparentColor = Color.Magenta;
 			this.ClearBtn.Name = "ClearBtn";
 			this.ClearBtn.Size = new Size(38, 22);
 			this.ClearBtn.Text = "Clear";
 			this.ClearBtn.Click += new EventHandler(this.ClearBtn_Click);
 			this.OddsBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.OddsBtn.Image = (Image)componentResourceManager.GetObject("OddsBtn.Image");
+			this.OddsBtn.Image = (Image)resources.GetObject("OddsBtn.Image");
 			this.OddsBtn.ImageTransparentColor = Color.Magenta;
 			this.OddsBtn.Name = "OddsBtn";
 			this.OddsBtn.Size = new Size(39, 22);

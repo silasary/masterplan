@@ -245,7 +245,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(TreasureListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(TreasureListForm));
 			this.CancelBtn = new Button();
 			this.Splitter = new SplitContainer();
 			this.PlotTree = new TreeView();
@@ -329,14 +329,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 1;
 			this.Toolbar.Text = "toolStrip1";
 			this.SelectAll.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectAll.Image = (Image)componentResourceManager.GetObject("SelectAll.Image");
+			this.SelectAll.Image = (Image)resources.GetObject("SelectAll.Image");
 			this.SelectAll.ImageTransparentColor = Color.Magenta;
 			this.SelectAll.Name = "SelectAll";
 			this.SelectAll.Size = new Size(59, 22);
 			this.SelectAll.Text = "Select All";
 			this.SelectAll.Click += new EventHandler(this.SelectAll_Click);
 			this.SelectNone.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectNone.Image = (Image)componentResourceManager.GetObject("SelectNone.Image");
+			this.SelectNone.Image = (Image)resources.GetObject("SelectNone.Image");
 			this.SelectNone.ImageTransparentColor = Color.Magenta;
 			this.SelectNone.Name = "SelectNone";
 			this.SelectNone.Size = new Size(74, 22);

@@ -49,7 +49,7 @@ namespace Masterplan.UI
 		{
 			ListViewGroup listViewGroup = new ListViewGroup("Normal Damage", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Limited Damage", HorizontalAlignment.Left);
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(QuickReferenceForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(QuickReferenceForm));
 			this.LevelLbl = new Label();
 			this.LevelBox = new NumericUpDown();
 			this.SkillGroup = new GroupBox();
@@ -181,7 +181,7 @@ namespace Masterplan.UI
 			base.AutoScaleMode = AutoScaleMode.Font;
 			base.ClientSize = new Size(357, 447);
 			base.Controls.Add(this.Pages);
-			base.Icon = (Icon)componentResourceManager.GetObject("$this.Icon");
+			base.Icon = (Icon)resources.GetObject("$this.Icon");
 			base.MaximizeBox = false;
 			base.Name = "QuickReferenceForm";
 			base.SizeGripStyle = SizeGripStyle.Hide;

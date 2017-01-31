@@ -72,7 +72,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(OptionCreatureLoreForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(OptionCreatureLoreForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.Pages = new TabControl();
@@ -148,21 +148,21 @@ namespace Masterplan.UI
 			this.LevelToolbar.TabIndex = 0;
 			this.LevelToolbar.Text = "toolStrip1";
 			this.AddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(33, 22);
 			this.AddBtn.Text = "Add";
 			this.AddBtn.Click += new EventHandler(this.AddBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);

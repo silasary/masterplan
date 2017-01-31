@@ -229,7 +229,7 @@ namespace Masterplan.UI
 		{
 			ListViewGroup listViewGroup = new ListViewGroup("Attack Powers", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Utility Powers", HorizontalAlignment.Left);
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MonsterThemeForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MonsterThemeForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.Pages = new TabControl();
@@ -328,7 +328,7 @@ namespace Masterplan.UI
 			{
 				this.PowerBrowse
 			});
-			this.PowerAddBtn.Image = (Image)componentResourceManager.GetObject("PowerAddBtn.Image");
+			this.PowerAddBtn.Image = (Image)resources.GetObject("PowerAddBtn.Image");
 			this.PowerAddBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerAddBtn.Name = "PowerAddBtn";
 			this.PowerAddBtn.Size = new Size(45, 22);
@@ -339,7 +339,7 @@ namespace Masterplan.UI
 			this.PowerBrowse.Text = "Browse...";
 			this.PowerBrowse.Click += new EventHandler(this.PowerBrowse_Click);
 			this.PowerRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerRemoveBtn.Image = (Image)componentResourceManager.GetObject("PowerRemoveBtn.Image");
+			this.PowerRemoveBtn.Image = (Image)resources.GetObject("PowerRemoveBtn.Image");
 			this.PowerRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerRemoveBtn.Name = "PowerRemoveBtn";
 			this.PowerRemoveBtn.Size = new Size(54, 22);
@@ -394,7 +394,7 @@ namespace Masterplan.UI
 				this.EditPower,
 				this.EditClassification
 			});
-			this.PowerEditBtn.Image = (Image)componentResourceManager.GetObject("PowerEditBtn.Image");
+			this.PowerEditBtn.Image = (Image)resources.GetObject("PowerEditBtn.Image");
 			this.PowerEditBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerEditBtn.Name = "PowerEditBtn";
 			this.PowerEditBtn.Size = new Size(40, 22);

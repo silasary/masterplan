@@ -437,7 +437,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			ListViewGroup listViewGroup = new ListViewGroup("Standard Skill DCs", HorizontalAlignment.Left);
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(SkillChallengeBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(SkillChallengeBuilderForm));
 			ListViewGroup listViewGroup2 = new ListViewGroup("Primary Skills", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup3 = new ListViewGroup("Secondary Skills", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup4 = new ListViewGroup("Automatic Failure", HorizontalAlignment.Left);
@@ -702,7 +702,7 @@ namespace Masterplan.UI
 			{
 				this.FileExport
 			});
-			this.FileMenu.Image = (Image)componentResourceManager.GetObject("FileMenu.Image");
+			this.FileMenu.Image = (Image)resources.GetObject("FileMenu.Image");
 			this.FileMenu.ImageTransparentColor = Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
 			this.FileMenu.Size = new Size(38, 22);
@@ -720,7 +720,7 @@ namespace Masterplan.UI
 			this.FailureCountLbl.Size = new Size(53, 22);
 			this.FailureCountLbl.Text = "[failures]";
 			this.ResetProgressBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ResetProgressBtn.Image = (Image)componentResourceManager.GetObject("ResetProgressBtn.Image");
+			this.ResetProgressBtn.Image = (Image)resources.GetObject("ResetProgressBtn.Image");
 			this.ResetProgressBtn.ImageTransparentColor = Color.Magenta;
 			this.ResetProgressBtn.Name = "ResetProgressBtn";
 			this.ResetProgressBtn.Size = new Size(39, 22);
@@ -825,14 +825,14 @@ namespace Masterplan.UI
 			this.SkillsToolbar.TabIndex = 0;
 			this.SkillsToolbar.Text = "toolStrip1";
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
@@ -841,7 +841,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.BreakdownBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.BreakdownBtn.Image = (Image)componentResourceManager.GetObject("BreakdownBtn.Image");
+			this.BreakdownBtn.Image = (Image)resources.GetObject("BreakdownBtn.Image");
 			this.BreakdownBtn.ImageTransparentColor = Color.Magenta;
 			this.BreakdownBtn.Name = "BreakdownBtn";
 			this.BreakdownBtn.Size = new Size(107, 22);

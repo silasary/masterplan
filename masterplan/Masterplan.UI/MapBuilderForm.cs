@@ -203,7 +203,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			this.components = new Container();
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MapBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MapBuilderForm));
 			this.Splitter = new SplitContainer();
 			this.MapView = new MapView();
 			this.Toolbar = new ToolStrip();
@@ -365,7 +365,7 @@ namespace Masterplan.UI
 			{
 				this.clearMapToolStripMenuItem
 			});
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(66, 22);
@@ -380,7 +380,7 @@ namespace Masterplan.UI
 			{
 				this.rotateMapLeftToolStripMenuItem
 			});
-			this.RotateLeftBtn.Image = (Image)componentResourceManager.GetObject("RotateLeftBtn.Image");
+			this.RotateLeftBtn.Image = (Image)resources.GetObject("RotateLeftBtn.Image");
 			this.RotateLeftBtn.ImageTransparentColor = Color.Magenta;
 			this.RotateLeftBtn.Name = "RotateLeftBtn";
 			this.RotateLeftBtn.Size = new Size(80, 22);
@@ -395,7 +395,7 @@ namespace Masterplan.UI
 			{
 				this.rotateMapRightToolStripMenuItem
 			});
-			this.RotateRightBtn.Image = (Image)componentResourceManager.GetObject("RotateRightBtn.Image");
+			this.RotateRightBtn.Image = (Image)resources.GetObject("RotateRightBtn.Image");
 			this.RotateRightBtn.ImageTransparentColor = Color.Magenta;
 			this.RotateRightBtn.Name = "RotateRightBtn";
 			this.RotateRightBtn.Size = new Size(88, 22);
@@ -413,7 +413,7 @@ namespace Masterplan.UI
 				this.OrderingFront,
 				this.OrderingBack
 			});
-			this.OrderingBtn.Image = (Image)componentResourceManager.GetObject("OrderingBtn.Image");
+			this.OrderingBtn.Image = (Image)resources.GetObject("OrderingBtn.Image");
 			this.OrderingBtn.ImageTransparentColor = Color.Magenta;
 			this.OrderingBtn.Name = "OrderingBtn";
 			this.OrderingBtn.Size = new Size(67, 22);
@@ -441,7 +441,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator8,
 				this.ToolsAutoBuild
 			});
-			this.at.Image = (Image)componentResourceManager.GetObject("at.Image");
+			this.at.Image = (Image)resources.GetObject("at.Image");
 			this.at.ImageTransparentColor = Color.Magenta;
 			this.at.Name = "at";
 			this.at.Size = new Size(49, 22);
@@ -582,7 +582,7 @@ namespace Masterplan.UI
 				this.ViewGroupBy,
 				this.ViewSize
 			});
-			this.TilesViewBtn.Image = (Image)componentResourceManager.GetObject("TilesViewBtn.Image");
+			this.TilesViewBtn.Image = (Image)resources.GetObject("TilesViewBtn.Image");
 			this.TilesViewBtn.ImageTransparentColor = Color.Magenta;
 			this.TilesViewBtn.Name = "TilesViewBtn";
 			this.TilesViewBtn.Size = new Size(45, 22);
@@ -630,7 +630,7 @@ namespace Masterplan.UI
 			this.SizeLarge.Text = "Large";
 			this.SizeLarge.Click += new EventHandler(this.SizeLarge_Click);
 			this.FilterBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.FilterBtn.Image = (Image)componentResourceManager.GetObject("FilterBtn.Image");
+			this.FilterBtn.Image = (Image)resources.GetObject("FilterBtn.Image");
 			this.FilterBtn.ImageTransparentColor = Color.Magenta;
 			this.FilterBtn.Name = "FilterBtn";
 			this.FilterBtn.Size = new Size(83, 22);
@@ -677,14 +677,14 @@ namespace Masterplan.UI
 			this.AreaToolbar.TabIndex = 0;
 			this.AreaToolbar.Text = "toolStrip1";
 			this.AreaRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AreaRemoveBtn.Image = (Image)componentResourceManager.GetObject("AreaRemoveBtn.Image");
+			this.AreaRemoveBtn.Image = (Image)resources.GetObject("AreaRemoveBtn.Image");
 			this.AreaRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.AreaRemoveBtn.Name = "AreaRemoveBtn";
 			this.AreaRemoveBtn.Size = new Size(54, 22);
 			this.AreaRemoveBtn.Text = "Remove";
 			this.AreaRemoveBtn.Click += new EventHandler(this.AreaRemoveBtn_Click);
 			this.AreaEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AreaEditBtn.Image = (Image)componentResourceManager.GetObject("AreaEditBtn.Image");
+			this.AreaEditBtn.Image = (Image)resources.GetObject("AreaEditBtn.Image");
 			this.AreaEditBtn.ImageTransparentColor = Color.Magenta;
 			this.AreaEditBtn.Name = "AreaEditBtn";
 			this.AreaEditBtn.Size = new Size(31, 22);
@@ -693,7 +693,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
 			this.toolStripSeparator7.Size = new Size(6, 25);
 			this.FullMapBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.FullMapBtn.Image = (Image)componentResourceManager.GetObject("FullMapBtn.Image");
+			this.FullMapBtn.Image = (Image)resources.GetObject("FullMapBtn.Image");
 			this.FullMapBtn.ImageTransparentColor = Color.Magenta;
 			this.FullMapBtn.Name = "FullMapBtn";
 			this.FullMapBtn.Size = new Size(57, 22);

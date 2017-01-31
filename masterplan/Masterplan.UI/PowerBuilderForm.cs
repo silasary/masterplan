@@ -328,7 +328,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(PowerBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(PowerBuilderForm));
 			this.Toolbar = new ToolStrip();
 			this.PowerBrowserBtn = new ToolStripButton();
 			this.BtnPnl = new Panel();
@@ -348,7 +348,7 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.PowerBrowserBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerBrowserBtn.Image = (Image)componentResourceManager.GetObject("PowerBrowserBtn.Image");
+			this.PowerBrowserBtn.Image = (Image)resources.GetObject("PowerBrowserBtn.Image");
 			this.PowerBrowserBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerBrowserBtn.Name = "PowerBrowserBtn";
 			this.PowerBrowserBtn.Size = new Size(89, 22);

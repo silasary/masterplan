@@ -51,7 +51,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(CreatureTemplateBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(CreatureTemplateBuilderForm));
 			this.Toolbar = new ToolStrip();
 			this.FileMenu = new ToolStripDropDownButton();
 			this.FileExport = new ToolStripMenuItem();
@@ -79,7 +79,7 @@ namespace Masterplan.UI
 			{
 				this.FileExport
 			});
-			this.FileMenu.Image = (Image)componentResourceManager.GetObject("FileMenu.Image");
+			this.FileMenu.Image = (Image)resources.GetObject("FileMenu.Image");
 			this.FileMenu.ImageTransparentColor = Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
 			this.FileMenu.Size = new Size(38, 22);
@@ -93,7 +93,7 @@ namespace Masterplan.UI
 			{
 				this.OptionsVariant
 			});
-			this.OptionsMenu.Image = (Image)componentResourceManager.GetObject("OptionsMenu.Image");
+			this.OptionsMenu.Image = (Image)resources.GetObject("OptionsMenu.Image");
 			this.OptionsMenu.ImageTransparentColor = Color.Magenta;
 			this.OptionsMenu.Name = "OptionsMenu";
 			this.OptionsMenu.Size = new Size(62, 22);

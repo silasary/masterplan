@@ -461,7 +461,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(HeroForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(HeroForm));
 			ListViewGroup listViewGroup = new ListViewGroup("Effects", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Map Tokens", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup3 = new ListViewGroup("Map Overlays", HorizontalAlignment.Left);
@@ -827,21 +827,21 @@ namespace Masterplan.UI
 			this.PortraitToolbar.TabIndex = 0;
 			this.PortraitToolbar.Text = "toolStrip1";
 			this.PortraitBrowse.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PortraitBrowse.Image = (Image)componentResourceManager.GetObject("PortraitBrowse.Image");
+			this.PortraitBrowse.Image = (Image)resources.GetObject("PortraitBrowse.Image");
 			this.PortraitBrowse.ImageTransparentColor = Color.Magenta;
 			this.PortraitBrowse.Name = "PortraitBrowse";
 			this.PortraitBrowse.Size = new Size(49, 22);
 			this.PortraitBrowse.Text = "Browse";
 			this.PortraitBrowse.Click += new EventHandler(this.PortraitBrowse_Click);
 			this.PortraitPasteBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PortraitPasteBtn.Image = (Image)componentResourceManager.GetObject("PortraitPasteBtn.Image");
+			this.PortraitPasteBtn.Image = (Image)resources.GetObject("PortraitPasteBtn.Image");
 			this.PortraitPasteBtn.ImageTransparentColor = Color.Magenta;
 			this.PortraitPasteBtn.Name = "PortraitPasteBtn";
 			this.PortraitPasteBtn.Size = new Size(39, 22);
 			this.PortraitPasteBtn.Text = "Paste";
 			this.PortraitPasteBtn.Click += new EventHandler(this.PortraitPaste_Click);
 			this.PortraitClear.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PortraitClear.Image = (Image)componentResourceManager.GetObject("PortraitClear.Image");
+			this.PortraitClear.Image = (Image)resources.GetObject("PortraitClear.Image");
 			this.PortraitClear.ImageTransparentColor = Color.Magenta;
 			this.PortraitClear.Name = "PortraitClear";
 			this.PortraitClear.Size = new Size(38, 22);
@@ -1060,7 +1060,7 @@ namespace Masterplan.UI
 				this.EffectAddToken,
 				this.EffectAddOverlay
 			});
-			this.EffectAddBtn.Image = (Image)componentResourceManager.GetObject("EffectAddBtn.Image");
+			this.EffectAddBtn.Image = (Image)resources.GetObject("EffectAddBtn.Image");
 			this.EffectAddBtn.ImageTransparentColor = Color.Magenta;
 			this.EffectAddBtn.Name = "EffectAddBtn";
 			this.EffectAddBtn.Size = new Size(42, 22);
@@ -1080,14 +1080,14 @@ namespace Masterplan.UI
 			this.EffectAddOverlay.Text = "Map Overlay";
 			this.EffectAddOverlay.Click += new EventHandler(this.EffectAddOverlay_Click);
 			this.EffectRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EffectRemoveBtn.Image = (Image)componentResourceManager.GetObject("EffectRemoveBtn.Image");
+			this.EffectRemoveBtn.Image = (Image)resources.GetObject("EffectRemoveBtn.Image");
 			this.EffectRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.EffectRemoveBtn.Name = "EffectRemoveBtn";
 			this.EffectRemoveBtn.Size = new Size(54, 22);
 			this.EffectRemoveBtn.Text = "Remove";
 			this.EffectRemoveBtn.Click += new EventHandler(this.EffectRemoveBtn_Click);
 			this.EffectEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EffectEditBtn.Image = (Image)componentResourceManager.GetObject("EffectEditBtn.Image");
+			this.EffectEditBtn.Image = (Image)resources.GetObject("EffectEditBtn.Image");
 			this.EffectEditBtn.ImageTransparentColor = Color.Magenta;
 			this.EffectEditBtn.Name = "EffectEditBtn";
 			this.EffectEditBtn.Size = new Size(31, 22);
@@ -1098,7 +1098,7 @@ namespace Masterplan.UI
 			this.EffectLbl.Name = "EffectLbl";
 			this.EffectLbl.Size = new Size(281, 71);
 			this.EffectLbl.TabIndex = 2;
-			this.EffectLbl.Text = componentResourceManager.GetString("EffectLbl.Text");
+			this.EffectLbl.Text = resources.GetString("EffectLbl.Text");
 			this.iPlay4eBtn.Location = new Point(12, 412);
 			this.iPlay4eBtn.Name = "iPlay4eBtn";
 			this.iPlay4eBtn.Size = new Size(75, 23);

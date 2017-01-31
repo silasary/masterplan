@@ -169,7 +169,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MagicItemBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MagicItemBuilderForm));
 			this.BtnPnl = new Panel();
 			this.CancelBtn = new Button();
 			this.OKBtn = new Button();
@@ -221,7 +221,7 @@ namespace Masterplan.UI
 			{
 				this.OptionsVariant
 			});
-			this.OptionsMenu.Image = (Image)componentResourceManager.GetObject("OptionsMenu.Image");
+			this.OptionsMenu.Image = (Image)resources.GetObject("OptionsMenu.Image");
 			this.OptionsMenu.ImageTransparentColor = Color.Magenta;
 			this.OptionsMenu.Name = "OptionsMenu";
 			this.OptionsMenu.Size = new Size(62, 22);
@@ -245,7 +245,7 @@ namespace Masterplan.UI
 			{
 				this.FileExport
 			});
-			this.FileMenu.Image = (Image)componentResourceManager.GetObject("FileMenu.Image");
+			this.FileMenu.Image = (Image)resources.GetObject("FileMenu.Image");
 			this.FileMenu.ImageTransparentColor = Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
 			this.FileMenu.Size = new Size(38, 22);

@@ -446,7 +446,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(TrapBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(TrapBuilderForm));
 			this.BtnPnl = new Panel();
 			this.CancelBtn = new Button();
 			this.OKBtn = new Button();
@@ -514,7 +514,7 @@ namespace Masterplan.UI
 			{
 				this.FileExport
 			});
-			this.FileMenu.Image = (Image)componentResourceManager.GetObject("FileMenu.Image");
+			this.FileMenu.Image = (Image)resources.GetObject("FileMenu.Image");
 			this.FileMenu.ImageTransparentColor = Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
 			this.FileMenu.Size = new Size(38, 22);
@@ -528,7 +528,7 @@ namespace Masterplan.UI
 			{
 				this.OptionsCopy
 			});
-			this.OptionsMenu.Image = (Image)componentResourceManager.GetObject("OptionsMenu.Image");
+			this.OptionsMenu.Image = (Image)resources.GetObject("OptionsMenu.Image");
 			this.OptionsMenu.ImageTransparentColor = Color.Magenta;
 			this.OptionsMenu.Name = "OptionsMenu";
 			this.OptionsMenu.Size = new Size(62, 22);
@@ -539,7 +539,7 @@ namespace Masterplan.UI
 			this.OptionsCopy.Click += new EventHandler(this.OptionsCopy_Click);
 			this.LevelDownBtn.Alignment = ToolStripItemAlignment.Right;
 			this.LevelDownBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LevelDownBtn.Image = (Image)componentResourceManager.GetObject("LevelDownBtn.Image");
+			this.LevelDownBtn.Image = (Image)resources.GetObject("LevelDownBtn.Image");
 			this.LevelDownBtn.ImageTransparentColor = Color.Magenta;
 			this.LevelDownBtn.Name = "LevelDownBtn";
 			this.LevelDownBtn.Size = new Size(23, 22);
@@ -548,7 +548,7 @@ namespace Masterplan.UI
 			this.LevelDownBtn.Click += new EventHandler(this.LevelDownBtn_Click);
 			this.LevelUpBtn.Alignment = ToolStripItemAlignment.Right;
 			this.LevelUpBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LevelUpBtn.Image = (Image)componentResourceManager.GetObject("LevelUpBtn.Image");
+			this.LevelUpBtn.Image = (Image)resources.GetObject("LevelUpBtn.Image");
 			this.LevelUpBtn.ImageTransparentColor = Color.Magenta;
 			this.LevelUpBtn.Name = "LevelUpBtn";
 			this.LevelUpBtn.Size = new Size(23, 22);

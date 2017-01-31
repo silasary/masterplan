@@ -6436,7 +6436,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			this.components = new Container();
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(CombatForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(CombatForm));
 			ListViewGroup listViewGroup = new ListViewGroup("Combatants", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Delayed / Readied", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup3 = new ListViewGroup("Traps", HorizontalAlignment.Left);
@@ -6651,21 +6651,21 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.DetailsBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DetailsBtn.Image = (Image)componentResourceManager.GetObject("DetailsBtn.Image");
+			this.DetailsBtn.Image = (Image)resources.GetObject("DetailsBtn.Image");
 			this.DetailsBtn.ImageTransparentColor = Color.Magenta;
 			this.DetailsBtn.Name = "DetailsBtn";
 			this.DetailsBtn.Size = new Size(46, 22);
 			this.DetailsBtn.Text = "Details";
 			this.DetailsBtn.Click += new EventHandler(this.DetailsBtn_Click);
 			this.DamageBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DamageBtn.Image = (Image)componentResourceManager.GetObject("DamageBtn.Image");
+			this.DamageBtn.Image = (Image)resources.GetObject("DamageBtn.Image");
 			this.DamageBtn.ImageTransparentColor = Color.Magenta;
 			this.DamageBtn.Name = "DamageBtn";
 			this.DamageBtn.Size = new Size(55, 22);
 			this.DamageBtn.Text = "Damage";
 			this.DamageBtn.Click += new EventHandler(this.DamageBtn_Click);
 			this.HealBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.HealBtn.Image = (Image)componentResourceManager.GetObject("HealBtn.Image");
+			this.HealBtn.Image = (Image)resources.GetObject("HealBtn.Image");
 			this.HealBtn.ImageTransparentColor = Color.Magenta;
 			this.HealBtn.Name = "HealBtn";
 			this.HealBtn.Size = new Size(35, 22);
@@ -6676,7 +6676,7 @@ namespace Masterplan.UI
 			{
 				this.effectToolStripMenuItem
 			});
-			this.EffectMenu.Image = (Image)componentResourceManager.GetObject("EffectMenu.Image");
+			this.EffectMenu.Image = (Image)resources.GetObject("EffectMenu.Image");
 			this.EffectMenu.ImageTransparentColor = Color.Magenta;
 			this.EffectMenu.Name = "EffectMenu";
 			this.EffectMenu.Size = new Size(75, 22);
@@ -6688,14 +6688,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator18.Name = "toolStripSeparator18";
 			this.toolStripSeparator18.Size = new Size(6, 25);
 			this.NextInitBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NextInitBtn.Image = (Image)componentResourceManager.GetObject("NextInitBtn.Image");
+			this.NextInitBtn.Image = (Image)resources.GetObject("NextInitBtn.Image");
 			this.NextInitBtn.ImageTransparentColor = Color.Magenta;
 			this.NextInitBtn.Name = "NextInitBtn";
 			this.NextInitBtn.Size = new Size(63, 22);
 			this.NextInitBtn.Text = "Next Turn";
 			this.NextInitBtn.Click += new EventHandler(this.NextInitBtn_Click);
 			this.DelayBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DelayBtn.Image = (Image)componentResourceManager.GetObject("DelayBtn.Image");
+			this.DelayBtn.Image = (Image)resources.GetObject("DelayBtn.Image");
 			this.DelayBtn.ImageTransparentColor = Color.Magenta;
 			this.DelayBtn.Name = "DelayBtn";
 			this.DelayBtn.Size = new Size(78, 22);
@@ -6717,7 +6717,7 @@ namespace Masterplan.UI
 				this.CombatantsHideAll,
 				this.CombatantsShowAll
 			});
-			this.CombatantsBtn.Image = (Image)componentResourceManager.GetObject("CombatantsBtn.Image");
+			this.CombatantsBtn.Image = (Image)resources.GetObject("CombatantsBtn.Image");
 			this.CombatantsBtn.ImageTransparentColor = Color.Magenta;
 			this.CombatantsBtn.Name = "CombatantsBtn";
 			this.CombatantsBtn.Size = new Size(85, 22);
@@ -6779,7 +6779,7 @@ namespace Masterplan.UI
 				this.MapPrint,
 				this.MapExport
 			});
-			this.MapMenu.Image = (Image)componentResourceManager.GetObject("MapMenu.Image");
+			this.MapMenu.Image = (Image)resources.GetObject("MapMenu.Image");
 			this.MapMenu.ImageTransparentColor = Color.Magenta;
 			this.MapMenu.Name = "MapMenu";
 			this.MapMenu.Size = new Size(44, 22);
@@ -6798,7 +6798,7 @@ namespace Masterplan.UI
 				this.MapFogVisibleCreatures,
 				this.MapFogHideCreatures
 			});
-			this.MapFog.Image = (Image)componentResourceManager.GetObject("MapFog.Image");
+			this.MapFog.Image = (Image)resources.GetObject("MapFog.Image");
 			this.MapFog.ImageTransparentColor = Color.Magenta;
 			this.MapFog.Name = "MapFog";
 			this.MapFog.Size = new Size(184, 22);
@@ -6888,7 +6888,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator17,
 				this.PlayerLabels
 			});
-			this.PlayerViewMapMenu.Image = (Image)componentResourceManager.GetObject("PlayerViewMapMenu.Image");
+			this.PlayerViewMapMenu.Image = (Image)resources.GetObject("PlayerViewMapMenu.Image");
 			this.PlayerViewMapMenu.ImageTransparentColor = Color.Magenta;
 			this.PlayerViewMapMenu.Name = "PlayerViewMapMenu";
 			this.PlayerViewMapMenu.Size = new Size(80, 22);
@@ -6911,7 +6911,7 @@ namespace Masterplan.UI
 				this.PlayerFogVisible,
 				this.PlayerFogNone
 			});
-			this.PlayerViewFog.Image = (Image)componentResourceManager.GetObject("PlayerViewFog.Image");
+			this.PlayerViewFog.Image = (Image)resources.GetObject("PlayerViewFog.Image");
 			this.PlayerViewFog.ImageTransparentColor = Color.Magenta;
 			this.PlayerViewFog.Name = "PlayerViewFog";
 			this.PlayerViewFog.Size = new Size(215, 22);
@@ -6966,7 +6966,7 @@ namespace Masterplan.UI
 				this.PlayerViewNoMapShowInitiativeList,
 				this.PlayerViewNoMapShowLabels
 			});
-			this.PlayerViewNoMapMenu.Image = (Image)componentResourceManager.GetObject("PlayerViewNoMapMenu.Image");
+			this.PlayerViewNoMapMenu.Image = (Image)resources.GetObject("PlayerViewNoMapMenu.Image");
 			this.PlayerViewNoMapMenu.ImageTransparentColor = Color.Magenta;
 			this.PlayerViewNoMapMenu.Name = "PlayerViewNoMapMenu";
 			this.PlayerViewNoMapMenu.Size = new Size(80, 22);
@@ -6988,7 +6988,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator11,
 				this.ToolsAddIns
 			});
-			this.ToolsMenu.Image = (Image)componentResourceManager.GetObject("ToolsMenu.Image");
+			this.ToolsMenu.Image = (Image)resources.GetObject("ToolsMenu.Image");
 			this.ToolsMenu.ImageTransparentColor = Color.Magenta;
 			this.ToolsMenu.Name = "ToolsMenu";
 			this.ToolsMenu.Size = new Size(49, 22);
@@ -7033,7 +7033,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator23,
 				this.ToolsColumns
 			});
-			this.OptionsMenu.Image = (Image)componentResourceManager.GetObject("OptionsMenu.Image");
+			this.OptionsMenu.Image = (Image)resources.GetObject("OptionsMenu.Image");
 			this.OptionsMenu.ImageTransparentColor = Color.Magenta;
 			this.OptionsMenu.Name = "OptionsMenu";
 			this.OptionsMenu.Size = new Size(62, 22);
@@ -7585,7 +7585,7 @@ namespace Masterplan.UI
 			this.InitiativePanel.BorderStyle = BorderStyle.Fixed3D;
 			this.InitiativePanel.CurrentInitiative = 0;
 			this.InitiativePanel.Dock = DockStyle.Right;
-			this.InitiativePanel.InitiativeScores = (List<int>)componentResourceManager.GetObject("InitiativePanel.InitiativeScores");
+			this.InitiativePanel.InitiativeScores = (List<int>)resources.GetObject("InitiativePanel.InitiativeScores");
 			this.InitiativePanel.Location = new Point(786, 0);
 			this.InitiativePanel.Name = "InitiativePanel";
 			this.InitiativePanel.Size = new Size(40, 362);
@@ -7642,7 +7642,7 @@ namespace Masterplan.UI
 			base.Controls.Add(this.MainPanel);
 			base.Controls.Add(this.CloseBtn);
 			base.Controls.Add(this.PauseBtn);
-			base.Icon = (Icon)componentResourceManager.GetObject("$this.Icon");
+			base.Icon = (Icon)resources.GetObject("$this.Icon");
 			base.Name = "CombatForm";
 			base.SizeGripStyle = SizeGripStyle.Hide;
 			base.StartPosition = FormStartPosition.CenterParent;

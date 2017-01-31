@@ -66,7 +66,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(TileSelectForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(TileSelectForm));
 			this.OKBtn = new Button();
 			this.TileList = new ListView();
 			this.CancelBtn = new Button();
@@ -125,14 +125,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.LibraryBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LibraryBtn.Image = (Image)componentResourceManager.GetObject("LibraryBtn.Image");
+			this.LibraryBtn.Image = (Image)resources.GetObject("LibraryBtn.Image");
 			this.LibraryBtn.ImageTransparentColor = Color.Magenta;
 			this.LibraryBtn.Name = "LibraryBtn";
 			this.LibraryBtn.Size = new Size(108, 22);
 			this.LibraryBtn.Text = "Arrange by Library";
 			this.LibraryBtn.Click += new EventHandler(this.LibraryBtn_Click);
 			this.CategoryBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CategoryBtn.Image = (Image)componentResourceManager.GetObject("CategoryBtn.Image");
+			this.CategoryBtn.Image = (Image)resources.GetObject("CategoryBtn.Image");
 			this.CategoryBtn.ImageTransparentColor = Color.Magenta;
 			this.CategoryBtn.Name = "CategoryBtn";
 			this.CategoryBtn.Size = new Size(120, 22);
@@ -141,7 +141,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.MatchCatBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.MatchCatBtn.Image = (Image)componentResourceManager.GetObject("MatchCatBtn.Image");
+			this.MatchCatBtn.Image = (Image)resources.GetObject("MatchCatBtn.Image");
 			this.MatchCatBtn.ImageTransparentColor = Color.Magenta;
 			this.MatchCatBtn.Name = "MatchCatBtn";
 			this.MatchCatBtn.Size = new Size(96, 22);

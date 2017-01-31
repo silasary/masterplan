@@ -62,7 +62,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(HeroDetailsForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(HeroDetailsForm));
 			this.Browser = new WebBrowser();
 			this.Toolbar = new ToolStrip();
 			this.ExportMenu = new ToolStripDropDownButton();
@@ -91,7 +91,7 @@ namespace Masterplan.UI
 			{
 				this.ExportHTML
 			});
-			this.ExportMenu.Image = (Image)componentResourceManager.GetObject("ExportMenu.Image");
+			this.ExportMenu.Image = (Image)resources.GetObject("ExportMenu.Image");
 			this.ExportMenu.ImageTransparentColor = Color.Magenta;
 			this.ExportMenu.Name = "ExportMenu";
 			this.ExportMenu.Size = new Size(53, 22);
@@ -101,7 +101,7 @@ namespace Masterplan.UI
 			this.ExportHTML.Text = "Export to HTML";
 			this.ExportHTML.Click += new EventHandler(this.ExportHTML_Click);
 			this.PlayerViewBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PlayerViewBtn.Image = (Image)componentResourceManager.GetObject("PlayerViewBtn.Image");
+			this.PlayerViewBtn.Image = (Image)resources.GetObject("PlayerViewBtn.Image");
 			this.PlayerViewBtn.ImageTransparentColor = Color.Magenta;
 			this.PlayerViewBtn.Name = "PlayerViewBtn";
 			this.PlayerViewBtn.Size = new Size(114, 22);

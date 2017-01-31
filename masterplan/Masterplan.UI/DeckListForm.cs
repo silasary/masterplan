@@ -206,7 +206,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(DeckListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(DeckListForm));
 			this.Toolbar = new ToolStrip();
 			this.AddBtn = new ToolStripButton();
 			this.RemoveBtn = new ToolStripButton();
@@ -239,21 +239,21 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.AddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(33, 22);
 			this.AddBtn.Text = "Add";
 			this.AddBtn.Click += new EventHandler(this.AddBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
@@ -262,7 +262,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.ViewBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ViewBtn.Image = (Image)componentResourceManager.GetObject("ViewBtn.Image");
+			this.ViewBtn.Image = (Image)resources.GetObject("ViewBtn.Image");
 			this.ViewBtn.ImageTransparentColor = Color.Magenta;
 			this.ViewBtn.Name = "ViewBtn";
 			this.ViewBtn.Size = new Size(69, 22);
@@ -273,7 +273,7 @@ namespace Masterplan.UI
 			{
 				this.RunMap
 			});
-			this.RunBtn.Image = (Image)componentResourceManager.GetObject("RunBtn.Image");
+			this.RunBtn.Image = (Image)resources.GetObject("RunBtn.Image");
 			this.RunBtn.ImageTransparentColor = Color.Magenta;
 			this.RunBtn.Name = "RunBtn";
 			this.RunBtn.Size = new Size(101, 22);

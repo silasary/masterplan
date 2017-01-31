@@ -85,7 +85,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(GoalListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(GoalListForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.Splitter = new SplitContainer();
@@ -171,21 +171,21 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.AddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(33, 22);
 			this.AddBtn.Text = "Add";
 			this.AddBtn.Click += new EventHandler(this.AddBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
@@ -201,7 +201,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.ClearBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ClearBtn.Image = (Image)componentResourceManager.GetObject("ClearBtn.Image");
+			this.ClearBtn.Image = (Image)resources.GetObject("ClearBtn.Image");
 			this.ClearBtn.ImageTransparentColor = Color.Magenta;
 			this.ClearBtn.Name = "ClearBtn";
 			this.ClearBtn.Size = new Size(55, 22);

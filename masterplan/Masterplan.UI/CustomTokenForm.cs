@@ -69,7 +69,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(CustomTokenForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(CustomTokenForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.OKBtn = new Button();
@@ -192,14 +192,14 @@ namespace Masterplan.UI
 			this.TerrainPowerToolbar.TabIndex = 0;
 			this.TerrainPowerToolbar.Text = "toolStrip1";
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
 			this.EditBtn.Text = "Edit";
 			this.EditBtn.Click += new EventHandler(this.EditBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
@@ -208,7 +208,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.SelectBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectBtn.Image = (Image)componentResourceManager.GetObject("SelectBtn.Image");
+			this.SelectBtn.Image = (Image)resources.GetObject("SelectBtn.Image");
 			this.SelectBtn.ImageTransparentColor = Color.Magenta;
 			this.SelectBtn.Name = "SelectBtn";
 			this.SelectBtn.Size = new Size(116, 22);

@@ -62,7 +62,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(HeroIPlay4eForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(HeroIPlay4eForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.KeyLbl = new Label();
@@ -101,7 +101,7 @@ namespace Masterplan.UI
 			this.KeyBox.Size = new Size(294, 20);
 			this.KeyBox.TabIndex = 1;
 			this.LogoBox.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-			this.LogoBox.Image = (Image)componentResourceManager.GetObject("LogoBox.Image");
+			this.LogoBox.Image = (Image)resources.GetObject("LogoBox.Image");
 			this.LogoBox.Location = new Point(12, 12);
 			this.LogoBox.Name = "LogoBox";
 			this.LogoBox.Size = new Size(377, 72);

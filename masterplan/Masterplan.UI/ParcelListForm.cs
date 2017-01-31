@@ -451,7 +451,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			this.components = new Container();
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ParcelListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(ParcelListForm));
 			ListViewGroup listViewGroup = new ListViewGroup("Parcels which are assigned to a Plot Point", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Parcels which are not yet assigned to a plot point", HorizontalAlignment.Left);
 			this.Toolbar = new ToolStrip();
@@ -510,7 +510,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator1,
 				this.AddSet
 			});
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(42, 22);
@@ -534,14 +534,14 @@ namespace Masterplan.UI
 			this.AddSet.Text = "Add a Standard Set of Parcels";
 			this.AddSet.Click += new EventHandler(this.AddSet_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
@@ -550,7 +550,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new Size(6, 25);
 			this.RandomiseAllBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RandomiseAllBtn.Image = (Image)componentResourceManager.GetObject("RandomiseAllBtn.Image");
+			this.RandomiseAllBtn.Image = (Image)resources.GetObject("RandomiseAllBtn.Image");
 			this.RandomiseAllBtn.ImageTransparentColor = Color.Magenta;
 			this.RandomiseAllBtn.Name = "RandomiseAllBtn";
 			this.RandomiseAllBtn.Size = new Size(87, 22);
@@ -565,7 +565,7 @@ namespace Masterplan.UI
 				this.ViewAssigned,
 				this.ViewUnassigned
 			});
-			this.ViewMenu.Image = (Image)componentResourceManager.GetObject("ViewMenu.Image");
+			this.ViewMenu.Image = (Image)resources.GetObject("ViewMenu.Image");
 			this.ViewMenu.ImageTransparentColor = Color.Magenta;
 			this.ViewMenu.Name = "ViewMenu";
 			this.ViewMenu.Size = new Size(45, 22);

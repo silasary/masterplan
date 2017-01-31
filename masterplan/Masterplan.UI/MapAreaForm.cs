@@ -87,7 +87,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MapAreaForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MapAreaForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.OKBtn = new Button();
@@ -189,7 +189,7 @@ namespace Masterplan.UI
 			this.DetailsToolbar.TabIndex = 1;
 			this.DetailsToolbar.Text = "toolStrip1";
 			this.RandomDescBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RandomDescBtn.Image = (Image)componentResourceManager.GetObject("RandomDescBtn.Image");
+			this.RandomDescBtn.Image = (Image)resources.GetObject("RandomDescBtn.Image");
 			this.RandomDescBtn.ImageTransparentColor = Color.Magenta;
 			this.RandomDescBtn.Name = "RandomDescBtn";
 			this.RandomDescBtn.Size = new Size(119, 22);
@@ -383,7 +383,7 @@ namespace Masterplan.UI
 			this.MapView.TokenLinks = null;
 			this.MapView.Viewpoint = new Rectangle(0, 0, 0, 0);
 			this.RandomNameBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RandomNameBtn.Image = (Image)componentResourceManager.GetObject("RandomNameBtn.Image");
+			this.RandomNameBtn.Image = (Image)resources.GetObject("RandomNameBtn.Image");
 			this.RandomNameBtn.ImageTransparentColor = Color.Magenta;
 			this.RandomNameBtn.Name = "RandomNameBtn";
 			this.RandomNameBtn.Size = new Size(91, 22);

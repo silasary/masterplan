@@ -435,7 +435,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(DeckBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(DeckBuilderForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.NameLbl = new Label();
@@ -611,14 +611,14 @@ namespace Masterplan.UI
 			this.DeckToolbar.TabIndex = 0;
 			this.DeckToolbar.Text = "toolStrip1";
 			this.DuplicateBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DuplicateBtn.Image = (Image)componentResourceManager.GetObject("DuplicateBtn.Image");
+			this.DuplicateBtn.Image = (Image)resources.GetObject("DuplicateBtn.Image");
 			this.DuplicateBtn.ImageTransparentColor = Color.Magenta;
 			this.DuplicateBtn.Name = "DuplicateBtn";
 			this.DuplicateBtn.Size = new Size(61, 22);
 			this.DuplicateBtn.Text = "Duplicate";
 			this.DuplicateBtn.Click += new EventHandler(this.DuplicateBtn_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
@@ -627,7 +627,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.RefreshBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RefreshBtn.Image = (Image)componentResourceManager.GetObject("RefreshBtn.Image");
+			this.RefreshBtn.Image = (Image)resources.GetObject("RefreshBtn.Image");
 			this.RefreshBtn.ImageTransparentColor = Color.Magenta;
 			this.RefreshBtn.Name = "RefreshBtn";
 			this.RefreshBtn.Size = new Size(51, 22);
@@ -636,7 +636,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.ViewBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ViewBtn.Image = (Image)componentResourceManager.GetObject("ViewBtn.Image");
+			this.ViewBtn.Image = (Image)resources.GetObject("ViewBtn.Image");
 			this.ViewBtn.ImageTransparentColor = Color.Magenta;
 			this.ViewBtn.Name = "ViewBtn";
 			this.ViewBtn.Size = new Size(69, 22);

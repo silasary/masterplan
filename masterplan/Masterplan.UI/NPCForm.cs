@@ -698,7 +698,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(NPCForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(NPCForm));
 			ListViewGroup listViewGroup = new ListViewGroup("Immunities", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Resistances", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup3 = new ListViewGroup("Vulnerabilities", HorizontalAlignment.Left);
@@ -1310,7 +1310,7 @@ namespace Masterplan.UI
 			{
 				this.PowerBrowse
 			});
-			this.PowerAddBtn.Image = (Image)componentResourceManager.GetObject("PowerAddBtn.Image");
+			this.PowerAddBtn.Image = (Image)resources.GetObject("PowerAddBtn.Image");
 			this.PowerAddBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerAddBtn.Name = "PowerAddBtn";
 			this.PowerAddBtn.Size = new Size(45, 22);
@@ -1321,14 +1321,14 @@ namespace Masterplan.UI
 			this.PowerBrowse.Text = "Browse...";
 			this.PowerBrowse.Click += new EventHandler(this.SelectPowerBtn_Click);
 			this.PowerRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerRemoveBtn.Image = (Image)componentResourceManager.GetObject("PowerRemoveBtn.Image");
+			this.PowerRemoveBtn.Image = (Image)resources.GetObject("PowerRemoveBtn.Image");
 			this.PowerRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerRemoveBtn.Name = "PowerRemoveBtn";
 			this.PowerRemoveBtn.Size = new Size(54, 22);
 			this.PowerRemoveBtn.Text = "Remove";
 			this.PowerRemoveBtn.Click += new EventHandler(this.PowerRemoveBtn_Click);
 			this.PowerEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerEditBtn.Image = (Image)componentResourceManager.GetObject("PowerEditBtn.Image");
+			this.PowerEditBtn.Image = (Image)resources.GetObject("PowerEditBtn.Image");
 			this.PowerEditBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerEditBtn.Name = "PowerEditBtn";
 			this.PowerEditBtn.Size = new Size(31, 22);
@@ -1337,14 +1337,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.PowerUpBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerUpBtn.Image = (Image)componentResourceManager.GetObject("PowerUpBtn.Image");
+			this.PowerUpBtn.Image = (Image)resources.GetObject("PowerUpBtn.Image");
 			this.PowerUpBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerUpBtn.Name = "PowerUpBtn";
 			this.PowerUpBtn.Size = new Size(59, 22);
 			this.PowerUpBtn.Text = "Move Up";
 			this.PowerUpBtn.Click += new EventHandler(this.PowerUpBtn_Click);
 			this.PowerDownBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PowerDownBtn.Image = (Image)componentResourceManager.GetObject("PowerDownBtn.Image");
+			this.PowerDownBtn.Image = (Image)resources.GetObject("PowerDownBtn.Image");
 			this.PowerDownBtn.ImageTransparentColor = Color.Magenta;
 			this.PowerDownBtn.Name = "PowerDownBtn";
 			this.PowerDownBtn.Size = new Size(75, 22);
@@ -1389,21 +1389,21 @@ namespace Masterplan.UI
 			this.AuraToolbar.TabIndex = 4;
 			this.AuraToolbar.Text = "toolStrip1";
 			this.AuraAddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AuraAddBtn.Image = (Image)componentResourceManager.GetObject("AuraAddBtn.Image");
+			this.AuraAddBtn.Image = (Image)resources.GetObject("AuraAddBtn.Image");
 			this.AuraAddBtn.ImageTransparentColor = Color.Magenta;
 			this.AuraAddBtn.Name = "AuraAddBtn";
 			this.AuraAddBtn.Size = new Size(33, 22);
 			this.AuraAddBtn.Text = "Add";
 			this.AuraAddBtn.Click += new EventHandler(this.AuraAddBtn_Click);
 			this.AuraRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AuraRemoveBtn.Image = (Image)componentResourceManager.GetObject("AuraRemoveBtn.Image");
+			this.AuraRemoveBtn.Image = (Image)resources.GetObject("AuraRemoveBtn.Image");
 			this.AuraRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.AuraRemoveBtn.Name = "AuraRemoveBtn";
 			this.AuraRemoveBtn.Size = new Size(54, 22);
 			this.AuraRemoveBtn.Text = "Remove";
 			this.AuraRemoveBtn.Click += new EventHandler(this.AuraRemoveBtn_Click);
 			this.AuraEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AuraEditBtn.Image = (Image)componentResourceManager.GetObject("AuraEditBtn.Image");
+			this.AuraEditBtn.Image = (Image)resources.GetObject("AuraEditBtn.Image");
 			this.AuraEditBtn.ImageTransparentColor = Color.Magenta;
 			this.AuraEditBtn.Name = "AuraEditBtn";
 			this.AuraEditBtn.Size = new Size(31, 22);
@@ -1463,21 +1463,21 @@ namespace Masterplan.UI
 			this.DamageToolbar.TabIndex = 2;
 			this.DamageToolbar.Text = "toolStrip1";
 			this.AddDmgBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AddDmgBtn.Image = (Image)componentResourceManager.GetObject("AddDmgBtn.Image");
+			this.AddDmgBtn.Image = (Image)resources.GetObject("AddDmgBtn.Image");
 			this.AddDmgBtn.ImageTransparentColor = Color.Magenta;
 			this.AddDmgBtn.Name = "AddDmgBtn";
 			this.AddDmgBtn.Size = new Size(33, 22);
 			this.AddDmgBtn.Text = "Add";
 			this.AddDmgBtn.Click += new EventHandler(this.AddDmgBtn_Click);
 			this.RemoveDmgBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveDmgBtn.Image = (Image)componentResourceManager.GetObject("RemoveDmgBtn.Image");
+			this.RemoveDmgBtn.Image = (Image)resources.GetObject("RemoveDmgBtn.Image");
 			this.RemoveDmgBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveDmgBtn.Name = "RemoveDmgBtn";
 			this.RemoveDmgBtn.Size = new Size(54, 22);
 			this.RemoveDmgBtn.Text = "Remove";
 			this.RemoveDmgBtn.Click += new EventHandler(this.RemoveDmgBtn_Click);
 			this.EditDmgBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditDmgBtn.Image = (Image)componentResourceManager.GetObject("EditDmgBtn.Image");
+			this.EditDmgBtn.Image = (Image)resources.GetObject("EditDmgBtn.Image");
 			this.EditDmgBtn.ImageTransparentColor = Color.Magenta;
 			this.EditDmgBtn.Name = "EditDmgBtn";
 			this.EditDmgBtn.Size = new Size(31, 22);
@@ -1486,7 +1486,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.RegenBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RegenBtn.Image = (Image)componentResourceManager.GetObject("RegenBtn.Image");
+			this.RegenBtn.Image = (Image)resources.GetObject("RegenBtn.Image");
 			this.RegenBtn.ImageTransparentColor = Color.Magenta;
 			this.RegenBtn.Name = "RegenBtn";
 			this.RegenBtn.Size = new Size(81, 22);
@@ -1537,7 +1537,7 @@ namespace Masterplan.UI
 			this.DetailsToolbar.TabIndex = 2;
 			this.DetailsToolbar.Text = "toolStrip1";
 			this.DetailsEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DetailsEditBtn.Image = (Image)componentResourceManager.GetObject("DetailsEditBtn.Image");
+			this.DetailsEditBtn.Image = (Image)resources.GetObject("DetailsEditBtn.Image");
 			this.DetailsEditBtn.ImageTransparentColor = Color.Magenta;
 			this.DetailsEditBtn.Name = "DetailsEditBtn";
 			this.DetailsEditBtn.Size = new Size(31, 22);
@@ -1570,14 +1570,14 @@ namespace Masterplan.UI
 			this.PortraitToolbar.TabIndex = 2;
 			this.PortraitToolbar.Text = "toolStrip1";
 			this.PortraitBrowse.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PortraitBrowse.Image = (Image)componentResourceManager.GetObject("PortraitBrowse.Image");
+			this.PortraitBrowse.Image = (Image)resources.GetObject("PortraitBrowse.Image");
 			this.PortraitBrowse.ImageTransparentColor = Color.Magenta;
 			this.PortraitBrowse.Name = "PortraitBrowse";
 			this.PortraitBrowse.Size = new Size(49, 22);
 			this.PortraitBrowse.Text = "Browse";
 			this.PortraitBrowse.Click += new EventHandler(this.PortraitBrowse_Click);
 			this.PortraitClear.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PortraitClear.Image = (Image)componentResourceManager.GetObject("PortraitClear.Image");
+			this.PortraitClear.Image = (Image)resources.GetObject("PortraitClear.Image");
 			this.PortraitClear.ImageTransparentColor = Color.Magenta;
 			this.PortraitClear.Name = "PortraitClear";
 			this.PortraitClear.Size = new Size(38, 22);

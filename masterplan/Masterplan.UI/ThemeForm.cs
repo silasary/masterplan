@@ -177,7 +177,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ThemeForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(ThemeForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.AttackLbl = new Label();
@@ -282,21 +282,21 @@ namespace Masterplan.UI
 			this.toolStrip1.TabIndex = 13;
 			this.toolStrip1.Text = "toolStrip1";
 			this.SelectThemeBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SelectThemeBtn.Image = (Image)componentResourceManager.GetObject("SelectThemeBtn.Image");
+			this.SelectThemeBtn.Image = (Image)resources.GetObject("SelectThemeBtn.Image");
 			this.SelectThemeBtn.ImageTransparentColor = Color.Magenta;
 			this.SelectThemeBtn.Name = "SelectThemeBtn";
 			this.SelectThemeBtn.Size = new Size(82, 22);
 			this.SelectThemeBtn.Text = "Select Theme";
 			this.SelectThemeBtn.Click += new EventHandler(this.SelectThemeBtn_Click);
 			this.CreateThemeBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.CreateThemeBtn.Image = (Image)componentResourceManager.GetObject("CreateThemeBtn.Image");
+			this.CreateThemeBtn.Image = (Image)resources.GetObject("CreateThemeBtn.Image");
 			this.CreateThemeBtn.ImageTransparentColor = Color.Magenta;
 			this.CreateThemeBtn.Name = "CreateThemeBtn";
 			this.CreateThemeBtn.Size = new Size(112, 22);
 			this.CreateThemeBtn.Text = "Create New Theme";
 			this.CreateThemeBtn.Click += new EventHandler(this.CreateThemeBtn_Click);
 			this.ClearThemeBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ClearThemeBtn.Image = (Image)componentResourceManager.GetObject("ClearThemeBtn.Image");
+			this.ClearThemeBtn.Image = (Image)resources.GetObject("ClearThemeBtn.Image");
 			this.ClearThemeBtn.ImageTransparentColor = Color.Magenta;
 			this.ClearThemeBtn.Name = "ClearThemeBtn";
 			this.ClearThemeBtn.Size = new Size(78, 22);

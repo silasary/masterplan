@@ -387,7 +387,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(DamageForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(DamageForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.DmgLbl = new Label();
@@ -516,49 +516,49 @@ namespace Masterplan.UI
 			this.AmountToolbar.TabIndex = 0;
 			this.AmountToolbar.Text = "toolStrip1";
 			this.Dmg1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg1.Image = (Image)componentResourceManager.GetObject("Dmg1.Image");
+			this.Dmg1.Image = (Image)resources.GetObject("Dmg1.Image");
 			this.Dmg1.ImageTransparentColor = Color.Magenta;
 			this.Dmg1.Name = "Dmg1";
 			this.Dmg1.Size = new Size(25, 22);
 			this.Dmg1.Text = "+1";
 			this.Dmg1.Click += new EventHandler(this.Dmg1_Click);
 			this.Dmg2.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg2.Image = (Image)componentResourceManager.GetObject("Dmg2.Image");
+			this.Dmg2.Image = (Image)resources.GetObject("Dmg2.Image");
 			this.Dmg2.ImageTransparentColor = Color.Magenta;
 			this.Dmg2.Name = "Dmg2";
 			this.Dmg2.Size = new Size(25, 22);
 			this.Dmg2.Text = "+2";
 			this.Dmg2.Click += new EventHandler(this.Dmg2_Click);
 			this.Dmg5.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg5.Image = (Image)componentResourceManager.GetObject("Dmg5.Image");
+			this.Dmg5.Image = (Image)resources.GetObject("Dmg5.Image");
 			this.Dmg5.ImageTransparentColor = Color.Magenta;
 			this.Dmg5.Name = "Dmg5";
 			this.Dmg5.Size = new Size(25, 22);
 			this.Dmg5.Text = "+5";
 			this.Dmg5.Click += new EventHandler(this.Dmg5_Click);
 			this.Dmg10.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg10.Image = (Image)componentResourceManager.GetObject("Dmg10.Image");
+			this.Dmg10.Image = (Image)resources.GetObject("Dmg10.Image");
 			this.Dmg10.ImageTransparentColor = Color.Magenta;
 			this.Dmg10.Name = "Dmg10";
 			this.Dmg10.Size = new Size(31, 22);
 			this.Dmg10.Text = "+10";
 			this.Dmg10.Click += new EventHandler(this.Dmg10_Click);
 			this.Dmg20.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg20.Image = (Image)componentResourceManager.GetObject("Dmg20.Image");
+			this.Dmg20.Image = (Image)resources.GetObject("Dmg20.Image");
 			this.Dmg20.ImageTransparentColor = Color.Magenta;
 			this.Dmg20.Name = "Dmg20";
 			this.Dmg20.Size = new Size(31, 22);
 			this.Dmg20.Text = "+20";
 			this.Dmg20.Click += new EventHandler(this.Dmg20_Click);
 			this.Dmg50.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg50.Image = (Image)componentResourceManager.GetObject("Dmg50.Image");
+			this.Dmg50.Image = (Image)resources.GetObject("Dmg50.Image");
 			this.Dmg50.ImageTransparentColor = Color.Magenta;
 			this.Dmg50.Name = "Dmg50";
 			this.Dmg50.Size = new Size(31, 22);
 			this.Dmg50.Text = "+50";
 			this.Dmg50.Click += new EventHandler(this.Dmg50_Click);
 			this.Dmg100.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.Dmg100.Image = (Image)componentResourceManager.GetObject("Dmg100.Image");
+			this.Dmg100.Image = (Image)resources.GetObject("Dmg100.Image");
 			this.Dmg100.ImageTransparentColor = Color.Magenta;
 			this.Dmg100.Name = "Dmg100";
 			this.Dmg100.Size = new Size(37, 22);
@@ -567,7 +567,7 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.ResetBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ResetBtn.Image = (Image)componentResourceManager.GetObject("ResetBtn.Image");
+			this.ResetBtn.Image = (Image)resources.GetObject("ResetBtn.Image");
 			this.ResetBtn.ImageTransparentColor = Color.Magenta;
 			this.ResetBtn.Name = "ResetBtn";
 			this.ResetBtn.Size = new Size(39, 22);
@@ -594,7 +594,7 @@ namespace Masterplan.UI
 			this.TypeToolbar.TabIndex = 1;
 			this.TypeToolbar.Text = "toolStrip2";
 			this.AcidBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.AcidBtn.Image = (Image)componentResourceManager.GetObject("AcidBtn.Image");
+			this.AcidBtn.Image = (Image)resources.GetObject("AcidBtn.Image");
 			this.AcidBtn.ImageTransparentColor = Color.Magenta;
 			this.AcidBtn.Name = "AcidBtn";
 			this.AcidBtn.Size = new Size(60, 19);
@@ -602,7 +602,7 @@ namespace Masterplan.UI
 			this.AcidBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.AcidBtn.Click += new EventHandler(this.AcidBtn_Click);
 			this.ColdBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ColdBtn.Image = (Image)componentResourceManager.GetObject("ColdBtn.Image");
+			this.ColdBtn.Image = (Image)resources.GetObject("ColdBtn.Image");
 			this.ColdBtn.ImageTransparentColor = Color.Magenta;
 			this.ColdBtn.Name = "ColdBtn";
 			this.ColdBtn.Size = new Size(60, 19);
@@ -610,7 +610,7 @@ namespace Masterplan.UI
 			this.ColdBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.ColdBtn.Click += new EventHandler(this.ColdBtn_Click);
 			this.FireBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.FireBtn.Image = (Image)componentResourceManager.GetObject("FireBtn.Image");
+			this.FireBtn.Image = (Image)resources.GetObject("FireBtn.Image");
 			this.FireBtn.ImageTransparentColor = Color.Magenta;
 			this.FireBtn.Name = "FireBtn";
 			this.FireBtn.Size = new Size(60, 19);
@@ -618,7 +618,7 @@ namespace Masterplan.UI
 			this.FireBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.FireBtn.Click += new EventHandler(this.FireBtn_Click);
 			this.ForceBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ForceBtn.Image = (Image)componentResourceManager.GetObject("ForceBtn.Image");
+			this.ForceBtn.Image = (Image)resources.GetObject("ForceBtn.Image");
 			this.ForceBtn.ImageTransparentColor = Color.Magenta;
 			this.ForceBtn.Name = "ForceBtn";
 			this.ForceBtn.Size = new Size(60, 19);
@@ -626,7 +626,7 @@ namespace Masterplan.UI
 			this.ForceBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.ForceBtn.Click += new EventHandler(this.ForceBtn_Click);
 			this.LightningBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.LightningBtn.Image = (Image)componentResourceManager.GetObject("LightningBtn.Image");
+			this.LightningBtn.Image = (Image)resources.GetObject("LightningBtn.Image");
 			this.LightningBtn.ImageTransparentColor = Color.Magenta;
 			this.LightningBtn.Name = "LightningBtn";
 			this.LightningBtn.Size = new Size(60, 19);
@@ -634,7 +634,7 @@ namespace Masterplan.UI
 			this.LightningBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.LightningBtn.Click += new EventHandler(this.LightningBtn_Click);
 			this.NecroticBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.NecroticBtn.Image = (Image)componentResourceManager.GetObject("NecroticBtn.Image");
+			this.NecroticBtn.Image = (Image)resources.GetObject("NecroticBtn.Image");
 			this.NecroticBtn.ImageTransparentColor = Color.Magenta;
 			this.NecroticBtn.Name = "NecroticBtn";
 			this.NecroticBtn.Size = new Size(60, 19);
@@ -642,7 +642,7 @@ namespace Masterplan.UI
 			this.NecroticBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.NecroticBtn.Click += new EventHandler(this.NecroticBtn_Click);
 			this.PoisonBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PoisonBtn.Image = (Image)componentResourceManager.GetObject("PoisonBtn.Image");
+			this.PoisonBtn.Image = (Image)resources.GetObject("PoisonBtn.Image");
 			this.PoisonBtn.ImageTransparentColor = Color.Magenta;
 			this.PoisonBtn.Name = "PoisonBtn";
 			this.PoisonBtn.Size = new Size(60, 19);
@@ -650,7 +650,7 @@ namespace Masterplan.UI
 			this.PoisonBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.PoisonBtn.Click += new EventHandler(this.PoisonBtn_Click);
 			this.PsychicBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PsychicBtn.Image = (Image)componentResourceManager.GetObject("PsychicBtn.Image");
+			this.PsychicBtn.Image = (Image)resources.GetObject("PsychicBtn.Image");
 			this.PsychicBtn.ImageTransparentColor = Color.Magenta;
 			this.PsychicBtn.Name = "PsychicBtn";
 			this.PsychicBtn.Size = new Size(60, 19);
@@ -658,7 +658,7 @@ namespace Masterplan.UI
 			this.PsychicBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.PsychicBtn.Click += new EventHandler(this.PsychicBtn_Click);
 			this.RadiantBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RadiantBtn.Image = (Image)componentResourceManager.GetObject("RadiantBtn.Image");
+			this.RadiantBtn.Image = (Image)resources.GetObject("RadiantBtn.Image");
 			this.RadiantBtn.ImageTransparentColor = Color.Magenta;
 			this.RadiantBtn.Name = "RadiantBtn";
 			this.RadiantBtn.Size = new Size(60, 19);
@@ -666,7 +666,7 @@ namespace Masterplan.UI
 			this.RadiantBtn.TextAlign = ContentAlignment.MiddleLeft;
 			this.RadiantBtn.Click += new EventHandler(this.RadiantBtn_Click);
 			this.ThunderBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ThunderBtn.Image = (Image)componentResourceManager.GetObject("ThunderBtn.Image");
+			this.ThunderBtn.Image = (Image)resources.GetObject("ThunderBtn.Image");
 			this.ThunderBtn.ImageTransparentColor = Color.Magenta;
 			this.ThunderBtn.Name = "ThunderBtn";
 			this.ThunderBtn.Size = new Size(60, 19);

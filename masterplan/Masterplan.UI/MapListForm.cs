@@ -525,7 +525,7 @@ namespace Masterplan.UI
 		private void InitializeComponent()
 		{
 			this.components = new Container();
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(MapListForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(MapListForm));
 			this.MapList = new ListView();
 			this.MapHdr = new ColumnHeader();
 			this.ListContext = new ContextMenuStrip(this.components);
@@ -656,7 +656,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator3,
 				this.AddTile
 			});
-			this.AddBtn.Image = (Image)componentResourceManager.GetObject("AddBtn.Image");
+			this.AddBtn.Image = (Image)resources.GetObject("AddBtn.Image");
 			this.AddBtn.ImageTransparentColor = Color.Magenta;
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new Size(42, 22);
@@ -682,14 +682,14 @@ namespace Masterplan.UI
 			this.AddTile.Text = "Use Map Tile...";
 			this.AddTile.Click += new EventHandler(this.AddTile_Click);
 			this.RemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RemoveBtn.Image = (Image)componentResourceManager.GetObject("RemoveBtn.Image");
+			this.RemoveBtn.Image = (Image)resources.GetObject("RemoveBtn.Image");
 			this.RemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.RemoveBtn.Name = "RemoveBtn";
 			this.RemoveBtn.Size = new Size(54, 22);
 			this.RemoveBtn.Text = "Remove";
 			this.RemoveBtn.Click += new EventHandler(this.RemoveBtn_Click);
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(31, 22);
@@ -762,7 +762,7 @@ namespace Masterplan.UI
 				this.PrintMap,
 				this.PrintBlank
 			});
-			this.PrintMenu.Image = (Image)componentResourceManager.GetObject("PrintMenu.Image");
+			this.PrintMenu.Image = (Image)resources.GetObject("PrintMenu.Image");
 			this.PrintMenu.ImageTransparentColor = Color.Magenta;
 			this.PrintMenu.Name = "PrintMenu";
 			this.PrintMenu.Size = new Size(45, 22);
@@ -784,7 +784,7 @@ namespace Masterplan.UI
 				this.ToolsScreenshot,
 				this.ToolsPlayerView
 			});
-			this.ToolsBtn.Image = (Image)componentResourceManager.GetObject("ToolsBtn.Image");
+			this.ToolsBtn.Image = (Image)resources.GetObject("ToolsBtn.Image");
 			this.ToolsBtn.ImageTransparentColor = Color.Magenta;
 			this.ToolsBtn.Name = "ToolsBtn";
 			this.ToolsBtn.Size = new Size(49, 22);
@@ -815,7 +815,7 @@ namespace Masterplan.UI
 				this.toolStripSeparator4,
 				this.DelveDeck
 			});
-			this.DelveBtn.Image = (Image)componentResourceManager.GetObject("DelveBtn.Image");
+			this.DelveBtn.Image = (Image)resources.GetObject("DelveBtn.Image");
 			this.DelveBtn.ImageTransparentColor = Color.Magenta;
 			this.DelveBtn.Name = "DelveBtn";
 			this.DelveBtn.Size = new Size(105, 22);

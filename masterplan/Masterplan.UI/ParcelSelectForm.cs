@@ -192,7 +192,7 @@ namespace Masterplan.UI
 		{
 			ListViewGroup listViewGroup = new ListViewGroup("Magic Items", HorizontalAlignment.Left);
 			ListViewGroup listViewGroup2 = new ListViewGroup("Mundane Parcels", HorizontalAlignment.Left);
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ParcelSelectForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(ParcelSelectForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.NameHdr = new ColumnHeader();
@@ -275,14 +275,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 1;
 			this.Toolbar.Text = "toolStrip1";
 			this.ChangeItemBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.ChangeItemBtn.Image = (Image)componentResourceManager.GetObject("ChangeItemBtn.Image");
+			this.ChangeItemBtn.Image = (Image)resources.GetObject("ChangeItemBtn.Image");
 			this.ChangeItemBtn.ImageTransparentColor = Color.Magenta;
 			this.ChangeItemBtn.Name = "ChangeItemBtn";
 			this.ChangeItemBtn.Size = new Size(115, 22);
 			this.ChangeItemBtn.Text = "Change Magic Item";
 			this.ChangeItemBtn.Click += new EventHandler(this.ChangeItemBtn_Click);
 			this.StatBlockBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.StatBlockBtn.Image = (Image)componentResourceManager.GetObject("StatBlockBtn.Image");
+			this.StatBlockBtn.Image = (Image)resources.GetObject("StatBlockBtn.Image");
 			this.StatBlockBtn.ImageTransparentColor = Color.Magenta;
 			this.StatBlockBtn.Name = "StatBlockBtn";
 			this.StatBlockBtn.Size = new Size(63, 22);
@@ -291,14 +291,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.RandomiseAllBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RandomiseAllBtn.Image = (Image)componentResourceManager.GetObject("RandomiseAllBtn.Image");
+			this.RandomiseAllBtn.Image = (Image)resources.GetObject("RandomiseAllBtn.Image");
 			this.RandomiseAllBtn.ImageTransparentColor = Color.Magenta;
 			this.RandomiseAllBtn.Name = "RandomiseAllBtn";
 			this.RandomiseAllBtn.Size = new Size(87, 22);
 			this.RandomiseAllBtn.Text = "Randomise All";
 			this.RandomiseAllBtn.Click += new EventHandler(this.RandomiseAllBtn_Click);
 			this.RandomiseBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RandomiseBtn.Image = (Image)componentResourceManager.GetObject("RandomiseBtn.Image");
+			this.RandomiseBtn.Image = (Image)resources.GetObject("RandomiseBtn.Image");
 			this.RandomiseBtn.ImageTransparentColor = Color.Magenta;
 			this.RandomiseBtn.Name = "RandomiseBtn";
 			this.RandomiseBtn.Size = new Size(70, 22);

@@ -80,7 +80,7 @@ namespace Masterplan.Controls
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(TokenPanel));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(TokenPanel));
 			this.ImageBox = new PictureBox();
 			this.PictureToolbar = new ToolStrip();
 			this.toolStripButton1 = new ToolStripDropDownButton();
@@ -116,7 +116,7 @@ namespace Masterplan.Controls
 				this.ImageSelectTile,
 				this.ImageSelectColour
 			});
-			this.toolStripButton1.Image = (Image)componentResourceManager.GetObject("toolStripButton1.Image");
+			this.toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
 			this.toolStripButton1.ImageTransparentColor = Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new Size(51, 22);

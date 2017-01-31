@@ -103,7 +103,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(EncyclopediaEntryDetailsForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(EncyclopediaEntryDetailsForm));
 			this.Browser = new WebBrowser();
 			this.Toolbar = new ToolStrip();
 			this.DMBtn = new ToolStripButton();
@@ -135,7 +135,7 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 3;
 			this.Toolbar.Text = "toolStrip1";
 			this.DMBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.DMBtn.Image = (Image)componentResourceManager.GetObject("DMBtn.Image");
+			this.DMBtn.Image = (Image)resources.GetObject("DMBtn.Image");
 			this.DMBtn.ImageTransparentColor = Color.Magenta;
 			this.DMBtn.Name = "DMBtn";
 			this.DMBtn.Size = new Size(86, 22);
@@ -148,7 +148,7 @@ namespace Masterplan.UI
 			{
 				this.ExportHTML
 			});
-			this.ExportMenu.Image = (Image)componentResourceManager.GetObject("ExportMenu.Image");
+			this.ExportMenu.Image = (Image)resources.GetObject("ExportMenu.Image");
 			this.ExportMenu.ImageTransparentColor = Color.Magenta;
 			this.ExportMenu.Name = "ExportMenu";
 			this.ExportMenu.Size = new Size(53, 22);
@@ -158,7 +158,7 @@ namespace Masterplan.UI
 			this.ExportHTML.Text = "Export to HTML";
 			this.ExportHTML.Click += new EventHandler(this.ExportHTML_Click);
 			this.PlayerViewBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.PlayerViewBtn.Image = (Image)componentResourceManager.GetObject("PlayerViewBtn.Image");
+			this.PlayerViewBtn.Image = (Image)resources.GetObject("PlayerViewBtn.Image");
 			this.PlayerViewBtn.ImageTransparentColor = Color.Magenta;
 			this.PlayerViewBtn.Name = "PlayerViewBtn";
 			this.PlayerViewBtn.Size = new Size(114, 22);

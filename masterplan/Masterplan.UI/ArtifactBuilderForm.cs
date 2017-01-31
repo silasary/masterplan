@@ -49,7 +49,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ArtifactBuilderForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(ArtifactBuilderForm));
 			this.BtnPnl = new Panel();
 			this.CancelBtn = new Button();
 			this.OKBtn = new Button();
@@ -110,7 +110,7 @@ namespace Masterplan.UI
 				this.FileImport,
 				this.FileExport
 			});
-			this.FileMenu.Image = (Image)componentResourceManager.GetObject("FileMenu.Image");
+			this.FileMenu.Image = (Image)resources.GetObject("FileMenu.Image");
 			this.FileMenu.ImageTransparentColor = Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
 			this.FileMenu.Size = new Size(38, 22);

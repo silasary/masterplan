@@ -224,7 +224,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(OptionPoisonForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(OptionPoisonForm));
 			this.NameLbl = new Label();
 			this.NameBox = new TextBox();
 			this.Pages = new TabControl();
@@ -333,21 +333,21 @@ namespace Masterplan.UI
 			this.SectionToolbar.TabIndex = 0;
 			this.SectionToolbar.Text = "toolStrip1";
 			this.SectionAddBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionAddBtn.Image = (Image)componentResourceManager.GetObject("SectionAddBtn.Image");
+			this.SectionAddBtn.Image = (Image)resources.GetObject("SectionAddBtn.Image");
 			this.SectionAddBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionAddBtn.Name = "SectionAddBtn";
 			this.SectionAddBtn.Size = new Size(33, 22);
 			this.SectionAddBtn.Text = "Add";
 			this.SectionAddBtn.Click += new EventHandler(this.SectionAddBtn_Click);
 			this.SectionRemoveBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionRemoveBtn.Image = (Image)componentResourceManager.GetObject("SectionRemoveBtn.Image");
+			this.SectionRemoveBtn.Image = (Image)resources.GetObject("SectionRemoveBtn.Image");
 			this.SectionRemoveBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionRemoveBtn.Name = "SectionRemoveBtn";
 			this.SectionRemoveBtn.Size = new Size(54, 22);
 			this.SectionRemoveBtn.Text = "Remove";
 			this.SectionRemoveBtn.Click += new EventHandler(this.SectionRemoveBtn_Click);
 			this.SectionEditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionEditBtn.Image = (Image)componentResourceManager.GetObject("SectionEditBtn.Image");
+			this.SectionEditBtn.Image = (Image)resources.GetObject("SectionEditBtn.Image");
 			this.SectionEditBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionEditBtn.Name = "SectionEditBtn";
 			this.SectionEditBtn.Size = new Size(31, 22);
@@ -356,14 +356,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.SectionUpBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionUpBtn.Image = (Image)componentResourceManager.GetObject("SectionUpBtn.Image");
+			this.SectionUpBtn.Image = (Image)resources.GetObject("SectionUpBtn.Image");
 			this.SectionUpBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionUpBtn.Name = "SectionUpBtn";
 			this.SectionUpBtn.Size = new Size(26, 22);
 			this.SectionUpBtn.Text = "Up";
 			this.SectionUpBtn.Click += new EventHandler(this.SectionUpBtn_Click);
 			this.SectionDownBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionDownBtn.Image = (Image)componentResourceManager.GetObject("SectionDownBtn.Image");
+			this.SectionDownBtn.Image = (Image)resources.GetObject("SectionDownBtn.Image");
 			this.SectionDownBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionDownBtn.Name = "SectionDownBtn";
 			this.SectionDownBtn.Size = new Size(42, 22);
@@ -372,14 +372,14 @@ namespace Masterplan.UI
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.SectionLeftBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionLeftBtn.Image = (Image)componentResourceManager.GetObject("SectionLeftBtn.Image");
+			this.SectionLeftBtn.Image = (Image)resources.GetObject("SectionLeftBtn.Image");
 			this.SectionLeftBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionLeftBtn.Name = "SectionLeftBtn";
 			this.SectionLeftBtn.Size = new Size(31, 22);
 			this.SectionLeftBtn.Text = "Left";
 			this.SectionLeftBtn.Click += new EventHandler(this.SectionLeftBtn_Click);
 			this.SectionRightBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.SectionRightBtn.Image = (Image)componentResourceManager.GetObject("SectionRightBtn.Image");
+			this.SectionRightBtn.Image = (Image)resources.GetObject("SectionRightBtn.Image");
 			this.SectionRightBtn.ImageTransparentColor = Color.Magenta;
 			this.SectionRightBtn.Name = "SectionRightBtn";
 			this.SectionRightBtn.Size = new Size(39, 22);

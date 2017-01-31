@@ -105,7 +105,7 @@ namespace Masterplan.UI
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(CreatureSkillsForm));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(CreatureSkillsForm));
 			this.OKBtn = new Button();
 			this.CancelBtn = new Button();
 			this.SkillList = new ListView();
@@ -185,14 +185,14 @@ namespace Masterplan.UI
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.TrainedBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.TrainedBtn.Image = (Image)componentResourceManager.GetObject("TrainedBtn.Image");
+			this.TrainedBtn.Image = (Image)resources.GetObject("TrainedBtn.Image");
 			this.TrainedBtn.ImageTransparentColor = Color.Magenta;
 			this.TrainedBtn.Name = "TrainedBtn";
 			this.TrainedBtn.Size = new Size(51, 22);
 			this.TrainedBtn.Text = "Trained";
 			this.TrainedBtn.Click += new EventHandler(this.TrainedBtn_Click);
 			this.EditSkillBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditSkillBtn.Image = (Image)componentResourceManager.GetObject("EditSkillBtn.Image");
+			this.EditSkillBtn.Image = (Image)resources.GetObject("EditSkillBtn.Image");
 			this.EditSkillBtn.ImageTransparentColor = Color.Magenta;
 			this.EditSkillBtn.Name = "EditSkillBtn";
 			this.EditSkillBtn.Size = new Size(55, 22);

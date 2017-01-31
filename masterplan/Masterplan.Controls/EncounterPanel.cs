@@ -111,7 +111,7 @@ namespace Masterplan.Controls
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(EncounterPanel));
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(EncounterPanel));
 			this.Toolbar = new ToolStrip();
 			this.EditBtn = new ToolStripButton();
 			this.RunBtn = new ToolStripButton();
@@ -139,14 +139,14 @@ namespace Masterplan.Controls
 			this.Toolbar.TabIndex = 0;
 			this.Toolbar.Text = "toolStrip1";
 			this.EditBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.EditBtn.Image = (Image)componentResourceManager.GetObject("EditBtn.Image");
+			this.EditBtn.Image = (Image)resources.GetObject("EditBtn.Image");
 			this.EditBtn.ImageTransparentColor = Color.Magenta;
 			this.EditBtn.Name = "EditBtn";
 			this.EditBtn.Size = new Size(105, 22);
 			this.EditBtn.Text = "Encounter Builder";
 			this.EditBtn.Click += new EventHandler(this.EditBtn_Click);
 			this.RunBtn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-			this.RunBtn.Image = (Image)componentResourceManager.GetObject("RunBtn.Image");
+			this.RunBtn.Image = (Image)resources.GetObject("RunBtn.Image");
 			this.RunBtn.ImageTransparentColor = Color.Magenta;
 			this.RunBtn.Name = "RunBtn";
 			this.RunBtn.Size = new Size(89, 22);
