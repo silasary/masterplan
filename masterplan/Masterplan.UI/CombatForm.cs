@@ -164,332 +164,6 @@ namespace Masterplan.UI
 
 		private StringFormat fRight = new StringFormat();
 
-		private ToolStrip Toolbar;
-
-		private SplitContainer MapSplitter;
-
-		private CombatForm.CombatListControl CombatList;
-
-		private ColumnHeader NameHdr;
-
-		private ColumnHeader InitHdr;
-
-		private ColumnHeader HPHdr;
-
-		private ToolTip MapTooltip;
-
-		private ToolStripButton DetailsBtn;
-
-		private ToolStripSeparator toolStripSeparator1;
-
-		private SplitContainer ListSplitter;
-
-		private StatusStrip Statusbar;
-
-		private ToolStripStatusLabel XPLbl;
-
-		private ContextMenuStrip MapContext;
-
-		private ToolStripMenuItem MapDetails;
-
-		private ToolStripMenuItem MapVisible;
-
-		private ToolStripSeparator toolStripMenuItem1;
-
-		private ToolStripButton DamageBtn;
-
-		private ToolStripMenuItem MapDamage;
-
-		private ToolStripSeparator toolStripSeparator2;
-
-		private ContextMenuStrip ListContext;
-
-		private ToolStripMenuItem ListDetails;
-
-		private ToolStripMenuItem ListDamage;
-
-		private ToolStripSeparator toolStripSeparator3;
-
-		private ToolStripSeparator toolStripSeparator4;
-
-		private ToolStripMenuItem ListVisible;
-
-		public MapView MapView;
-
-		private ToolStripDropDownButton CombatantsBtn;
-
-		private ToolStripMenuItem CombatantsAdd;
-
-		private ToolStripMenuItem CombatantsRemove;
-
-		private ToolStripSeparator toolStripSeparator6;
-
-		private ToolStripMenuItem CombatantsAddToken;
-
-		private TrackBar ZoomGauge;
-
-		private ToolStripDropDownButton MapMenu;
-
-		private ToolStripMenuItem MapReset;
-
-		private ToolStripMenuItem MapNavigate;
-
-		private ToolStripSeparator toolStripSeparator7;
-
-		private ToolStripMenuItem MapExport;
-
-		private WebBrowser Preview;
-
-		private Panel PreviewPanel;
-
-		private ToolStripButton NextInitBtn;
-
-		private ToolStripMenuItem ShowMap;
-
-		private ToolStripSeparator toolStripSeparator8;
-
-		private ToolStripDropDownButton PlayerViewMapMenu;
-
-		private ToolStripMenuItem PlayerViewMap;
-
-		private ToolStripMenuItem PlayerLabels;
-
-		private ToolStripMenuItem MapFog;
-
-		private ToolStripMenuItem MapFogAllCreatures;
-
-		private ToolStripMenuItem MapFogVisibleCreatures;
-
-		private ToolStripMenuItem MapFogHideCreatures;
-
-		private ToolStripSeparator toolStripSeparator10;
-
-		private ToolStripSeparator toolStripSeparator9;
-
-		private ToolStripMenuItem PlayerViewFog;
-
-		private ToolStripMenuItem PlayerFogAll;
-
-		private ToolStripMenuItem PlayerFogVisible;
-
-		private ToolStripMenuItem PlayerFogNone;
-
-		private ToolStripMenuItem MapGrid;
-
-		private ToolStripMenuItem PlayerViewGrid;
-
-		private ToolStripMenuItem MapPrint;
-
-		private ToolStripMenuItem MapLOS;
-
-		private ToolStripMenuItem PlayerViewLOS;
-
-		private ToolStripSeparator toolStripSeparator12;
-
-		private ToolStripMenuItem CombatantsHideAll;
-
-		private ToolStripMenuItem CombatantsShowAll;
-
-		private ToolStripDropDownButton OptionsMenu;
-
-		private ToolStripSeparator toolStripSeparator13;
-
-		private ToolStripMenuItem OneColumn;
-
-		private ToolStripMenuItem TwoColumns;
-
-		private ToolStripSeparator toolStripSeparator5;
-
-		private ToolStripMenuItem ToolsAutoRemove;
-
-		private ToolStripStatusLabel LevelLbl;
-
-		private ToolStripMenuItem CombatantsAddOverlay;
-
-		private ToolStripSeparator toolStripSeparator14;
-
-		private ToolStripSeparator toolStripMenuItem2;
-
-		private ToolStripMenuItem PlayerHealth;
-
-		private ToolStripMenuItem MapHealth;
-
-		private ToolStripSeparator toolStripSeparator15;
-
-		private ToolStripSeparator toolStripSeparator16;
-
-		private ToolStripSeparator toolStripSeparator17;
-
-		private Panel MainPanel;
-
-		private Button CloseBtn;
-
-		private ToolStripButton DelayBtn;
-
-		private ToolStripSeparator toolStripSeparator18;
-
-		private ToolStripMenuItem ListDelay;
-
-		private ToolStripMenuItem MapDelay;
-
-		private ToolStripStatusLabel RoundLbl;
-
-		private ToolStripSeparator toolStripSeparator20;
-
-		private ToolStripMenuItem MapRight;
-
-		private ToolStripMenuItem MapBelow;
-
-		private ToolStripSeparator toolStripSeparator21;
-
-		private ToolStripMenuItem OptionsLandscape;
-
-		private ToolStripMenuItem OptionsPortrait;
-
-		private ToolStripMenuItem MapDrawing;
-
-		private ToolStripSeparator toolStripSeparator19;
-
-		private ToolStripMenuItem MapClearDrawings;
-
-		private Button PauseBtn;
-
-		private ToolStripDropDownButton EffectMenu;
-
-		private ToolStripMenuItem ListCondition;
-
-		private ToolStripMenuItem MapAddEffect;
-
-		private ToolStripMenuItem effectToolStripMenuItem;
-
-		private ToolStripMenuItem effectToolStripMenuItem1;
-
-		private ToolStripMenuItem effectToolStripMenuItem2;
-
-		private ToolStripMenuItem OptionsIPlay4e;
-
-		private ToolStripMenuItem ListRemoveEffect;
-
-		private ToolStripMenuItem effectToolStripMenuItem3;
-
-		private ToolStripMenuItem MapRemoveEffect;
-
-		private ToolStripMenuItem effectToolStripMenuItem4;
-
-		private ToolStripSeparator toolStripSeparator22;
-
-		private ToolStripMenuItem MapContextDrawing;
-
-		private ToolStripMenuItem MapContextClearDrawings;
-
-		private ToolStripSeparator toolStripSeparator24;
-
-		private ToolStripMenuItem MapContextOverlay;
-
-		private ToolStripMenuItem MapGridLabels;
-
-		private ToolStripMenuItem PlayerViewGridLabels;
-
-		private ToolStripMenuItem ListHeal;
-
-		private ToolStripMenuItem MapHeal;
-
-		private ToolStripButton HealBtn;
-
-		private ToolStripMenuItem MapPictureTokens;
-
-		private ToolStripMenuItem PlayerPictureTokens;
-
-		private ToolStripDropDownButton ToolsMenu;
-
-		private ToolStripMenuItem ToolsEffects;
-
-		private ToolStripMenuItem ToolsLinks;
-
-		private ToolStripSeparator toolStripSeparator11;
-
-		private ToolStripMenuItem ToolsAddIns;
-
-		private ToolStripMenuItem addinsToolStripMenuItem;
-
-		private ToolStripMenuItem ListCreateCopy;
-
-		private ToolStripMenuItem MapCreateCopy;
-
-		private ToolStripMenuItem PlayerViewInitList;
-
-		private ToolStripMenuItem MapSetPicture;
-
-		private ToolStripDropDownButton PlayerViewNoMapMenu;
-
-		private ToolStripMenuItem PlayerViewNoMapShowInitiativeList;
-
-		private ToolStripMenuItem MapConditions;
-
-		private ToolStripMenuItem PlayerConditions;
-
-		private TabControl Pages;
-
-		private TabPage CombatantsPage;
-
-		private TabPage TemplatesPage;
-
-		private ListView TemplateList;
-
-		private ColumnHeader TemplateHdr;
-
-		private Button InfoBtn;
-
-		private InitiativePanel InitiativePanel;
-
-		private ToolStripMenuItem OptionsShowInit;
-
-		private ToolStripMenuItem PlayerViewNoMapShowLabels;
-
-		private ColumnHeader DefHdr;
-
-		private ToolStripMenuItem ListRemove;
-
-		private ToolStripMenuItem MapRemove;
-
-		private ToolStripMenuItem ListRemoveMap;
-
-		private ToolStripMenuItem ListRemoveCombat;
-
-		private ToolStripMenuItem MapRemoveMap;
-
-		private ToolStripMenuItem MapRemoveCombat;
-
-		private Button DieRollerBtn;
-
-		private ColumnHeader EffectsHdr;
-
-		private ToolStripSeparator toolStripSeparator23;
-
-		private ToolStripMenuItem ToolsColumns;
-
-		private ToolStripMenuItem ToolsColumnsInit;
-
-		private ToolStripMenuItem ToolsColumnsHP;
-
-		private ToolStripMenuItem ToolsColumnsDefences;
-
-		private ToolStripMenuItem ToolsColumnsConditions;
-
-		private TabPage LogPage;
-
-		private WebBrowser LogBrowser;
-
-		private ToolStripSeparator toolStripSeparator25;
-
-		private ToolStripMenuItem MapContextLOS;
-
-		private Button ReportBtn;
-
-		private ToolStripSeparator toolStripSeparator26;
-
-		private ToolStripMenuItem CombatantsWaves;
-
 		public List<IToken> SelectedTokens
 		{
 			get
@@ -846,7 +520,7 @@ namespace Masterplan.UI
 					if (initiatives.Count != 0)
 					{
 						this.handle_ended_effects(false);
-						this.handle_saves();
+						this.HandleSaves();
 						this.fCurrentActor = this.GetNextActor(this.fCurrentActor);
 						this.fLog.AddStartTurnEntry(this.fCurrentActor.ID);
 						if (this.fCurrentActor.Initiative > this.InitiativePanel.CurrentInitiative)
@@ -3584,7 +3258,7 @@ namespace Masterplan.UI
 			}
 			foreach (Pair<CombatData, EncounterCard> current3 in list)
 			{
-				dictionary2[current3.First] = this.get_state(current3.First);
+				dictionary2[current3.First] = this.GetState(current3.First);
 			}
 			DamageForm damageForm = new DamageForm(list, 0);
 			if (damageForm.ShowDialog() == DialogResult.OK)
@@ -3596,7 +3270,7 @@ namespace Masterplan.UI
 					{
 						this.fLog.AddDamageEntry(current4.First.ID, num, damageForm.Types);
 					}
-					CreatureState creatureState = this.get_state(current4.First);
+					CreatureState creatureState = this.GetState(current4.First);
 					if (creatureState != dictionary2[current4.First])
 					{
 						this.fLog.AddStateEntry(current4.First.ID, creatureState);
@@ -3638,7 +3312,7 @@ namespace Masterplan.UI
 			}
 			foreach (Pair<CombatData, EncounterCard> current3 in list)
 			{
-				dictionary2[current3.First] = this.get_state(current3.First);
+				dictionary2[current3.First] = this.GetState(current3.First);
 			}
 			HealForm healForm = new HealForm(list);
 			if (healForm.ShowDialog() == DialogResult.OK)
@@ -3650,7 +3324,7 @@ namespace Masterplan.UI
 					{
 						this.fLog.AddDamageEntry(current4.First.ID, num, null);
 					}
-					CreatureState creatureState = this.get_state(current4.First);
+					CreatureState creatureState = this.GetState(current4.First);
 					if (creatureState != dictionary2[current4.First])
 					{
 						this.fLog.AddStateEntry(current4.First.ID, creatureState);
@@ -4499,7 +4173,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void handle_saves()
+		private void HandleSaves()
 		{
 			if (this.fCurrentActor == null)
 			{
@@ -4655,7 +4329,7 @@ namespace Masterplan.UI
 			{
 				combatData = list[num2 + 1];
 			}
-			bool flag = this.get_state(combatData) == CreatureState.Defeated;
+			bool flag = this.GetState(combatData) == CreatureState.Defeated;
 			bool flag2 = combatData != null && combatData.Delaying;
 			if (flag || flag2)
 			{
@@ -4664,7 +4338,7 @@ namespace Masterplan.UI
 			return combatData;
 		}
 
-		private CreatureState get_state(CombatData cd)
+		private CreatureState GetState(CombatData cd)
 		{
 			EncounterSlot encounterSlot = this.fEncounter.FindSlot(cd);
 			if (encounterSlot != null)
@@ -6435,5 +6109,22 @@ namespace Masterplan.UI
 			}
 			return HTML.Concatenate(list);
 		}
-	}
+
+        private void CombatForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    DamageBtn_Click(sender, e);
+                    e.Handled = true;
+                    break;
+                case Keys.F2:
+                    NextInitBtn_Click(sender, e);
+                    e.Handled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
