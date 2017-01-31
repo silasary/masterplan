@@ -2879,12 +2879,12 @@ namespace Masterplan.UI
 
 		private void ListRemoveEffect_DropDownOpening(object sender, EventArgs e)
 		{
-			this.update_remove_effect_list(this.ListRemoveEffect, true);
+			this.UpdateRemoveEffectList(this.ListRemoveEffect, true);
 		}
 
 		private void MapRemoveEffect_DropDownOpening(object sender, EventArgs e)
 		{
-			this.update_remove_effect_list(this.MapRemoveEffect, false);
+			this.UpdateRemoveEffectList(this.MapRemoveEffect, false);
 		}
 
 		private void PlayerViewNoMapMenu_DropDownOpening(object sender, EventArgs e)
@@ -5159,12 +5159,16 @@ namespace Masterplan.UI
 			tsddi.DropDownItems.Add(toolStripMenuItem);
 			foreach (string current in Conditions.GetConditions())
 			{
-				OngoingCondition ongoingCondition = new OngoingCondition();
-				ongoingCondition.Data = current;
-				ongoingCondition.Duration = DurationType.Encounter;
-				ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(ongoingCondition.ToString(this.fEncounter, false));
-				toolStripMenuItem2.Tag = ongoingCondition;
-				if (use_list_selection)
+                OngoingCondition ongoingCondition = new OngoingCondition()
+                {
+                    Data = current,
+                    Duration = DurationType.Encounter
+                };
+                ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(ongoingCondition.ToString(fEncounter, false))
+                {
+                    Tag = ongoingCondition
+                };
+                if (use_list_selection)
 				{
 					toolStripMenuItem2.Click += new EventHandler(this.apply_quick_effect_from_toolbar);
 				}
@@ -5184,9 +5188,11 @@ namespace Masterplan.UI
 					tsddi.DropDownItems.Add(toolStripMenuItem3);
 					foreach (OngoingCondition current3 in current2.Effects)
 					{
-						ToolStripMenuItem toolStripMenuItem4 = new ToolStripMenuItem(current3.ToString(this.fEncounter, false));
-						toolStripMenuItem4.Tag = current3.Copy();
-						if (use_list_selection)
+                        ToolStripMenuItem toolStripMenuItem4 = new ToolStripMenuItem(current3.ToString(fEncounter, false))
+                        {
+                            Tag = current3.Copy()
+                        };
+                        if (use_list_selection)
 						{
 							toolStripMenuItem4.Click += new EventHandler(this.apply_quick_effect_from_toolbar);
 						}
@@ -5205,9 +5211,11 @@ namespace Masterplan.UI
 			}
 			foreach (OngoingCondition current4 in this.fEffects)
 			{
-				ToolStripMenuItem toolStripMenuItem5 = new ToolStripMenuItem(current4.ToString(this.fEncounter, false));
-				toolStripMenuItem5.Tag = current4.Copy();
-				if (use_list_selection)
+                ToolStripMenuItem toolStripMenuItem5 = new ToolStripMenuItem(current4.ToString(this.fEncounter, false))
+                {
+                    Tag = current4.Copy()
+                };
+                if (use_list_selection)
 				{
 					toolStripMenuItem5.Click += new EventHandler(this.apply_quick_effect_from_toolbar);
 				}
@@ -5233,15 +5241,17 @@ namespace Masterplan.UI
 			tsddi.DropDownItems.Add(toolStripMenuItem6);
 		}
 
-		private void update_remove_effect_list(ToolStripDropDownItem tsddi, bool use_list_selection)
+		private void UpdateRemoveEffectList(ToolStripDropDownItem tsddi, bool use_list_selection)
 		{
 			tsddi.DropDownItems.Clear();
 			List<IToken> list = use_list_selection ? this.SelectedTokens : this.MapView.SelectedTokens;
 			if (list.Count != 1)
 			{
-				ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem("(multiple selection)");
-				toolStripMenuItem.Enabled = false;
-				tsddi.DropDownItems.Add(toolStripMenuItem);
+                ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem("(multiple selection)")
+                {
+                    Enabled = false
+                };
+                tsddi.DropDownItems.Add(toolStripMenuItem);
 				return;
 			}
 			CombatData combatData = null;
@@ -5259,9 +5269,11 @@ namespace Masterplan.UI
 			{
 				foreach (OngoingCondition current in combatData.Conditions)
 				{
-					ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(current.ToString(this.fEncounter, false));
-					toolStripMenuItem2.Tag = current;
-					if (use_list_selection)
+                    ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(current.ToString(fEncounter, false))
+                    {
+                        Tag = current
+                    };
+                    if (use_list_selection)
 					{
 						toolStripMenuItem2.Click += new EventHandler(this.remove_effect_from_list);
 					}
@@ -5274,9 +5286,11 @@ namespace Masterplan.UI
 			}
 			if (tsddi.DropDownItems.Count == 0)
 			{
-				ToolStripMenuItem toolStripMenuItem3 = new ToolStripMenuItem("(no effects)");
-				toolStripMenuItem3.Enabled = false;
-				tsddi.DropDownItems.Add(toolStripMenuItem3);
+                ToolStripMenuItem toolStripMenuItem3 = new ToolStripMenuItem("(no effects)")
+                {
+                    Enabled = false
+                };
+                tsddi.DropDownItems.Add(toolStripMenuItem3);
 			}
 		}
 

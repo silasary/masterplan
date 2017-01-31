@@ -40,9 +40,11 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			StartRoundLogEntry startRoundLogEntry = new StartRoundLogEntry();
-			startRoundLogEntry.Round = round;
-			this.fEntries.Add(startRoundLogEntry);
+            StartRoundLogEntry startRoundLogEntry = new StartRoundLogEntry()
+            {
+                Round = round
+            };
+            this.fEntries.Add(startRoundLogEntry);
 		}
 
 		public void AddStartTurnEntry(Guid id)
@@ -51,9 +53,11 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			StartTurnLogEntry startTurnLogEntry = new StartTurnLogEntry();
-			startTurnLogEntry.CombatantID = id;
-			this.fEntries.Add(startTurnLogEntry);
+            StartTurnLogEntry startTurnLogEntry = new StartTurnLogEntry()
+            {
+                CombatantID = id
+            };
+            this.fEntries.Add(startTurnLogEntry);
 		}
 
 		public void AddDamageEntry(Guid id, int damage, List<DamageType> types)
@@ -62,11 +66,13 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			DamageLogEntry damageLogEntry = new DamageLogEntry();
-			damageLogEntry.CombatantID = id;
-			damageLogEntry.Amount = damage;
-			damageLogEntry.Types = types;
-			this.fEntries.Add(damageLogEntry);
+            DamageLogEntry damageLogEntry = new DamageLogEntry()
+            {
+                CombatantID = id,
+                Amount = damage,
+                Types = types
+            };
+            this.fEntries.Add(damageLogEntry);
 		}
 
 		public void AddStateEntry(Guid id, CreatureState state)
@@ -75,10 +81,12 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			StateLogEntry stateLogEntry = new StateLogEntry();
-			stateLogEntry.CombatantID = id;
-			stateLogEntry.State = state;
-			this.fEntries.Add(stateLogEntry);
+            StateLogEntry stateLogEntry = new StateLogEntry()
+            {
+                CombatantID = id,
+                State = state
+            };
+            this.fEntries.Add(stateLogEntry);
 		}
 
 		public void AddEffectEntry(Guid id, string text, bool added)
@@ -87,11 +95,13 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			EffectLogEntry effectLogEntry = new EffectLogEntry();
-			effectLogEntry.CombatantID = id;
-			effectLogEntry.EffectText = text;
-			effectLogEntry.Added = added;
-			this.fEntries.Add(effectLogEntry);
+            EffectLogEntry effectLogEntry = new EffectLogEntry()
+            {
+                CombatantID = id,
+                EffectText = text,
+                Added = added
+            };
+            this.fEntries.Add(effectLogEntry);
 		}
 
 		public void AddPowerEntry(Guid id, string text, bool added)
@@ -100,11 +110,13 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			PowerLogEntry powerLogEntry = new PowerLogEntry();
-			powerLogEntry.CombatantID = id;
-			powerLogEntry.PowerName = text;
-			powerLogEntry.Added = added;
-			this.fEntries.Add(powerLogEntry);
+            PowerLogEntry powerLogEntry = new PowerLogEntry()
+            {
+                CombatantID = id,
+                PowerName = text,
+                Added = added
+            };
+            this.fEntries.Add(powerLogEntry);
 		}
 
 		public void AddSkillEntry(Guid id, string text)
@@ -113,10 +125,12 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			SkillLogEntry skillLogEntry = new SkillLogEntry();
-			skillLogEntry.CombatantID = id;
-			skillLogEntry.SkillName = text;
-			this.fEntries.Add(skillLogEntry);
+            SkillLogEntry skillLogEntry = new SkillLogEntry()
+            {
+                CombatantID = id,
+                SkillName = text
+            };
+            this.fEntries.Add(skillLogEntry);
 		}
 
 		public void AddSkillChallengeEntry(Guid id, bool success)
@@ -125,10 +139,12 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			SkillChallengeLogEntry skillChallengeLogEntry = new SkillChallengeLogEntry();
-			skillChallengeLogEntry.CombatantID = id;
-			skillChallengeLogEntry.Success = success;
-			this.fEntries.Add(skillChallengeLogEntry);
+            SkillChallengeLogEntry skillChallengeLogEntry = new SkillChallengeLogEntry()
+            {
+                CombatantID = id,
+                Success = success
+            };
+            this.fEntries.Add(skillChallengeLogEntry);
 		}
 
 		public void AddMoveEntry(Guid id, int distance, string text)
@@ -137,11 +153,13 @@ namespace Masterplan.Data
 			{
 				return;
 			}
-			MoveLogEntry moveLogEntry = new MoveLogEntry();
-			moveLogEntry.CombatantID = id;
-			moveLogEntry.Distance = distance;
-			moveLogEntry.Details = text;
-			this.fEntries.Add(moveLogEntry);
+            MoveLogEntry moveLogEntry = new MoveLogEntry()
+            {
+                CombatantID = id,
+                Distance = distance,
+                Details = text
+            };
+            this.fEntries.Add(moveLogEntry);
 		}
 
 		public void AddPauseEntry()
@@ -188,9 +206,11 @@ namespace Masterplan.Data
 						turnLog.End = startTurnLogEntry.Timestamp;
 						roundLog.Turns.Add(turnLog);
 					}
-					turnLog = new TurnLog(startTurnLogEntry.CombatantID);
-					turnLog.Start = startTurnLogEntry.Timestamp;
-				}
+                    turnLog = new TurnLog(startTurnLogEntry.CombatantID)
+                    {
+                        Start = startTurnLogEntry.Timestamp
+                    };
+                }
 				else if (all_entries || current.Important)
 				{
 					turnLog.Entries.Add(current);
