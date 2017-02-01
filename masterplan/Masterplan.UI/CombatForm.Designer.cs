@@ -1705,7 +1705,6 @@ namespace Masterplan.UI
             this.Text = "Combat Encounter";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CombatForm_FormClosing);
             this.Shown += new System.EventHandler(this.CombatForm_Shown);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CombatForm_KeyDown);
             this.Toolbar.ResumeLayout(false);
             this.Toolbar.PerformLayout();
             this.MapSplitter.Panel1.ResumeLayout(false);
