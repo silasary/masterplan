@@ -303,24 +303,21 @@ namespace Masterplan.UI
 			}
 			if (cs.HeroData != null)
 			{
-				using (List<Hero>.Enumerator enumerator2 = Session.Project.Heroes.GetEnumerator())
+				foreach (var hero in Session.Project.Heroes)
 				{
-					while (enumerator2.MoveNext())
+					if (cs.HeroData.ContainsKey(hero.ID))
 					{
-						Hero current2 = enumerator2.Current;
-						if (cs.HeroData.ContainsKey(current2.ID))
-						{
-							current2.CombatData = cs.HeroData[current2.ID];
-						}
+						hero.CombatData = cs.HeroData[hero.ID];
 					}
-					goto IL_1FF;
 				}
 			}
-			foreach (Hero current3 in Session.Project.Heroes)
-			{
-				current3.CombatData.Location = CombatData.NoPoint;
-			}
-			IL_1FF:
+            else
+            {
+			    foreach (Hero current3 in Session.Project.Heroes)
+			    {
+				    current3.CombatData.Location = CombatData.NoPoint;
+			    }
+            }
 			foreach (Hero current4 in Session.Project.Heroes)
 			{
 				current4.CombatData.ID = current4.ID;
@@ -4667,14 +4664,14 @@ namespace Masterplan.UI
 					}
 				}
 			}
-			foreach (Trap current8 in this.fEncounter.Traps)
+			foreach (Trap trap in this.fEncounter.Traps)
 			{
-				ListViewItem listViewItem2 = this.CombatList.Items.Add(current8.Name);
-				listViewItem2.Tag = current8;
+				ListViewItem listViewItem2 = this.CombatList.Items.Add(trap.Name);
+				listViewItem2.Tag = trap;
 				this.add_icon(listViewItem2, Color.White);
-				if (current8.Initiative != int.MinValue)
+				if (trap.Initiative != int.MinValue)
 				{
-					CombatData combatData = this.fTrapData[current8.ID];
+					CombatData combatData = this.fTrapData[trap.ID];
 					if (combatData != null && combatData.Initiative != int.MinValue)
 					{
 						string text5 = combatData.Initiative.ToString();
@@ -4702,41 +4699,41 @@ namespace Masterplan.UI
 				listViewItem2.SubItems.Add("-");
 				listViewItem2.SubItems.Add("-");
 				listViewItem2.SubItems.Add("-");
-				if (current8 == selectedTrap)
+				if (trap == selectedTrap)
 				{
 					listViewItem2.Selected = true;
 				}
 			}
-			foreach (SkillChallenge current9 in this.fEncounter.SkillChallenges)
+			foreach (SkillChallenge skillChallenge in this.fEncounter.SkillChallenges)
 			{
-				ListViewItem listViewItem3 = this.CombatList.Items.Add(current9.Name);
+				ListViewItem listViewItem3 = this.CombatList.Items.Add(skillChallenge.Name);
 				listViewItem3.SubItems.Add("-");
 				listViewItem3.SubItems.Add("-");
 				listViewItem3.SubItems.Add("-");
 				listViewItem3.SubItems.Add(string.Concat(new object[]
 				{
-					current9.Results.Successes,
+					skillChallenge.Results.Successes,
 					" / ",
-					current9.Successes,
+					skillChallenge.Successes,
 					" successes; ",
-					current9.Results.Fails,
+					skillChallenge.Results.Fails,
 					" / 3 failures"
 				}));
 				this.add_icon(listViewItem3, Color.White);
-				listViewItem3.Tag = current9;
+				listViewItem3.Tag = skillChallenge;
 				listViewItem3.Group = this.CombatList.Groups[index2];
-				if (current9 == selectedChallenge)
+				if (skillChallenge == selectedChallenge)
 				{
 					listViewItem3.Selected = true;
 				}
 			}
-			foreach (Hero current10 in Session.Project.Heroes)
+			foreach (Hero hero in Session.Project.Heroes)
 			{
 				int index4 = num;
-				ListViewItem listViewItem4 = this.CombatList.Items.Add(current10.Name);
-				listViewItem4.Tag = current10;
-				CombatData combatData2 = current10.CombatData;
-				switch (current10.GetState(combatData2.Damage))
+				ListViewItem listViewItem4 = this.CombatList.Items.Add(hero.Name);
+				listViewItem4.Tag = hero;
+				CombatData combatData2 = hero.CombatData;
+				switch (hero.GetState(combatData2.Damage))
 				{
 				case CreatureState.Active:
 					listViewItem4.ForeColor = SystemColors.WindowText;
@@ -4748,12 +4745,12 @@ namespace Masterplan.UI
 					listViewItem4.ForeColor = SystemColors.GrayText;
 					break;
 				}
-				if (current10.Portrait != null)
+				if (hero.Portrait != null)
 				{
-					this.CombatList.SmallImageList.Images.Add(new Bitmap(current10.Portrait, 16, 16));
+					this.CombatList.SmallImageList.Images.Add(new Bitmap(hero.Portrait, 16, 16));
 					listViewItem4.ImageIndex = this.CombatList.SmallImageList.Images.Count - 1;
 				}
-				else if (current10.Key != "")
+				else if (hero.Key != "")
 				{
 					this.CombatList.SmallImageList.Images.Add(new Bitmap(Resources.Purpled20, 16, 16));
 					listViewItem4.ImageIndex = this.CombatList.SmallImageList.Images.Count - 1;
@@ -4791,9 +4788,9 @@ namespace Masterplan.UI
 					}
 				}
 				string text7;
-				if (current10.HP != 0)
+				if (hero.HP != 0)
 				{
-					int num11 = current10.HP - combatData2.Damage;
+					int num11 = hero.HP - combatData2.Damage;
 					text7 = num11.ToString();
 					if (combatData2.TempHP > 0)
 					{
@@ -4806,9 +4803,9 @@ namespace Masterplan.UI
 							")"
 						});
 					}
-					if (num11 != current10.HP)
+					if (num11 != hero.HP)
 					{
-						text7 = text7 + " / " + current10.HP;
+						text7 = text7 + " / " + hero.HP;
 					}
 				}
 				else
@@ -4817,12 +4814,12 @@ namespace Masterplan.UI
 				}
 				listViewItem4.SubItems.Add(text6);
 				listViewItem4.SubItems.Add(text7);
-				if (current10.AC != 0 && current10.Fortitude != 0 && current10.Reflex != 0 && current10.Will != 0)
+				if (hero.AC != 0 && hero.Fortitude != 0 && hero.Reflex != 0 && hero.Will != 0)
 				{
-					int num12 = current10.AC;
-					int num13 = current10.Fortitude;
-					int num14 = current10.Reflex;
-					int num15 = current10.Will;
+					int num12 = hero.AC;
+					int num13 = hero.Fortitude;
+					int num14 = hero.Reflex;
+					int num15 = hero.Will;
 					foreach (OngoingCondition current11 in combatData2.Conditions)
 					{
 						if (current11.Type == OngoingType.DefenceModifier)
@@ -4863,12 +4860,12 @@ namespace Masterplan.UI
 					listViewItem4.SubItems.Add("-");
 				}
 				listViewItem4.SubItems.Add(this.GetConditions(combatData2));
-				if (this.MapView.Map != null && current10.CombatData.Location == CombatData.NoPoint)
+				if (this.MapView.Map != null && hero.CombatData.Location == CombatData.NoPoint)
 				{
 					index4 = num4;
 				}
 				listViewItem4.Group = this.CombatList.Groups[index4];
-				if (selectedTokens.Contains(current10))
+				if (selectedTokens.Contains(hero))
 				{
 					listViewItem4.Selected = true;
 				}
@@ -4898,52 +4895,52 @@ namespace Masterplan.UI
 			}
 		}
 
-		private string GetConditions(CombatData cd)
-		{
-			string text = "";
-			bool hasOngoingDmg = false;
-			foreach (OngoingCondition current in cd.Conditions)
-			{
-				if (current.Type == OngoingType.Damage)
-				{
-					hasOngoingDmg = true;
-					break;
-				}
-			}
-			if (hasOngoingDmg)
-			{
-				if (text != "")
-				{
-					text += "; ";
-				}
-				text += "Damage";
-			}
-			foreach (OngoingCondition current2 in cd.Conditions)
-			{
-				if (current2.Type != OngoingType.Damage)
-				{
-					if (text != "")
-					{
-						text += "; ";
-					}
-					switch (current2.Type)
-					{
-					case OngoingType.Condition:
-						text += current2.Data;
-						break;
-					case OngoingType.DefenceModifier:
-						text += current2.ToString(this.fEncounter, false);
-						break;
-					}
-				}
-			}
-			return text;
-		}
+        private string GetConditions(CombatData cd)
+        {
+            string text = "";
+            bool hasOngoingDmg = false;
+            foreach (OngoingCondition condition in cd.Conditions)
+            {
+                if (condition.Type == OngoingType.Damage)
+                {
+                    hasOngoingDmg = true;
+                    break;
+                }
+            }
+            if (hasOngoingDmg)
+            {
+                if (text != "")
+                {
+                    text += "; ";
+                }
+                text += "Damage";
+            }
+            foreach (OngoingCondition condition in cd.Conditions)
+            {
+                if (condition.Type != OngoingType.Damage)
+                {
+                    if (text != "")
+                    {
+                        text += "; ";
+                    }
+                    switch (condition.Type)
+                    {
+                        case OngoingType.Condition:
+                            text += condition.Data;
+                            break;
+                        case OngoingType.DefenceModifier:
+                            text += condition.ToString(this.fEncounter, false);
+                            break;
+                    }
+                }
+            }
+            return text;
+        }
 
 		private void add_icon(ListViewItem lvi, Color c)
 		{
-			Image image = new Bitmap(16, 16);
-			Graphics graphics = Graphics.FromImage(image);
+			Image icon = new Bitmap(16, 16);
+			Graphics graphics = Graphics.FromImage(icon);
 			graphics.SmoothingMode = SmoothingMode.AntiAlias;
 			graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 			graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
@@ -4952,7 +4949,7 @@ namespace Masterplan.UI
 			{
 				graphics.DrawEllipse(Pens.Black, 2, 2, 12, 12);
 			}
-			this.CombatList.SmallImageList.Images.Add(image);
+			this.CombatList.SmallImageList.Images.Add(icon);
 			lvi.ImageIndex = this.CombatList.SmallImageList.Images.Count - 1;
 		}
 
