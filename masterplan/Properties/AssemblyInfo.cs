@@ -4,8 +4,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("11.11.0.10399")]
-[assembly: Debuggable(DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]
+[assembly: AssemblyVersion("11.12.0.*")]
+[assembly: Debuggable(DebuggableAttribute.DebuggingModes.EnableEditAndContinue)]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright("Copyright © Habitual Indolence 2010. All rights reserved. This product is protected by copyright and distributed under licences restricting copying, distribution and decompilation.")]

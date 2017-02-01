@@ -37,16 +37,16 @@ namespace Masterplan.UI
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CombatForm));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Combatants", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Delayed / Readied", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Traps", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Skill Challenges", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Custom Tokens and Overlays", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Not In Play", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Defeated", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Predefined", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Custom Tokens", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Custom Overlays", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Combatants", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Delayed / Readied", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup19 = new System.Windows.Forms.ListViewGroup("Traps", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup20 = new System.Windows.Forms.ListViewGroup("Skill Challenges", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Custom Tokens and Overlays", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup25 = new System.Windows.Forms.ListViewGroup("Not In Play", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup26 = new System.Windows.Forms.ListViewGroup("Defeated", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Predefined", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Custom Tokens", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Custom Overlays", System.Windows.Forms.HorizontalAlignment.Left);
             this.Toolbar = new System.Windows.Forms.ToolStrip();
             this.DetailsBtn = new System.Windows.Forms.ToolStripButton();
             this.DamageBtn = new System.Windows.Forms.ToolStripButton();
@@ -269,7 +269,7 @@ namespace Masterplan.UI
             this.DamageBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DamageBtn.Name = "DamageBtn";
             this.DamageBtn.Size = new System.Drawing.Size(55, 22);
-            this.DamageBtn.Text = "Damage";
+            this.DamageBtn.Text = "&Damage";
             this.DamageBtn.Click += new System.EventHandler(this.DamageBtn_Click);
             // 
             // HealBtn
@@ -279,7 +279,7 @@ namespace Masterplan.UI
             this.HealBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HealBtn.Name = "HealBtn";
             this.HealBtn.Size = new System.Drawing.Size(35, 22);
-            this.HealBtn.Text = "Heal";
+            this.HealBtn.Text = "&Heal";
             this.HealBtn.Click += new System.EventHandler(this.HealBtn_Click);
             // 
             // EffectMenu
@@ -291,13 +291,13 @@ namespace Masterplan.UI
             this.EffectMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EffectMenu.Name = "EffectMenu";
             this.EffectMenu.Size = new System.Drawing.Size(75, 22);
-            this.EffectMenu.Text = "Add Effect";
+            this.EffectMenu.Text = "Add &Effect";
             this.EffectMenu.DropDownOpening += new System.EventHandler(this.EffectMenu_DropDownOpening);
             // 
             // effectToolStripMenuItem
             // 
             this.effectToolStripMenuItem.Name = "effectToolStripMenuItem";
-            this.effectToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.effectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.effectToolStripMenuItem.Text = "[effect]";
             // 
             // toolStripSeparator18
@@ -312,7 +312,7 @@ namespace Masterplan.UI
             this.NextInitBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextInitBtn.Name = "NextInitBtn";
             this.NextInitBtn.Size = new System.Drawing.Size(63, 22);
-            this.NextInitBtn.Text = "Next Turn";
+            this.NextInitBtn.Text = "&Next Turn";
             this.NextInitBtn.Click += new System.EventHandler(this.NextInitBtn_Click);
             // 
             // DelayBtn
@@ -1032,28 +1032,28 @@ namespace Masterplan.UI
             this.CombatList.ContextMenuStrip = this.ListContext;
             this.CombatList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CombatList.FullRowSelect = true;
-            listViewGroup1.Header = "Combatants";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "Delayed / Readied";
-            listViewGroup2.Name = "listViewGroup5";
-            listViewGroup3.Header = "Traps";
-            listViewGroup3.Name = "listViewGroup3";
-            listViewGroup4.Header = "Skill Challenges";
-            listViewGroup4.Name = "listViewGroup4";
-            listViewGroup5.Header = "Custom Tokens and Overlays";
-            listViewGroup5.Name = "listViewGroup6";
-            listViewGroup6.Header = "Not In Play";
-            listViewGroup6.Name = "listViewGroup2";
-            listViewGroup7.Header = "Defeated";
-            listViewGroup7.Name = "listViewGroup7";
+            listViewGroup7.Header = "Combatants";
+            listViewGroup7.Name = "listViewGroup1";
+            listViewGroup18.Header = "Delayed / Readied";
+            listViewGroup18.Name = "listViewGroup5";
+            listViewGroup19.Header = "Traps";
+            listViewGroup19.Name = "listViewGroup3";
+            listViewGroup20.Header = "Skill Challenges";
+            listViewGroup20.Name = "listViewGroup4";
+            listViewGroup24.Header = "Custom Tokens and Overlays";
+            listViewGroup24.Name = "listViewGroup6";
+            listViewGroup25.Header = "Not In Play";
+            listViewGroup25.Name = "listViewGroup2";
+            listViewGroup26.Header = "Defeated";
+            listViewGroup26.Name = "listViewGroup7";
             this.CombatList.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4,
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7});
+            listViewGroup7,
+            listViewGroup18,
+            listViewGroup19,
+            listViewGroup20,
+            listViewGroup24,
+            listViewGroup25,
+            listViewGroup26});
             this.CombatList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.CombatList.HideSelection = false;
             this.CombatList.Location = new System.Drawing.Point(0, 0);
@@ -1266,16 +1266,16 @@ namespace Masterplan.UI
             this.TemplateHdr});
             this.TemplateList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TemplateList.FullRowSelect = true;
-            listViewGroup8.Header = "Predefined";
-            listViewGroup8.Name = "listViewGroup3";
-            listViewGroup9.Header = "Custom Tokens";
-            listViewGroup9.Name = "listViewGroup1";
-            listViewGroup10.Header = "Custom Overlays";
-            listViewGroup10.Name = "listViewGroup2";
+            listViewGroup14.Header = "Predefined";
+            listViewGroup14.Name = "listViewGroup3";
+            listViewGroup15.Header = "Custom Tokens";
+            listViewGroup15.Name = "listViewGroup1";
+            listViewGroup16.Header = "Custom Overlays";
+            listViewGroup16.Name = "listViewGroup2";
             this.TemplateList.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup8,
-            listViewGroup9,
-            listViewGroup10});
+            listViewGroup14,
+            listViewGroup15,
+            listViewGroup16});
             this.TemplateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.TemplateList.HideSelection = false;
             this.TemplateList.Location = new System.Drawing.Point(3, 3);

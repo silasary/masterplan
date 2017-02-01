@@ -1187,7 +1187,7 @@ namespace Masterplan.UI
                 this.DamageBtn.Enabled = enabled;
                 this.HealBtn.Enabled = enabled;
                 this.EffectMenu.Enabled = enabled;
-                this.NextInitBtn.Text = (this.fCombatStarted ? "Next Turn" : "Start Encounter");
+                this.NextInitBtn.Text = (this.fCombatStarted ? "&Next Turn" : "Start E&ncounter");
                 this.DelayBtn.Visible = this.fCombatStarted;
                 this.DelayBtn.Enabled = enabled;
                 this.DelayBtn.Checked = @checked;
@@ -5928,7 +5928,7 @@ namespace Masterplan.UI
                 }
                 if (current.Tag is Trap)
                 {
-                    Trap trap = current.Tag as Trap;
+                    //Trap trap = current.Tag as Trap;
                     if (trap.Initiative != int.MinValue)
                     {
                         combatData = this.fTrapData[trap.ID];
@@ -6121,19 +6121,19 @@ namespace Masterplan.UI
             return HTML.Concatenate(list);
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case Keys.F1:
-                    DamageBtn_Click(null, null);
-                    return true;
-                case Keys.F2:
-                    NextInitBtn_Click(null, null);
-                    return true;
-                default:
-                    return base.ProcessCmdKey(ref msg, keyData);
-            }
-        }
+        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        //{
+        //    switch (keyData)
+        //    {
+        //        case Keys.F1:
+        //            DamageBtn_Click(null, null);
+        //            return true;
+        //        case Keys.F2:
+        //            NextInitBtn_Click(null, null);
+        //            return true;
+        //        default:
+        //            return base.ProcessCmdKey(ref msg, keyData);
+        //    }
+        //}
     }
 }
