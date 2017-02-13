@@ -13,7 +13,7 @@ namespace Masterplan
 			get
 			{
 				Array values = Enum.GetValues(typeof(PowerSource));
-				int num = 2147483647;
+				int num = int.MaxValue;
 				foreach (PowerSource power_source in values)
 				{
 					int num2 = this.Count(power_source);

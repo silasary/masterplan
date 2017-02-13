@@ -15,7 +15,11 @@ namespace Masterplan
 {
 	internal static class Program
 	{
+#if DEBUG
 		internal static bool fIsBeta = true;
+#else
+		internal static bool fIsBeta = false;
+#endif
 
 		public static ProgressScreen SplashScreen = null;
 
