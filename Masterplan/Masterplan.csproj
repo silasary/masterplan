@@ -1087,7 +1087,9 @@
     <EmbeddedResource Include="Masterplan.UI\TrapDetailsForm.resx" />
     <EmbeddedResource Include="Masterplan.UI\TreasureListForm.resx" />
     <EmbeddedResource Include="Masterplan.Wizards\MapLibrariesPage.resx" />
-    <EmbeddedResource Include="Masterplan\Scroll.ico" />
+    <EmbeddedResource Include="Masterplan\Scroll.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">
