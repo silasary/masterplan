@@ -66,7 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\masterplan\Masterplan.csproj">
+    <ProjectReference Include="..\Masterplan\Masterplan.csproj">
       <Project>{a33985bd-27a2-402f-bc81-cef002035889}</Project>
       <Name>Masterplan</Name>
     </ProjectReference>
