@@ -138,8 +138,7 @@ namespace Masterplan.Data
 				{
 					standings[current4] = 0;
 				}
-				Guid key;
-				standings[key = current4] = standings[key] + dictionary[current4];
+				standings[current4] = standings[current4] + dictionary[current4];
 			}
 		}
 
