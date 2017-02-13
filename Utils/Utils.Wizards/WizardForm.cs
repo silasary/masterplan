@@ -135,7 +135,7 @@ namespace Utils.Wizards
 				base.Height += Math.Max(this.fWizard.MaxSize.Height, this.ContentPnl.Height) - this.ContentPnl.Height;
 				this.ImageBox.Height = this.ContentPnl.Height;
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Application.Idle += Application_Idle;
 			if (this.fWizard.Pages.Count != 0)
 			{
 				this.set_page(0);
@@ -144,7 +144,10 @@ namespace Utils.Wizards
 
 		private void Application_Idle(object sender, EventArgs e)
 		{
-			IWizardPage currentPage = this.CurrentPage;
+            if (this.IsDisposed) // Unhook, and allow this to be garbage collected.
+                Application.Idle -= Application_Idle; 
+
+            IWizardPage currentPage = this.CurrentPage;
 			if (currentPage != null)
 			{
 				this.BackBtn.Enabled = currentPage.AllowBack;
