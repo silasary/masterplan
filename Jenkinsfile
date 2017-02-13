@@ -11,6 +11,11 @@ node {
 		msbuild()
 	}
 
+	stage('test'){
+		mono('UnitTests/bin/Release/UnitTests.exe','')
+		junit 'TestResult.xml'
+	}
+
 	stage('Publish'){
 		publish('Masterplan/bin/Release/Masterplan.exe')
 	}
