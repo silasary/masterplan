@@ -52,7 +52,7 @@ namespace Masterplan.UI
 			{
 				this.TypeBox.Items.Add(trapType);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTrap = trap.Copy();
 			this.NameBox.Text = this.fTrap.Name;
 			this.TypeBox.SelectedItem = this.fTrap.Type;

@@ -93,7 +93,7 @@ namespace Masterplan.Controls
 		public DicePanel()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCentred.Alignment = StringAlignment.Center;
 			this.fCentred.LineAlignment = StringAlignment.Center;
 		}

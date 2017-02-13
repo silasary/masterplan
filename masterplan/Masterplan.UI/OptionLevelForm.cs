@@ -81,7 +81,7 @@ namespace Masterplan.UI
 		public OptionLevelForm(LevelData level, bool show_features)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fLevel = level.Copy();
 			this.Text = "Level " + this.fLevel.Level;
 			if (!show_features)

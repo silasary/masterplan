@@ -177,7 +177,7 @@ namespace Masterplan.UI
 		public EncyclopediaImageForm(EncyclopediaImage img)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fImage = img.Copy();
 			this.NameBox.Text = this.fImage.Name;
 			this.PictureBox.Image = this.fImage.Image;

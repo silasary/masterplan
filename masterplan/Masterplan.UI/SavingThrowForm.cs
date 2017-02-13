@@ -260,7 +260,7 @@ namespace Masterplan.UI
 		public SavingThrowForm(CombatData data, EncounterCard card, Encounter enc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fData = data;
 			this.fCard = card;
 			this.fEncounter = enc;

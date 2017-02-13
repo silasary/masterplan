@@ -52,7 +52,7 @@ namespace Masterplan.UI
 		public MapAreaSelectForm(Guid map_id, Guid map_area_id)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.UseTileBtn.Visible = this.map_tiles_exist();
 			this.MapBox.Items.Add("(no map)");
 			foreach (Map current in Session.Project.Maps)

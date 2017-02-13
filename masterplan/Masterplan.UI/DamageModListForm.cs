@@ -287,7 +287,7 @@ namespace Masterplan.UI
 		public DamageModListForm(ICreature creature)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCreature = creature;
 			this.fModifiers = new List<DamageModifier>();
 			foreach (DamageModifier current in this.fCreature.DamageModifiers)
@@ -303,7 +303,7 @@ namespace Masterplan.UI
 		public DamageModListForm(CreatureTemplate template)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTemplate = template;
 			this.fModifierTemplates = new List<DamageModifierTemplate>();
 			foreach (DamageModifierTemplate current in this.fTemplate.DamageModifierTemplates)

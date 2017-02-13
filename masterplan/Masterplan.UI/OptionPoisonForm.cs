@@ -79,7 +79,7 @@ namespace Masterplan.UI
 		public OptionPoisonForm(Poison poison)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fPoison = poison.Copy();
 			this.NameBox.Text = this.fPoison.Name;
 			this.LevelBox.Value = this.fPoison.Level;

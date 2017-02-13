@@ -40,7 +40,7 @@ namespace Masterplan.UI
 		public TokenLinkListForm(List<TokenLink> links)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fLinks = links;
 			this.update_list();
 		}

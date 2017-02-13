@@ -527,7 +527,7 @@ namespace Masterplan.UI
 			{
 				this.SizeBox.Items.Add(creatureSize);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fRace = race.Copy();
 			this.NameBox.Text = this.fRace.Name;
 			this.HeightBox.Text = this.fRace.HeightRange;

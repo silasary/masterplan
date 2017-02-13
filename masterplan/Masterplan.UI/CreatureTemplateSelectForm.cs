@@ -194,7 +194,7 @@ namespace Masterplan.UI
 		public CreatureTemplateSelectForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.update_list();
 			this.Browser.DocumentText = "";
 			this.CreatureList_SelectedIndexChanged(null, null);

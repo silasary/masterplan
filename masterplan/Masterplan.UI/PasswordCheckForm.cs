@@ -115,7 +115,7 @@ namespace Masterplan.UI
 			this.fPassword = password;
 			this.fHint = hint;
 			this.HintBtn.Visible = (this.fHint != "");
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 		}
 
 		private void Application_Idle(object sender, EventArgs e)

@@ -403,7 +403,7 @@ namespace Masterplan.UI
 			this.RangeBox.Items.Add("Close blast 3");
 			this.RangeBox.Items.Add("Area burst 3 within 10");
 			this.RangeBox.Items.Add("Area wall 3 within 10");
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fPower = power.Copy();
 			this.NameBox.Text = this.fPower.Name;
 			this.TypeBox.SelectedItem = this.fPower.Type;

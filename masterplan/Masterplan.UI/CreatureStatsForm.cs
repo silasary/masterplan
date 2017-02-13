@@ -80,7 +80,7 @@ namespace Masterplan.UI
 		public CreatureStatsForm(ICreature c)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCreature = c;
 			if (this.fCreature.Role != null && this.fCreature.Role is Minion)
 			{

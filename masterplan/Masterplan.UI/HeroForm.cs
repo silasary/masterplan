@@ -205,7 +205,7 @@ namespace Masterplan.UI
 			this.SourceBox.Items.Add("Primal");
 			this.SourceBox.Items.Add("Psionic");
 			this.SourceBox.Items.Add("Shadow");
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fHero = h.Copy();
 			this.iPlay4eBtn.Visible = (this.fHero.Key != "");
 			this.update_hero();

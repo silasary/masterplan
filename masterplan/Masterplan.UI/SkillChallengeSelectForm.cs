@@ -50,7 +50,7 @@ namespace Masterplan.UI
 				listViewItem.SubItems.Add(current.Info);
 				listViewItem.Tag = current;
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.Browser.DocumentText = "";
 			this.ChallengeList_SelectedIndexChanged(null, null);
 		}

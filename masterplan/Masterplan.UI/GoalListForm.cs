@@ -238,7 +238,7 @@ namespace Masterplan.UI
 		public GoalListForm(PartyGoals goals)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.Browser.DocumentText = "";
 			this.fPartyGoals = goals.Copy();
 			this.update_tree();

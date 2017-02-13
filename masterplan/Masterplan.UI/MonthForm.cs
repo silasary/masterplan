@@ -47,7 +47,7 @@ namespace Masterplan.UI
 		public MonthForm(MonthInfo month)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fMonthInfo = month.Copy();
 			this.NameBox.Text = this.fMonthInfo.Name;
 			this.DaysBox.Value = this.fMonthInfo.DayCount;

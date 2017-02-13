@@ -64,7 +64,7 @@ namespace Masterplan.UI
 		public TreasureListForm(Plot plot)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fRootPlot = plot;
 			this.update_plot_tree();
 			this.update_list();

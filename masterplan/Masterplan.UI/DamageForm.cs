@@ -106,7 +106,7 @@ namespace Masterplan.UI
 		public DamageForm(List<Pair<CombatData, EncounterCard>> tokens, int value)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fData = new List<DamageForm.Token>();
 			foreach (Pair<CombatData, EncounterCard> current in tokens)
 			{

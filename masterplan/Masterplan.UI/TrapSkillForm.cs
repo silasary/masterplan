@@ -229,7 +229,7 @@ namespace Masterplan.UI
 			{
 				this.SkillBox.Items.Add(current);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fSkillData = tsd.Copy();
 			this.fLevel = level;
 			this.SkillBox.Text = this.fSkillData.SkillName;

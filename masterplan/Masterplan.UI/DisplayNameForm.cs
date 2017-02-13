@@ -64,7 +64,7 @@ namespace Masterplan.UI
 		public DisplayNameForm(List<CombatData> combatants, Encounter enc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCombatants = combatants;
 			this.fEncounter = enc;
 			Map map = null;

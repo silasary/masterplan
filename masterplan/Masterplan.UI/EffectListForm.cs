@@ -42,7 +42,7 @@ namespace Masterplan.UI
 		public EffectListForm(Encounter enc, CombatData current_actor, int current_round)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fEncounter = enc;
 			this.fCurrentActor = current_actor;
 			this.fCurrentRound = current_round;

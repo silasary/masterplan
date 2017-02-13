@@ -179,7 +179,7 @@ namespace Masterplan.UI
 		public PausedCombatListForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.update_list();
 			this.set_map();
 		}

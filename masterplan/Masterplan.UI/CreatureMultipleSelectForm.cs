@@ -209,7 +209,7 @@ namespace Masterplan.UI
 		public CreatureMultipleSelectForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.update_list();
 			this.Browser.DocumentText = "";
 			this.update_stats();

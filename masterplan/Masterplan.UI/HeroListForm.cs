@@ -448,7 +448,7 @@ namespace Masterplan.UI
 		public HeroListForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.BreakdownPnl.Heroes = Session.Project.Heroes;
 			this.update_view();
 		}

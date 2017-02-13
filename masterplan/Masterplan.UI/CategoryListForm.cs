@@ -48,7 +48,7 @@ namespace Masterplan.UI
 		public CategoryListForm(List<string> categories)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			BinarySearchTree<string> binarySearchTree = new BinarySearchTree<string>();
 			foreach (Creature current in Session.Creatures)
 			{

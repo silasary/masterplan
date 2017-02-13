@@ -205,7 +205,7 @@ namespace Masterplan.UI
 		public RechargeForm(CombatData data, EncounterCard card)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fData = data;
 			this.fCard = card;
 			this.Text = "Power Recharging: " + this.fData.DisplayName;

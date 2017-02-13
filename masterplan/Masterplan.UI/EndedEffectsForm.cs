@@ -200,7 +200,7 @@ namespace Masterplan.UI
 		public EndedEffectsForm(List<Pair<CombatData, OngoingCondition>> conditions, Encounter enc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fEndedConditions = conditions;
 			this.fExtendedConditions = new List<Pair<CombatData, OngoingCondition>>();
 			this.fEncounter = enc;

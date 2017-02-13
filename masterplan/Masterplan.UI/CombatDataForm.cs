@@ -385,7 +385,7 @@ namespace Masterplan.UI
 		public CombatDataForm(CombatData data, EncounterCard card, Encounter enc, CombatData current_actor, int current_round, bool allow_name_edit)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.EffectList_SizeChanged(null, null);
 			this.fData = data.Copy();
 			this.fCard = card;

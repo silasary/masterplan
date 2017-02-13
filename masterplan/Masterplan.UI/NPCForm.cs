@@ -254,7 +254,7 @@ namespace Masterplan.UI
 		public NPCForm(NPC cc, bool unused)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			List<Guid> list = new List<Guid>();
 			foreach (CreatureTemplate current in Session.Templates)
 			{

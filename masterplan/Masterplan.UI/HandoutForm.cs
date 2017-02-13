@@ -381,7 +381,7 @@ namespace Masterplan.UI
 			this.update_source_list();
 			this.update_item_list();
 			this.update_handout();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 		}
 
 		private void Application_Idle(object sender, EventArgs e)

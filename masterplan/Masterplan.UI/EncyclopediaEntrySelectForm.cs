@@ -70,7 +70,7 @@ namespace Masterplan.UI
 				ListViewItem listViewItem2 = this.EntryList.Items.Add("(no entries)");
 				listViewItem2.ForeColor = SystemColors.GrayText;
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 		}
 
 		private void Application_Idle(object sender, EventArgs e)

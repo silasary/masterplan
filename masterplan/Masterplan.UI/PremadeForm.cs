@@ -147,7 +147,7 @@ namespace Masterplan.UI
 		public PremadeForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			WebClient webClient = new WebClient();
 			webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(this.downloaded_html);
 			webClient.DownloadStringAsync(new Uri("http://www.habitualindolence.net/masterplan/adventures.htm"));

@@ -71,7 +71,7 @@ namespace Masterplan.UI
 		public OptionEpicDestinyForm(EpicDestiny pp)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fEpicDestiny = pp.Copy();
 			this.NameBox.Text = this.fEpicDestiny.Name;
 			this.PrereqBox.Text = this.fEpicDestiny.Prerequisites;

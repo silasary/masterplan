@@ -212,7 +212,7 @@ namespace Masterplan.UI
 		public PlotPointForm(PlotPoint pp, Plot p, bool start_at_element_page)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.ParcelList_SizeChanged(null, null);
 			this.LinkList_SizeChanged(null, null);
 			this.EncBrowser.DocumentText = "";

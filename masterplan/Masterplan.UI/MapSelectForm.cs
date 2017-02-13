@@ -86,7 +86,7 @@ namespace Masterplan.UI
 			{
 				this.MapList.CheckBoxes = true;
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 		}
 
 		private void Application_Idle(object sender, EventArgs e)

@@ -33,7 +33,7 @@ namespace Masterplan.UI
 		public EncyclopediaEntryDetailsForm(EncyclopediaEntry entry)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fEntry = entry;
 			this.update_entry();
 		}

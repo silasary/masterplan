@@ -376,7 +376,7 @@ namespace Masterplan.UI
 			{
 				this.ActionBox.Items.Add(actionType);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fAttack = attack.Copy();
 			this.fLevel = level;
 			this.fElite = elite;

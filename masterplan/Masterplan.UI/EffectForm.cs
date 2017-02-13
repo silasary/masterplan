@@ -176,7 +176,7 @@ namespace Masterplan.UI
 			{
 				this.DurationCreatureBox.Items.Add(current5);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.init(condition, current_actor, current_round);
 		}
 
@@ -201,7 +201,7 @@ namespace Masterplan.UI
 			this.DurationBox.Items.Add("Lasts until the end of someone's next turn");
 			this.DurationCreatureBox.Items.Add(hero);
 			this.DurationCreatureBox.Items.Add("(someone else)");
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.init(condition, null, -1);
 		}
 

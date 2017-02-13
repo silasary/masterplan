@@ -326,7 +326,7 @@ namespace Masterplan.UI
 			this.SourceBox.Items.Add("Psionic");
 			this.SourceBox.Items.Add("Shadow");
 			this.SourceBox.Items.Add("Elemental");
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTheme = theme.Copy();
 			this.NameBox.Text = this.fTheme.Name;
 			this.PrereqBox.Text = this.fTheme.Prerequisites;

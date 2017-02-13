@@ -1215,7 +1215,7 @@ namespace Masterplan.UI
 		public CustomCreatureForm(CustomCreature cc, bool unused)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCreature = cc.Copy();
 			this.fUpdating = true;
 			this.NameBox.Text = this.fCreature.Name;

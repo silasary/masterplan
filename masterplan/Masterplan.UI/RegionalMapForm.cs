@@ -64,7 +64,7 @@ namespace Masterplan.UI
 		public RegionalMapForm(RegionalMap map, MapLocation loc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fMap = map.Copy();
 			this.NameBox.Text = this.fMap.Name;
 			this.MapPanel.Map = this.fMap;

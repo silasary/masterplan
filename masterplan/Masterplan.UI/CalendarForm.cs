@@ -769,7 +769,7 @@ namespace Masterplan.UI
 		{
 			this.InitializeComponent();
 			this.fCalendar = calendar.Copy();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.EventList.ListViewItemSorter = new CalendarForm.EventSorter(this.fCalendar);
 			this.SeasonList.ListViewItemSorter = new CalendarForm.EventSorter(this.fCalendar);
 			this.NameBox.Text = this.fCalendar.Name;

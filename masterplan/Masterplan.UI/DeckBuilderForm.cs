@@ -103,7 +103,7 @@ namespace Masterplan.UI
 		public DeckBuilderForm(EncounterDeck deck)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fDeck = deck.Copy();
 			this.NameBox.Text = this.fDeck.Name;
 			this.LevelBox.Value = this.fDeck.Level;

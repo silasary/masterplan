@@ -498,7 +498,7 @@ namespace Masterplan.UI
 			this.FilterPanel.Mode = this.fMode;
 			this.FilterPanel.PartyLevel = this.fPartyLevel;
 			this.FilterPanel.FilterByPartyLevel();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			if (this.fAddingThreats)
 			{
 				this.Pages.TabPages.Remove(this.MapPage);

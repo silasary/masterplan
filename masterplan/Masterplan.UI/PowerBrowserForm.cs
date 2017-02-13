@@ -283,7 +283,7 @@ namespace Masterplan.UI
 		public PowerBrowserForm(string name, int level, IRole role, PowerCallback callback)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fName = name;
 			this.fLevel = level;
 			this.fRole = role;

@@ -424,7 +424,7 @@ namespace Masterplan.UI
 		public MapAreaForm(MapArea area, Map m)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fArea = area.Copy();
 			this.MapView.Map = m;
 			this.MapView.Viewpoint = this.fArea.Region;

@@ -75,7 +75,7 @@ namespace Masterplan.UI
 		public MonsterThemeForm(MonsterTheme theme)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTheme = theme.Copy();
 			foreach (string current in Skills.GetSkillNames())
 			{

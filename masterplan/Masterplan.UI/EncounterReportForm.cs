@@ -59,7 +59,7 @@ namespace Masterplan.UI
 		public EncounterReportForm(EncounterLog log, Encounter enc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fReport = log.CreateReport(enc, true);
 			this.fEncounter = enc;
 			if (this.fEncounter.MapID == Guid.Empty)

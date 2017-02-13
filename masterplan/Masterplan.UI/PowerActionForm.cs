@@ -55,7 +55,7 @@ namespace Masterplan.UI
 		public PowerActionForm(PowerAction action)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.RechargeBox.Items.Add("Recharges on 2-6");
 			this.RechargeBox.Items.Add("Recharges on 3-6");
 			this.RechargeBox.Items.Add("Recharges on 4-6");

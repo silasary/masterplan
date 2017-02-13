@@ -1,4 +1,5 @@
 using Masterplan.Data;
+using Masterplan.Events;
 using Masterplan.Tools;
 using System;
 using System.Collections.Generic;
@@ -184,7 +185,7 @@ namespace Masterplan.UI
 		public ArtifactSelectForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(Application_Idle);
 			this.Browser.DocumentText = "";
 			this.ItemList_SelectedIndexChanged(null, null);
 			this.update_list();

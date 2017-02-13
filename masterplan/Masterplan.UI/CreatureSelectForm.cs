@@ -57,7 +57,7 @@ namespace Masterplan.UI
 		public CreatureSelectForm(EncounterTemplateSlot slot, int level)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTemplateSlot = slot;
 			this.fLevel = level;
 			this.update_list();
@@ -68,7 +68,7 @@ namespace Masterplan.UI
 		public CreatureSelectForm(List<Creature> creatures)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCreatures = creatures;
 			this.update_list();
 			this.Browser.DocumentText = "";

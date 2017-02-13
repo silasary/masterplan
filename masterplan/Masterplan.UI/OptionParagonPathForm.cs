@@ -252,7 +252,7 @@ namespace Masterplan.UI
 		public OptionParagonPathForm(ParagonPath pp)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fParagonPath = pp.Copy();
 			this.NameBox.Text = this.fParagonPath.Name;
 			this.PrereqBox.Text = this.fParagonPath.Prerequisites;

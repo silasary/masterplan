@@ -209,7 +209,7 @@ namespace Masterplan.UI
 		public OverviewForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.add_points(null);
 			this.update_list();
 		}

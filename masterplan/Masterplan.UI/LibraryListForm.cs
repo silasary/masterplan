@@ -2541,7 +2541,7 @@ namespace Masterplan.UI
 			{
 				this.fModified[current] = false;
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.update_libraries();
 		}
 

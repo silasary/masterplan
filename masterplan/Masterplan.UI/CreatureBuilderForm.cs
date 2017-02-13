@@ -103,7 +103,7 @@ namespace Masterplan.UI
 		public CreatureBuilderForm(ICreature creature)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			if (creature is Creature)
 			{
 				Creature creature2 = creature as Creature;

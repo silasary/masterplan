@@ -173,7 +173,7 @@ namespace Masterplan.UI
 		public TileSelectForm(Size tilesize, TileCategory category)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTileSize = tilesize;
 			this.fCategory = category;
 			this.MatchCatBtn.Text = "Show only tiles in category: " + this.fCategory;

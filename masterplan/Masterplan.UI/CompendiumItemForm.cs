@@ -39,7 +39,7 @@ namespace Masterplan.UI
 		public CompendiumItemForm(CompendiumHelper.CompendiumItem item)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fItem = item;
 		}
 

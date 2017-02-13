@@ -46,7 +46,7 @@ namespace Masterplan.UI
 		public MonsterThemePowerForm(ThemePowerData power)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			Array values = Enum.GetValues(typeof(PowerType));
 			foreach (PowerType powerType in values)
 			{

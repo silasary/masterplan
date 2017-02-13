@@ -224,7 +224,7 @@ namespace Masterplan.UI
 		public CreatureSkillsForm(ICreature creature)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fCreature = creature;
 			Dictionary<string, int> dictionary = CreatureHelper.ParseSkills(this.fCreature.Skills);
 			foreach (string current in Skills.GetSkillNames())

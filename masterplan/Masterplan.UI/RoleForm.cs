@@ -215,7 +215,7 @@ namespace Masterplan.UI
 			{
 				this.ModBox.Items.Add(roleFlag);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fRole = r.Copy();
 			if (this.fRole is ComplexRole)
 			{

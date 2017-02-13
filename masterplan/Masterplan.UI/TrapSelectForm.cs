@@ -97,7 +97,7 @@ namespace Masterplan.UI
 		{
 			this.InitializeComponent();
 			this.TrapList.ListViewItemSorter = new TrapSelectForm.TrapSorter();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			if (Session.Project != null)
 			{
 				int minlevel = Math.Max(1, Session.Project.Party.Level - 4);

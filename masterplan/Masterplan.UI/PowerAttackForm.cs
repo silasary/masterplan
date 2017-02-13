@@ -55,7 +55,7 @@ namespace Masterplan.UI
 			{
 				this.DefenceBox.Items.Add(defenceType);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fAttack = attack.Copy();
 			this.fFunctionalTemplate = functional_template;
 			this.fLevel = level;

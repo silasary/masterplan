@@ -46,7 +46,7 @@ namespace Masterplan.UI
 		public PasswordSetForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.PasswordBox.Text = Session.Project.Password;
 			this.RetypeBox.Text = Session.Project.Password;
 			this.HintBox.Text = Session.Project.PasswordHint;

@@ -306,6 +306,7 @@
     <Compile Include="Masterplan.Data\Weapon.cs" />
     <Compile Include="Masterplan.Data\WeaponCategory.cs" />
     <Compile Include="Masterplan.Data\WeaponType.cs" />
+    <Compile Include="Masterplan.Events\ApplicationIdleEventWrapper.cs" />
     <Compile Include="Masterplan.Events\CardEventArgs.cs" />
     <Compile Include="Masterplan.Events\CardEventHandler.cs" />
     <Compile Include="Masterplan.Events\CardListEventArgs.cs" />

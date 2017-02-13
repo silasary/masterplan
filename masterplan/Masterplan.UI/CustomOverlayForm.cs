@@ -362,7 +362,7 @@ namespace Masterplan.UI
 		public CustomOverlayForm(CustomToken ct)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fToken = ct.Copy();
 			this.NameBox.Text = this.fToken.Name;
 			this.WidthBox.Value = this.fToken.OverlaySize.Width;

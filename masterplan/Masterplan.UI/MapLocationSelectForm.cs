@@ -44,7 +44,7 @@ namespace Masterplan.UI
 		public MapLocationSelectForm(Guid map_id, Guid map_location_id)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.MapBox.Items.Add("(no map)");
 			foreach (RegionalMap current in Session.Project.RegionalMaps)
 			{

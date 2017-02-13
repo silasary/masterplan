@@ -81,7 +81,7 @@ namespace Masterplan.UI
 		public OptionDiseaseForm(Disease disease)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fDisease = disease.Copy();
 			this.NameBox.Text = this.fDisease.Name;
 			this.LevelBox.Text = this.fDisease.Level;

@@ -165,7 +165,7 @@ namespace Masterplan.UI
 		public MagicItemSelectForm(int level)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			if (level > 0)
 			{
 				this.LevelRangePanel.SetLevelRange(level, level);

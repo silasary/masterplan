@@ -809,7 +809,7 @@ namespace Masterplan.UI
 		public MapBuilderForm(Map m, bool autobuild)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			List<Library> list = new List<Library>();
 			list.AddRange(Session.Libraries);
 			if (Session.Project != null)

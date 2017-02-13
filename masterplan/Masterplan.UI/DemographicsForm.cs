@@ -101,7 +101,7 @@ namespace Masterplan.UI
 		public DemographicsForm(Library library, DemographicsSource source)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.BreakdownPanel.Library = library;
 			this.BreakdownPanel.Source = source;
 		}

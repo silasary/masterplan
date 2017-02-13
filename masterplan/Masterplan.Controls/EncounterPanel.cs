@@ -202,7 +202,7 @@ namespace Masterplan.Controls
 		public EncounterPanel()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 		}
 
 		private void Application_Idle(object sender, EventArgs e)

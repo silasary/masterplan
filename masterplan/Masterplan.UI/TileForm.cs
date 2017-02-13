@@ -291,7 +291,7 @@ namespace Masterplan.UI
 			{
 				this.CatBox.Items.Add(tileCategory);
 			}
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fTile = t.Copy();
 			this.WidthBox.Value = this.fTile.Size.Width;
 			this.HeightBox.Value = this.fTile.Size.Height;

@@ -151,7 +151,7 @@ namespace Masterplan.UI
 		public SkillChallengeBuilderForm(SkillChallenge sc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fChallenge = (sc.Copy() as SkillChallenge);
 			this.update_all();
 			List<string> skillNames = Skills.GetSkillNames();

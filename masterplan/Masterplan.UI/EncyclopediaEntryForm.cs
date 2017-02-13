@@ -363,7 +363,7 @@ namespace Masterplan.UI
 		public EncyclopediaEntryForm(EncyclopediaEntry entry)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			BinarySearchTree<string> binarySearchTree = new BinarySearchTree<string>();
 			binarySearchTree.Add("People");
 			binarySearchTree.Add("Places");

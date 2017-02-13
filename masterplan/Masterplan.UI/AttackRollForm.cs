@@ -1,4 +1,5 @@
 using Masterplan.Data;
+using Masterplan.Events;
 using Masterplan.Tools;
 using System;
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ namespace Masterplan.UI
 		public AttackRollForm(CreaturePower power, Encounter enc)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.fPower = power;
 			this.fEncounter = enc;
 			this.add_attack_roll(null);

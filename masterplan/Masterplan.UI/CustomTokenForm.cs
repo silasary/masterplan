@@ -263,7 +263,7 @@ namespace Masterplan.UI
 		public CustomTokenForm(CustomToken ct)
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			Array values = Enum.GetValues(typeof(CreatureSize));
 			foreach (CreatureSize creatureSize in values)
 			{

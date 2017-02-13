@@ -74,7 +74,7 @@ namespace Masterplan.UI
 		public CalendarListForm()
 		{
 			this.InitializeComponent();
-			Application.Idle += new EventHandler(this.Application_Idle);
+			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			this.update_calendars();
 			this.update_calendar_panel();
 		}

@@ -33,33 +33,33 @@ namespace Masterplan.UI
 
             public int Compare(object x, object y)
             {
-                ListViewItem listViewItem = x as ListViewItem;
-                ListViewItem listViewItem2 = y as ListViewItem;
-                if (listViewItem == null || listViewItem2 == null)
+                ListViewItem lvi_x = x as ListViewItem;
+                ListViewItem lvi_y = y as ListViewItem;
+                if (lvi_x == null || lvi_y == null)
                 {
                     return 0;
                 }
-                return this.Compare(listViewItem, listViewItem2);
+                return this.Compare(lvi_x, lvi_y);
             }
 
             public int Compare(ListViewItem lvi_x, ListViewItem lvi_y)
             {
-                int num = this.GetScore(lvi_x);
-                int value = this.GetScore(lvi_y);
-                int num2 = num.CompareTo(value);
-                if (num2 == 0)
+                int x = this.GetScore(lvi_x);
+                int y = this.GetScore(lvi_y);
+                int res = x.CompareTo(y);
+                if (res == 0)
                 {
-                    int num3 = this.GetBonus(lvi_x);
-                    int value2 = this.GetBonus(lvi_y);
-                    num2 = num3.CompareTo(value2);
+                    int bonusx = this.GetBonus(lvi_x);
+                    int bonusy = this.GetBonus(lvi_y);
+                    res = bonusx.CompareTo(bonusy);
                 }
-                if (num2 == 0)
+                if (res == 0)
                 {
                     string text = lvi_x.Text;
                     string text2 = lvi_y.Text;
-                    num2 = text.CompareTo(text2) * -1;
+                    res = text.CompareTo(text2) * -1;
                 }
-                return -num2;
+                return -res;
             }
 
             private int GetScore(ListViewItem lvi)
@@ -284,7 +284,7 @@ namespace Masterplan.UI
             this.InitializeComponent();
             this.Preview.DocumentText = "";
             this.LogBrowser.DocumentText = "";
-            Application.Idle += new EventHandler(this.Application_Idle);
+            Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
             this.fLeft.Alignment = StringAlignment.Near;
             this.fLeft.LineAlignment = StringAlignment.Center;
             this.fRight.Alignment = StringAlignment.Far;
@@ -313,15 +313,15 @@ namespace Masterplan.UI
             }
             else
             {
-                foreach (Hero current3 in Session.Project.Heroes)
+                foreach (var hero in Session.Project.Heroes)
                 {
-                    current3.CombatData.Location = CombatData.NoPoint;
+                    hero.CombatData.Location = CombatData.NoPoint;
                 }
             }
-            foreach (Hero current4 in Session.Project.Heroes)
+            foreach (var hero in Session.Project.Heroes)
             {
-                current4.CombatData.ID = current4.ID;
-                current4.CombatData.DisplayName = current4.Name;
+                hero.CombatData.ID = hero.ID;
+                hero.CombatData.DisplayName = hero.Name;
             }
             if (cs.TrapData != null)
             {
@@ -331,16 +331,16 @@ namespace Masterplan.UI
             {
                 this.fTrapData = new Dictionary<Guid, CombatData>();
             }
-            foreach (Trap current5 in this.fEncounter.Traps)
+            foreach (var trap in this.fEncounter.Traps)
             {
-                if (!this.fTrapData.ContainsKey(current5.ID))
+                if (!this.fTrapData.ContainsKey(trap.ID))
                 {
                     CombatData combatData = new CombatData()
                     {
-                        DisplayName = current5.Name,
-                        ID = current5.ID
+                        DisplayName = trap.Name,
+                        ID = trap.ID
                     };
-                    this.fTrapData[current5.ID] = combatData;
+                    this.fTrapData[trap.ID] = combatData;
                 }
             }
             if (this.fEncounter.MapID != Guid.Empty)
