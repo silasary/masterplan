@@ -88,12 +88,14 @@ namespace Masterplan.Data
 
 		public ArtifactConcordance Copy()
 		{
-			ArtifactConcordance artifactConcordance = new ArtifactConcordance();
-			artifactConcordance.Name = this.fName;
-			artifactConcordance.ValueRange = this.fValueRange;
-			artifactConcordance.Quote = this.fQuote;
-			artifactConcordance.Description = this.fDescription;
-			artifactConcordance.Sections.Clear();
+            ArtifactConcordance artifactConcordance = new ArtifactConcordance()
+            {
+                Name = this.fName,
+                ValueRange = this.fValueRange,
+                Quote = this.fQuote,
+                Description = this.fDescription
+            };
+            artifactConcordance.Sections.Clear();
 			foreach (MagicItemSection current in this.fSections)
 			{
 				artifactConcordance.Sections.Add(current.Copy());

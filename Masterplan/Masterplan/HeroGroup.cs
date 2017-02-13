@@ -67,7 +67,7 @@ namespace Masterplan
 			get
 			{
 				Array values = Enum.GetValues(typeof(HeroRoleType));
-				int num = 2147483647;
+				int num = int.MaxValue;
 				foreach (HeroRoleType role in values)
 				{
 					int num2 = this.Count(role);
@@ -198,7 +198,7 @@ namespace Masterplan
 		public int Count(PowerSource power_source)
 		{
 			int num = 0;
-			foreach (HeroData current in this.Heroes)
+			foreach (HeroData current in Heroes)
 			{
 				if (current.Class != null && current.Class.PowerSource == power_source)
 				{

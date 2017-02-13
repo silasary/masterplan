@@ -95,7 +95,7 @@ namespace Masterplan.Extensibility
 				Assembly assembly = Assembly.LoadFile(path);
 				if (assembly != null)
 				{
-					this.load_file(assembly);
+					this.LoadFile(assembly);
 				}
 			}
 			if (Directory.Exists(path))
@@ -119,7 +119,7 @@ namespace Masterplan.Extensibility
 			Session.AddIns.Sort(new Comparison<IAddIn>(ExtensibilityManager.compare_addins));
 		}
 
-		private void load_file(Assembly assembly)
+		private void LoadFile(Assembly assembly)
 		{
 			try
 			{

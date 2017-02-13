@@ -132,7 +132,7 @@ namespace Masterplan
 				Program.save_preferences();
 				if (Program.IsBeta)
 				{
-					Program.check_for_logs();
+                    check_for_logs();
 				}
 			}
 			catch (Exception ex2)

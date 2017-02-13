@@ -14,7 +14,7 @@ namespace Masterplan
 		{
 			get
 			{
-				if (Sourcebook.all_classes == null)
+				if (all_classes == null)
 				{
 					Sourcebook.all_classes = new List<ClassData>();
 					Sourcebook.all_classes.Add(new ClassData("Cleric", PowerSource.Divine, PrimaryAbility.Wisdom, HeroRoleType.Leader));
@@ -58,11 +58,12 @@ namespace Masterplan
 				if (Sourcebook.all_races == null)
 				{
 					Sourcebook.all_races = new List<RaceData>();
-					List<RaceData> arg_2F_0 = Sourcebook.all_races;
-					string arg_2A_0 = "Dragonborn";
-					PrimaryAbility[] array = new PrimaryAbility[2];
-					array[0] = PrimaryAbility.Charisma;
-					arg_2F_0.Add(new RaceData(arg_2A_0, array));
+					Sourcebook.all_races.Add(new RaceData("Dragonborn", new PrimaryAbility[]
+                    {
+					    PrimaryAbility.Charisma,
+                        PrimaryAbility.Strength
+
+                    }));
 					Sourcebook.all_races.Add(new RaceData("Dwarf", new PrimaryAbility[]
 					{
 						PrimaryAbility.Constitution,

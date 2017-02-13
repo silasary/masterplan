@@ -625,46 +625,46 @@ namespace Masterplan.Data
 
 		public void Import(Library lib)
 		{
-			foreach (Creature current in lib.Creatures)
+			foreach (Creature creature in lib.Creatures)
 			{
-				if (current != null && this.FindCreature(current.ID) == null)
+				if (creature != null && this.FindCreature(creature.ID) == null)
 				{
-					this.fCreatures.Add(current);
+					this.fCreatures.Add(creature);
 				}
 			}
-			foreach (CreatureTemplate current2 in lib.Templates)
+			foreach (CreatureTemplate template in lib.Templates)
 			{
-				if (current2 != null && this.FindTemplate(current2.ID) == null)
+				if (template != null && this.FindTemplate(template.ID) == null)
 				{
-					this.fTemplates.Add(current2);
+					this.fTemplates.Add(template);
 				}
 			}
-			foreach (MonsterTheme current3 in lib.Themes)
+			foreach (MonsterTheme theme in lib.Themes)
 			{
-				if (current3 != null && this.FindTheme(current3.ID) == null)
+				if (theme != null && this.FindTheme(theme.ID) == null)
 				{
-					this.fThemes.Add(current3);
+					this.fThemes.Add(theme);
 				}
 			}
-			foreach (Trap current4 in lib.Traps)
+			foreach (Trap trap in lib.Traps)
 			{
-				if (current4 != null && this.FindTrap(current4.ID) == null)
+				if (trap != null && this.FindTrap(trap.ID) == null)
 				{
-					this.fTraps.Add(current4);
+					this.fTraps.Add(trap);
 				}
 			}
-			foreach (SkillChallenge current5 in lib.SkillChallenges)
+			foreach (SkillChallenge skillChallenge in lib.SkillChallenges)
 			{
-				if (current5 != null && this.FindSkillChallenge(current5.ID) == null)
+				if (skillChallenge != null && FindSkillChallenge(skillChallenge.ID) == null)
 				{
-					this.fSkillChallenges.Add(current5);
+                    fSkillChallenges.Add(skillChallenge);
 				}
 			}
-			foreach (MagicItem current6 in lib.MagicItems)
+			foreach (MagicItem magicItem in lib.MagicItems)
 			{
-				if (current6 != null && this.FindMagicItem(current6.ID) == null)
+				if (magicItem != null && this.FindMagicItem(magicItem.ID) == null)
 				{
-					this.fMagicItems.Add(current6);
+					this.fMagicItems.Add(magicItem);
 				}
 			}
 			foreach (Artifact current7 in lib.Artifacts)
