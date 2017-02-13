@@ -13,7 +13,7 @@ node {
 
 	stage('Test'){
 		mono('UnitTests/bin/Release/UnitTests.exe','')
-		step([$class: "NUnitPublisher", testResultsPattern: "TestResult.xml"])
+		//junit "TestResult.xml"
 	}
 
 	stage('Publish'){
