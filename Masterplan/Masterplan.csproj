@@ -380,8 +380,14 @@
     <Compile Include="Masterplan.UI\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masterplan.UI\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Masterplan.UI\ArtifactBuilderForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masterplan.UI\ArtifactBuilderForm.Designer.cs">
+      <DependentUpon>ArtifactBuilderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Masterplan.UI\ArtifactConcordanceForm.cs">
       <SubType>Form</SubType>

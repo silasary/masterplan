@@ -31,11 +31,7 @@ namespace Utils.Wizards
 			}
 		}
 
-		public abstract object Data
-		{
-			get;
-			set;
-		}
+		public abstract object Data { get; set; }
 
 		public Size MaxSize
 		{
@@ -82,7 +78,7 @@ namespace Utils.Wizards
 
 		public DialogResult Show()
 		{
-			this.AddPages();
+            AddPages();
 			WizardForm wizardForm = new WizardForm(this);
 			return wizardForm.ShowDialog();
 		}

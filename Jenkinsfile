@@ -11,9 +11,9 @@ node {
 		msbuild()
 	}
 
-	stage('test'){
+	stage('Test'){
 		mono('UnitTests/bin/Release/UnitTests.exe','')
-		junit 'TestResult.xml'
+		step([$class: "NUnitPublisher", testResultsPattern: "TestResult.xml"])
 	}
 
 	stage('Publish'){
