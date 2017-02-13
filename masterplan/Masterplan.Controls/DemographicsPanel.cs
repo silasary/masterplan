@@ -393,8 +393,7 @@ namespace Masterplan.Controls
 		{
 			if (this.fBreakdown.ContainsKey(label))
 			{
-				Dictionary<string, int> dictionary;
-				(dictionary = this.fBreakdown)[label] = dictionary[label] + 1;
+				fBreakdown[label] = fBreakdown[label] + 1;
 			}
 		}
 	}

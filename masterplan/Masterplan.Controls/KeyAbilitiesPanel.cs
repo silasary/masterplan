@@ -65,9 +65,7 @@ namespace Masterplan.Controls
 					}
 					if (this.fBreakdown.ContainsKey(text))
 					{
-						Dictionary<string, int> dictionary;
-						string key;
-						(dictionary = this.fBreakdown)[key = text] = dictionary[key] + 1;
+						fBreakdown[text] = fBreakdown[text] + 1;
 					}
 				}
 			}

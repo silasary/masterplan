@@ -74,9 +74,7 @@ namespace Masterplan.UI
 				{
 					dictionary2[current.TileID] = 0;
 				}
-				Dictionary<Guid, int> dictionary3;
-				Guid tileID;
-				(dictionary3 = dictionary2)[tileID = current.TileID] = dictionary3[tileID] + 1;
+				dictionary2[current.TileID] = dictionary2[current.TileID] + 1;
 			}
 			foreach (Guid current2 in dictionary2.Keys)
 			{

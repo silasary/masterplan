@@ -403,12 +403,10 @@ namespace Masterplan.UI
 
 		private void AddBtn_Click(object sender, EventArgs e)
 		{
-			if (this.SelectedEffect != null)
+			if (SelectedEffect != null)
 			{
-				Dictionary<OngoingCondition, int> dictionary;
-				OngoingCondition selectedEffect;
-				(dictionary = this.fRolls)[selectedEffect = this.SelectedEffect] = dictionary[selectedEffect] + 1;
-				this.update_list();
+				fRolls[SelectedEffect] = fRolls[SelectedEffect] + 1;
+                update_list();
 			}
 		}
 
@@ -416,11 +414,9 @@ namespace Masterplan.UI
 		{
 			if (this.SelectedEffect != null)
 			{
-				Dictionary<OngoingCondition, int> dictionary;
-				OngoingCondition selectedEffect;
-				(dictionary = this.fRolls)[selectedEffect = this.SelectedEffect] = dictionary[selectedEffect] - 1;
-				this.fRolls[this.SelectedEffect] = Math.Max(this.fRolls[this.SelectedEffect], 0);
-				this.update_list();
+				fRolls[SelectedEffect] = fRolls[SelectedEffect] - 1;
+                fRolls[SelectedEffect] = Math.Max(fRolls[SelectedEffect], 0);
+                update_list();
 			}
 		}
 

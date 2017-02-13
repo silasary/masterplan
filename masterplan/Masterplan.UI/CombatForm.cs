@@ -3085,22 +3085,23 @@ namespace Masterplan.UI
                         }
                         continue;
                     case InitiativeMode.ManualGroup:
+                        List<CombatData> list3 = new List<CombatData>();
+                        foreach (CombatData current6 in current2.CombatData)
+                        {
+                            if (current6.Initiative == int.MinValue)
+                            {
+                                list3.Add(current6);
+                            }
+                        }
+                        if (list3.Count != 0)
+                        {
+                            dictionary[current2.Card.Title] = list3;
+                        }
                         break;
                     default:
                         continue;
                 }
-                List<CombatData> list3 = new List<CombatData>();
-                foreach (CombatData current6 in current2.CombatData)
-                {
-                    if (current6.Initiative == int.MinValue)
-                    {
-                        list3.Add(current6);
-                    }
-                }
-                if (list3.Count != 0)
-                {
-                    dictionary[current2.Card.Title] = list3;
-                }
+       
             }
             foreach (Trap current7 in this.fEncounter.Traps)
             {

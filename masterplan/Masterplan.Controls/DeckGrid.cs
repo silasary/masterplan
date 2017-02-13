@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Masterplan.Controls
 {
-	internal class DeckGrid : UserControl
+    internal class DeckGrid : UserControl
 	{
 		private IContainer components;
 
@@ -95,19 +94,13 @@ namespace Masterplan.Controls
 
 		protected void OnSelectedCellChanged()
 		{
-			if (this.SelectedCellChanged != null)
-			{
-				this.SelectedCellChanged(this, new EventArgs());
-			}
-		}
+            this.SelectedCellChanged?.Invoke(this, new EventArgs());
+        }
 
 		protected void OnCellActivated()
 		{
-			if (this.CellActivated != null)
-			{
-				this.CellActivated(this, new EventArgs());
-			}
-		}
+            this.CellActivated?.Invoke(this, new EventArgs());
+        }
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
@@ -391,16 +384,12 @@ namespace Masterplan.Controls
 					{
 						this.fRowTotals[num] = 0;
 					}
-					Dictionary<int, int> dictionary;
-					int key;
-					(dictionary = this.fRowTotals)[key = num] = dictionary[key] + num3;
+					fRowTotals[num] = fColumnTotals[num] + num3;
 					if (!this.fColumnTotals.ContainsKey(num2))
 					{
 						this.fColumnTotals[num2] = 0;
 					}
-					Dictionary<int, int> dictionary2;
-					int key2;
-					(dictionary2 = this.fColumnTotals)[key2 = num2] = dictionary2[key2] + num3;
+					fColumnTotals[num2] = fColumnTotals[num2] + num3;
 				}
 			}
 		}

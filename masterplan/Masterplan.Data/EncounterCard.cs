@@ -972,9 +972,7 @@ namespace Masterplan.Data
 					{
 						if (dictionary.ContainsKey(current.First))
 						{
-							Dictionary<string, int> dictionary2;
-							string first;
-							(dictionary2 = dictionary)[first = current.First] = dictionary2[first] + current.Second;
+							dictionary[current.First] = dictionary[current.First] + current.Second;
 						}
 						else
 						{

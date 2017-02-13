@@ -186,9 +186,7 @@ namespace Masterplan.UI
 					{
 						dictionary2[current3.Card.CreatureID] = 0;
 					}
-					Dictionary<Guid, int> dictionary3;
-					Guid creatureID;
-					(dictionary3 = dictionary2)[creatureID = current3.Card.CreatureID] = dictionary3[creatureID] + current3.CombatData.Count;
+					dictionary2[current3.Card.CreatureID] = dictionary2[current3.Card.CreatureID] + current3.CombatData.Count;
 				}
 				foreach (Guid current4 in dictionary2.Keys)
 				{

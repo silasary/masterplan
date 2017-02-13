@@ -1721,9 +1721,7 @@ namespace Masterplan.Tools
 				list.Add(text2);
 				list.Add("</TD>");
 				list.Add("</TR>");
-				Dictionary<HeroRoleType, int> dictionary2;
-				HeroRoleType role;
-				(dictionary2 = dictionary)[role = current.Role] = dictionary2[role] + 1;
+				dictionary[current.Role] = dictionary[current.Role] + 1;
 			}
 			list.Add("<TR class=shaded>");
 			list.Add("<TD colspan=2>");
@@ -2047,9 +2045,7 @@ namespace Masterplan.Tools
 								});
 								if (dictionary.ContainsKey(num13))
 								{
-									Dictionary<int, string> dictionary2;
-									int key;
-									(dictionary2 = dictionary)[key = num13] = dictionary2[key] + ", " + text4;
+									dictionary[num13] = dictionary[num13] + ", " + text4;
 								}
 								else
 								{

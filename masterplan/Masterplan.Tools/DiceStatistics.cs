@@ -39,9 +39,7 @@ namespace Masterplan.Tools
 					{
 						dictionary[num5] = 0;
 					}
-					Dictionary<int, int> dictionary2;
-					int key;
-					(dictionary2 = dictionary)[key = num5] = dictionary2[key] + 1;
+					dictionary[num5] = dictionary[num5] + 1;
 				}
 			}
 			return dictionary;

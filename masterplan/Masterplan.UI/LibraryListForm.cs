@@ -3566,9 +3566,7 @@ namespace Masterplan.UI
 								{
 									dictionary[text2] = 0;
 								}
-								Dictionary<string, int> dictionary2;
-								string key;
-								(dictionary2 = dictionary)[key = text2] = dictionary2[key] + 1;
+								dictionary[text2] = dictionary[text2] + 1;
 							}
 						}
 					}

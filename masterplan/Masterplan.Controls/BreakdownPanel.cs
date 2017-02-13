@@ -173,17 +173,13 @@ namespace Masterplan.Controls
 							num3++;
 						}
 					}
-					this.fCells[new Point(num, num2)] = num3;
-					Dictionary<int, int> dictionary;
-					int key;
-					(dictionary = this.fRowTotals)[key = num] = dictionary[key] + num3;
-					if (!this.fColumnTotals.ContainsKey(num2))
+                    fCells[new Point(num, num2)] = num3;
+                    fRowTotals[num] = fRowTotals[num] + num3;
+					if (!fColumnTotals.ContainsKey(num2))
 					{
-						this.fColumnTotals[num2] = 0;
+                        fColumnTotals[num2] = 0;
 					}
-					Dictionary<int, int> dictionary2;
-					int key2;
-					(dictionary2 = this.fColumnTotals)[key2 = num2] = dictionary2[key2] + num3;
+                    fColumnTotals[num2] = fColumnTotals[num2] + num3;
 				}
 			}
 		}
