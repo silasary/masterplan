@@ -14,8 +14,6 @@ namespace Masterplan
 	{
 		private static Project fProject = null;
 
-		private static Preferences fPreferences = new Preferences();
-
 		private static PlayerViewForm fPlayerView = null;
 
 		private static bool fModified = false;
@@ -46,19 +44,9 @@ namespace Masterplan
 			}
 		}
 
-		public static Preferences Preferences
-		{
-			get
-			{
-				return Session.fPreferences;
-			}
-			set
-			{
-				Session.fPreferences = value;
-			}
-		}
+		public static Preferences Preferences { get; set; } = new Preferences();
 
-		public static PlayerViewForm PlayerView
+        public static PlayerViewForm PlayerView
 		{
 			get
 			{

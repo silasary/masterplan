@@ -75,9 +75,9 @@ namespace Masterplan
 		{
 			get
 			{
-				string str = SystemInformation.UserName.ToLower();
-				string str2 = SystemInformation.ComputerName.ToLower();
-				return str + " on " + str2;
+				string username = SystemInformation.UserName.ToLower();
+				string computername = SystemInformation.ComputerName.ToLower();
+				return username + " on " + computername;
 			}
 		}
 
@@ -97,9 +97,11 @@ namespace Masterplan
 			try
 			{
 				Program.init_logging();
-				Program.SplashScreen = new ProgressScreen("Masterplan", 0);
-				Program.SplashScreen.CurrentAction = "Loading...";
-				Program.SplashScreen.Show();
+                SplashScreen = new ProgressScreen("Masterplan", 0)
+                {
+                    CurrentAction = "Loading..."
+                };
+                Program.SplashScreen.Show();
 				Program.load_preferences();
 				Program.load_libraries();
 				for (int i = 0; i < args.Length; i++)

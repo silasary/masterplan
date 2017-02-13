@@ -149,7 +149,7 @@ namespace Utils.Forms
 			base.SizeGripStyle = SizeGripStyle.Hide;
 			base.StartPosition = FormStartPosition.CenterScreen;
 			this.Text = "Progress";
-			base.TopMost = true;
+			//base.TopMost = true;
 			this.SplashPanel.ResumeLayout(false);
 			base.ResumeLayout(false);
 		}
