@@ -29,9 +29,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Utils">
-      <HintPath>..\Utils\obj\Debug\Utils.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Drawing" />
@@ -1084,6 +1081,12 @@
     <EmbeddedResource Include="Masterplan.UI\TreasureListForm.resx" />
     <EmbeddedResource Include="Masterplan.Wizards\MapLibrariesPage.resx" />
     <EmbeddedResource Include="Masterplan\Scroll.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{79cd3596-f33f-4288-9420-3c56b131392a}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,7 @@ node {
 	}
 
 	stage('Publish'){
-		
+		publish('masterplan/bin/Release/Masterplan.exe')
 	}
     
     stage('Archive'){
