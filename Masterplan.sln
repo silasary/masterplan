@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.25928.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masterplan", "Masterplan.csproj", "{A33985BD-27A2-402F-BC81-CEF002035889}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masterplan", "masterplan\Masterplan.csproj", "{A33985BD-27A2-402F-BC81-CEF002035889}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "..\Utils\Utils.csproj", "{79CD3596-F33F-4288-9420-3C56B131392A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{79CD3596-F33F-4288-9420-3C56B131392A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AA140BF-1FA5-4A70-A1DA-10AA12274880}"
+	ProjectSection(SolutionItems) = preProject
+		Jenkinsfile. = Jenkinsfile.
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

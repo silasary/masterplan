@@ -5928,7 +5928,7 @@ namespace Masterplan.UI
                 }
                 if (current.Tag is Trap)
                 {
-                    //Trap trap = current.Tag as Trap;
+                    Trap trap = current.Tag as Trap;
                     if (trap.Initiative != int.MinValue)
                     {
                         combatData = this.fTrapData[trap.ID];
