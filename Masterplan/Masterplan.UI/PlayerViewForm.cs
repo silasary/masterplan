@@ -87,13 +87,15 @@ namespace Masterplan.UI
 
 		public void ShowDefault()
 		{
-			TitlePanel titlePanel = new TitlePanel();
-			titlePanel.Title = "Masterplan";
-			titlePanel.Zooming = true;
-			titlePanel.Mode = TitlePanel.TitlePanelMode.PlayerView;
-			titlePanel.BackColor = Color.Black;
-			titlePanel.ForeColor = Color.White;
-			titlePanel.MouseMove += new MouseEventHandler(this.mouse_move);
+            TitlePanel titlePanel = new TitlePanel()
+            {
+                Title = "Masterplan",
+                Zooming = true,
+                Mode = TitlePanel.TitlePanelMode.PlayerView,
+                BackColor = Color.Black,
+                ForeColor = Color.White
+            };
+            titlePanel.MouseMove += new MouseEventHandler(this.mouse_move);
 			base.Controls.Clear();
 			base.Controls.Add(titlePanel);
 			titlePanel.Dock = DockStyle.Fill;
@@ -124,13 +126,15 @@ namespace Masterplan.UI
 
 		public void ShowRichText(Attachment att)
 		{
-			string @string = new ASCIIEncoding().GetString(att.Contents);
-			RichTextBox richTextBox = new RichTextBox();
-			richTextBox.Rtf = @string;
-			richTextBox.ReadOnly = true;
-			richTextBox.Multiline = true;
-			richTextBox.ScrollBars = RichTextBoxScrollBars.Vertical;
-			base.Controls.Clear();
+			string contents = new ASCIIEncoding().GetString(att.Contents);
+            RichTextBox richTextBox = new RichTextBox()
+            {
+                Rtf = contents,
+                ReadOnly = true,
+                Multiline = true,
+                ScrollBars = RichTextBoxScrollBars.Vertical
+            };
+            base.Controls.Clear();
 			base.Controls.Add(richTextBox);
 			richTextBox.Dock = DockStyle.Fill;
 			this.fMode = PlayerViewMode.RichText;
@@ -139,11 +143,13 @@ namespace Masterplan.UI
 
 		public void ShowWebPage(Attachment att)
 		{
-			WebBrowser webBrowser = new WebBrowser();
-			webBrowser.IsWebBrowserContextMenuEnabled = false;
-			webBrowser.ScriptErrorsSuppressed = true;
-			webBrowser.WebBrowserShortcutsEnabled = false;
-			switch (att.Type)
+            WebBrowser webBrowser = new WebBrowser()
+            {
+                IsWebBrowserContextMenuEnabled = false,
+                ScriptErrorsSuppressed = true,
+                WebBrowserShortcutsEnabled = false
+            };
+            switch (att.Type)
 			{
 			case AttachmentType.URL:
 			{
@@ -549,12 +555,14 @@ namespace Masterplan.UI
 
 		private void set_html(string html)
 		{
-			WebBrowser webBrowser = new WebBrowser();
-			webBrowser.IsWebBrowserContextMenuEnabled = false;
-			webBrowser.ScriptErrorsSuppressed = true;
-			webBrowser.WebBrowserShortcutsEnabled = false;
-			webBrowser.DocumentText = html;
-			base.Controls.Clear();
+            WebBrowser webBrowser = new WebBrowser()
+            {
+                IsWebBrowserContextMenuEnabled = false,
+                ScriptErrorsSuppressed = true,
+                WebBrowserShortcutsEnabled = false,
+                DocumentText = html
+            };
+            base.Controls.Clear();
 			base.Controls.Add(webBrowser);
 			webBrowser.Dock = DockStyle.Fill;
 			this.fMode = PlayerViewMode.HTML;

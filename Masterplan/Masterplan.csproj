@@ -1091,7 +1091,7 @@
     <EmbeddedResource Include="Masterplan.UI\TrapDetailsForm.resx" />
     <EmbeddedResource Include="Masterplan.UI\TreasureListForm.resx" />
     <EmbeddedResource Include="Masterplan.Wizards\MapLibrariesPage.resx" />
-    <EmbeddedResource Include="Masterplan\Scroll.ico">
+    <EmbeddedResource Include="Scroll.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
