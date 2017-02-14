@@ -18,7 +18,7 @@ namespace Masterplan.Controls
 {
 	internal class WelcomePanel : UserControl
 	{
-		private class Headline : IComparable<WelcomePanel.Headline>
+		private class Headline : IComparable<Headline>
 		{
 			public string Title = "";
 
@@ -42,7 +42,7 @@ namespace Masterplan.Controls
 
 		private WebBrowser MenuBrowser;
 
-		private List<WelcomePanel.Headline> fHeadlines;
+		private List<Headline> fHeadlines;
 
 		private bool fShowHeadlines;
 

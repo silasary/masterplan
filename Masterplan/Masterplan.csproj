@@ -801,6 +801,9 @@
     <Compile Include="Masterplan.UI\PlayerViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masterplan.UI\PlayerViewForm.Designer.cs">
+      <DependentUpon>PlayerViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Masterplan.UI\PlayerViewMode.cs" />
     <Compile Include="Masterplan.UI\PlotPointForm.cs">
       <SubType>Form</SubType>

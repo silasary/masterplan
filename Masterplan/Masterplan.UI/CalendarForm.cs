@@ -334,17 +334,8 @@ namespace Masterplan.UI
 			this.YearLbl.Text = "Campaign Year:";
 			this.YearBox.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
 			this.YearBox.Location = new Point(100, 38);
-			NumericUpDown arg_551_0 = this.YearBox;
-			int[] array = new int[4];
-			array[0] = 10000;
-			arg_551_0.Maximum = new decimal(array);
-			this.YearBox.Minimum = new decimal(new int[]
-			{
-				10000,
-				0,
-				0,
-				int.MinValue
-			});
+            this.YearBox.Maximum = 10000;
+            this.YearBox.Minimum = -10000;
 			this.YearBox.Name = "YearBox";
 			this.YearBox.Size = new Size(235, 20);
 			this.YearBox.TabIndex = 5;

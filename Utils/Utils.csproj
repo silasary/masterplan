@@ -41,6 +41,9 @@
     <Compile Include="Utils.Forms\ProgressScreen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utils.Forms\ProgressScreen.Designer.cs">
+      <DependentUpon>ProgressScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.Graphics\RoundedRectangle.cs" />
     <Compile Include="Utils.Text\Markdown.cs" />
     <Compile Include="Utils.Text\MarkdownOptions.cs" />
