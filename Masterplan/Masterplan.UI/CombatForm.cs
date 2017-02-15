@@ -5002,7 +5002,7 @@ namespace Masterplan.UI
                 {
                     this.Preview.Document.OpenNew(true);
                     this.Preview.Document.Write(HTML.Text("Loading iPlay4e character, please wait...", true, true, DisplaySize.Small));
-                    string urlString = "http://iplay4e.appspot.com/view?xsl=jPint&key=" + hero.Key;
+                    string urlString = iPlay4E.GetUrlString(hero);
                     this.Preview.Navigate(urlString);
                     return;
                 }
