@@ -343,7 +343,7 @@ namespace Masterplan.UI
                     this.fTrapData[trap.ID] = combatData;
                 }
             }
-            if (this.fEncounter.MapID != Guid.Empty)
+            if (fEncounter.MapID != Guid.Empty)
             {
                 foreach (Hero current6 in Session.Project.Heroes)
                 {
@@ -449,7 +449,7 @@ namespace Masterplan.UI
             this.update_log();
             this.update_preview_panel();
             this.update_maps();
-            this.update_statusbar();
+            this.UpdateStatusbar();
         }
 
         private void DetailsBtn_Click(object sender, EventArgs e)
@@ -582,7 +582,7 @@ namespace Masterplan.UI
                     }
                     this.UpdateList();
                     this.update_preview_panel();
-                    this.update_statusbar();
+                    this.UpdateStatusbar();
                 }
             }
             catch (Exception ex)
@@ -2759,7 +2759,7 @@ namespace Masterplan.UI
             encounterWave.Active = !encounterWave.Active;
             this.UpdateList();
             this.update_maps();
-            this.update_statusbar();
+            this.UpdateStatusbar();
         }
 
         private void MapMenu_DropDownOpening(object sender, EventArgs e)
@@ -3002,7 +3002,7 @@ namespace Masterplan.UI
                     this.SelectCurrentActor();
                     this.UpdateList();
                     this.update_maps();
-                    this.update_statusbar();
+                    this.UpdateStatusbar();
                     this.update_preview_panel();
                     this.HighlightCurrentActor();
                     this.fLog.Active = true;
@@ -3964,7 +3964,7 @@ namespace Masterplan.UI
                 this.UpdateList();
                 this.update_preview_panel();
                 this.update_maps();
-                this.update_statusbar();
+                this.UpdateStatusbar();
                 List<int> initiatives = this.GetInitiatives();
                 this.InitiativePanel.InitiativeScores = initiatives;
                 int arg_67_0 = initiatives[0];
@@ -5108,7 +5108,7 @@ namespace Masterplan.UI
             }
         }
 
-        private void update_statusbar()
+        private void UpdateStatusbar()
         {
             int num = this.fEncounter.GetXP() + this.fRemovedCreatureXP;
             this.XPLbl.Text = num + " XP";
@@ -5207,11 +5207,11 @@ namespace Masterplan.UI
             {
                 tsddi.DropDownItems.Add(new ToolStripSeparator());
             }
-            foreach (OngoingCondition current4 in this.fEffects)
+            foreach (OngoingCondition condition in fEffects)
             {
-                ToolStripMenuItem toolStripMenuItem5 = new ToolStripMenuItem(current4.ToString(this.fEncounter, false))
+                ToolStripMenuItem toolStripMenuItem5 = new ToolStripMenuItem(condition.ToString(this.fEncounter, false))
                 {
-                    Tag = current4.Copy()
+                    Tag = condition.Copy()
                 };
                 if (use_list_selection)
                 {
@@ -5377,7 +5377,7 @@ namespace Masterplan.UI
                 }
                 if (add_to_quick_list)
                 {
-                    bool flag = false;
+                    bool addToHero = false;
                     OngoingCondition ongoingCondition = oc.Copy();
                     if (Session.Project.Heroes.Count != 0)
                     {
@@ -5391,10 +5391,10 @@ namespace Masterplan.UI
                             }
                             heroSelectForm.SelectedHero.Effects.Add(ongoingCondition);
                             Session.Modified = true;
-                            flag = true;
+                            addToHero = true;
                         }
                     }
-                    if (!flag)
+                    if (!addToHero)
                     {
                         this.add_quick_effect(ongoingCondition);
                     }
@@ -5665,16 +5665,16 @@ namespace Masterplan.UI
                     list.Add("</TR>");
                 }
             }
-            bool flag2 = false;
-            foreach (Trap current2 in this.fEncounter.Traps)
+            bool hasTraps = false;
+            foreach (var trap in fEncounter.Traps)
             {
-                if (current2.Initiative != int.MinValue)
+                if (trap.Initiative != int.MinValue)
                 {
-                    flag2 = true;
+                    hasTraps = true;
                     break;
                 }
             }
-            if (flag2)
+            if (hasTraps)
             {
                 string str4 = "";
                 string text13 = text;
@@ -5720,7 +5720,7 @@ namespace Masterplan.UI
             list.Add("- if you need to indicate which mini is which creature");
             list.Add("</TD>");
             list.Add("</TR>");
-            if (this.fEncounter.MapID != Guid.Empty)
+            if (fEncounter.MapID != Guid.Empty)
             {
                 list.Add("<TR>");
                 list.Add("<TD>");
@@ -5728,16 +5728,16 @@ namespace Masterplan.UI
                 list.Add("</TD>");
                 list.Add("</TR>");
             }
-            bool flag3 = false;
-            foreach (Hero current3 in Session.Project.Heroes)
+            bool hasIPlay4E = false;
+            foreach (Hero hero in Session.Project.Heroes)
             {
-                if (current3.Key != null && current3.Key != "")
+                if (!string.IsNullOrEmpty(hero.Key))
                 {
-                    flag3 = true;
+                    hasIPlay4E = true;
                     break;
                 }
             }
-            if (flag3)
+            if (hasIPlay4E)
             {
                 list.Add("<TR>");
                 list.Add("<TD>");
@@ -5900,13 +5900,13 @@ namespace Masterplan.UI
                 list.Add(item);
             }
             list.Sort(this.CombatList.ListViewItemSorter as IComparer<ListViewItem>);
-            List<string> list2 = new List<string>();
+            List<string> html = new List<string>();
             List<string> list3 = new List<string>();
             bool flag = false;
-            list2.AddRange(HTML.GetHead(null, null, PlayerViewForm.DisplaySize));
-            list2.Add("<BODY bgcolor=black>");
-            list2.Add("<P class=table>");
-            list2.Add("<TABLE class=initiative>");
+            html.AddRange(HTML.GetHead(null, null, PlayerViewForm.DisplaySize));
+            html.Add("<BODY bgcolor=black>");
+            html.Add("<P class=table>");
+            html.Add("<TABLE class=initiative>");
             foreach (ListViewItem current in list)
             {
                 CombatData combatData = null;
@@ -5984,142 +5984,142 @@ namespace Masterplan.UI
                     });
                     if (combatData.Conditions.Count != 0)
                     {
-                        string text4 = "";
-                        foreach (OngoingCondition current2 in combatData.Conditions)
+                        string conditions = "";
+                        foreach (OngoingCondition effect in combatData.Conditions)
                         {
-                            if (text4 != "")
+                            if (conditions != "")
                             {
-                                text4 += "; ";
+                                conditions += "; ";
                             }
-                            text4 += current2.ToString(this.fEncounter, true);
+                            conditions += effect.ToString(fEncounter, true);
                         }
-                        text3 = text3 + "<BR><FONT color=grey>" + text4 + "</FONT>";
+                        text3 = text3 + "<BR><FONT color=grey>" + conditions + "</FONT>";
                     }
-                    List<string> list4 = flag ? list2 : list3;
+                    List<string> list4 = flag ? html : list3;
                     list4.Add("<TR>");
                     list4.Add("<TD align=center bgcolor=black width=50><FONT color=lightgrey>" + combatData.Initiative + "</FONT></TD>");
                     list4.Add("<TD bgcolor=black>" + text3 + "</TD>");
                     list4.Add("</TR>");
                 }
             }
-            list2.AddRange(list3);
-            list2.Add("</TABLE>");
-            list2.Add("</P>");
-            list2.Add("<HR>");
-            list2.Add(this.EncounterLogView(true));
-            list2.Add("</BODY>");
-            list2.Add("</HTML>");
-            return HTML.Concatenate(list2);
+            html.AddRange(list3);
+            html.Add("</TABLE>");
+            html.Add("</P>");
+            html.Add("<HR>");
+            html.Add(EncounterLogView(true));
+            html.Add("</BODY>");
+            html.Add("</HTML>");
+            return HTML.Concatenate(html);
         }
 
         public string EncounterLogView(bool player_view)
         {
-            List<string> list = new List<string>();
+            List<string> html = new List<string>();
             if (!player_view)
             {
-                list.AddRange(HTML.GetHead("Encounter Log", "", DisplaySize.Small));
-                list.Add("<BODY>");
+                html.AddRange(HTML.GetHead("Encounter Log", "", DisplaySize.Small));
+                html.Add("<BODY>");
             }
-            if (this.fLog != null)
+            if (fLog != null)
             {
-                list.Add("<P class=table>");
-                list.Add("<TABLE class=wide>");
-                list.Add("<TR class=encounterlog>");
-                list.Add("<TD colspan=2>");
-                list.Add("<B>Encounter Log</B>");
-                list.Add("</TD>");
-                list.Add("<TD align=right>");
-                list.Add("<B>Round " + this.fCurrentRound + "</B>");
-                list.Add("</TD>");
-                list.Add("</TR>");
+                html.Add("<P class=table>");
+                html.Add("<TABLE class=wide>");
+                html.Add("<TR class=encounterlog>");
+                html.Add("<TD colspan=2>");
+                html.Add("<B>Encounter Log</B>");
+                html.Add("</TD>");
+                html.Add("<TD align=right>");
+                html.Add("<B>Round " + this.fCurrentRound + "</B>");
+                html.Add("</TD>");
+                html.Add("</TR>");
                 if (!this.fLog.Active)
                 {
-                    list.Add("<TR class=warning>");
-                    list.Add("<TD colspan=3>");
-                    list.Add("The log is not yet active as the encounter has not started.");
-                    list.Add("</TD>");
-                    list.Add("</TR>");
+                    html.Add("<TR class=warning>");
+                    html.Add("<TD colspan=3>");
+                    html.Add("The log is not yet active as the encounter has not started.");
+                    html.Add("</TD>");
+                    html.Add("</TR>");
                 }
-                EncounterReport encounterReport = this.fLog.CreateReport(this.fEncounter, !player_view);
-                foreach (RoundLog current in encounterReport.Rounds)
+                EncounterReport encounterReport = fLog.CreateReport(this.fEncounter, !player_view);
+                foreach (RoundLog round in encounterReport.Rounds)
                 {
-                    list.Add("<TR class=shaded>");
+                    html.Add("<TR class=shaded>");
                     if (player_view)
                     {
-                        list.Add("<TD class=pvlogentry colspan=3>");
+                        html.Add("<TD class=pvlogentry colspan=3>");
                     }
                     else
                     {
-                        list.Add("<TD colspan=3>");
+                        html.Add("<TD colspan=3>");
                     }
-                    list.Add("<B>Round " + current.Round + "</B>");
-                    list.Add("</TD>");
-                    list.Add("</TR>");
-                    if (current.Count == 0)
+                    html.Add("<B>Round " + round.Round + "</B>");
+                    html.Add("</TD>");
+                    html.Add("</TR>");
+                    if (round.Count == 0)
                     {
-                        list.Add("<TR>");
+                        html.Add("<TR>");
                         if (player_view)
                         {
-                            list.Add("<TD class=pvlogentry align=center colspan=3>");
+                            html.Add("<TD class=pvlogentry align=center colspan=3>");
                         }
                         else
                         {
-                            list.Add("<TD align=center colspan=3>");
+                            html.Add("<TD align=center colspan=3>");
                         }
-                        list.Add("(nothing)");
-                        list.Add("</TD>");
-                        list.Add("</TR>");
+                        html.Add("(nothing)");
+                        html.Add("</TD>");
+                        html.Add("</TR>");
                     }
                     bool detailed = !player_view || Session.Preferences.PlayerViewCreatureLabels;
-                    foreach (TurnLog current2 in current.Turns)
+                    foreach (TurnLog turn in round.Turns)
                     {
-                        if (current2.Entries.Count != 0)
+                        if (turn.Entries.Count != 0)
                         {
-                            list.Add("<TR>");
+                            html.Add("<TR>");
                             if (player_view)
                             {
-                                list.Add("<TD class=pvlogentry colspan=3>");
+                                html.Add("<TD class=pvlogentry colspan=3>");
                             }
                             else
                             {
-                                list.Add("<TD colspan=2>");
+                                html.Add("<TD colspan=2>");
                             }
-                            list.Add("<B>" + EncounterLog.GetName(current2.ID, this.fEncounter, detailed) + "</B>");
-                            list.Add("</TD>");
+                            html.Add("<B>" + EncounterLog.GetName(turn.ID, this.fEncounter, detailed) + "</B>");
+                            html.Add("</TD>");
                             if (!player_view)
                             {
-                                list.Add("<TD align=right>");
-                                list.Add(current2.Start.ToString("h:mm:ss"));
-                                list.Add("</TD>");
+                                html.Add("<TD align=right>");
+                                html.Add(turn.Start.ToString("h:mm:ss"));
+                                html.Add("</TD>");
                             }
-                            list.Add("</TR>");
-                            foreach (IEncounterLogEntry current3 in current2.Entries)
+                            html.Add("</TR>");
+                            foreach (IEncounterLogEntry logentry in turn.Entries)
                             {
-                                list.Add("<TR>");
+                                html.Add("<TR>");
                                 if (player_view)
                                 {
-                                    list.Add("<TD class=pvlogindent colspan=3>");
+                                    html.Add("<TD class=pvlogindent colspan=3>");
                                 }
                                 else
                                 {
-                                    list.Add("<TD class=indent colspan=3>");
+                                    html.Add("<TD class=indent colspan=3>");
                                 }
-                                list.Add(current3.Description(this.fEncounter, detailed));
-                                list.Add("</TD>");
-                                list.Add("</TR>");
+                                html.Add(logentry.Description(this.fEncounter, detailed));
+                                html.Add("</TD>");
+                                html.Add("</TR>");
                             }
                         }
                     }
                 }
-                list.Add("</TABLE>");
-                list.Add("</P>");
+                html.Add("</TABLE>");
+                html.Add("</P>");
             }
             if (!player_view)
             {
-                list.Add("</BODY>");
-                list.Add("</HTML>");
+                html.Add("</BODY>");
+                html.Add("</HTML>");
             }
-            return HTML.Concatenate(list);
+            return HTML.Concatenate(html);
         }
 
         //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

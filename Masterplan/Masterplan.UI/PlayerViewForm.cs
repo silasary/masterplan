@@ -192,10 +192,12 @@ namespace Masterplan.UI
 		public void ShowImage(Attachment att)
 		{
 			Image image = Image.FromStream(new MemoryStream(att.Contents));
-			PictureBox pictureBox = new PictureBox();
-			pictureBox.Image = image;
-			pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-			base.Controls.Clear();
+            PictureBox pictureBox = new PictureBox()
+            {
+                Image = image,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+            base.Controls.Clear();
 			base.Controls.Add(pictureBox);
 			pictureBox.Dock = DockStyle.Fill;
 			this.fMode = PlayerViewMode.Image;
@@ -204,10 +206,12 @@ namespace Masterplan.UI
 
 		public void ShowImage(Image img)
 		{
-			PictureBox pictureBox = new PictureBox();
-			pictureBox.Image = img;
-			pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-			base.Controls.Clear();
+            PictureBox pictureBox = new PictureBox()
+            {
+                Image = img,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+            base.Controls.Clear();
 			base.Controls.Add(pictureBox);
 			pictureBox.Dock = DockStyle.Fill;
 			this.fMode = PlayerViewMode.Image;
@@ -263,26 +267,28 @@ namespace Masterplan.UI
 			MapView mapView = null;
 			if (this.fParentMap != null)
 			{
-				mapView = new MapView();
-				mapView.Map = this.fParentMap.Map;
-				mapView.Viewpoint = this.fParentMap.Viewpoint;
-				mapView.BorderSize = this.fParentMap.BorderSize;
-				mapView.ScalingFactor = this.fParentMap.ScalingFactor;
-				mapView.Encounter = this.fParentMap.Encounter;
-				mapView.Plot = this.fParentMap.Plot;
-				mapView.TokenLinks = this.fParentMap.TokenLinks;
-				mapView.AllowDrawing = this.fParentMap.AllowDrawing;
-				mapView.Mode = MapViewMode.PlayerView;
-				mapView.Tactical = true;
-				mapView.HighlightAreas = false;
-				mapView.FrameType = MapDisplayType.Opaque;
-				mapView.ShowCreatures = Session.Preferences.PlayerViewFog;
-				mapView.ShowHealthBars = Session.Preferences.PlayerViewHealthBars;
-				mapView.ShowCreatureLabels = Session.Preferences.PlayerViewCreatureLabels;
-				mapView.ShowGrid = (Session.Preferences.PlayerViewGrid ? MapGridMode.Overlay : MapGridMode.None);
-				mapView.ShowGridLabels = Session.Preferences.PlayerViewGridLabels;
-				mapView.ShowAuras = false;
-				mapView.ShowGrid = MapGridMode.None;
+                mapView = new MapView()
+                {
+                    Map = this.fParentMap.Map,
+                    Viewpoint = this.fParentMap.Viewpoint,
+                    BorderSize = this.fParentMap.BorderSize,
+                    ScalingFactor = this.fParentMap.ScalingFactor,
+                    Encounter = this.fParentMap.Encounter,
+                    Plot = this.fParentMap.Plot,
+                    TokenLinks = this.fParentMap.TokenLinks,
+                    AllowDrawing = this.fParentMap.AllowDrawing,
+                    Mode = MapViewMode.PlayerView,
+                    Tactical = true,
+                    HighlightAreas = false,
+                    FrameType = MapDisplayType.Opaque,
+                    ShowCreatures = Session.Preferences.PlayerViewFog,
+                    ShowHealthBars = Session.Preferences.PlayerViewHealthBars,
+                    ShowCreatureLabels = Session.Preferences.PlayerViewCreatureLabels,
+                    ShowGrid = (Session.Preferences.PlayerViewGrid ? MapGridMode.Overlay : MapGridMode.None),
+                    ShowGridLabels = Session.Preferences.PlayerViewGridLabels,
+                    ShowAuras = false
+                };
+                mapView.ShowGrid = MapGridMode.None;
 				foreach (MapSketch current in mapview.Sketches)
 				{
 					mapView.Sketches.Add(current.Copy());
@@ -294,18 +300,22 @@ namespace Masterplan.UI
 				mapView.SketchCreated += new MapSketchEventHandler(this.sketch_created);
 				mapView.Dock = DockStyle.Fill;
 			}
-			Button button = new Button();
-			button.Text = "Die Roller";
-			button.BackColor = SystemColors.Control;
-			button.Dock = DockStyle.Bottom;
-			button.Click += new EventHandler(this.dicebtn_click);
-			WebBrowser webBrowser = new WebBrowser();
-			webBrowser.IsWebBrowserContextMenuEnabled = false;
-			webBrowser.ScriptErrorsSuppressed = true;
-			webBrowser.WebBrowserShortcutsEnabled = false;
-			webBrowser.Dock = DockStyle.Fill;
-			webBrowser.DocumentText = initiative;
-			SplitContainer splitContainer = new SplitContainer();
+            Button button = new Button()
+            {
+                Text = "Die Roller",
+                BackColor = SystemColors.Control,
+                Dock = DockStyle.Bottom
+            };
+            button.Click += new EventHandler(this.dicebtn_click);
+            WebBrowser webBrowser = new WebBrowser()
+            {
+                IsWebBrowserContextMenuEnabled = false,
+                ScriptErrorsSuppressed = true,
+                WebBrowserShortcutsEnabled = false,
+                Dock = DockStyle.Fill,
+                DocumentText = initiative
+            };
+            SplitContainer splitContainer = new SplitContainer();
 			splitContainer.Panel1.Controls.Add(mapView);
 			splitContainer.Panel2.Controls.Add(webBrowser);
 			splitContainer.Panel2.Controls.Add(button);
@@ -437,10 +447,12 @@ namespace Masterplan.UI
 
 		public void ShowRegionalMap(RegionalMapPanel panel)
 		{
-			RegionalMapPanel regionalMapPanel = new RegionalMapPanel();
-			regionalMapPanel.Map = panel.Map;
-			regionalMapPanel.Mode = MapViewMode.PlayerView;
-			if (panel.SelectedLocation == null)
+            RegionalMapPanel regionalMapPanel = new RegionalMapPanel()
+            {
+                Map = panel.Map,
+                Mode = MapViewMode.PlayerView
+            };
+            if (panel.SelectedLocation == null)
 			{
 				regionalMapPanel.ShowLocations = false;
 			}
