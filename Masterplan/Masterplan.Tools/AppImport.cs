@@ -1389,7 +1389,6 @@ namespace Masterplan.Tools
 			{
 				return false;
 			}
-			bool result = true;
 			try
 			{
 				string address = "http://iplay4e.appspot.com/view?xsl=jPint&key=" + hero.Key;
@@ -1405,31 +1404,31 @@ namespace Masterplan.Tools
 					hero.Level = XMLHelper.GetIntAttribute(xmlNode, "level");
 					try
 					{
-						string attribute = XMLHelper.GetAttribute(xmlNode, "role");
-						hero.Role = (HeroRoleType)Enum.Parse(typeof(HeroRoleType), attribute);
+						string role = XMLHelper.GetAttribute(xmlNode, "role");
+						hero.Role = (HeroRoleType)Enum.Parse(typeof(HeroRoleType), role);
 					}
 					catch
 					{
 					}
 					try
 					{
-						string attribute2 = XMLHelper.GetAttribute(xmlNode, "size");
-						hero.Size = (CreatureSize)Enum.Parse(typeof(CreatureSize), attribute2);
+						string size = XMLHelper.GetAttribute(xmlNode, "size");
+						hero.Size = (CreatureSize)Enum.Parse(typeof(CreatureSize), size);
 					}
 					catch
 					{
 					}
 					hero.PowerSource = XMLHelper.GetAttribute(xmlNode, "powersource");
 					hero.Class = XMLHelper.GetAttribute(xmlNode, "name");
-					XmlNode xmlNode2 = XMLHelper.FindChild(xmlNode, "Race");
-					if (xmlNode2 != null)
+					XmlNode raceElement = XMLHelper.FindChild(xmlNode, "Race");
+					if (raceElement != null)
 					{
-						hero.Race = XMLHelper.GetAttribute(xmlNode2, "name");
+						hero.Race = XMLHelper.GetAttribute(raceElement, "name");
 					}
-					XmlNode xmlNode3 = XMLHelper.FindChild(xmlNode, "ParagonPath");
-					if (xmlNode3 != null)
+					XmlNode paragonPath = XMLHelper.FindChild(xmlNode, "ParagonPath");
+					if (paragonPath != null)
 					{
-						hero.ParagonPath = XMLHelper.GetAttribute(xmlNode3, "name");
+						hero.ParagonPath = XMLHelper.GetAttribute(paragonPath, "name");
 					}
 					XmlNode xmlNode4 = XMLHelper.FindChild(xmlNode, "EpicDestiny");
 					if (xmlNode4 != null)
@@ -1508,12 +1507,13 @@ namespace Masterplan.Tools
 					}
 					hero.Languages = text;
 				}
+                return true;
 			}
 			catch
 			{
-				result = false;
-			}
-			return result;
+                return false;
+            }
+
 		}
 
 		public static List<Hero> ImportParty(string key)
@@ -1536,11 +1536,13 @@ namespace Masterplan.Tools
 						{
 							try
 							{
-								string attribute = XMLHelper.GetAttribute(node, "key");
-								Hero hero = new Hero();
-								hero.Key = attribute;
-								bool flag = AppImport.ImportIPlay4e(hero);
-								if (flag)
+								string heroKey = XMLHelper.GetAttribute(node, "key");
+                                Hero hero = new Hero()
+                                {
+                                    Key = heroKey
+                                };
+                                bool success = AppImport.ImportIPlay4e(hero);
+								if (success)
 								{
 									list.Add(hero);
 								}

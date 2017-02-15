@@ -281,19 +281,19 @@ namespace Masterplan.UI
 
         public CombatForm(CombatState cs)
         {
-            this.InitializeComponent();
-            this.Preview.DocumentText = "";
-            this.LogBrowser.DocumentText = "";
-            Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
-            this.fLeft.Alignment = StringAlignment.Near;
-            this.fLeft.LineAlignment = StringAlignment.Center;
-            this.fRight.Alignment = StringAlignment.Far;
-            this.fRight.LineAlignment = StringAlignment.Center;
-            this.fEncounter = (cs.Encounter.Copy() as Encounter);
-            this.fPartyLevel = cs.PartyLevel;
-            this.fRemovedCreatureXP = cs.RemovedCreatureXP;
-            this.fCurrentRound = cs.CurrentRound;
-            this.RoundLbl.Text = "Round " + this.fCurrentRound;
+            InitializeComponent();
+            Preview.DocumentText = "";
+            LogBrowser.DocumentText = "";
+            ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
+            fLeft.Alignment = StringAlignment.Near;
+            fLeft.LineAlignment = StringAlignment.Center;
+            fRight.Alignment = StringAlignment.Far;
+            fRight.LineAlignment = StringAlignment.Center;
+            fEncounter = (cs.Encounter.Copy() as Encounter);
+            fPartyLevel = cs.PartyLevel;
+            fRemovedCreatureXP = cs.RemovedCreatureXP;
+            fCurrentRound = cs.CurrentRound;
+            RoundLbl.Text = "Round " + fCurrentRound;
             if (cs.QuickEffects != null)
             {
                 foreach (OngoingCondition current in cs.QuickEffects)
@@ -325,11 +325,11 @@ namespace Masterplan.UI
             }
             if (cs.TrapData != null)
             {
-                this.fTrapData = cs.TrapData;
+                fTrapData = cs.TrapData;
             }
             else
             {
-                this.fTrapData = new Dictionary<Guid, CombatData>();
+                fTrapData = new Dictionary<Guid, CombatData>();
             }
             foreach (var trap in this.fEncounter.Traps)
             {
@@ -516,9 +516,9 @@ namespace Masterplan.UI
                     List<int> initiatives = this.GetInitiatives();
                     if (initiatives.Count != 0)
                     {
-                        this.handle_ended_effects(false);
-                        this.HandleSaves();
-                        this.fCurrentActor = this.GetNextActor(this.fCurrentActor);
+                        HandleEndedEffects(false);
+                        HandleSaves();
+                        fCurrentActor = GetNextActor(fCurrentActor);
                         this.fLog.AddStartTurnEntry(this.fCurrentActor.ID);
                         if (this.fCurrentActor.Initiative > this.InitiativePanel.CurrentInitiative)
                         {
@@ -528,7 +528,7 @@ namespace Masterplan.UI
                         }
                         this.InitiativePanel.CurrentInitiative = this.fCurrentActor.Initiative;
                         this.HandleRegen();
-                        this.handle_ended_effects(true);
+                        this.HandleEndedEffects(true);
                         this.handle_ongoing_damage();
                         this.handle_recharge();
                         if (this.fCurrentActor != null && !this.TwoColumnPreview)
@@ -4120,7 +4120,7 @@ namespace Masterplan.UI
             }
         }
 
-        private void handle_ended_effects(bool beginning_of_turn)
+        private void HandleEndedEffects(bool beginning_of_turn)
         {
             if (this.fCurrentActor == null)
             {
