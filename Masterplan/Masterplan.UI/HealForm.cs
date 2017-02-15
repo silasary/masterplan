@@ -125,10 +125,7 @@ namespace Masterplan.UI
 			this.HPLbl.Text = "HP:";
 			this.HPBox.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
 			this.HPBox.Location = new Point(68, 38);
-			NumericUpDown arg_211_0 = this.HPBox;
-			int[] array = new int[4];
-			array[0] = 1000;
-			arg_211_0.Maximum = new decimal(array);
+			this.HPBox.Maximum = 1000;
 			this.HPBox.Name = "HPBox";
 			this.HPBox.Size = new Size(204, 20);
 			this.HPBox.TabIndex = 3;
@@ -147,10 +144,7 @@ namespace Masterplan.UI
 			this.SurgeLbl.Text = "Surges:";
 			this.SurgeBox.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
 			this.SurgeBox.Location = new Point(68, 12);
-			NumericUpDown arg_351_0 = this.SurgeBox;
-			int[] array2 = new int[4];
-			array2[0] = 10;
-			arg_351_0.Maximum = new decimal(array2);
+			this.SurgeBox.Maximum = 10;
 			this.SurgeBox.Name = "SurgeBox";
 			this.SurgeBox.Size = new Size(204, 20);
 			this.SurgeBox.TabIndex = 1;

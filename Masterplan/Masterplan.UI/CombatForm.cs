@@ -3015,7 +3015,7 @@ namespace Masterplan.UI
 
         private void RollInitiative()
         {
-            List<Pair<List<CombatData>, int>> list = new List<Pair<List<CombatData>, int>>();
+            List<Pair<List<CombatData>, int>> autoInitiatives = new List<Pair<List<CombatData>, int>>();
             Dictionary<string, List<CombatData>> dictionary = new Dictionary<string, List<CombatData>>();
             foreach (Hero current in Session.Project.Heroes)
             {
@@ -3024,7 +3024,7 @@ namespace Masterplan.UI
                     switch (Session.Preferences.HeroInitiativeMode)
                     {
                         case InitiativeMode.AutoIndividual:
-                            list.Add(new Pair<List<CombatData>, int>(new List<CombatData>
+                            autoInitiatives.Add(new Pair<List<CombatData>, int>(new List<CombatData>
                         {
                             current.CombatData
                         }, current.InitBonus));
@@ -3036,14 +3036,14 @@ namespace Masterplan.UI
                     }
                 }
             }
-            foreach (EncounterSlot current2 in this.fEncounter.Slots)
+            foreach (EncounterSlot slot in this.fEncounter.Slots)
             {
                 switch (Session.Preferences.InitiativeMode)
                 {
                     case InitiativeMode.AutoGroup:
                         {
                             List<CombatData> list2 = new List<CombatData>();
-                            foreach (CombatData current3 in current2.CombatData)
+                            foreach (CombatData current3 in slot.CombatData)
                             {
                                 if (current3.Initiative == int.MinValue)
                                 {
@@ -3052,30 +3052,25 @@ namespace Masterplan.UI
                             }
                             if (list2.Count != 0)
                             {
-                                list.Add(new Pair<List<CombatData>, int>(list2, current2.Card.Initiative));
+                                autoInitiatives.Add(new Pair<List<CombatData>, int>(list2, slot.Card.Initiative));
                                 continue;
                             }
                             continue;
                         }
                     case InitiativeMode.AutoIndividual:
-                        using (List<CombatData>.Enumerator enumerator4 = current2.CombatData.GetEnumerator())
+                        foreach (var current4 in slot.CombatData)
                         {
-                            while (enumerator4.MoveNext())
+                            if (current4.Initiative == int.MinValue)
                             {
-                                CombatData current4 = enumerator4.Current;
-                                if (current4.Initiative == int.MinValue)
-                                {
-                                    list.Add(new Pair<List<CombatData>, int>(new List<CombatData>
+                                autoInitiatives.Add(new Pair<List<CombatData>, int>(new List<CombatData>
                                 {
                                     current4
-                                }, current2.Card.Initiative));
-                                }
+                                }, slot.Card.Initiative));
                             }
-                            continue;
                         }
-                        break;
+                        continue;
                     case InitiativeMode.ManualIndividual:
-                        foreach (CombatData current5 in current2.CombatData)
+                        foreach (CombatData current5 in slot.CombatData)
                         {
                             if (current5.Initiative == int.MinValue)
                             {
@@ -3086,7 +3081,7 @@ namespace Masterplan.UI
                         continue;
                     case InitiativeMode.ManualGroup:
                         List<CombatData> list3 = new List<CombatData>();
-                        foreach (CombatData current6 in current2.CombatData)
+                        foreach (CombatData current6 in slot.CombatData)
                         {
                             if (current6.Initiative == int.MinValue)
                             {
@@ -3095,7 +3090,7 @@ namespace Masterplan.UI
                         }
                         if (list3.Count != 0)
                         {
-                            dictionary[current2.Card.Title] = list3;
+                            dictionary[slot.Card.Title] = list3;
                         }
                         break;
                     default:
@@ -3103,36 +3098,32 @@ namespace Masterplan.UI
                 }
        
             }
-            foreach (Trap current7 in this.fEncounter.Traps)
+            foreach (Trap trap in fEncounter.Traps)
             {
-                bool flag = current7.Initiative != int.MinValue;
-                if (flag)
+                if (trap.Initiative != int.MinValue)
                 {
-                    CombatData combatData = this.fTrapData[current7.ID];
+                    CombatData combatData = this.fTrapData[trap.ID];
                     if (combatData.Initiative == int.MinValue)
                     {
                         switch (Session.Preferences.TrapInitiativeMode)
                         {
                             case InitiativeMode.AutoIndividual:
-                                list.Add(new Pair<List<CombatData>, int>(new List<CombatData>
-                            {
-                                combatData
-                            }, current7.Initiative));
+                                autoInitiatives.Add(new Pair<List<CombatData>, int>(new List<CombatData> { combatData }, trap.Initiative));
                                 break;
                             case InitiativeMode.ManualIndividual:
-                                dictionary[current7.Name] = new List<CombatData>();
-                                dictionary[current7.Name].Add(combatData);
+                                dictionary[trap.Name] = new List<CombatData>();
+                                dictionary[trap.Name].Add(combatData);
                                 break;
                         }
                     }
                 }
             }
-            foreach (Pair<List<CombatData>, int> current8 in list)
+            foreach (Pair<List<CombatData>, int> current8 in autoInitiatives)
             {
                 int initiative = Session.Dice(1, 20) + current8.Second;
-                foreach (CombatData current9 in current8.First)
+                foreach (CombatData data in current8.First)
                 {
-                    current9.Initiative = initiative;
+                    data.Initiative = initiative;
                 }
             }
             if (dictionary.Count != 0)
@@ -3163,29 +3154,26 @@ namespace Masterplan.UI
             if (token_links != null)
             {
                 this.MapView.TokenLinks = token_links;
-                using (List<TokenLink>.Enumerator enumerator = this.MapView.TokenLinks.GetEnumerator())
+                foreach (var link in MapView.TokenLinks)
                 {
-                    while (enumerator.MoveNext())
+                    foreach (IToken current2 in link.Tokens)
                     {
-                        TokenLink current = enumerator.Current;
-                        foreach (IToken current2 in current.Tokens)
+                        CreatureToken creatureToken = current2 as CreatureToken;
+                        if (creatureToken != null)
                         {
-                            CreatureToken creatureToken = current2 as CreatureToken;
-                            if (creatureToken != null)
+                            EncounterSlot encounterSlot = this.fEncounter.FindSlot(creatureToken.SlotID);
+                            if (encounterSlot != null)
                             {
-                                EncounterSlot encounterSlot = this.fEncounter.FindSlot(creatureToken.SlotID);
-                                if (encounterSlot != null)
-                                {
-                                    creatureToken.Data = encounterSlot.FindCombatData(creatureToken.Data.Location);
-                                }
+                                creatureToken.Data = encounterSlot.FindCombatData(creatureToken.Data.Location);
                             }
                         }
                     }
-                    goto IL_E2;
                 }
             }
-            this.MapView.TokenLinks = new List<TokenLink>();
-            IL_E2:
+            else
+            {
+                this.MapView.TokenLinks = new List<TokenLink>();
+            }
             if (viewpoint != Rectangle.Empty)
             {
                 this.MapView.Viewpoint = viewpoint;
@@ -5002,7 +4990,7 @@ namespace Masterplan.UI
                 {
                     this.Preview.Document.OpenNew(true);
                     this.Preview.Document.Write(HTML.Text("Loading iPlay4e character, please wait...", true, true, DisplaySize.Small));
-                    string urlString = iPlay4E.GetUrlString(hero);
+                    string urlString = IPlay4E.GetUrlString(hero);
                     this.Preview.Navigate(urlString);
                     return;
                 }

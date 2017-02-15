@@ -1386,13 +1386,13 @@ namespace Masterplan.Tools
         [Obsolete]
         public static bool ImportIPlay4e(Hero hero)
         {
-            return iPlay4E.ImportIPlay4e(hero);
+            return IPlay4E.ImportIPlay4e(hero);
         }
 
         [Obsolete]
         public static List<Hero> ImportParty(string key)
         {
-            return iPlay4E.ImportParty(key);
+            return IPlay4E.ImportParty(key);
         }
 
     }

@@ -372,7 +372,7 @@
     <Compile Include="Masterplan.Tools\FiveByFive.cs" />
     <Compile Include="Masterplan.Tools\GoalBuilder.cs" />
     <Compile Include="Masterplan.Tools\HTML.cs" />
-    <Compile Include="Masterplan.Tools\iPlay4E.cs" />
+    <Compile Include="Masterplan.Tools\IPlay4E.cs" />
     <Compile Include="Masterplan.Tools\MapPrinting.cs" />
     <Compile Include="Masterplan.Tools\Screenshot.cs" />
     <Compile Include="Masterplan.Tools\Skills.cs" />

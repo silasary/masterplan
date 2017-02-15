@@ -7,7 +7,7 @@ using Utils;
 
 namespace Masterplan.Tools
 {
-    class iPlay4E
+    class IPlay4E
     {
         public static bool ImportIPlay4e(Hero hero)
         {
@@ -17,7 +17,7 @@ namespace Masterplan.Tools
             }
             try
             {
-                string address = "http://iplay4e.appspot.com/view?xsl=jPint&key=" + hero.Key;
+                string address = GetUrlString(hero);
                 WebClient webClient = new WebClient();
                 string xml = webClient.DownloadString(address);
                 XmlDocument xmlDocument = new XmlDocument();

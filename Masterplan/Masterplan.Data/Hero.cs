@@ -13,10 +13,6 @@ namespace Masterplan.Data
 
 		private string fName = "";
 
-		private string fPlayer = "";
-
-		private CreatureSize fSize = CreatureSize.Medium;
-
 		private string fRace = "";
 
 		private int fLevel = Session.Project.Party.Level;
@@ -101,31 +97,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Player
-		{
-			get
-			{
-				return this.fPlayer;
-			}
-			set
-			{
-				this.fPlayer = value;
-			}
-		}
+        public string Player { get; set; } = "";
 
-		public CreatureSize Size
-		{
-			get
-			{
-				return this.fSize;
-			}
-			set
-			{
-				this.fSize = value;
-			}
-		}
+		public CreatureSize Size { get; set; } = CreatureSize.Medium;
 
-		public string Race
+        public string Race
 		{
 			get
 			{
@@ -432,8 +408,8 @@ namespace Masterplan.Data
 			hero.ID = this.fID;
 			hero.Key = this.fKey;
 			hero.Name = this.fName;
-			hero.Player = this.fPlayer;
-			hero.Size = this.fSize;
+			hero.Player = this.Player;
+			hero.Size = this.Size;
 			hero.Race = this.fRace;
 			hero.Level = this.fLevel;
 			hero.Class = this.fClass;
