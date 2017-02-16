@@ -365,32 +365,32 @@ namespace Masterplan.Controls
 			this.fCells = new Dictionary<Point, int>();
 			this.fRowTotals = new Dictionary<int, int>();
 			this.fColumnTotals = new Dictionary<int, int>();
-			for (int num = 0; num != this.fRows.Count; num++)
+			for (int iRow = 0; iRow != this.fRows.Count; iRow++)
 			{
-				CardCategory cardCategory = this.fRows[num];
-				for (int num2 = 0; num2 != this.fColumns.Count; num2++)
+				CardCategory cardCategory = this.fRows[iRow];
+				for (int iCol = 0; iCol != this.fColumns.Count; iCol++)
 				{
-					Difficulty difficulty2 = this.fColumns[num2];
-					int num3 = 0;
-					foreach (EncounterCard current in this.fDeck.Cards)
-					{
-						if (current.Category == cardCategory && current.GetDifficulty(this.fDeck.Level) == difficulty2)
-						{
-							num3++;
-						}
-					}
-					this.fCells[new Point(num, num2)] = num3;
-					if (!this.fRowTotals.ContainsKey(num))
-					{
-						this.fRowTotals[num] = 0;
-					}
-					fRowTotals[num] = fColumnTotals[num] + num3;
-					if (!this.fColumnTotals.ContainsKey(num2))
-					{
-						this.fColumnTotals[num2] = 0;
-					}
-					fColumnTotals[num2] = fColumnTotals[num2] + num3;
-				}
+                    Difficulty ColumnDifficulty = this.fColumns[iCol];
+                    int count = 0;
+                    foreach (EncounterCard current in this.fDeck.Cards)
+                    {
+                        if (current.Category == cardCategory && current.GetDifficulty(this.fDeck.Level) == ColumnDifficulty)
+                        {
+                            count++;
+                        }
+                    }
+                    this.fCells[new Point(iRow, iCol)] = count;
+                    if (!this.fRowTotals.ContainsKey(iRow))
+                    {
+                        this.fRowTotals[iRow] = 0;
+                    }
+                    fRowTotals[iRow] = fRowTotals[iRow] + count;
+                    if (!this.fColumnTotals.ContainsKey(iCol))
+                    {
+                        this.fColumnTotals[iCol] = 0;
+                    }
+                    fColumnTotals[iCol] = fColumnTotals[iCol] + count;
+                }
 			}
 		}
 
