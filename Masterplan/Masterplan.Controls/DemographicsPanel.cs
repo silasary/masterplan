@@ -240,52 +240,47 @@ namespace Masterplan.Controls
 		private int find_max_level(DemographicsSource source, List<Library> libraries)
 		{
 			int num = 0;
-			foreach (Library current in libraries)
-			{
-				switch (source)
-				{
-				case DemographicsSource.Creatures:
-					using (List<Creature>.Enumerator enumerator2 = current.Creatures.GetEnumerator())
-					{
-						while (enumerator2.MoveNext())
-						{
-							Creature current2 = enumerator2.Current;
-							if (current2.Level > num)
-							{
-								num = current2.Level;
-							}
-						}
-						continue;
-					}
-					break;
-				case DemographicsSource.Traps:
-					break;
-				case DemographicsSource.MagicItems:
-					goto IL_B5;
-				default:
-					continue;
-				}
-				using (List<Trap>.Enumerator enumerator3 = current.Traps.GetEnumerator())
-				{
-					while (enumerator3.MoveNext())
-					{
-						Trap current3 = enumerator3.Current;
-						if (current3.Level > num)
-						{
-							num = current3.Level;
-						}
-					}
-					continue;
-				}
-				IL_B5:
-				foreach (MagicItem current4 in current.MagicItems)
-				{
-					if (current4.Level > num)
-					{
-						num = current4.Level;
-					}
-				}
-			}
+            foreach (Library current in libraries)
+            {
+                switch (source)
+                {
+                    case DemographicsSource.Creatures:
+                        foreach (var current2 in current.Creatures)
+                        {
+                            if (current2.Level > num)
+                                {
+                                    num = current2.Level;
+                                }
+                        }
+                        break;
+                    case DemographicsSource.Traps:
+                        using (List<Trap>.Enumerator enumerator3 = current.Traps.GetEnumerator())
+                        {
+                            while (enumerator3.MoveNext())
+                            {
+                                Trap current3 = enumerator3.Current;
+                                if (current3.Level > num)
+                                {
+                                    num = current3.Level;
+                                }
+                            }
+                            continue;
+                        }
+                        break;
+                    case DemographicsSource.MagicItems:
+                        foreach (MagicItem current4 in current.MagicItems)
+                        {
+                            if (current4.Level > num)
+                            {
+                                num = current4.Level;
+                            }
+                        }
+                        break;
+                    default:
+                        continue;
+                }
+
+            }
 			return num;
 		}
 
