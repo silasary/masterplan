@@ -1333,7 +1333,7 @@ namespace Masterplan.UI
 						MapSelectForm mapSelectForm = new MapSelectForm(Session.Project.Maps, null, false);
 						if (mapSelectForm.ShowDialog() == DialogResult.OK)
 						{
-							this.delve_view(mapSelectForm.Map);
+							this.DelveView(mapSelectForm.Map);
 						}
 					}
 					else if (e.Url.LocalPath == "off")
@@ -1353,7 +1353,7 @@ namespace Masterplan.UI
 						if (mapBuilderForm.ShowDialog() == DialogResult.OK)
 						{
 							Session.Project.Maps.Add(mapBuilderForm.Map);
-							this.delve_view(mapBuilderForm.Map);
+							this.DelveView(mapBuilderForm.Map);
 						}
 					}
 					else if (e.Url.LocalPath == "playerview")
@@ -1398,7 +1398,7 @@ namespace Masterplan.UI
 						Map map3 = Session.Project.FindTacticalMap(map_id);
 						if (map3 != null)
 						{
-							this.delve_view(map3);
+							this.DelveView(map3);
 						}
 					}
 				}
@@ -2465,11 +2465,11 @@ namespace Masterplan.UI
 						if (current.Links.Contains(this.PlotView.SelectedPoint.ID))
 						{
 							ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem("After \"" + current.Name + "\"");
-							toolStripMenuItem.Click += new EventHandler(this.add_between);
+							toolStripMenuItem.Click += new EventHandler(this.AddBetween);
 							toolStripMenuItem.Tag = new Pair<PlotPoint, PlotPoint>(current, this.PlotView.SelectedPoint);
 							this.ContextAddBetween.DropDownItems.Add(toolStripMenuItem);
 							ToolStripMenuItem toolStripMenuItem2 = new ToolStripMenuItem(current.Name);
-							toolStripMenuItem2.Click += new EventHandler(this.disconnect_points);
+							toolStripMenuItem2.Click += new EventHandler(this.DisconnectPoints);
 							toolStripMenuItem2.Tag = new Pair<PlotPoint, PlotPoint>(current, this.PlotView.SelectedPoint);
 							this.ContextDisconnect.DropDownItems.Add(toolStripMenuItem2);
 						}
@@ -2478,11 +2478,11 @@ namespace Masterplan.UI
 					{
 						PlotPoint plotPoint = this.PlotView.Plot.FindPoint(current2);
 						ToolStripMenuItem toolStripMenuItem3 = new ToolStripMenuItem("Before \"" + plotPoint.Name + "\"");
-						toolStripMenuItem3.Click += new EventHandler(this.add_between);
+						toolStripMenuItem3.Click += new EventHandler(this.AddBetween);
 						toolStripMenuItem3.Tag = new Pair<PlotPoint, PlotPoint>(this.PlotView.SelectedPoint, plotPoint);
 						this.ContextAddBetween.DropDownItems.Add(toolStripMenuItem3);
 						ToolStripMenuItem toolStripMenuItem4 = new ToolStripMenuItem(plotPoint.Name);
-						toolStripMenuItem4.Click += new EventHandler(this.disconnect_points);
+						toolStripMenuItem4.Click += new EventHandler(this.DisconnectPoints);
 						toolStripMenuItem4.Tag = new Pair<PlotPoint, PlotPoint>(this.PlotView.SelectedPoint, plotPoint);
 						this.ContextDisconnect.DropDownItems.Add(toolStripMenuItem4);
 					}
@@ -2498,7 +2498,7 @@ namespace Masterplan.UI
 						if (current3.Links.Contains(this.PlotView.SelectedPoint.ID))
 						{
 							ToolStripMenuItem toolStripMenuItem5 = new ToolStripMenuItem(current3.Name);
-							toolStripMenuItem5.Click += new EventHandler(this.move_to_subplot);
+							toolStripMenuItem5.Click += new EventHandler(this.MoveToSubplot);
 							toolStripMenuItem5.Tag = new Pair<PlotPoint, PlotPoint>(current3, this.PlotView.SelectedPoint);
 							this.ContextMoveTo.DropDownItems.Add(toolStripMenuItem5);
 						}
@@ -2515,7 +2515,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void delve_view(Map map)
+		private void DelveView(Map map)
 		{
 			if (map == null)
 			{
@@ -2525,20 +2525,22 @@ namespace Masterplan.UI
 			{
 				control.Visible = false;
 			}
-			MapView mapView = new MapView();
-			mapView.Map = map;
-			mapView.Plot = this.PlotView.Plot;
-			mapView.Mode = MapViewMode.Thumbnail;
-			mapView.HighlightAreas = true;
-			mapView.LineOfSight = false;
-			mapView.BorderSize = 1;
-			mapView.BorderStyle = BorderStyle.FixedSingle;
-			mapView.Dock = DockStyle.Fill;
-			this.PreviewSplitter.Panel1.Controls.Add(mapView);
-			mapView.AreaSelected += new MapAreaEventHandler(this.select_maparea);
-			mapView.DoubleClick += new EventHandler(this.edit_maparea);
+            MapView mapView = new MapView()
+            {
+                Map = map,
+                Plot = this.PlotView.Plot,
+                Mode = MapViewMode.Thumbnail,
+                HighlightAreas = true,
+                LineOfSight = false,
+                BorderSize = 1,
+                BorderStyle = BorderStyle.FixedSingle,
+                Dock = DockStyle.Fill
+            };
+            this.PreviewSplitter.Panel1.Controls.Add(mapView);
+			mapView.AreaSelected += new MapAreaEventHandler(select_maparea);
+			mapView.DoubleClick += new EventHandler(edit_maparea);
 			this.fDelveView = mapView;
-			this.fView = MainForm.ViewType.Delve;
+			this.fView = ViewType.Delve;
 			this.update_preview();
 		}
 
@@ -2792,7 +2794,7 @@ namespace Masterplan.UI
 					for (int i = 0; i < array2.Length; i++)
 					{
 						string filename = array2[i];
-						this.add_attachment(filename);
+						this.AddAttachment(filename);
 					}
 					this.update_attachments();
 				}
@@ -2863,7 +2865,7 @@ namespace Masterplan.UI
 			{
 				e.Cancel = true;
 				this.fPartyBreakdownSecondary = e.Url.LocalPath;
-				this.update_party();
+				this.UpdateParty();
 			}
 		}
 
@@ -3343,7 +3345,7 @@ namespace Masterplan.UI
 			}
 			Session.Modified = true;
 			this.UpdateView();
-			this.delve_view(map);
+			this.DelveView(map);
 			Cursor.Current = Cursors.Default;
 			return true;
 		}
@@ -5663,7 +5665,7 @@ namespace Masterplan.UI
 					for (int i = 0; i < fileNames.Length; i++)
 					{
 						string filename = fileNames[i];
-						this.add_attachment(filename);
+						this.AddAttachment(filename);
 					}
 					this.update_attachments();
 				}
@@ -6361,7 +6363,7 @@ namespace Masterplan.UI
 				this.update_selected_rule();
 				this.update_attachments();
 				this.update_notes();
-				this.update_reference();
+				this.UpdateReference();
 				foreach (IAddIn current in this.fExtensibility.AddIns)
 				{
 					foreach (IPage current2 in current.Pages)
@@ -7162,13 +7164,13 @@ namespace Masterplan.UI
 			return false;
 		}
 
-		private void update_reference()
+		private void UpdateReference()
 		{
 			if (Session.Project != null)
 			{
 				this.InfoPanel.Level = Session.Project.Party.Level;
 			}
-			this.update_party();
+			this.UpdateParty();
 			if (this.GeneratorBrowser.DocumentText == "")
 			{
 				List<string> list = new List<string>();
@@ -7189,7 +7191,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void update_party()
+		private void UpdateParty()
 		{
 			if (this.PartyBrowser.Document == null)
 			{
@@ -7199,7 +7201,7 @@ namespace Masterplan.UI
 			this.PartyBrowser.Document.Write(HTML.PCs(this.fPartyBreakdownSecondary, DisplaySize.Small));
 		}
 
-		private void add_between(object sender, EventArgs e)
+		private void AddBetween(object sender, EventArgs e)
 		{
 			try
 			{
@@ -7214,7 +7216,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void disconnect_points(object sender, EventArgs e)
+		private void DisconnectPoints(object sender, EventArgs e)
 		{
 			try
 			{
@@ -7235,7 +7237,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void move_to_subplot(object sender, EventArgs e)
+		private void MoveToSubplot(object sender, EventArgs e)
 		{
 			try
 			{
@@ -7253,7 +7255,7 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void add_attachment(string filename)
+		private void AddAttachment(string filename)
 		{
 			try
 			{
