@@ -150,7 +150,7 @@ namespace Masterplan.UI
 			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			WebClient webClient = new WebClient();
 			webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(this.downloaded_html);
-			webClient.DownloadStringAsync(new Uri("http://www.habitualindolence.net/masterplan/adventures.htm"));
+			webClient.DownloadStringAsync(new Uri("http://web.archive.org/web/20100405210245/http://masterplan.habitualindolence.net/adventures.htm"));
 			this.update_list();
 		}
 
@@ -194,7 +194,7 @@ namespace Masterplan.UI
 			this.update_list();
 		}
 
-		private PremadeForm.Adventure get_adventure(string html)
+		private Adventure get_adventure(string html)
 		{
 			try
 			{
@@ -207,12 +207,12 @@ namespace Masterplan.UI
 					result = null;
 					return result;
 				}
-				PremadeForm.Adventure adventure = new PremadeForm.Adventure();
+                Adventure adventure = new Adventure();
 				XmlNode firstChild = documentElement.FirstChild;
 				adventure.Name = firstChild.InnerText;
 				XmlNode firstChild2 = firstChild.FirstChild;
 				adventure.URL = XMLHelper.GetAttribute(firstChild2, "href");
-				adventure.URL = "http://www.habitualindolence.net/masterplan/" + adventure.URL;
+				adventure.URL = "http://web.archive.org/web/20100405210245/http://www.habitualindolence.net/masterplan/" + adventure.URL;
 				XmlNode nextSibling = firstChild.NextSibling;
 				string text = nextSibling.InnerText;
 				text = text.Replace("Level", "");
@@ -319,10 +319,12 @@ namespace Masterplan.UI
 
 		private void download_completed(object sender, AsyncCompletedEventArgs e)
 		{
+            
 			this.fProgressScreen.Hide();
 			this.fProgressScreen = null;
 			base.DialogResult = DialogResult.OK;
 			base.Close();
+
 		}
 	}
 }

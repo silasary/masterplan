@@ -2359,29 +2359,38 @@ namespace Masterplan.UI
 			}
 		}
 
-		private void Welcome_PremadeClicked(object sender, EventArgs e)
-		{
-			try
-			{
-				SaveFileDialog saveFileDialog = new SaveFileDialog();
-				saveFileDialog.Filter = Program.ProjectFilter;
-				saveFileDialog.FileName = "Example";
-				if (saveFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.fDownloadedFile = saveFileDialog.FileName;
-					Program.SplashScreen = new ProgressScreen("Downloading example adventure...", 100);
-					Program.SplashScreen.Show();
-					WebClient webClient = new WebClient();
-					webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.wc_DownloadProgressChanged);
-					webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(this.wc_DownloadFileCompleted);
-					webClient.DownloadFileAsync(new Uri("http://www.habitualindolence.net/masterplan/downloads/example.masterplan"), this.fDownloadedFile);
-				}
-			}
-			catch (Exception ex)
-			{
-				LogSystem.Trace(ex);
-			}
-		}
+        private void Welcome_PremadeClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                //PremadeForm premadeForm = new PremadeForm();
+                //if (premadeForm.ShowDialog() == DialogResult.OK)
+                //{
+                //    open_file(premadeForm.DownloadedFileName);
+                //    return;
+                //}
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog()
+                {
+                    Filter = Program.ProjectFilter,
+                    FileName = "Example"
+                };
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.fDownloadedFile = saveFileDialog.FileName;
+                    Program.SplashScreen = new ProgressScreen("Downloading example adventure...", 100);
+                    Program.SplashScreen.Show();
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.wc_DownloadProgressChanged);
+                    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(this.wc_DownloadFileCompleted);
+                    webClient.DownloadFileAsync(new Uri("http://web.archive.org/web/20100405210245/http://masterplan.habitualindolence.net/adventures/whitestag.masterplan"), this.fDownloadedFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogSystem.Trace(ex);
+            }
+        }
 
 		private void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
