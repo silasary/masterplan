@@ -359,7 +359,7 @@ namespace Masterplan.Controls
 			{
 				if ((difficulty != Difficulty.Trivial || this.fDeck.Level >= 3) && difficulty != Difficulty.Random)
 				{
-					this.fColumns.Add(difficulty);
+                    fColumns.Add(difficulty);
 				}
 			}
 			this.fCells = new Dictionary<Point, int>();

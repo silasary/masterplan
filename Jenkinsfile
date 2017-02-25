@@ -22,6 +22,7 @@ node {
     
     stage('Archive'){
 		archive '**/bin/Release/'
+		archive 'www/'
 	}
 
 	stage('Post-Build'){

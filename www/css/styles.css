@@ -1,0 +1,41 @@
+
+
+
+
+
+/*
+     FILE ARCHIVED ON 5:49:49 Mar 16, 2016 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 2:39:15 Feb 25, 2017.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+body            { font-family: Arial; background-color: #F0F0F0 }
+
+h1, h2, h3, h4  { font-family: Calibri; color: #000080; font-weight: normal; text-align: left }
+h1              { font-size: 50pt; text-align: center }
+h1.sub          { font-size: 20pt; text-align: center }
+h2              { font-size: 18pt }
+
+p               { font-size: 10pt }
+p.legal         { font-size: 8pt }
+p.table         { text-align: center }
+
+table           { border-color: #BBBBBB; border-style: solid; border-width: 1px; border-collapse: collapse }
+table.facebook  { border-style: none }
+
+tr              { font-size: 9pt; background-color: #FFFFFF }
+tr.heading      { font-size: 10pt; font-weight: bold; text-align: center; background-color: #143D5F; color: #FFFFFF }
+tr.shaded       { font-weight: bold; background-color: #AFB49D }
+
+td              { padding: 4px; vertical-align: top }
+td.indent       { padding-left: 20px; padding-right: 20px }
+td.facebook     { padding: 0px; background-color: white; text-align: center; vertical-align: top }
+
+ul,ol           { font-size: 10pt }
+
+a               { }
+a:link          { color: #0000FF }
+a:visited       { color: #000080 }
+a:active        { color: #000080 }
