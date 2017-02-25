@@ -518,7 +518,7 @@ namespace Masterplan.Tools
                                 {
                                     foreach (XmlNode power_node in xmlNode.ChildNodes)
                                     {
-                                        AppImport.import_power(power_node, creature);
+                                        AppImport.ImportPower(power_node, creature);
                                     }
                                     continue;
                                 }
@@ -825,7 +825,7 @@ namespace Masterplan.Tools
             return creature;
         }
 
-        private static void import_power(XmlNode power_node, Creature c)
+        private static void ImportPower(XmlNode power_node, Creature c)
         {
             try
             {
@@ -1161,8 +1161,8 @@ namespace Masterplan.Tools
 
         private static string secondary_attack_details(XmlNode details_node)
         {
-            XmlNode parent = XMLHelper.FindChild(details_node, "Damage");
-            string text = XMLHelper.NodeText(parent, "Expression");
+            XmlNode damageNode = XMLHelper.FindChild(details_node, "Damage");
+            string text = XMLHelper.NodeText(damageNode, "Expression");
             string text2 = XMLHelper.NodeText(details_node, "Description");
             if (text != "" && text2 != "")
             {
@@ -1179,6 +1179,11 @@ namespace Masterplan.Tools
             return "";
         }
 
+        /// <summary>
+        /// Import a .dnd4e character builder file.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
         public static Hero ImportHero(string xml)
         {
             Hero hero = new Hero();

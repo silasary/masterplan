@@ -84,14 +84,14 @@ namespace Masterplan.Tools
 			this.fConstant = constant;
 		}
 
-		public static DiceExpression Parse(string str)
+		public static DiceExpression Parse(string diceNotation)
 		{
 			DiceExpression diceExpression = new DiceExpression();
 			try
 			{
 				bool flag = false;
-				bool flag2 = false;
-				char[] anyOf = new char[]
+				bool minus = false;
+				char[] digits = new char[]
 				{
 					'1',
 					'2',
@@ -104,10 +104,10 @@ namespace Masterplan.Tools
 					'9',
 					'0'
 				};
-				str = str.ToLower();
-				str = str.Replace("+", " + ");
-				str = str.Replace("-", " - ");
-				string[] array = str.Split(null);
+				diceNotation = diceNotation.ToLower();
+				diceNotation = diceNotation.Replace("+", " + ");
+				diceNotation = diceNotation.Replace("-", " - ");
+				string[] array = diceNotation.Split(null);
 				string[] array2 = array;
 				for (int i = 0; i < array2.Length; i++)
 				{
@@ -118,9 +118,9 @@ namespace Masterplan.Tools
 					}
 					if (text == "-" && flag)
 					{
-						flag2 = true;
+						minus = true;
 					}
-					else if (text.IndexOfAny(anyOf) != -1)
+					else if (text.IndexOfAny(digits) != -1)
 					{
 						int num = text.IndexOf("d");
 						if (num != -1)
@@ -136,7 +136,7 @@ namespace Masterplan.Tools
 						else if (diceExpression.Constant == 0)
 						{
 							diceExpression.Constant = int.Parse(text);
-							if (flag2)
+							if (minus)
 							{
 								diceExpression.Constant = -diceExpression.Constant;
 							}

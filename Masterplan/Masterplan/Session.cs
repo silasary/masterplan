@@ -186,31 +186,31 @@ namespace Masterplan
 			get
 			{
 				List<MonsterTheme> list = new List<MonsterTheme>();
-				foreach (Library current in Session.Libraries)
+				foreach (Library library in Session.Libraries)
 				{
-					foreach (MonsterTheme current2 in current.Themes)
+					foreach (MonsterTheme theme in library.Themes)
 					{
-						if (current2 != null)
+						if (theme != null)
 						{
-							list.Add(current2);
+							list.Add(theme);
 						}
 					}
 				}
-				if (Session.fProject != null)
+				if (fProject != null)
 				{
 					BinarySearchTree<Guid> binarySearchTree = new BinarySearchTree<Guid>();
-					foreach (MonsterTheme current3 in list)
+					foreach (MonsterTheme theme in list)
 					{
-						if (current3 != null)
+						if (theme != null) // Is this even possible?
 						{
-							binarySearchTree.Add(current3.ID);
+							binarySearchTree.Add(theme.ID);
 						}
 					}
-					foreach (MonsterTheme current4 in Session.fProject.Library.Themes)
+					foreach (MonsterTheme theme in fProject.Library.Themes)
 					{
-						if (current4 != null && !binarySearchTree.Contains(current4.ID))
+						if (theme != null && !binarySearchTree.Contains(theme.ID))
 						{
-							list.Add(current4);
+							list.Add(theme);
 						}
 					}
 				}

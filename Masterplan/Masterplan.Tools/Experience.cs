@@ -251,13 +251,13 @@ namespace Masterplan.Tools
 			{
 				return 30;
 			}
-			for (int i = 1; i <= 29; i++)
+			for (int level = 1; level <= 29; level++)
 			{
-				int heroXP = Experience.GetHeroXP(i);
-				int heroXP2 = Experience.GetHeroXP(i + 1);
-				if (xp >= heroXP && xp < heroXP2)
+				int xpMin = Experience.GetHeroXP(level);
+				int xpMax = Experience.GetHeroXP(level + 1);
+				if (xp >= xpMin && xp < xpMax)
 				{
-					return i;
+					return level;
 				}
 			}
 			return -1;
