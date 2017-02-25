@@ -32,10 +32,10 @@ node {
 
 	stage('Publish'){
 		if (branch == "stable"){
-			publish('--generate Masterplan/bin/Release/Masterplan.exe --deploymentUrl http://masterplan.vorpald20.com/masterplan.application --generateBootstrap setup.exe')
+			publish('--generate Masterplan/bin/Release/Masterplan.exe --deploymentUrl http://masterplan.vorpald20.com/Masterplan.application --generateBootstrap setup.exe')
 		}
 		else {
-			publish('--generate Masterplan/bin/Debug/Masterplan.exe  --deploymentUrl http://beta.masterplan.vorpald20.com/masterplan.application --generateBootstrap setup.exe')
+			publish('--generate Masterplan/bin/Debug/Masterplan.exe  --deploymentUrl http://beta.masterplan.vorpald20.com/Masterplan.application --generateBootstrap setup.exe')
 		}
 	}
     
