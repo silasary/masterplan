@@ -3,9 +3,17 @@ using System.IO;
 
 namespace Utils
 {
-	public static class FileName
+    ///<summary>
+    ///Class providing a set of static methods for file manipulation.
+    ///</summary>
+    public static class FileName
 	{
-		public static string Name(string filename)
+        ///<summary>
+        ///Returns the name part of a filename, removing the directory and extension.
+        ///</summary>
+        ///<param name="filename">The full filename.</param>
+        ///<returns>Returns the name of the file.</returns>
+        public static string Name(string filename)
 		{
 			if (filename == "")
 			{
@@ -21,7 +29,12 @@ namespace Utils
 			return text;
 		}
 
-		public static string Extension(string filename)
+        ///<summary>
+        ///Returns the extension part of a filename.
+        ///</summary>
+        ///<param name="filename">The full filename.</param>
+        ///<returns>Returns the extension.</returns>
+        public static string Extension(string filename)
 		{
 			if (filename == "")
 			{
@@ -36,7 +49,12 @@ namespace Utils
 			return text;
 		}
 
-		public static string Directory(string filename)
+        ///<summary>
+        ///Returns the directory part of a filename, including the final directory separator character.
+        ///</summary>
+        ///<param name="filename">The full filename.</param>
+        ///<returns>Returns the path of the directory.</returns>
+        public static string Directory(string filename)
 		{
 			if (filename == "")
 			{
@@ -52,7 +70,12 @@ namespace Utils
 			return text;
 		}
 
-		public static void Change(string oldname, string newname)
+        ///<summary>
+        ///Changes the location of a file on disc.
+        ///</summary>
+        ///<param name="oldname">The current path of the file.</param>
+        ///<param name="newname">The new path of the file.</param>
+        public static void Change(string oldname, string newname)
 		{
 			File.Copy(oldname, newname);
 			File.Delete(oldname);
@@ -72,7 +95,13 @@ namespace Utils
 			return text.Replace(">", "");
 		}
 
-		public static string MakeRelative(string filename, string directory)
+        ///<summary>
+        ///Converts an absolute path into a relative path.
+        ///</summary>
+        ///<param name="filename">The full path of the file.</param>
+        ///<param name="directory">The directory.</param>
+        ///<returns>Returns the path of the file relative to the directory.</returns>
+        public static string MakeRelative(string filename, string directory)
 		{
 			filename = FileName.remove_protocol(filename);
 			directory = FileName.remove_protocol(directory);
@@ -113,7 +142,14 @@ namespace Utils
 			return filename;
 		}
 
-		public static string MakeAbsolute(string filename, string directory)
+        ///<summary>
+        ///Converts a relative path into an absolute path.
+        ///This method does not check whether the file exists.
+        ///</summary>
+        ///<param name="filename">The relative path.</param>
+        ///<param name="directory">The directory the relative path is relative to.</param>
+        ///<returns>Returns the absolute path.</returns>
+        public static string MakeAbsolute(string filename, string directory)
 		{
 			string text = Path.DirectorySeparatorChar.ToString();
 			if (directory.EndsWith(text))

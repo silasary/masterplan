@@ -3,12 +3,19 @@ using System.IO;
 
 namespace Utils
 {
-	public class LogSystem
+    ///<summary>
+    ///Class containing static methods and properties used for diagnostic logging.
+    ///</summary>
+    public class LogSystem
 	{
 		private static string fLogFile = "";
 
 		private static int fIndent = 0;
 
+        ///<summary>
+        ///Gets or sets the path of the current logfile.
+        ///If this is null or empty, no logfile is defined.
+        ///</summary>
 		public static string LogFile
 		{
 			get
@@ -21,7 +28,10 @@ namespace Utils
 			}
 		}
 
-		public static int Indent
+        ///<summary>
+        ///Gets or sets a value indicating the current level of indentation.
+        ///</summary>
+        public static int Indent
 		{
 			get
 			{
@@ -33,7 +43,11 @@ namespace Utils
 			}
 		}
 
-		public static void Trace(string message)
+        ///<summary>
+        ///Sends a message to the console (and also to the logfile if one is defined).
+        ///</summary>
+        ///<param name="message">The message to be displayed.</param>
+        public static void Trace(string message)
 		{
 			try
 			{
@@ -61,7 +75,11 @@ namespace Utils
 			}
 		}
 
-		public static void Trace(object obj)
+        ///<summary>
+        ///Traces an object to the console (and also to the logfile if one is defined).
+        ///</summary>
+        ///<param name="obj">The object to be traced.</param>
+        public static void Trace(object obj)
 		{
 			try
 			{
@@ -72,7 +90,11 @@ namespace Utils
 			}
 		}
 
-		public static void Trace(Exception ex)
+        ///<summary>
+        ///Traces an exception (the exception message, stack trace and inner exceptions) to the console (and also to the logfile if one is defined).
+        ///</summary>
+        ///<param name="ex">The exception to be traced.</param>
+        public static void Trace(Exception ex)
 		{
 			try
 			{

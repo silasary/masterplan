@@ -9,7 +9,10 @@ namespace Utils
 
 		private T2 fSecond = default(T2);
 
-		public T1 First
+        ///<summary>
+        ///The first part of the Pair.
+        ///</summary>
+        public T1 First
 		{
 			get
 			{
@@ -21,7 +24,10 @@ namespace Utils
 			}
 		}
 
-		public T2 Second
+        ///<summary>
+        ///The second part of the Pair.
+        ///</summary>
+        public T2 Second
 		{
 			get
 			{
@@ -37,18 +43,32 @@ namespace Utils
 		{
 		}
 
-		public Pair(T1 first, T2 second)
+        ///<summary>
+        ///Constructor which initialises the Pair object.
+        ///</summary>
+        ///<param name="first">The first part.</param>
+        ///<param name="second">The second part.</param>
+        public Pair(T1 first, T2 second)
 		{
 			this.First = first;
 			this.Second = second;
 		}
 
-		public override string ToString()
+        ///<summary>
+        ///Returns a string representation of the Pair object in the format [first], [second].
+        ///</summary>
+        ///<returns>Returns a string representation of the Pair object.</returns>
+        public override string ToString()
 		{
 			return this.fFirst + ", " + this.fSecond;
 		}
 
-		public int CompareTo(Pair<T1, T2> rhs)
+        ///<summary>
+        ///Compares this Pair object to another by the contents of their First property.
+        ///</summary>
+        ///<param name="rhs">The Pair object to compare to.</param>
+        ///<returns>Returns -1 if this object should be sorted before the other, +1 if it should be sorted after the other, or 0 if they are identical.</returns>
+        public int CompareTo(Pair<T1, T2> rhs)
 		{
 			string text = this.fFirst.ToString();
 			T1 first = rhs.First;

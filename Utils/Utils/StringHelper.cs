@@ -4,9 +4,18 @@ using System.Text;
 
 namespace Utils
 {
+    ///<summary>
+    ///Class containing string manipulation methods.
+    ///</summary>
 	public class StringHelper
 	{
-		public static string LongestCommonToken(string str1, string str2)
+        ///<summary>
+        ///Finds the longest common substring from each token of each string.
+        ///</summary>
+        ///<param name="str1">The first string.</param>
+        ///<param name="str2">The second string.</param>
+        ///<returns>Returns the longest common token subtring.</returns>
+        public static string LongestCommonToken(string str1, string str2)
 		{
 			string[] array = str1.Split(null);
 			string[] array2 = str2.Split(null);
@@ -37,7 +46,13 @@ namespace Utils
 			return text2;
 		}
 
-		public static string LongestCommonSubstring(string str1, string str2)
+        ///<summary>
+        ///Finds the longest common substring.
+        ///</summary>
+        ///<param name="str1">The first string.</param>
+        ///<param name="str2">The second string.</param>
+        ///<returns>Returns the longest common substring.</returns>
+        public static string LongestCommonSubstring(string str1, string str2)
 		{
 			if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
 			{

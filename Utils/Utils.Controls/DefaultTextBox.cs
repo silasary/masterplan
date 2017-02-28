@@ -4,7 +4,10 @@ using System.Windows.Forms;
 
 namespace Utils.Controls
 {
-	public class DefaultTextBox : TextBox
+    ///<summary>
+    ///Text box which supports default text.
+    ///</summary>
+    public class DefaultTextBox : TextBox
 	{
 		private string fDefaultText = "";
 
@@ -12,8 +15,11 @@ namespace Utils.Controls
 
 		private IContainer components;
 
+        ///<summary>
+        ///Gets or sets the default text to be shown in the text box.
+        ///</summary>
 		[Category("Appearance"), DefaultValue(""), Description("The default text to be shown in the text box.")]
-		public string DefaultText
+        public string DefaultText
 		{
 			get
 			{
@@ -38,7 +44,11 @@ namespace Utils.Controls
 			this.InitializeComponent();
 		}
 
-		protected override void OnTextChanged(EventArgs e)
+        ///<summary>
+        ///Sets the default text on the control.
+        ///</summary>
+        ///<param name="e">Event arguments.</param>
+        protected override void OnTextChanged(EventArgs e)
 		{
 			base.OnTextChanged(e);
 			if (!this.fUpdating && !this.Focused && this.Text == "")
@@ -47,7 +57,11 @@ namespace Utils.Controls
 			}
 		}
 
-		protected override void OnEnter(EventArgs e)
+        ///<summary>
+        ///Removes the default text from the control, if present, and selects the contents.
+        ///</summary>
+        ///<param name="e">Event arguments.</param>
+        protected override void OnEnter(EventArgs e)
 		{
 			base.OnEnter(e);
 			if (this.Text == this.fDefaultText)
@@ -59,7 +73,11 @@ namespace Utils.Controls
 			base.SelectAll();
 		}
 
-		protected override void OnLeave(EventArgs e)
+        ///<summary>
+        ///Updates the control with the default text.
+        ///</summary>
+        ///<param name="e">Event arguments.</param>
+        protected override void OnLeave(EventArgs e)
 		{
 			base.OnLeave(e);
 			if (this.Text == "")
@@ -70,7 +88,11 @@ namespace Utils.Controls
 			}
 		}
 
-		protected override void OnKeyDown(KeyEventArgs e)
+        ///<summary>
+        ///Ensures that Ctrl-A selects all text.
+        ///</summary>
+        ///<param name="e">Event arguments.</param>
+        protected override void OnKeyDown(KeyEventArgs e)
 		{
 			if ((e.Modifiers & Keys.Control) == Keys.Control && e.KeyCode == Keys.A)
 			{

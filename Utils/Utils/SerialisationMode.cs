@@ -2,9 +2,18 @@ using System;
 
 namespace Utils
 {
-	public enum SerialisationMode
+    ///<summary>
+    ///Enumeration defining the supported serialisation modes.
+    ///</summary>
+    public enum SerialisationMode
 	{
-		Binary,
-		XML
-	}
+        ///<summary>
+        ///Binary file format.
+        ///</summary>
+        Binary,
+        ///<summary>
+        ///XML text format.
+        ///</summary>
+        XML
+    }
 }

@@ -5,9 +5,17 @@ using System.Xml;
 
 namespace Utils
 {
-	public class XMLHelper
+    ///<summary>
+    ///Class containing XML manipulation methods.
+    ///</summary>
+    public class XMLHelper
 	{
-		public static XmlDocument LoadSource(string xml)
+        ///<summary>
+        ///Load an XML document.
+        ///</summary>
+        ///<param name="xml">The XML source</param>
+        ///<returns>Returns the XML document</returns>
+        public static XmlDocument LoadSource(string xml)
 		{
 			XmlDocument result;
 			try
@@ -40,7 +48,13 @@ namespace Utils
 			return result;
 		}
 
-		public static XmlNode FindChild(XmlNode parent, string name)
+        ///<summary>
+        ///Finds a named child node.
+        ///</summary>
+        ///<param name="parent">The parent node</param>
+        ///<param name="name">The name of the child node</param>
+        ///<returns>Returns the node, or null if no such node was found</returns>
+        public static XmlNode FindChild(XmlNode parent, string name)
 		{
 			foreach (XmlNode xmlNode in parent.ChildNodes)
 			{
@@ -52,7 +66,14 @@ namespace Utils
 			return null;
 		}
 
-		public static XmlNode FindChildWithAttribute(XmlNode parent, string attribute_name, string attribute_value)
+        ///<summary>
+        ///Finds the child node which has a certain value for a given attribute.
+        ///</summary>
+        ///<param name="parent">The parent node</param>
+        ///<param name="attribute_name">The name of the attribute</param>
+        ///<param name="attribute_value">The attribute value to search for</param>
+        ///<returns>Returns the first such node, if one exists; null otherwise</returns>
+        public static XmlNode FindChildWithAttribute(XmlNode parent, string attribute_name, string attribute_value)
 		{
 			foreach (XmlNode xmlNode in parent.ChildNodes)
 			{
@@ -65,7 +86,14 @@ namespace Utils
 			return null;
 		}
 
-		public static List<XmlNode> FindChildrenWithAttribute(XmlNode parent, string attribute_name, string attribute_value)
+        ///<summary>
+        ///Gets the list of child nodes which have a certain value for a given attribute.
+        ///</summary>
+        ///<param name="parent">The parent node</param>
+        ///<param name="attribute_name">The name of the attribute</param>
+        ///<param name="attribute_value">The attribute value to search for</param>
+        ///<returns>Returns the list of matching child nodes</returns>
+        public static List<XmlNode> FindChildrenWithAttribute(XmlNode parent, string attribute_name, string attribute_value)
 		{
 			List<XmlNode> list = new List<XmlNode>();
 			foreach (XmlNode xmlNode in parent.ChildNodes)
@@ -79,7 +107,13 @@ namespace Utils
 			return list;
 		}
 
-		public static string NodeText(XmlNode parent, string name)
+        ///<summary>
+        ///Gets the text of a named child node.
+        ///</summary>
+        ///<param name="parent">The parent node.</param>
+        ///<param name="name">The name of the child node.</param>
+        ///<returns>Returns the node text, or an empty string if no such node was found.</returns>
+        public static string NodeText(XmlNode parent, string name)
 		{
 			XmlNode xmlNode = XMLHelper.FindChild(parent, name);
 			if (xmlNode != null)
@@ -89,7 +123,13 @@ namespace Utils
 			return "";
 		}
 
-		public static string GetAttribute(XmlNode node, string name)
+        ///<summary>
+        ///Gets the string value of the named attribute.
+        ///</summary>
+        ///<param name="node">The parent node</param>
+        ///<param name="name">The name of the attribute</param>
+        ///<returns>Returns the attribute value</returns>
+        public static string GetAttribute(XmlNode node, string name)
 		{
 			foreach (XmlAttribute xmlAttribute in node.Attributes)
 			{
@@ -101,13 +141,25 @@ namespace Utils
 			return "";
 		}
 
-		public static int GetIntAttribute(XmlNode node, string name)
+        ///<summary>
+        ///Gets the integer value of the named attribute.
+        ///</summary>
+        ///<param name="node">The parent node</param>
+        ///<param name="name">The name of the attribute</param>
+        ///<returns>Returns the attribute value</returns>
+        public static int GetIntAttribute(XmlNode node, string name)
 		{
 			string attribute = XMLHelper.GetAttribute(node, name);
 			return int.Parse(attribute);
 		}
 
-		public static bool GetBoolAttribute(XmlNode node, string name)
+        ///<summary>
+        ///Gets the boolean value of the named attribute.
+        ///</summary>
+        ///<param name="node">The parent node</param>
+        ///<param name="name">The name of the attribute</param>
+        ///<returns>Returns the attribute value</returns>
+        public static bool GetBoolAttribute(XmlNode node, string name)
 		{
 			string attribute = XMLHelper.GetAttribute(node, name);
 			return bool.Parse(attribute);

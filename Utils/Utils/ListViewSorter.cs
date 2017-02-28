@@ -4,13 +4,20 @@ using System.Windows.Forms;
 
 namespace Utils
 {
+    ///<summary>
+    ///Provides methods for sorting ListView contents by column.
+    ///An instance of this class should be set as the ListView's ListViewItemSorter property.
+    ///</summary>
 	public class ListViewSorter : IComparer
 	{
 		private int fColumn;
 
 		private bool fAscending = true;
 
-		public int Column
+        ///<summary>
+        ///Gets or sets a value indicating the column the ListView contents should be sorted by.
+        ///</summary>
+        public int Column
 		{
 			get
 			{
@@ -22,7 +29,10 @@ namespace Utils
 			}
 		}
 
-		public bool Ascending
+        ///<summary>
+        ///Gets or sets a value indicating whether the ListView contents should be sorted in ascending order.
+        ///</summary>
+        public bool Ascending
 		{
 			get
 			{
@@ -34,7 +44,12 @@ namespace Utils
 			}
 		}
 
-		public void SetColumn(int col)
+        ///<summary>
+        ///Sets the column used for sorting.
+        ///If this method is called multiple times with the same column, the value of the Ascending property is toggled on and off.
+        ///</summary>
+        ///<param name="col">The column to be used for sorting.</param>
+        public void SetColumn(int col)
 		{
 			if (this.fColumn == col)
 			{
@@ -45,7 +60,13 @@ namespace Utils
 			this.fAscending = true;
 		}
 
-		public int Compare(object x, object y)
+        ///<summary>
+        ///Compares two ListViewItem objects, given the values of the Column and Ascending properties.
+        ///</summary>
+        ///<param name="x">The first ListViewItem object to compare.</param>
+        ///<param name="y">The second ListViewItem object to compare.</param>
+        ///<returns>Returns -1 if x should be sorted before y, +1 if y should be sorted before x, and 0 if they are identical.</returns>
+        public int Compare(object x, object y)
 		{
 			ListViewItem listViewItem = x as ListViewItem;
 			ListViewItem listViewItem2 = y as ListViewItem;
@@ -88,7 +109,13 @@ namespace Utils
 			return text.CompareTo(text2) * (this.fAscending ? 1 : -1);
 		}
 
-		public static void Sort(ListView list, int column)
+        ///<summary>
+        ///Sorts the contents of a ListView control.
+        ///This method should be called in response to a ListView.ColumnClicked event.
+        ///</summary>
+        ///<param name="list">The ListView control to be sorted.</param>
+        ///<param name="column">The column to sort by.</param>
+        public static void Sort(ListView list, int column)
 		{
 			ListViewSorter listViewSorter = list.ListViewItemSorter as ListViewSorter;
 			if (listViewSorter != null)

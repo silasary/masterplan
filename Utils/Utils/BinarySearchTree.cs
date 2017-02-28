@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 namespace Utils
 {
-	public class BinarySearchTree<T> where T : IComparable<T>
+    ///<summary>
+    ///Utility class for performing quick searches.
+    ///</summary>
+    ///<typeparam name="T">Type to create the tree for; must implement the IComparable interface.</typeparam>
+    public class BinarySearchTree<T> where T : IComparable<T>
 	{
 		private T fData = default(T);
 
@@ -11,7 +15,10 @@ namespace Utils
 
 		private BinarySearchTree<T> fRight;
 
-		public int Count
+        ///<summary>
+        ///Gets the number of items in the tree.
+        ///</summary>
+        public int Count
 		{
 			get
 			{
@@ -32,7 +39,10 @@ namespace Utils
 			}
 		}
 
-		public List<T> SortedList
+        ///<summary>
+        ///Gets a List containing all the items in the tree in sorted order.
+        ///</summary>
+        public List<T> SortedList
 		{
 			get
 			{
@@ -53,21 +63,36 @@ namespace Utils
 			}
 		}
 
-		public BinarySearchTree()
+        ///<summary>
+        ///Default constructor.
+        ///</summary>
+        public BinarySearchTree()
 		{
 		}
 
-		public BinarySearchTree(T item)
+        ///<summary>
+        ///Constructor.
+        ///</summary>
+        ///<param name="item">The item to begin the tree with.</param>
+        public BinarySearchTree(T item)
 		{
 			this.fData = item;
 		}
 
-		public BinarySearchTree(IEnumerable<T> list)
+        ///<summary>
+        ///Constructor.
+        ///</summary>
+        ///<param name="list">The list of items to build the tree with.</param>
+        public BinarySearchTree(IEnumerable<T> list)
 		{
 			this.Add(list);
 		}
 
-		public void Add(T item)
+        ///<summary>
+        ///Adds an item to the tree.
+        ///</summary>
+        ///<param name="item">The item to add to the tree.</param>
+        public void Add(T item)
 		{
 			if (this.fData == null)
 			{
@@ -97,7 +122,11 @@ namespace Utils
 			}
 		}
 
-		public void Add(IEnumerable<T> list)
+        ///<summary>
+        ///Adds a list of items to the tree.
+        ///</summary>
+        ///<param name="list">The items to add to the tree.</param>
+        public void Add(IEnumerable<T> list)
 		{
 			foreach (T current in list)
 			{
@@ -105,7 +134,12 @@ namespace Utils
 			}
 		}
 
-		public bool Contains(T item)
+        ///<summary>
+        ///Searches the tree for the given item.
+        ///</summary>
+        ///<param name="item">The item to look for.</param>
+        ///<returns>Returns true if the item is present in the tree; false otherwise.</returns>
+        public bool Contains(T item)
 		{
 			if (this.fData == null)
 			{
