@@ -9,14 +9,14 @@ namespace Masterplan.Tools.Generators
 	{
 		public static PlotPoint AutoBuild(Map map, AutoBuildData data)
 		{
-			PlotPoint plotPoint = new PlotPoint(map.Name + " Delve");
-			plotPoint.Details = "This delve was automatically generated.";
-			plotPoint.Element = new MapElement(map.ID, Guid.Empty);
-			int num = data.Level;
+			PlotPoint delve = new PlotPoint(map.Name + " Delve");
+			delve.Details = "This delve was automatically generated.";
+			delve.Element = new MapElement(map.ID, Guid.Empty);
+			int level = data.Level;
 			List<Parcel> list = Treasure.CreateParcelSet(data.Level, Session.Project.Party.Size, false);
 			foreach (MapArea current in map.Areas)
 			{
-				PlotPoint plotPoint2 = new PlotPoint(current.Name);
+				PlotPoint plotPoint = new PlotPoint(current.Name);
 				switch (Session.Random.Next() % 8)
 				{
 				case 0:
@@ -25,13 +25,13 @@ namespace Masterplan.Tools.Generators
 				case 3:
 				case 4:
 				case 5:
-					plotPoint2.Element = DelveBuilder.get_encounter(map, current, data);
+					plotPoint.Element = DelveBuilder.get_encounter(map, current, data);
 					break;
 				case 6:
-					plotPoint2.Element = DelveBuilder.get_encounter(map, current, data);
+					plotPoint.Element = DelveBuilder.get_encounter(map, current, data);
 					break;
 				case 7:
-					plotPoint2.Element = DelveBuilder.get_encounter(map, current, data);
+					plotPoint.Element = DelveBuilder.get_encounter(map, current, data);
 					break;
 				}
 				int num2 = 0;
@@ -56,17 +56,17 @@ namespace Masterplan.Tools.Generators
 				{
 					if (list.Count == 0)
 					{
-						num = Math.Min(30, num + 1);
-						list = Treasure.CreateParcelSet(num, Session.Project.Party.Size, false);
+						level = Math.Min(30, level + 1);
+						list = Treasure.CreateParcelSet(level, Session.Project.Party.Size, false);
 					}
 					int index = Session.Random.Next() % list.Count;
 					Parcel item = list[index];
 					list.RemoveAt(index);
-					plotPoint2.Parcels.Add(item);
+					plotPoint.Parcels.Add(item);
 				}
-				plotPoint.Subplot.Points.Add(plotPoint2);
+				delve.Subplot.Points.Add(plotPoint);
 			}
-			return plotPoint;
+			return delve;
 		}
 
 		private static Encounter get_encounter(Map map, MapArea ma, AutoBuildData data)

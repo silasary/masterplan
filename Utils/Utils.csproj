@@ -52,6 +52,9 @@
     <Compile Include="Utils.Wizards\WizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utils.Wizards\WizardForm.Designer.cs">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\BinarySearchTree.cs" />
     <Compile Include="Utils\FileName.cs" />
     <Compile Include="Utils\ListState.cs" />

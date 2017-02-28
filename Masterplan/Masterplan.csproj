@@ -138,6 +138,9 @@
     <Compile Include="Masterplan.Controls\WelcomePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Masterplan.Controls\WelcomePanel.Designer.cs">
+      <DependentUpon>WelcomePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Masterplan.Data\Ability.cs" />
     <Compile Include="Masterplan.Data\ActionType.cs" />
     <Compile Include="Masterplan.Data\Artifact.cs" />
@@ -1092,7 +1095,9 @@
     <EmbeddedResource Include="Masterplan.UI\TrapDetailsForm.resx" />
     <EmbeddedResource Include="Masterplan.UI\TreasureListForm.resx" />
     <EmbeddedResource Include="Masterplan.Wizards\MapLibrariesPage.resx" />
-    <EmbeddedResource Include="Scroll.ico" />
+    <EmbeddedResource Include="Scroll.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">

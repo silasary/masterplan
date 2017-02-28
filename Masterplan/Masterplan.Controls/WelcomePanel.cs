@@ -5,18 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml;
 using Utils;
 
 namespace Masterplan.Controls
 {
-	internal class WelcomePanel : UserControl
+    internal partial class WelcomePanel : UserControl
 	{
 		private class Headline : IComparable<Headline>
 		{
@@ -36,15 +34,8 @@ namespace Masterplan.Controls
 
 		private const int MAX_LENGTH = 45;
 
-		private IContainer components;
-
-		private TitlePanel TitlePanel;
-
-		private WebBrowser MenuBrowser;
 
 		private List<Headline> fHeadlines;
-
-		private bool fShowHeadlines;
 
         [Category("Actions")]
         public event EventHandler NewProjectClicked;
@@ -61,73 +52,19 @@ namespace Masterplan.Controls
         [Category("Actions")]
         public event EventHandler PremadeClicked;
 
-		public bool ShowHeadlines
-		{
-			get
-			{
-				return this.fShowHeadlines;
-			}
-			set
-			{
-				this.fShowHeadlines = value;
-			}
-		}
+		public bool ShowHeadlines { get; set; }
 
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && this.components != null)
-			{
-				this.components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
-		private void InitializeComponent()
-		{
-			this.MenuBrowser = new WebBrowser();
-			this.TitlePanel = new TitlePanel();
-			base.SuspendLayout();
-			this.MenuBrowser.Dock = DockStyle.Right;
-			this.MenuBrowser.IsWebBrowserContextMenuEnabled = false;
-			this.MenuBrowser.Location = new Point(364, 0);
-			this.MenuBrowser.MinimumSize = new Size(20, 20);
-			this.MenuBrowser.Name = "MenuBrowser";
-			this.MenuBrowser.ScriptErrorsSuppressed = true;
-			this.MenuBrowser.Size = new Size(345, 429);
-			this.MenuBrowser.TabIndex = 5;
-			this.MenuBrowser.WebBrowserShortcutsEnabled = false;
-			this.MenuBrowser.Navigating += new WebBrowserNavigatingEventHandler(this.MenuBrowser_Navigating);
-			this.TitlePanel.Dock = DockStyle.Fill;
-			this.TitlePanel.Font = new Font("Calibri", 11f);
-			this.TitlePanel.ForeColor = Color.MidnightBlue;
-			this.TitlePanel.Location = new Point(0, 0);
-			this.TitlePanel.Margin = new Padding(3, 4, 3, 4);
-			this.TitlePanel.Mode = TitlePanel.TitlePanelMode.WelcomeScreen;
-			this.TitlePanel.Name = "TitlePanel";
-			this.TitlePanel.Size = new Size(364, 429);
-			this.TitlePanel.TabIndex = 4;
-			this.TitlePanel.Title = "Masterplan";
-			this.TitlePanel.Zooming = false;
-			this.TitlePanel.FadeFinished += new EventHandler(this.TitlePanel_FadeFinished);
-			base.AutoScaleDimensions = new SizeF(6f, 13f);
-			base.AutoScaleMode = AutoScaleMode.Font;
-			this.BackColor = Color.White;
-			base.Controls.Add(this.TitlePanel);
-			base.Controls.Add(this.MenuBrowser);
-			base.Name = "WelcomePanel";
-			base.Size = new Size(709, 429);
-			base.ResumeLayout(false);
-		}
-
+		
 		public WelcomePanel(bool show_headlines)
 		{
 			this.InitializeComponent();
-			this.fShowHeadlines = show_headlines;
+            ShowHeadlines = show_headlines;
 			base.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
 			this.MenuBrowser.DocumentText = "";
 			this.set_options();
-			if (this.fShowHeadlines)
+			if (ShowHeadlines)
 			{
+                // TODO: Put something of our own here?
 				this.DownloadHeadlines("http://www.habitualindolence.net/masterplanblog/feed/");
 			}
 		}
@@ -161,6 +98,7 @@ namespace Masterplan.Controls
 				{
 					this.OnPremadeClicked();
 				}
+                // BEGIN DEBUG OPTIONS
 				if (e.Url.LocalPath == "genesis")
 				{
 					CreatureBuilderForm creatureBuilderForm = new CreatureBuilderForm(new Creature
@@ -205,6 +143,8 @@ namespace Masterplan.Controls
 					});
 					artifactBuilderForm.ShowDialog();
 				}
+                // END DEBUG OPTIONS
+
 				if (e.Url.LocalPath == "manual")
 				{
 					this.open_manual();
@@ -288,43 +228,28 @@ namespace Masterplan.Controls
 
 		protected void OnNewProjectClicked()
 		{
-			if (this.NewProjectClicked != null)
-			{
-				this.NewProjectClicked(this, new EventArgs());
-			}
-		}
+            NewProjectClicked?.Invoke(this, new EventArgs());
+        }
 
 		protected void OnOpenProjectClicked()
 		{
-			if (this.OpenProjectClicked != null)
-			{
-				this.OpenProjectClicked(this, new EventArgs());
-			}
-		}
+            OpenProjectClicked?.Invoke(this, new EventArgs());
+        }
 
 		protected void OnOpenLastProjectClicked()
 		{
-			if (this.OpenLastProjectClicked != null)
-			{
-				this.OpenLastProjectClicked(this, new EventArgs());
-			}
-		}
+            OpenLastProjectClicked?.Invoke(this, new EventArgs());
+        }
 
 		protected void OnDelveClicked()
 		{
-			if (this.DelveClicked != null)
-			{
-				this.DelveClicked(this, new EventArgs());
-			}
-		}
+            DelveClicked?.Invoke(this, new EventArgs());
+        }
 
 		protected void OnPremadeClicked()
 		{
-			if (this.PremadeClicked != null)
-			{
-				this.PremadeClicked(this, new EventArgs());
-			}
-		}
+            PremadeClicked?.Invoke(this, new EventArgs());
+        }
 
 		private void set_options()
 		{
@@ -432,7 +357,7 @@ namespace Masterplan.Controls
 			list.Add("</TR>");
 			list.Add("<TR>");
 			list.Add("<TD>");
-			list.Add("<A href=\"http://www.habitualindolence.net/masterplan/\" target=_new>Visit the Masterplan website</A>");
+			list.Add("<A href=\"http://masterplan.vorpald20.com/\" target=_new>Visit the Masterplan website</A>");
 			list.Add("</TD>");
 			list.Add("</TR>");
 			list.Add("</TABLE>");
@@ -444,7 +369,7 @@ namespace Masterplan.Controls
 			list.Add("<B>Latest News</B>");
 			list.Add("</TD>");
 			list.Add("</TR>");
-			if (!this.fShowHeadlines)
+			if (!ShowHeadlines)
 			{
 				list.Add("<TR>");
 				list.Add("<TD class=dimmed>");
