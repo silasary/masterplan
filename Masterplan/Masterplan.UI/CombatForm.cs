@@ -4,6 +4,7 @@ using Masterplan.Events;
 using Masterplan.Extensibility;
 using Masterplan.Properties;
 using Masterplan.Tools;
+using Masterplan.Tools.Import;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -1945,7 +1946,7 @@ namespace Masterplan.UI
                         {
                             if (current4.Key != null && !(current4.Key == ""))
                             {
-                                AppImport.ImportIPlay4e(current4);
+                                AppImport.ImportExternalHero(current4);
                                 Session.Modified = true;
                             }
                         }
@@ -4985,14 +4986,17 @@ namespace Masterplan.UI
         {
             if (Session.Preferences.iPlay4E && this.SelectedTokens.Count == 1)
             {
-                Hero hero = this.SelectedTokens[0] as Hero;
+                Hero hero = SelectedTokens[0] as Hero;
                 if (hero != null && hero.Key != "")
                 {
                     this.Preview.Document.OpenNew(true);
                     this.Preview.Document.Write(HTML.Text("Loading iPlay4e character, please wait...", true, true, DisplaySize.Small));
-                    string urlString = IPlay4E.GetUrlString(hero);
-                    this.Preview.Navigate(urlString);
-                    return;
+                    string urlString = AppImport.GetUrlString(hero);
+                    if (!string.IsNullOrEmpty(urlString))
+                    {
+                        this.Preview.Navigate(urlString);
+                        return;
+                    }
                 }
             }
             string text = "";

@@ -253,20 +253,22 @@ namespace Masterplan.Data
         ///<returns>Returns the copy.</returns>
         public Race Copy()
 		{
-			Race race = new Race();
-			race.ID = this.fID;
-			race.Name = this.fName;
-			race.Quote = this.fQuote;
-			race.HeightRange = this.fHeightRange;
-			race.WeightRange = this.fWeightRange;
-			race.AbilityScores = this.fAbilityScores;
-			race.Size = this.fSize;
-			race.Speed = this.fSpeed;
-			race.Vision = this.fVision;
-			race.Languages = this.fLanguages;
-			race.SkillBonuses = this.fSkillBonuses;
-			race.Details = this.fDetails;
-			foreach (Feature current in this.fFeatures)
+            Race race = new Race()
+            {
+                ID = this.fID,
+                Name = this.fName,
+                Quote = this.fQuote,
+                HeightRange = this.fHeightRange,
+                WeightRange = this.fWeightRange,
+                AbilityScores = this.fAbilityScores,
+                Size = this.fSize,
+                Speed = this.fSpeed,
+                Vision = this.fVision,
+                Languages = this.fLanguages,
+                SkillBonuses = this.fSkillBonuses,
+                Details = this.fDetails
+            };
+            foreach (Feature current in this.fFeatures)
 			{
 				race.Features.Add(current.Copy());
 			}

@@ -361,7 +361,7 @@
     <Compile Include="Masterplan.Tools.Generators\RoomBuilder.cs" />
     <Compile Include="Masterplan.Tools.Generators\Treasure.cs" />
     <Compile Include="Masterplan.Tools\AI.cs" />
-    <Compile Include="Masterplan.Tools\AppImport.cs" />
+    <Compile Include="Masterplan.Tools\Import\AppImport.cs" />
     <Compile Include="Masterplan.Tools\BlankMap.cs" />
     <Compile Include="Masterplan.Tools\CompendiumHelper.cs" />
     <Compile Include="Masterplan.Tools\CompendiumImport.cs" />
@@ -376,7 +376,10 @@
     <Compile Include="Masterplan.Tools\FiveByFive.cs" />
     <Compile Include="Masterplan.Tools\GoalBuilder.cs" />
     <Compile Include="Masterplan.Tools\HTML.cs" />
-    <Compile Include="Masterplan.Tools\IPlay4E.cs" />
+    <Compile Include="Masterplan.Tools\Import\CharacterBuilderImporter.cs" />
+    <Compile Include="Masterplan.Tools\Import\CreatureImporter.cs" />
+    <Compile Include="Masterplan.Tools\Import\IHeroProvider.cs" />
+    <Compile Include="Masterplan.Tools\Import\IPlay4E.cs" />
     <Compile Include="Masterplan.Tools\MapPrinting.cs" />
     <Compile Include="Masterplan.Tools\Screenshot.cs" />
     <Compile Include="Masterplan.Tools\Skills.cs" />

@@ -5,11 +5,13 @@ using System.Net;
 using System.Xml;
 using Utils;
 
-namespace Masterplan.Tools
+namespace Masterplan.Tools.Import
 {
-    class IPlay4E
+    class IPlay4E : IHeroProvider
     {
-        public static bool ImportIPlay4e(Hero hero)
+        public string ProviderName => "iPlay4E";
+
+        public bool ImportHero(Hero hero)
         {
             if (hero.Key == null || hero.Key == "")
             {
@@ -19,6 +21,7 @@ namespace Masterplan.Tools
             {
                 string address = GetUrlString(hero);
                 WebClient webClient = new WebClient();
+                webClient.Headers["User-Agent"] = "Mozilla/5.0 (Masterplan) like Gecko";
                 string xml = webClient.DownloadString(address);
                 XmlDocument xmlDocument = new XmlDocument();
                 xmlDocument.LoadXml(xml);
@@ -142,7 +145,7 @@ namespace Masterplan.Tools
 
         }
 
-        public static List<Hero> ImportParty(string key)
+        public List<Hero> ImportParty(string key)
         {
             List<Hero> list = new List<Hero>();
             try
@@ -167,7 +170,7 @@ namespace Masterplan.Tools
                                 {
                                     Key = heroKey
                                 };
-                                bool success = ImportIPlay4e(hero);
+                                bool success = ImportHero(hero);
                                 if (success)
                                 {
                                     list.Add(hero);
@@ -186,7 +189,7 @@ namespace Masterplan.Tools
             return list;
         }
 
-        internal static string GetUrlString(Hero hero)
+        public string GetUrlString(Hero hero)
         {
             return "http://iplay4e.appspot.com/view?xsl=jPint&key=" + hero.Key;
         }

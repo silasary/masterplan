@@ -151,15 +151,17 @@ namespace Masterplan.Data
         ///<returns>Returns the copy.</returns>
         public PlayerPower Copy()
 		{
-			PlayerPower playerPower = new PlayerPower();
-			playerPower.ID = this.fID;
-			playerPower.Name = this.fName;
-			playerPower.Type = this.fType;
-			playerPower.ReadAloud = this.fReadAloud;
-			playerPower.Keywords = this.fKeywords;
-			playerPower.Action = this.fAction;
-			playerPower.Range = this.fRange;
-			foreach (PlayerPowerSection current in this.fSections)
+            PlayerPower playerPower = new PlayerPower()
+            {
+                ID = this.fID,
+                Name = this.fName,
+                Type = this.fType,
+                ReadAloud = this.fReadAloud,
+                Keywords = this.fKeywords,
+                Action = this.fAction,
+                Range = this.fRange
+            };
+            foreach (PlayerPowerSection current in this.fSections)
 			{
 				playerPower.Sections.Add(current.Copy());
 			}

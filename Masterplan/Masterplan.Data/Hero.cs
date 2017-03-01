@@ -4,7 +4,10 @@ using System.Drawing;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    /// <summary>
+    /// Class representing a PC.
+    /// </summary>
+    [Serializable]
 	public class Hero : IToken, IComparable<Hero>
 	{
 		private Guid fID = Guid.NewGuid();
@@ -15,7 +18,7 @@ namespace Masterplan.Data
 
 		private string fRace = "";
 
-		private int fLevel = Session.Project.Party.Level;
+		private int fLevel = Session.Project?.Party?.Level ?? 1;
 
 		private string fClass = "";
 
@@ -53,7 +56,10 @@ namespace Masterplan.Data
 
 		private Image fPortrait;
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the hero.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -69,7 +75,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Key
+        ///<summary>
+        ///Gets or sets the External Hero Provider key.
+        ///</summary>
+        public string Key
 		{
 			get
 			{
@@ -81,7 +90,15 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Name
+        /// <summary>
+        /// Sets the name of the External Hero Provider
+        /// </summary>
+        public string KeyProvider { get; set; }
+
+        ///<summary>
+        ///Gets or sets the name of the hero.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -97,10 +114,19 @@ namespace Masterplan.Data
 			}
 		}
 
+        ///<summary>
+        ///Gets or sets the player name.
+        ///</summary>
         public string Player { get; set; } = "";
 
-		public CreatureSize Size { get; set; } = CreatureSize.Medium;
+        ///<summary>
+        ///Gets or sets the size of the PC.
+        ///</summary>
+        public CreatureSize Size { get; set; } = CreatureSize.Medium;
 
+        ///<summary>
+        ///Gets or sets the name of the PC's race.
+        ///</summary>
         public string Race
 		{
 			get
@@ -125,7 +151,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Class
+        ///<summary>
+        ///Gets or sets the name of the PC's class.
+        ///</summary>
+        public string Class
 		{
 			get
 			{
@@ -137,7 +166,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string ParagonPath
+        ///<summary>
+        ///Gets or sets the name of the PC's paragon path.
+        ///</summary>
+        public string ParagonPath
 		{
 			get
 			{
@@ -149,7 +181,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string EpicDestiny
+        ///<summary>
+        ///Gets or sets the name of the PC's epic destiny.
+        ///</summary>
+        public string EpicDestiny
 		{
 			get
 			{
@@ -161,7 +196,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string PowerSource
+        ///<summary>
+        ///Gets or sets the power source of the PC's class.
+        ///</summary>
+        public string PowerSource
 		{
 			get
 			{
@@ -173,7 +211,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public HeroRoleType Role
+        ///<summary>
+        ///Gets or sets the PC's role.
+        ///</summary>
+        public HeroRoleType Role
 		{
 			get
 			{
@@ -199,7 +240,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int HP
+        ///<summary>
+        ///Gets or sets the hero's hit points.
+        ///</summary>
+        public int HP
 		{
 			get
 			{
@@ -211,7 +255,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int AC
+        ///<summary>
+        ///Gets or sets the AC defence.
+        ///</summary>
+        public int AC
 		{
 			get
 			{
@@ -223,7 +270,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int Fortitude
+        ///<summary>
+        ///Gets or sets the Fortitude defence.
+        ///</summary>
+        public int Fortitude
 		{
 			get
 			{
@@ -235,7 +285,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int Reflex
+        ///<summary>
+        ///Gets or sets the Reflex defence.
+        ///</summary>
+        public int Reflex
 		{
 			get
 			{
@@ -247,7 +300,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int Will
+        ///<summary>
+        ///Gets or sets the Will defence.
+        ///</summary>
+        public int Will
 		{
 			get
 			{
@@ -259,7 +315,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int InitBonus
+        ///<summary>
+        ///Gets or sets the hero's initiative bonus
+        ///</summary>
+        public int InitBonus
 		{
 			get
 			{
@@ -271,7 +330,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int PassivePerception
+        ///<summary>
+        ///Gets or sets the PC's passive perception.
+        ///</summary>
+        public int PassivePerception
 		{
 			get
 			{
@@ -283,7 +345,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int PassiveInsight
+        ///<summary>
+        ///Gets or sets the PC's passive insight.
+        ///</summary>
+        public int PassiveInsight
 		{
 			get
 			{
@@ -295,7 +360,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Languages
+        ///<summary>
+        ///Gets or sets the languages spoken by the hero.
+        ///</summary>
+        public string Languages
 		{
 			get
 			{
@@ -372,7 +440,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Image Portrait
+        ///<summary>
+        ///Gets or sets the PC's portrait image.
+        ///</summary>
+        public Image Portrait
 		{
 			get
 			{
@@ -402,33 +473,39 @@ namespace Masterplan.Data
 			return CreatureState.Active;
 		}
 
-		public Hero Copy()
+        ///<summary>
+        ///Creates a copy of the Hero.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public Hero Copy()
 		{
-			Hero hero = new Hero();
-			hero.ID = this.fID;
-			hero.Key = this.fKey;
-			hero.Name = this.fName;
-			hero.Player = this.Player;
-			hero.Size = this.Size;
-			hero.Race = this.fRace;
-			hero.Level = this.fLevel;
-			hero.Class = this.fClass;
-			hero.ParagonPath = this.fParagonPath;
-			hero.EpicDestiny = this.fEpicDestiny;
-			hero.PowerSource = this.fPowerSource;
-			hero.Role = this.fRole;
-			hero.CombatData = this.fCombatData.Copy();
-			hero.HP = this.fHP;
-			hero.AC = this.fAC;
-			hero.Fortitude = this.fFortitude;
-			hero.Reflex = this.fReflex;
-			hero.Will = this.fWill;
-			hero.InitBonus = this.fInitBonus;
-			hero.PassivePerception = this.fPassivePerception;
-			hero.PassiveInsight = this.fPassiveInsight;
-			hero.Languages = this.fLanguages;
-			hero.Portrait = this.fPortrait;
-			foreach (OngoingCondition current in this.fEffects)
+            Hero hero = new Hero()
+            {
+                ID = this.fID,
+                Key = this.fKey,
+                Name = this.fName,
+                Player = this.Player,
+                Size = this.Size,
+                Race = this.fRace,
+                Level = this.fLevel,
+                Class = this.fClass,
+                ParagonPath = this.fParagonPath,
+                EpicDestiny = this.fEpicDestiny,
+                PowerSource = this.fPowerSource,
+                Role = this.fRole,
+                CombatData = this.fCombatData.Copy(),
+                HP = this.fHP,
+                AC = this.fAC,
+                Fortitude = this.fFortitude,
+                Reflex = this.fReflex,
+                Will = this.fWill,
+                InitBonus = this.fInitBonus,
+                PassivePerception = this.fPassivePerception,
+                PassiveInsight = this.fPassiveInsight,
+                Languages = this.fLanguages,
+                Portrait = this.fPortrait
+            };
+            foreach (OngoingCondition current in this.fEffects)
 			{
 				hero.Effects.Add(current.Copy());
 			}
@@ -439,12 +516,21 @@ namespace Masterplan.Data
 			return hero;
 		}
 
-		public int CompareTo(Hero rhs)
+        ///<summary>
+        ///Compares this Hero to another.
+        ///</summary>
+        ///<param name="rhs">The other Hero object.</param>
+        ///<returns>Returns -1 if this Hero should be sorted before rhs, +1 if rhs should be sorted before this, 0 otherwise.</returns>
+        public int CompareTo(Hero rhs)
 		{
 			return this.fName.CompareTo(rhs.Name);
 		}
 
-		public override string ToString()
+        ///<summary>
+        ///Returns the hero's name.
+        ///</summary>
+        ///<returns></returns>
+        public override string ToString()
 		{
 			return this.fName;
 		}

@@ -198,7 +198,7 @@ namespace Masterplan.UI
 		public MainForm()
 		{
 			this.InitializeComponent();
-			Masterplan.Events.ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
+            ApplicationIdleEventWrapper.Idle += new EventHandler(this.Application_Idle);
 			try
 			{
 				this.Preview.DocumentText = "";

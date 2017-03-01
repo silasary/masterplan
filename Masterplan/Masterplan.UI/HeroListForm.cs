@@ -1,6 +1,7 @@
 using Masterplan.Controls;
 using Masterplan.Data;
 using Masterplan.Tools;
+using Masterplan.Tools.Import;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -512,7 +513,7 @@ namespace Masterplan.UI
 					Hero hero = new Hero();
 					hero.Key = heroIPlay4eForm.Key;
 					Cursor.Current = Cursors.WaitCursor;
-					bool flag = AppImport.ImportIPlay4e(hero);
+					bool flag = AppImport.ImportExternalHero(hero);
 					Cursor.Current = Cursors.Default;
 					if (flag)
 					{
@@ -675,7 +676,7 @@ namespace Masterplan.UI
 				Hero hero = new Hero();
 				hero.Key = heroIPlay4eForm.Key;
 				Cursor.Current = Cursors.WaitCursor;
-				bool flag = AppImport.ImportIPlay4e(hero);
+				bool flag = AppImport.ImportExternalHero(hero);
 				Cursor.Current = Cursors.Default;
 				if (flag)
 				{
@@ -764,7 +765,7 @@ namespace Masterplan.UI
 			{
 				if (current.Key != null && !(current.Key == ""))
 				{
-					AppImport.ImportIPlay4e(current);
+					AppImport.ImportExternalHero(current);
 				}
 			}
 			Session.Modified = true;

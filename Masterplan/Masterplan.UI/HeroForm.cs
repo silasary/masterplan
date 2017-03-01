@@ -1,5 +1,6 @@
 using Masterplan.Data;
 using Masterplan.Tools;
+using Masterplan.Tools.Import;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -437,8 +438,7 @@ namespace Masterplan.UI
 			{
 				Hero hero = new Hero();
 				hero.Key = this.fHero.Key;
-				bool flag = AppImport.ImportIPlay4e(hero);
-				if (flag)
+                if (AppImport.ImportExternalHero(hero))
 				{
 					hero.ID = this.fHero.ID;
 					hero.Effects.AddRange(this.fHero.Effects);
@@ -446,7 +446,7 @@ namespace Masterplan.UI
 					this.update_hero();
 					return;
 				}
-				MessageBox.Show("The iPlay4E character could not be downloaded.", "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show("The External character could not be downloaded.", "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 			}
 		}
 
