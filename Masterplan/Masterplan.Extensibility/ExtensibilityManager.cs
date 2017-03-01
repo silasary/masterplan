@@ -84,8 +84,8 @@ namespace Masterplan.Extensibility
 		public ExtensibilityManager(MainForm main_form)
 		{
 			this.fMainForm = main_form;
-			string path = Application.StartupPath + "\\AddIns";
-			this.Load(path);
+            this.Load(Path.Combine(Application.StartupPath, "AddIns"));
+            this.Load(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Masterplan", "Addins"));
 		}
 
 		public void Load(string path)
@@ -98,7 +98,7 @@ namespace Masterplan.Extensibility
 					this.LoadFile(assembly);
 				}
 			}
-			if (Directory.Exists(path))
+			else if (Directory.Exists(path))
 			{
 				DirectoryInfo directoryInfo = new DirectoryInfo(path);
 				FileInfo[] files = directoryInfo.GetFiles("*.dll");
@@ -116,7 +116,7 @@ namespace Masterplan.Extensibility
 					this.Load(directoryInfo2.FullName);
 				}
 			}
-			Session.AddIns.Sort(new Comparison<IAddIn>(ExtensibilityManager.compare_addins));
+			Session.AddIns.Sort(new Comparison<IAddIn>(compare_addins));
 		}
 
 		private void LoadFile(Assembly assembly)
@@ -128,7 +128,7 @@ namespace Masterplan.Extensibility
 				for (int i = 0; i < array.Length; i++)
 				{
 					Type type = array[i];
-					if (this.is_addin(type))
+					if (this.IsAddin(type))
 					{
 						ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
 						if (constructor != null)
@@ -136,7 +136,7 @@ namespace Masterplan.Extensibility
 							IAddIn addIn = constructor.Invoke(null) as IAddIn;
 							if (addIn != null)
 							{
-								this.install(addIn);
+								this.Install(addIn);
 							}
 						}
 					}
@@ -159,7 +159,7 @@ namespace Masterplan.Extensibility
 			}
 		}
 
-		private bool is_addin(Type t)
+		private bool IsAddin(Type t)
 		{
 			Type[] interfaces = t.GetInterfaces();
 			for (int i = 0; i < interfaces.Length; i++)
@@ -173,7 +173,7 @@ namespace Masterplan.Extensibility
 			return false;
 		}
 
-		private void install(IAddIn addin)
+		private void Install(IAddIn addin)
 		{
 			bool flag = addin.Initialise(this);
 			if (flag)
@@ -197,5 +197,5 @@ namespace Masterplan.Extensibility
 		{
 			return x.Name.CompareTo(y.Name);
 		}
-	}
+    }
 }

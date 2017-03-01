@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("11.12.0.*")]
+[assembly: AssemblyVersion("11.13.0.*")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright("Copyright © Habitual Indolence 2010. All rights reserved. This product is protected by copyright and distributed under licences restricting copying, distribution and decompilation.")]
