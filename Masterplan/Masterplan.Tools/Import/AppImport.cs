@@ -38,6 +38,17 @@ namespace Masterplan.Tools.Import
             return null;
         }
 
+        public static IHeroProvider GetProvider(Party party)
+        {
+            if (string.IsNullOrEmpty(party.Key))
+                return null;
+            if (Providers.ContainsKey(party.KeyProvider))
+            {
+                return Providers[party.KeyProvider];
+            }
+            return null;
+        }
+
         public static bool ImportExternalHero(Hero hero)
         {
             IHeroProvider provider = GetProvider(hero);
@@ -52,10 +63,9 @@ namespace Masterplan.Tools.Import
             return new IPlay4E().ImportParty(key);
         }
 
-        public static bool ImportParty(Party party)
+        public static List<Hero> ImportParty(Party party)
         {
-            
-            return false;
+            return GetProvider(party)?.ImportParty(party.Key) ?? new List<Hero>();
         }
 
         internal static string GetUrlString(Hero hero)

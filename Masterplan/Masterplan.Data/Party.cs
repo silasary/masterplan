@@ -47,7 +47,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Party()
+        public string Key { get; set; }
+        public string KeyProvider { get; set; }
+
+        public Party()
 		{
 		}
 

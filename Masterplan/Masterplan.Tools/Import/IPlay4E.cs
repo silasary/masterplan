@@ -152,6 +152,7 @@ namespace Masterplan.Tools.Import
             {
                 string address = "http://iplay4e.appspot.com/campaigns/" + key + "/main";
                 WebClient webClient = new WebClient();
+                webClient.Headers["User-Agent"] = "Mozilla/5.0 (Masterplan) like Gecko";
                 string xml = webClient.DownloadString(address);
                 XmlDocument xmlDocument = new XmlDocument();
                 xmlDocument.LoadXml(xml);

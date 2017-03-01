@@ -472,7 +472,7 @@ namespace Masterplan.UI
 			});
 			if (heroForm.ShowDialog() == DialogResult.OK)
 			{
-				this.add_hero(heroForm.Hero);
+				this.AddHero(heroForm.Hero);
 				this.update_view();
 			}
 		}
@@ -492,7 +492,7 @@ namespace Masterplan.UI
 					Hero hero = AppImport.ImportHero(xml);
 					if (hero != null)
 					{
-						this.add_hero(hero);
+						this.AddHero(hero);
 						this.update_view();
 					}
 					else
@@ -517,7 +517,7 @@ namespace Masterplan.UI
 					Cursor.Current = Cursors.Default;
 					if (flag)
 					{
-						this.add_hero(hero);
+						this.AddHero(hero);
 						this.update_view();
 					}
 					else
@@ -552,7 +552,7 @@ namespace Masterplan.UI
 					Cursor.Current = Cursors.Default;
 					foreach (Hero current in list)
 					{
-						this.add_hero(current);
+						this.AddHero(current);
 					}
 					this.update_view();
 					if (list.Count == 0)
@@ -888,18 +888,18 @@ namespace Masterplan.UI
 			listViewItem.Group = this.HeroList.Groups[active ? 0 : 1];
 		}
 
-		private void add_hero(Hero hero)
-		{
-			Hero hero2 = Session.Project.FindHero(hero.Name);
-			List<Hero> list = Session.Project.InactiveHeroes.Contains(hero2) ? Session.Project.InactiveHeroes : Session.Project.Heroes;
-			if (hero2 != null)
-			{
-				hero.ID = hero2.ID;
-				hero.Effects.AddRange(hero2.Effects);
-				list.Remove(hero2);
-			}
-			list.Add(hero);
-			Session.Modified = true;
-		}
-	}
+        private void AddHero(Hero hero)
+        {
+            Hero existing = Session.Project.FindHero(hero.Name);
+            List<Hero> list = Session.Project.InactiveHeroes.Contains(existing) ? Session.Project.InactiveHeroes : Session.Project.Heroes;
+            if (existing != null)
+            {
+                hero.ID = existing.ID;
+                hero.Effects.AddRange(existing.Effects);
+                list.Remove(existing);
+            }
+            list.Add(hero);
+            Session.Modified = true;
+        }
+    }
 }

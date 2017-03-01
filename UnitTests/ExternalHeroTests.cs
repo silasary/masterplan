@@ -31,7 +31,13 @@ namespace UnitTests
         [Test]
         public void LoadIP4EParty()
         {
-
+            var party = new Party()
+            {
+                Key = "ag1zfmlwbGF5NGUtaHJkchULEghDYW1wYWlnbhiAgIDwuceUCgw",
+                KeyProvider = "iPlay4E"
+            };
+            var heroes = AppImport.ImportParty(party);
+            Assert.IsNotEmpty(heroes);
         }
     }
 }
