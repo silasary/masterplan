@@ -3,7 +3,10 @@ using System;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a treasure parcel.
+    ///</summary>
+    [Serializable]
 	public class Parcel
 	{
 		private string fName = "";
@@ -18,7 +21,10 @@ namespace Masterplan.Data
 
 		private Guid fHeroID = Guid.Empty;
 
-		public string Name
+        ///<summary>
+        ///Gets or sets the name of the parcel.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -30,7 +36,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Details
+        ///<summary>
+        ///Gets or sets the parcel details.
+        ///</summary>
+        public string Details
 		{
 			get
 			{
@@ -54,7 +63,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Guid MagicItemID
+        ///<summary>
+        ///Gets or sets the ID of the magic item.
+        ///</summary>
+        public Guid MagicItemID
 		{
 			get
 			{
@@ -90,11 +102,18 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Parcel()
+        ///<summary>
+        ///Default constructor.
+        ///</summary>
+        public Parcel()
 		{
 		}
 
-		public Parcel(MagicItem item)
+        ///<summary>
+        ///Constructor.
+        ///</summary>
+        ///<param name="item">The magic item to create the parcel with.</param>
+        public Parcel(MagicItem item)
 		{
 			this.SetAsMagicItem(item);
 		}
@@ -168,7 +187,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Parcel Copy()
+        ///<summary>
+        ///Creates a copy of the parcel.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public Parcel Copy()
 		{
 			return new Parcel
 			{

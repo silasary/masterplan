@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a player power.
+    ///</summary>
+    [Serializable]
 	public class PlayerPower : IPlayerOption
 	{
 		private Guid fID = Guid.NewGuid();
@@ -22,7 +25,10 @@ namespace Masterplan.Data
 
 		private List<PlayerPowerSection> fSections = new List<PlayerPowerSection>();
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the power.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -34,7 +40,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Name
+        ///<summary>
+        ///Gets or sets the name of the power.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -46,7 +55,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public PlayerPowerType Type
+        ///<summary>
+        ///Gets or sets the power's usage type.
+        ///</summary>
+        public PlayerPowerType Type
 		{
 			get
 			{
@@ -58,7 +70,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string ReadAloud
+        ///<summary>
+        ///Gets or sets the power's read-aloud text.
+        ///</summary>
+        public string ReadAloud
 		{
 			get
 			{
@@ -70,7 +85,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Keywords
+        ///<summary>
+        ///Gets or sets the keywords for the power.
+        ///</summary>
+        public string Keywords
 		{
 			get
 			{
@@ -82,7 +100,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public ActionType Action
+        ///<summary>
+        ///Gets or sets the action required to use the power.
+        ///</summary>
+        public ActionType Action
 		{
 			get
 			{
@@ -94,7 +115,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Range
+        ///<summary>
+        ///Gets or sets the power's range.
+        ///</summary>
+        public string Range
 		{
 			get
 			{
@@ -106,7 +130,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public List<PlayerPowerSection> Sections
+        ///<summary>
+        ///Gets or sets the power sections.
+        ///</summary>
+        public List<PlayerPowerSection> Sections
 		{
 			get
 			{
@@ -118,7 +145,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public PlayerPower Copy()
+        ///<summary>
+        ///Creates a copy of the power.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public PlayerPower Copy()
 		{
 			PlayerPower playerPower = new PlayerPower();
 			playerPower.ID = this.fID;
@@ -135,7 +166,11 @@ namespace Masterplan.Data
 			return playerPower;
 		}
 
-		public override string ToString()
+        ///<summary>
+        ///Returns the name of the power.
+        ///</summary>
+        ///<returns>Returns the name of the power.</returns>
+        public override string ToString()
 		{
 			return this.fName;
 		}

@@ -2,10 +2,22 @@ using System;
 
 namespace Masterplan.Data
 {
-	public enum Tier
+    ///<summary>
+    ///Enumeration for game tiers.
+    ///</summary>
+    public enum Tier
 	{
-		Heroic,
-		Paragon,
-		Epic
-	}
+        ///<summary>
+        ///Heroic tier.
+        ///</summary>
+        Heroic,
+        ///<summary>
+        ///Paragon tier.
+        ///</summary>
+        Paragon,
+        ///<summary>
+        ///Epic tier.
+        ///</summary>
+        Epic
+    }
 }

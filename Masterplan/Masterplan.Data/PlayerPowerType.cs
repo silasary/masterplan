@@ -2,10 +2,22 @@ using System;
 
 namespace Masterplan.Data
 {
-	public enum PlayerPowerType
+    ///<summary>
+    ///At-will / encounter / daily.
+    ///</summary>
+    public enum PlayerPowerType
 	{
-		AtWill,
-		Encounter,
-		Daily
-	}
+        ///<summary>
+        ///At-will power.
+        ///</summary>
+        AtWill,
+        ///<summary>
+        ///Encounter power.
+        ///</summary>
+        Encounter,
+        ///<summary>
+        ///Daily power.
+        ///</summary>
+        Daily
+    }
 }

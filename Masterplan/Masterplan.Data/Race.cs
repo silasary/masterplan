@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a race.
+    ///</summary>
+    [Serializable]
 	public class Race : IPlayerOption
 	{
 		private Guid fID = Guid.NewGuid();
@@ -34,7 +37,10 @@ namespace Masterplan.Data
 
 		private string fDetails = "";
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the race.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -46,7 +52,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Name
+        ///<summary>
+        ///Gets or sets the name of the race.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -58,7 +67,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Quote
+        ///<summary>
+        ///Gets or sets the defining quote.
+        ///</summary>
+        public string Quote
 		{
 			get
 			{
@@ -70,7 +82,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string HeightRange
+        ///<summary>
+        ///Gets or sets the height range of the race.
+        ///</summary>
+        public string HeightRange
 		{
 			get
 			{
@@ -82,7 +97,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string WeightRange
+        ///<summary>
+        ///Gets or sets the weight range of the race.
+        ///</summary>
+        public string WeightRange
 		{
 			get
 			{
@@ -94,7 +112,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string AbilityScores
+        ///<summary>
+        ///Gets or sets the ability score modifiers for the race.
+        ///</summary>
+        public string AbilityScores
 		{
 			get
 			{
@@ -106,7 +127,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public CreatureSize Size
+        ///<summary>
+        ///Gets or sets the size of the race.
+        ///</summary>
+        public CreatureSize Size
 		{
 			get
 			{
@@ -118,7 +142,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Speed
+        ///<summary>
+        ///Gets or sets the speed of the race.
+        ///</summary>
+        public string Speed
 		{
 			get
 			{
@@ -130,7 +157,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Vision
+        ///<summary>
+        ///Gets or sets the race's vision.
+        ///</summary>
+        public string Vision
 		{
 			get
 			{
@@ -142,7 +172,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Languages
+        ///<summary>
+        ///Gets or sets the race's starting languages.
+        ///</summary>
+        public string Languages
 		{
 			get
 			{
@@ -154,7 +187,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string SkillBonuses
+        ///<summary>
+        ///Gets or sets the race's skill bonuses.
+        ///</summary>
+        public string SkillBonuses
 		{
 			get
 			{
@@ -166,7 +202,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public List<Feature> Features
+        ///<summary>
+        ///Gets or sets the racial features.
+        ///</summary>
+        public List<Feature> Features
 		{
 			get
 			{
@@ -178,7 +217,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public List<PlayerPower> Powers
+        ///<summary>
+        ///Gets or sets the racial powers.
+        ///</summary>
+        public List<PlayerPower> Powers
 		{
 			get
 			{
@@ -190,7 +232,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Details
+        ///<summary>
+        ///Gets or sets the race details.
+        ///</summary>
+        public string Details
 		{
 			get
 			{
@@ -202,7 +247,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Race Copy()
+        ///<summary>
+        ///Creates a copy of the race.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public Race Copy()
 		{
 			Race race = new Race();
 			race.ID = this.fID;
@@ -228,7 +277,11 @@ namespace Masterplan.Data
 			return race;
 		}
 
-		public override string ToString()
+        ///<summary>
+        ///Returns the name of the race.
+        ///</summary>
+        ///<returns>Returns the name of the race.</returns>
+        public override string ToString()
 		{
 			return this.fName;
 		}

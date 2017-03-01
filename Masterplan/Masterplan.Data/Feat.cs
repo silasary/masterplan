@@ -2,7 +2,10 @@ using System;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a feat.
+    ///</summary>
+    [Serializable]
 	public class Feat : IPlayerOption
 	{
 		private Guid fID = Guid.NewGuid();
@@ -15,7 +18,10 @@ namespace Masterplan.Data
 
 		private string fBenefits = "";
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the feat.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -27,7 +33,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Name
+        ///<summary>
+        ///Gets or sets the name of the feat.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -39,7 +48,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Tier Tier
+        ///<summary>
+        ///Gets or sets the feat's tier.
+        ///</summary>
+        public Tier Tier
 		{
 			get
 			{
@@ -51,7 +63,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Prerequisites
+        ///<summary>
+        ///Gets or sets the prerequisites for the feat.
+        ///</summary>
+        public string Prerequisites
 		{
 			get
 			{
@@ -63,7 +78,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Benefits
+        ///<summary>
+        ///Gets or sets the feat benefits.
+        ///</summary>
+        public string Benefits
 		{
 			get
 			{
@@ -75,7 +93,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Feat Copy()
+        ///<summary>
+        ///Creates a copy of the feat.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public Feat Copy()
 		{
 			return new Feat
 			{
@@ -87,7 +109,11 @@ namespace Masterplan.Data
 			};
 		}
 
-		public override string ToString()
+        ///<summary>
+        ///Returns the name of the feat.
+        ///</summary>
+        ///<returns>Returns the name of the feat.</returns>
+        public override string ToString()
 		{
 			return this.fName;
 		}

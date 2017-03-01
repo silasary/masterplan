@@ -2,15 +2,24 @@ using System;
 
 namespace Masterplan.Data
 {
-	public interface IPlayerOption
+    ///<summary>
+    ///Interface implemented by player option classes.
+    ///</summary>
+    public interface IPlayerOption
 	{
-		Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the option.
+        ///</summary>
+        Guid ID
 		{
 			get;
 			set;
 		}
 
-		string Name
+        ///<summary>
+        ///Gets or sets the name of the option.
+        ///</summary>
+        string Name
 		{
 			get;
 			set;

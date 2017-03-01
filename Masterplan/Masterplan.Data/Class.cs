@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a playable class.
+    ///</summary>
+    [Serializable]
 	public class Class : IPlayerOption
 	{
 		private Guid fID = Guid.NewGuid();
@@ -46,7 +49,10 @@ namespace Masterplan.Data
 
 		private List<LevelData> fLevels = new List<LevelData>();
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the class.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -58,7 +64,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Name
+        ///<summary>
+        ///Gets or sets the name of the class.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -70,7 +79,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Quote
+        ///<summary>
+        ///Gets or sets the defining quote.
+        ///</summary>
+        public string Quote
 		{
 			get
 			{
@@ -82,7 +94,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Role
+        ///<summary>
+        ///Gets or sets the class role.
+        ///</summary>
+        public string Role
 		{
 			get
 			{
@@ -94,7 +109,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string PowerSource
+        ///<summary>
+        ///Gets or sets the class's power source.
+        ///</summary>
+        public string PowerSource
 		{
 			get
 			{
@@ -106,7 +124,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string KeyAbilities
+        ///<summary>
+        ///Gets or sets the class's key abilities.
+        ///</summary>
+        public string KeyAbilities
 		{
 			get
 			{
@@ -118,7 +139,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string ArmourProficiencies
+        ///<summary>
+        ///Gets or sets the class's armour proficiencies.
+        ///</summary>
+        public string ArmourProficiencies
 		{
 			get
 			{
@@ -130,7 +154,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string WeaponProficiencies
+        ///<summary>
+        ///Gets or sets the class's weapon proficiencies.
+        ///</summary>
+        public string WeaponProficiencies
 		{
 			get
 			{
@@ -142,7 +169,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Implements
+        ///<summary>
+        ///Gets or sets the class's implement proficiencies.
+        ///</summary>
+        public string Implements
 		{
 			get
 			{
@@ -154,7 +184,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string DefenceBonuses
+        ///<summary>
+        ///Gets or sets the class's defence bonuses.
+        ///</summary>
+        public string DefenceBonuses
 		{
 			get
 			{
@@ -166,7 +199,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int HPFirst
+        ///<summary>
+        ///Gets or sets the class's first level HP.
+        ///</summary>
+        public int HPFirst
 		{
 			get
 			{
@@ -178,7 +214,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int HPSubsequent
+        ///<summary>
+        ///Gets or sets the class's HP per level.
+        ///</summary>
+        public int HPSubsequent
 		{
 			get
 			{
@@ -190,7 +229,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int HealingSurges
+        ///<summary>
+        ///Gets or sets the class's healing surges.
+        ///</summary>
+        public int HealingSurges
 		{
 			get
 			{
@@ -202,7 +244,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string TrainedSkills
+        ///<summary>
+        ///Gets or sets the class's trained skills.
+        ///</summary>
+        public string TrainedSkills
 		{
 			get
 			{
@@ -214,7 +259,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Description
+        ///<summary>
+        ///Gets or sets the description for the class.
+        ///</summary>
+        public string Description
 		{
 			get
 			{
@@ -226,7 +274,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string OverviewCharacteristics
+        ///<summary>
+        ///Gets or sets the class's overview characteristics.
+        ///</summary>
+        public string OverviewCharacteristics
 		{
 			get
 			{
@@ -238,7 +289,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string OverviewReligion
+        ///<summary>
+        ///Gets or sets the class's religion information.
+        ///</summary>
+        public string OverviewReligion
 		{
 			get
 			{
@@ -250,7 +304,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string OverviewRaces
+        ///<summary>
+        ///Gets or sets the class's race information.
+        ///</summary>
+        public string OverviewRaces
 		{
 			get
 			{
@@ -262,7 +319,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public LevelData FeatureData
+        ///<summary>
+        ///Gets or sets the class's feature powers.
+        ///</summary>
+        public LevelData FeatureData
 		{
 			get
 			{
@@ -274,7 +334,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public List<LevelData> Levels
+        ///<summary>
+        ///Gets or sets the class's powers.
+        ///</summary>
+        public List<LevelData> Levels
 		{
 			get
 			{
@@ -286,33 +349,39 @@ namespace Masterplan.Data
 			}
 		}
 
-		public Class Copy()
+        ///<summary>
+        ///Creates a copy of the class.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public Class Copy()
 		{
-			Class @class = new Class();
-			@class.ID = this.fID;
-			@class.Name = this.fName;
-			@class.Quote = this.fQuote;
-			@class.Role = this.fRole;
-			@class.PowerSource = this.fPowerSource;
-			@class.KeyAbilities = this.fKeyAbilities;
-			@class.ArmourProficiencies = this.fArmourProficiencies;
-			@class.WeaponProficiencies = this.fWeaponProficiencies;
-			@class.Implements = this.fImplements;
-			@class.DefenceBonuses = this.fDefenceBonuses;
-			@class.HPFirst = this.fHPFirst;
-			@class.HPSubsequent = this.fHPSubsequent;
-			@class.HealingSurges = this.fHealingSurges;
-			@class.TrainedSkills = this.fTrainedSkills;
-			@class.Description = this.fDescription;
-			@class.OverviewCharacteristics = this.fOverviewCharacteristics;
-			@class.OverviewReligion = this.fOverviewReligion;
-			@class.OverviewRaces = this.fOverviewRaces;
-			@class.FeatureData = this.fFeatureData.Copy();
-			foreach (LevelData current in this.fLevels)
+            Class copy = new Class()
+            {
+                ID = this.fID,
+                Name = this.fName,
+                Quote = this.fQuote,
+                Role = this.fRole,
+                PowerSource = this.fPowerSource,
+                KeyAbilities = this.fKeyAbilities,
+                ArmourProficiencies = this.fArmourProficiencies,
+                WeaponProficiencies = this.fWeaponProficiencies,
+                Implements = this.fImplements,
+                DefenceBonuses = this.fDefenceBonuses,
+                HPFirst = this.fHPFirst,
+                HPSubsequent = this.fHPSubsequent,
+                HealingSurges = this.fHealingSurges,
+                TrainedSkills = this.fTrainedSkills,
+                Description = this.fDescription,
+                OverviewCharacteristics = this.fOverviewCharacteristics,
+                OverviewReligion = this.fOverviewReligion,
+                OverviewRaces = this.fOverviewRaces,
+                FeatureData = this.fFeatureData.Copy()
+            };
+            foreach (LevelData level in this.fLevels)
 			{
-				@class.Levels.Add(current.Copy());
+				copy.Levels.Add(level.Copy());
 			}
-			return @class;
+			return copy;
 		}
 
 		public override string ToString()

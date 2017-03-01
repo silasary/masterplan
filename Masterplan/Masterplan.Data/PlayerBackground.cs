@@ -2,7 +2,10 @@ using System;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a player background.
+    ///</summary>
+    [Serializable]
 	public class PlayerBackground : IPlayerOption
 	{
 		private Guid fID = Guid.NewGuid();
@@ -15,7 +18,10 @@ namespace Masterplan.Data
 
 		private string fRecommendedFeats = "";
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the background.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -27,7 +33,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Name
+        ///<summary>
+        ///Gets or sets the name of the background.
+        ///</summary>
+        public string Name
 		{
 			get
 			{
@@ -39,7 +48,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Details
+        ///<summary>
+        ///Gets or sets the background details.
+        ///</summary>
+        public string Details
 		{
 			get
 			{
@@ -51,7 +63,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string AssociatedSkills
+        ///<summary>
+        ///Gets or sets the associated skills for the background.
+        ///</summary>
+        public string AssociatedSkills
 		{
 			get
 			{
@@ -63,7 +78,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string RecommendedFeats
+        ///<summary>
+        ///Gets or sets the recommended feats for the background.
+        ///</summary>
+        public string RecommendedFeats
 		{
 			get
 			{
@@ -75,7 +93,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public PlayerBackground Copy()
+        ///<summary>
+        ///Creates a copy of the background.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public PlayerBackground Copy()
 		{
 			return new PlayerBackground
 			{
@@ -87,7 +109,11 @@ namespace Masterplan.Data
 			};
 		}
 
-		public override string ToString()
+        ///<summary>
+        ///Returns the name of the background.
+        ///</summary>
+        ///<returns>Returns the name of the background.</returns>
+        public override string ToString()
 		{
 			return this.fName;
 		}

@@ -2,7 +2,10 @@ using System;
 
 namespace Masterplan.Data
 {
-	[Serializable]
+    ///<summary>
+    ///Class representing a section in a player power.
+    ///</summary>
+    [Serializable]
 	public class PlayerPowerSection
 	{
 		private Guid fID = Guid.NewGuid();
@@ -13,7 +16,10 @@ namespace Masterplan.Data
 
 		private int fIndent;
 
-		public Guid ID
+        ///<summary>
+        ///Gets or sets the unique ID of the power.
+        ///</summary>
+        public Guid ID
 		{
 			get
 			{
@@ -25,7 +31,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Header
+        ///<summary>
+        ///Gets or sets the section header.
+        ///</summary>
+        public string Header
 		{
 			get
 			{
@@ -37,7 +46,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public string Details
+        ///<summary>
+        ///Gets or sets the section details.
+        ///</summary>
+        public string Details
 		{
 			get
 			{
@@ -49,7 +61,10 @@ namespace Masterplan.Data
 			}
 		}
 
-		public int Indent
+        ///<summary>
+        ///Gets or sets the degree of indent for the section.
+        ///</summary>
+        public int Indent
 		{
 			get
 			{
@@ -61,7 +76,11 @@ namespace Masterplan.Data
 			}
 		}
 
-		public PlayerPowerSection Copy()
+        ///<summary>
+        ///Creates a copy of the power section.
+        ///</summary>
+        ///<returns>Returns the copy.</returns>
+        public PlayerPowerSection Copy()
 		{
 			return new PlayerPowerSection
 			{
