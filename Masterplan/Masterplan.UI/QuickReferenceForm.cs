@@ -199,14 +199,14 @@ namespace Masterplan.UI
 		public QuickReferenceForm()
 		{
 			this.InitializeComponent();
-			foreach (IAddIn current in Session.AddIns)
+			foreach (IAddIn addin in Session.AddIns)
 			{
-				foreach (IPage current2 in current.QuickReferencePages)
+				foreach (IPage page in addin.QuickReferencePages)
 				{
 					TabPage tabPage = new TabPage();
-					tabPage.Text = current2.Name;
-					tabPage.Controls.Add(current2.Control);
-					current2.Control.Dock = DockStyle.Fill;
+					tabPage.Text = page.Name;
+					tabPage.Controls.Add(page.Control);
+					page.Control.Dock = DockStyle.Fill;
 					this.Pages.TabPages.Add(tabPage);
 				}
 			}
@@ -224,11 +224,11 @@ namespace Masterplan.UI
 				this.LevelBox.Value = Session.Project.Party.Level;
 			}
 			this.update_skills();
-			foreach (IAddIn current in Session.AddIns)
+			foreach (IAddIn addin in Session.AddIns)
 			{
-				foreach (IPage current2 in current.QuickReferencePages)
+				foreach (IPage page in addin.QuickReferencePages)
 				{
-					current2.UpdateView();
+					page.UpdateView();
 				}
 			}
 		}

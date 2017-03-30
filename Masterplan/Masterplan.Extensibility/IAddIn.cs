@@ -1,3 +1,4 @@
+using Masterplan.Tools.Import;
 using System;
 using System.Collections.Generic;
 
@@ -28,6 +29,9 @@ namespace Masterplan.Extensibility
         /// </summary>
         List<ICommand> Commands { get; }
 
+        /// <summary>
+        /// Gets the list of Combat commands supplied by the add-in.
+        /// </summary>
         List<ICommand> CombatCommands { get; }
 
         /// <summary>

@@ -1,4 +1,5 @@
 using Masterplan.Data;
+using Masterplan.Tools.Import;
 using Masterplan.UI;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,25 @@ namespace Masterplan.Extensibility
             this.Load(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Masterplan", "Addins"));
 		}
 
+        static ExtensibilityManager()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += (s, e) =>
+            {
+                try
+                {
+
+                string location = Path.Combine(Path.GetDirectoryName((s as Assembly).Location), e.Name.Split(',')[0] + ".dll");
+                if (File.Exists(location))
+                    return Assembly.LoadFile(location);
+                }
+                catch (Exception ex)
+                {
+                    LogSystem.Trace(ex);
+                }
+                return null;
+            };
+        }
+
 		public void Load(string path)
 		{
 			if (File.Exists(path))
@@ -100,19 +120,24 @@ namespace Masterplan.Extensibility
 			}
 			else if (Directory.Exists(path))
 			{
-				DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                DirectoryInfo directoryInfo = new DirectoryInfo(path);
 				FileInfo[] files = directoryInfo.GetFiles("*.dll");
-				FileInfo[] array = files;
-				for (int i = 0; i < array.Length; i++)
-				{
-					FileInfo fileInfo = array[i];
-					this.Load(fileInfo.FullName);
-				}
+                for (int i = 0; i < files.Length; i++)
+                {
+                    try
+                    {
+                        FileInfo fileInfo = files[i];
+                        this.Load(fileInfo.FullName);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogSystem.Trace(ex);
+                    }
+                }
 				DirectoryInfo[] directories = directoryInfo.GetDirectories();
-				DirectoryInfo[] array2 = directories;
-				for (int j = 0; j < array2.Length; j++)
+				for (int j = 0; j < directories.Length; j++)
 				{
-					DirectoryInfo directoryInfo2 = array2[j];
+					DirectoryInfo directoryInfo2 = directories[j];
 					this.Load(directoryInfo2.FullName);
 				}
 			}
@@ -140,6 +165,18 @@ namespace Masterplan.Extensibility
 							}
 						}
 					}
+                    else if (this.IsProvider<IHeroProvider>(type))
+                    {
+                        ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
+                        if (constructor != null)
+                        {
+                            var addIn = constructor.Invoke(null) as IHeroProvider;
+                            if (addIn != null)
+                            {
+                                this.Install(addIn);
+                            }
+                        }
+                    }
 				}
 			}
 			catch (ReflectionTypeLoadException ex)
@@ -159,7 +196,21 @@ namespace Masterplan.Extensibility
 			}
 		}
 
-		private bool IsAddin(Type t)
+        private bool IsProvider<T>(Type t)
+        {
+            Type[] interfaces = t.GetInterfaces();
+            for (int i = 0; i < interfaces.Length; i++)
+            {
+                Type type = interfaces[i];
+                if (type != null && type == typeof(T))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool IsAddin(Type t)
 		{
 			Type[] interfaces = t.GetInterfaces();
 			for (int i = 0; i < interfaces.Length; i++)
@@ -175,12 +226,17 @@ namespace Masterplan.Extensibility
 
 		private void Install(IAddIn addin)
 		{
-			bool flag = addin.Initialise(this);
-			if (flag)
+			bool success = addin.Initialise(this);
+			if (success)
 			{
 				Session.AddIns.Add(addin);
 			}
 		}
+
+        private void Install(IHeroProvider addIn)
+        {
+            AppImport.Providers.Add(addIn.ProviderName, addIn);
+        }
 
 		public void UpdateView()
 		{

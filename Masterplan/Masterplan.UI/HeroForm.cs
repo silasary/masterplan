@@ -214,7 +214,15 @@ namespace Masterplan.UI
 
 		private void Application_Idle(object sender, EventArgs e)
 		{
-			this.PortraitPasteBtn.Enabled = Clipboard.ContainsImage();
+            try
+            {
+			    this.PortraitPasteBtn.Enabled = Clipboard.ContainsImage();
+
+            }
+            catch (Exception)
+            {
+
+            }
 			this.PortraitClear.Enabled = (this.fHero.Portrait != null);
 			this.EffectRemoveBtn.Enabled = (this.SelectedEffect != null || this.SelectedToken != null);
 			this.EffectEditBtn.Enabled = (this.SelectedEffect != null || this.SelectedToken != null);
