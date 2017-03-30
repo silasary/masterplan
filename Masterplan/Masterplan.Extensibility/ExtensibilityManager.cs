@@ -3,6 +3,7 @@ using Masterplan.Tools.Import;
 using Masterplan.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -96,11 +97,11 @@ namespace Masterplan.Extensibility
                 try
                 {
 
-                string location = Path.Combine(Path.GetDirectoryName((s as Assembly).Location), e.Name.Split(',')[0] + ".dll");
-                if (File.Exists(location))
-                    return Assembly.LoadFile(location);
+                    string location = Path.Combine(Path.GetDirectoryName((s as Assembly).Location), e.Name.Split(',')[0] + ".dll");
+                    if (File.Exists(location))
+                        return Assembly.LoadFile(location);
                 }
-                catch (Exception ex)
+                catch (Exception ex) when (!Debugger.IsAttached)
                 {
                     LogSystem.Trace(ex);
                 }
@@ -148,11 +149,30 @@ namespace Masterplan.Extensibility
 		{
 			try
 			{
-				Type[] types = assembly.GetTypes();
-				Type[] array = types;
+                Type[] types;
+                try
+                {
+                    types = assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    string name = assembly.ManifestModule.Name;
+                    LogSystem.Trace("The add-in '" + name + "' did not properly load; contact the developer for an updated version.");
+                    Exception[] loaderExceptions = ex.LoaderExceptions;
+                    for (int j = 0; j < loaderExceptions.Length; j++)
+                    {
+                        Exception value = loaderExceptions[j];
+                        Console.WriteLine(value);
+                    }
+                    types = ex.Types;
+                }
+
+                Type[] array = types;
 				for (int i = 0; i < array.Length; i++)
 				{
 					Type type = array[i];
+                    if (type == null)
+                        continue;
 					if (this.IsAddin(type))
 					{
 						ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
@@ -177,17 +197,6 @@ namespace Masterplan.Extensibility
                             }
                         }
                     }
-				}
-			}
-			catch (ReflectionTypeLoadException ex)
-			{
-				string name = assembly.ManifestModule.Name;
-				LogSystem.Trace("The add-in '" + name + "' could not be loaded; contact the developer for an updated version.");
-				Exception[] loaderExceptions = ex.LoaderExceptions;
-				for (int j = 0; j < loaderExceptions.Length; j++)
-				{
-					Exception value = loaderExceptions[j];
-					Console.WriteLine(value);
 				}
 			}
 			catch (Exception ex2)
