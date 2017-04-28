@@ -3172,7 +3172,7 @@ namespace Masterplan.UI
 							if ((hero.Key == null) || (hero.Key == ""))
 								continue;
 
-							AppImport.ImportIPlay4e(hero);
+							AppImport.ImportExternalHero(hero);
 							Session.Modified = true;
 						}
 
@@ -5474,11 +5474,13 @@ namespace Masterplan.UI
 						Preview.Document.OpenNew(true);
 						Preview.Document.Write(HTML.Text("Loading iPlay4e character, please wait...", true, true, DisplaySize.Small));
 
-						string url = "http://iplay4e.appspot.com/view?xsl=jPint&key=" + hero.Key;
-						Preview.Navigate(url);
-
-						return;
-					}
+                        string url = AppImport.GetUrlString(hero);
+                        if (!string.IsNullOrEmpty(url))
+                        {
+                            this.Preview.Navigate(url);
+                            return;
+                        }
+                    }
 				}
 			}
 

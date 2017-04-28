@@ -8,6 +8,7 @@ using Utils;
 
 using Masterplan.Data;
 using Masterplan.Tools;
+using System.Linq;
 
 namespace Masterplan.UI
 {
@@ -111,7 +112,7 @@ namespace Masterplan.UI
 					hero.Key = dlg.Key;
 
 					Cursor.Current = Cursors.WaitCursor;
-					bool ok = AppImport.ImportIPlay4e(hero);
+					bool ok = AppImport.ImportExternalHero(hero);
 					Cursor.Current = Cursors.Default;
 
 					if (ok)
@@ -146,31 +147,40 @@ namespace Masterplan.UI
 			{
 				HeroIPlay4eForm dlg = new HeroIPlay4eForm("", false);
 				if (dlg.ShowDialog() == DialogResult.OK)
-				{
-					Cursor.Current = Cursors.WaitCursor;
-					List<Hero> heroes = AppImport.ImportParty(dlg.Key);
-					Cursor.Current = Cursors.Default;
-
-					foreach (Hero hero in heroes)
-						add_hero(hero);
-
-					update_view();
-
-					if (heroes.Count == 0)
-					{
-						MessageBox.Show("No characters were found (make sure they are public).", "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					}
-				}
-			}
+                {
+                    Session.Project.Party.Key = dlg.Key;
+                    Session.Project.Party.KeyProvider = "iPlay4E";
+                    UpdateExternalPartyMembers();
+                }
+            }
 			catch (Exception ex)
 			{
 				LogSystem.Trace(ex);
 			}
 		}
 
-		#region Random
+        private void UpdateExternalPartyMembers()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IEnumerable<Hero> existingHeroes = Session.Project.Heroes.Union(Session.Project.InactiveHeroes).ToArray();
+            List<Hero> heroes = AppImport.ImportParty(Session.Project.Party, existingHeroes);
+            Cursor.Current = Cursors.Default;
 
-		private void RandomPC_Click(object sender, EventArgs e)
+            foreach (Hero hero in heroes)
+                if (!existingHeroes.Contains(hero))
+                    add_hero(hero);
+
+            update_view();
+
+            if (heroes.Count == 0)
+            {
+                MessageBox.Show("No characters were found (make sure they are public).", "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        #region Random
+
+        private void RandomPC_Click(object sender, EventArgs e)
 		{
 			HeroData hd = HeroData.Create();
 			Hero h = hd.ConvertToHero();
@@ -307,7 +317,7 @@ namespace Masterplan.UI
 				hero.Key = dlg.Key;
 
 				Cursor.Current = Cursors.WaitCursor;
-				bool ok = AppImport.ImportIPlay4e(hero);
+				bool ok = AppImport.ImportExternalHero(hero);
 				Cursor.Current = Cursors.Default;
 
 				if (ok)
@@ -398,21 +408,22 @@ namespace Masterplan.UI
 
 		private void UpdateBtn_Click(object sender, EventArgs e)
 		{
-			Cursor.Current = Cursors.WaitCursor;
+            UpdateExternalPartyMembers();
+			//Cursor.Current = Cursors.WaitCursor;
 
-			foreach (Hero hero in Session.Project.Heroes)
-			{
-				if ((hero.Key == null) || (hero.Key == ""))
-					continue;
+			//foreach (Hero hero in Session.Project.Heroes)
+			//{
+			//	if ((hero.Key == null) || (hero.Key == ""))
+			//		continue;
 
-				AppImport.ImportIPlay4e(hero);
-			}
+			//	AppImport.ImportExternalHero(hero);
+			//}
 
-			Session.Modified = true;
+			//Session.Modified = true;
 
-			update_view();
+			//update_view();
 
-			Cursor.Current = Cursors.Default;
+			//Cursor.Current = Cursors.Default;
 		}
 
 		private void ParcelList_DoubleClick(object sender, EventArgs e)

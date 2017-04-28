@@ -303,6 +303,7 @@
     <Compile Include="Tools\Generators\DwarfName.cs" />
     <Compile Include="Tools\Generators\ExoticName.cs" />
     <Compile Include="Tools\Generators\Potion.cs" />
+    <Compile Include="Tools\IO\AdventureToolsImporter.cs" />
     <Compile Include="Tools\IO\AppImport.cs" />
     <Compile Include="Tools\Generators\Book.cs" />
     <Compile Include="Tools\GoalBuilder.cs" />
@@ -312,10 +313,13 @@
     <Compile Include="Tools\Generators\DelveBuilder.cs" />
     <Compile Include="Tools\Dice.cs" />
     <Compile Include="Tools\Generators\EncounterBuilder.cs" />
+    <Compile Include="Tools\IO\CharacterBuilderImporter.cs" />
     <Compile Include="Tools\IO\EncounterExporter.cs" />
     <Compile Include="Tools\Experience.cs" />
     <Compile Include="Tools\HTML.cs" />
     <Compile Include="Tools\Generators\MapBuilder.cs" />
+    <Compile Include="Tools\IO\IHeroProvider.cs" />
+    <Compile Include="Tools\IO\iPlay4E.cs" />
     <Compile Include="Tools\MapPrinting.cs" />
     <Compile Include="Tools\Generators\NPCBuilder.cs" />
     <Compile Include="Tools\Statistics.cs" />

@@ -311,7 +311,7 @@ namespace Masterplan.UI
 
 				Hero hero = new Hero();
 				hero.Key = fHero.Key;
-				bool ok = Tools.AppImport.ImportIPlay4e(hero);
+				bool ok = Tools.AppImport.ImportExternalHero(hero);
 				if (ok)
 				{
 					hero.ID = fHero.ID;
@@ -323,7 +323,7 @@ namespace Masterplan.UI
 				}
 				else
 				{
-					MessageBox.Show("The iPlay4E character could not be downloaded.", "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show($"The {hero.KeyProvider} character could not be downloaded.", "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}

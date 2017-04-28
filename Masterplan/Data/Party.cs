@@ -78,17 +78,30 @@ namespace Masterplan.Data
 			return Difficulty.Extreme;
 		}
 
-		/// <summary>
-		/// Creates a copy of the party information.
-		/// </summary>
-		/// <returns>Returns the copy.</returns>
-		public Party Copy()
+        /// <summary>
+        /// Unique Key for Hero Provider
+        /// </summary>
+        public string Key { get; set; }
+
+        /// <summary>
+        /// Name of Hero Provider
+        /// </summary>
+        public string KeyProvider { get; set; }
+
+        /// <summary>
+        /// Creates a copy of the party information.
+        /// </summary>
+        /// <returns>Returns the copy.</returns>
+        public Party Copy()
 		{
 			Party p = new Party();
 
 			p.Size = fSize;
 			p.Level = fLevel;
             p.XP = fXP;
+
+            p.Key = Key;
+            p.KeyProvider = KeyProvider;
 
 			return p;
 		}

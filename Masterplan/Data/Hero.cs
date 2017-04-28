@@ -67,10 +67,15 @@ namespace Masterplan.Data
 		}
 		string fKey = "";
 
-		/// <summary>
-		/// Gets or sets the name of the hero.
-		/// </summary>
-		public string Name
+        /// <summary>
+        /// Sets the name of the External Hero Provider
+        /// </summary>
+        public string KeyProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the hero.
+        /// </summary>
+        public string Name
 		{
 			get { return fName; }
 			set
