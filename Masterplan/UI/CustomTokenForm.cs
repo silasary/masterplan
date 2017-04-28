@@ -13,7 +13,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
             Array sizes = Enum.GetValues(typeof(CreatureSize));
             foreach (CreatureSize size in sizes)

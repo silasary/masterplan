@@ -14,7 +14,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			SkillBox.Items.Add("Arcana");
 			SkillBox.Items.Add("Dungeoneering");

@@ -48,7 +48,7 @@ namespace Masterplan.UI
                 lvi.ForeColor = SystemColors.GrayText;
             }
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 		}
 
 		void Application_Idle(object sender, EventArgs e)

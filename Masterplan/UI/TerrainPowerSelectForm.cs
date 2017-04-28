@@ -23,7 +23,7 @@ namespace Masterplan.UI
 				lvi.Tag = sc;
 			}
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			Browser.DocumentText = "";
 			ChallengeList_SelectedIndexChanged(null, null);

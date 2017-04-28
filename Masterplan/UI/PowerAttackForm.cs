@@ -16,7 +16,7 @@ namespace Masterplan.UI
 			foreach (DefenceType defence in defences)
 				DefenceBox.Items.Add(defence);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fAttack = attack.Copy();
 			fFunctionalTemplate = functional_template;

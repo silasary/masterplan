@@ -22,7 +22,7 @@ namespace Masterplan.UI
 
 			NameBox.Text = "Merged Library";
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 		}
 
 		void Application_Idle(object sender, EventArgs e)

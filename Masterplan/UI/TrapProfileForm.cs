@@ -20,7 +20,7 @@ namespace Masterplan.UI
 			foreach (TrapType type in types)
 				TypeBox.Items.Add(type);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fTrap = trap.Copy();
 

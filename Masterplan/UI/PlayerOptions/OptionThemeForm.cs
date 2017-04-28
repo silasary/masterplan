@@ -25,7 +25,7 @@ namespace Masterplan.UI
 			SourceBox.Items.Add("Shadow");
 			SourceBox.Items.Add("Elemental");
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fTheme = theme.Copy();
 

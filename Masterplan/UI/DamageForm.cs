@@ -27,7 +27,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fData = new List<Token>();
 			foreach (Pair<CombatData, EncounterCard> token in tokens)

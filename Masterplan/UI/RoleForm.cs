@@ -41,7 +41,7 @@ namespace Masterplan.UI
 			foreach (RoleFlag flag in Enum.GetValues(typeof(RoleFlag)))
 				ModBox.Items.Add(flag);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fRole = r.Copy();
 

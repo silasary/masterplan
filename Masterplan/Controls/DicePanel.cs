@@ -17,7 +17,7 @@ namespace Masterplan.Controls
 		{
 			InitializeComponent();
 
-			Application.Idle += Application_Idle;
+			StaticEventDispatcher.ApplicationIdle += Application_Idle;
 
 			fCentred.Alignment = StringAlignment.Center;
 			fCentred.LineAlignment = StringAlignment.Center;

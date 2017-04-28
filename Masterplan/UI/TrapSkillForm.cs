@@ -17,7 +17,7 @@ namespace Masterplan.UI
 			foreach (string skill in skills)
 				SkillBox.Items.Add(skill);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fSkillData = tsd.Copy();
 			fLevel = level;

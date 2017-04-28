@@ -12,7 +12,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			BreakdownPanel.Library = library;
 			BreakdownPanel.Source = source;

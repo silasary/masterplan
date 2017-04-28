@@ -12,7 +12,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			Array types = Enum.GetValues(typeof(PowerType));
 			foreach (PowerType type in types)

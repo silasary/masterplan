@@ -37,7 +37,7 @@ namespace Masterplan.UI
 				lvi.Group = CombatantList.Groups[2];
 			}
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 		}
 
 		void Application_Idle(object sender, EventArgs e)

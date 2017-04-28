@@ -184,7 +184,7 @@ namespace Masterplan.UI
 			Preview.DocumentText = "";
 			LogBrowser.DocumentText = "";
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fLeft.Alignment = StringAlignment.Near;
 			fLeft.LineAlignment = StringAlignment.Center;

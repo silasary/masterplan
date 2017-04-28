@@ -58,6 +58,7 @@
       <DependentUpon>DefaultTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Graphics\RoundedRectangle.cs" />
+    <Compile Include="StaticEventDispatcher.cs" />
     <Compile Include="Text\Markdown.cs" />
     <Compile Include="XMLHelper.cs" />
     <Compile Include="FileName.cs" />

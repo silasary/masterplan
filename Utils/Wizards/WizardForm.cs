@@ -21,7 +21,7 @@ namespace Utils.Wizards
 				ImageBox.Height = ContentPnl.Height;
 			}
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			if (fWizard.Pages.Count != 0)
 				set_page(0);

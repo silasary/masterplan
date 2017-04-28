@@ -26,7 +26,7 @@ namespace Masterplan.UI
 			foreach (Library lib in Session.Libraries)
 				fModified[lib] = false;
 
-			Application.Idle += Application_Idle;
+			StaticEventDispatcher.ApplicationIdle += Application_Idle;
 
 			update_libraries();
 		}

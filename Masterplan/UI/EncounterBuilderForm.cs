@@ -46,7 +46,7 @@ namespace Masterplan.UI
 			FilterPanel.PartyLevel = fPartyLevel;
 			FilterPanel.FilterByPartyLevel();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			if (fAddingThreats)
 			{

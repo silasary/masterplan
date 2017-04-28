@@ -16,7 +16,7 @@ namespace Masterplan.UI
 			foreach (CreatureSize size in sizes)
 				SizeBox.Items.Add(size);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fRace = race.Copy();
 

@@ -9,7 +9,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			PasswordBox.Text = Session.Project.Password;
 			RetypeBox.Text = Session.Project.Password;

@@ -28,7 +28,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 			StatBlockBrowser.DocumentText = "";
 
 			if (creature is Creature)

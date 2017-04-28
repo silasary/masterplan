@@ -15,7 +15,7 @@ namespace Masterplan.UI
 			foreach (ActionType action in actions)
 				ActionBox.Items.Add(action);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fAttack = attack.Copy();
 			fLevel = level;

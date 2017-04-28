@@ -14,7 +14,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
             BinarySearchTree<string> bst = new BinarySearchTree<string>();
             foreach (Creature c in Session.Creatures)

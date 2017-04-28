@@ -16,7 +16,7 @@ namespace Masterplan.UI
 			foreach (TileCategory cat in Enum.GetValues(typeof(TileCategory)))
 				CatBox.Items.Add(cat);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fTile = t.Copy();
 

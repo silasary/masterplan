@@ -27,7 +27,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			WebClient wc = new WebClient();
 			wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloaded_html);

@@ -38,7 +38,7 @@ namespace Masterplan.UI
 			update_item_list();
 			update_handout();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 		}
 
 		void Application_Idle(object sender, EventArgs e)

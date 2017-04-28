@@ -27,7 +27,7 @@ namespace Masterplan.UI
 			SourceBox.Items.Add("Psionic");
 			SourceBox.Items.Add("Shadow");
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fHero = h.Copy();
 

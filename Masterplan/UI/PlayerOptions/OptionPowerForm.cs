@@ -34,7 +34,7 @@ namespace Masterplan.UI
 			RangeBox.Items.Add("Area burst 3 within 10");
 			RangeBox.Items.Add("Area wall 3 within 10");
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			fPower = power.Copy();
 

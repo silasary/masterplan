@@ -11,7 +11,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			RechargeBox.Items.Add(PowerAction.RECHARGE_2);
 			RechargeBox.Items.Add(PowerAction.RECHARGE_3);

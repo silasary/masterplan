@@ -14,7 +14,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			List<Guid> template_ids = new List<Guid>();
 			foreach (CreatureTemplate template in Session.Templates)

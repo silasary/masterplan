@@ -27,7 +27,7 @@ namespace Masterplan.UI
 				lvi.Checked = selected_libraries.Contains(lib);
 			}
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 		}
 
 		void Application_Idle(object sender, EventArgs e)

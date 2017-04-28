@@ -17,7 +17,7 @@ namespace Masterplan.UI
 
 			TrapList.ListViewItemSorter = new TrapSorter();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			if (Session.Project != null)
 			{

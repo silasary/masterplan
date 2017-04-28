@@ -16,7 +16,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			if (level > 0)
 				LevelRangePanel.SetLevelRange(level, level);

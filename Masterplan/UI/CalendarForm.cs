@@ -55,7 +55,7 @@ namespace Masterplan.UI
 
 			fCalendar = calendar.Copy();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 			EventList.ListViewItemSorter = new EventSorter(fCalendar);
 			SeasonList.ListViewItemSorter = new EventSorter(fCalendar);
 

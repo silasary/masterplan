@@ -11,7 +11,7 @@ namespace Masterplan.UI
         {
             InitializeComponent();
 
-            Application.Idle += new EventHandler(Application_Idle);
+            StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
             MapBox.Items.Add("(no map)");
             foreach (RegionalMap m in Session.Project.RegionalMaps)

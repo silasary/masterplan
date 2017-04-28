@@ -61,7 +61,7 @@ namespace Masterplan.UI
 		{
 			InitializeComponent();
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			List<Library> libs = new List<Library>();
 			libs.AddRange(Session.Libraries);

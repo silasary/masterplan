@@ -58,7 +58,7 @@ namespace Masterplan.UI
 			foreach (Trap trap in enc.Traps)
 				DurationCreatureBox.Items.Add(trap);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			init(condition, current_actor, current_round);
 		}
@@ -88,7 +88,7 @@ namespace Masterplan.UI
 			DurationCreatureBox.Items.Add(hero);
 			DurationCreatureBox.Items.Add(SOMEONE_ELSE);
 
-			Application.Idle += new EventHandler(Application_Idle);
+			StaticEventDispatcher.ApplicationIdle += new EventHandler(Application_Idle);
 
 			init(condition, null, -1);
 		}
