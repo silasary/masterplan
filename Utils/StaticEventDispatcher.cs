@@ -10,7 +10,7 @@ namespace Utils
     /// Due to the way EventHandlers keep object references around, static events can be very dangerous.
     /// This class is used to act as a middle-man and can detach unwanted subscribers.
     /// </summary>
-    class StaticEventDispatcher
+    public class StaticEventDispatcher
     {
         static StaticEventDispatcher()
         {
