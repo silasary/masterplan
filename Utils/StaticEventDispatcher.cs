@@ -36,6 +36,9 @@ namespace Utils
             }
         }
 
+        /// <summary>
+        /// See Application.Idle
+        /// </summary>
         public static EventHandler ApplicationIdle;
     }
 }

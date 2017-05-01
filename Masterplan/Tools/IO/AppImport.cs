@@ -33,7 +33,7 @@ namespace Masterplan.Tools
         }
 
         /// <summary>
-        /// Directly import a monster from the Export function of the D&D Insider Adventure Tools.
+        /// Directly import a monster from the Export function of the D&amp;D Insider Adventure Tools.
         /// </summary>
         /// <param name="xml">A string containing the contents of the file</param>
         public static Creature ImportCreature(string xml)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -10,18 +11,28 @@ namespace Masterplan.UI
 {
 	partial class HealForm : Form
 	{
-		public HealForm(List<Pair<CombatData, EncounterCard>> tokens)
+		public HealForm(List<Pair<CombatData, EncounterCard>> tokens, bool has_heroes)
 		{
 			InitializeComponent();
 
 			fTokens = tokens;
+            fHasHeroes = has_heroes;
 		}
 
 		List<Pair<CombatData, EncounterCard>> fTokens = null;
+        private bool fHasHeroes;
 
-		private void DamageForm_Shown(object sender, EventArgs e)
+        private void DamageForm_Shown(object sender, EventArgs e)
 		{
-			SurgeBox.Select(0, 1);
+            if (fHasHeroes)
+            {
+                SurgeBox.Select(0, 1);
+            }
+            else
+            {
+                HPBox.Focus();
+                HPBox.Select(0, 1);
+            }
 		}
 
 		private void OKBtn_Click(object sender, EventArgs e)

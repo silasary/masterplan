@@ -4,6 +4,7 @@ New in this version (11.12)
 Removed copy protection
 Show creatures from the same category in creature builder
 Combat turn timer
+Added Mnemonics for common actions in Combat Form.
 
 ===============================================================================
 Plans for this version

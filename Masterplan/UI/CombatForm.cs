@@ -1542,7 +1542,7 @@ namespace Masterplan.UI
 				HealBtn.Enabled = mob;
 				EffectMenu.Enabled = mob;
 
-				NextInitBtn.Text = fCombatStarted ? "Next Turn" : "Start Encounter";
+				NextInitBtn.Text = fCombatStarted ? "&Next Turn" : "Start E&ncounter";
 
 				DelayBtn.Visible = fCombatStarted;
 				DelayBtn.Enabled = mob;
@@ -3600,6 +3600,7 @@ namespace Masterplan.UI
 		void do_heal(List<IToken> tokens)
 		{
 			List<Pair<CombatData, EncounterCard>> list = new List<Pair<CombatData, EncounterCard>>();
+            bool has_heroes = false;
 			foreach (IToken token in tokens)
 			{
 				CombatData cd = null;
@@ -3619,6 +3620,7 @@ namespace Masterplan.UI
 					Hero h = token as Hero;
 					//cd = fHeroData[h.ID];
 					cd = h.CombatData;
+                    has_heroes = true;
 				}
 
 				list.Add(new Pair<CombatData, EncounterCard>(cd, card));
@@ -3632,7 +3634,7 @@ namespace Masterplan.UI
 			foreach (Pair<CombatData, EncounterCard> pair in list)
 				state_dic[pair.First] = get_state(pair.First);
 
-			HealForm dlg = new HealForm(list);
+			HealForm dlg = new HealForm(list, has_heroes);
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
 				foreach (Pair<CombatData, EncounterCard> pair in list)
