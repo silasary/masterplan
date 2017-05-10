@@ -5,6 +5,7 @@ Removed copy protection
 Show creatures from the same category in creature builder
 Combat turn timer
 Added Mnemonics for common actions in Combat Form.
+Added ability to name Ongoing Conditions.
 
 ===============================================================================
 Plans for this version

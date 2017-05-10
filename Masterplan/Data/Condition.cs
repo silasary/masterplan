@@ -71,6 +71,12 @@ namespace Masterplan.Data
 	[Serializable]
 	public class OngoingCondition : IComparable<OngoingCondition>
 	{
+        /// <summary>
+        /// Gets or sets the friendly name for this condition
+        /// </summary>
+        /// <example>Astral seal</example>
+        public string Name { get; set; }
+
 		/// <summary>
 		/// Gets or sets the type of condition.
 		/// </summary>
@@ -353,7 +359,7 @@ namespace Masterplan.Data
 		{
 			string str = "";
 
-			switch (fType)
+            switch (fType)
 			{
 				case OngoingType.Condition:
 					str = fData;
@@ -407,7 +413,12 @@ namespace Masterplan.Data
 					break;
 			}
 
-			return str;
+            if (!string.IsNullOrEmpty(Name))
+            {
+                str = $"{Name}: {str}";
+            }
+
+            return str;
 		}
 
 		/// <summary>
@@ -417,6 +428,8 @@ namespace Masterplan.Data
 		public OngoingCondition Copy()
 		{
 			OngoingCondition oc = new OngoingCondition();
+
+            oc.Name = Name;
 
 			oc.Type = fType;
 

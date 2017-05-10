@@ -273,6 +273,8 @@ namespace Masterplan.UI
 
 		private void OKBtn_Click(object sender, EventArgs e)
 		{
+            fCondition.Name = FriendlyNameBox.Text;
+
 			if (ConditionBtn.Checked)
 				fCondition.Type = OngoingType.Condition;
 			if (DamageBtn.Checked)
