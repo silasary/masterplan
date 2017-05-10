@@ -24,9 +24,22 @@ namespace Masterplan
 				return fIsBeta;
 			}
 		}
-		internal static bool fIsBeta = true;
 
-		[STAThread]
+#if DEBUG
+        static bool fIsBeta = true;
+#else
+        static bool fIsBeta = false;
+#endif
+
+        public static bool IsInstalled { get => fIsInstalled; }
+
+        private static bool fIsInstalled = typeof(Program).Assembly.Location.Contains(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+
+        public static string RootDirectory { get; } = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+
+        public static string UserDirectory { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Masterplan");
+
+        [STAThread]
 		static void Main(string[] args)
 		{
 			Application.EnableVisualStyles();
@@ -78,17 +91,21 @@ namespace Masterplan
 			}
 		}
 
-		#region Bootstrapping
+#region Bootstrapping
 
 		static void init_logging()
 		{
 			try
 			{
-				// Logging
-				string mp_dir = FileName.Directory(Application.ExecutablePath);
+                // Logging
+                string mp_dir;
+                if (IsInstalled)
+                    mp_dir = UserDirectory;
+                else
+                    mp_dir = RootDirectory;
 
 				// Make sure the log directory exists
-				string logdir = mp_dir + "Log" + Path.DirectorySeparatorChar;
+				string logdir = Path.Combine(mp_dir, "Log");
 				if (!Directory.Exists(logdir))
 				{
 					DirectoryInfo di = Directory.CreateDirectory(logdir);
@@ -96,8 +113,8 @@ namespace Masterplan
 						throw new UnauthorizedAccessException();
 				}
 
-				// Begin logging
-				string logfile = logdir + DateTime.Now.Ticks + ".log";
+                // Begin logging
+                string logfile = Path.Combine(logdir, DateTime.Now.Ticks + ".log");
 				LogSystem.LogFile = logfile;
 			}
 			catch
@@ -109,37 +126,17 @@ namespace Masterplan
 		{
 			try
             {
-				SplashScreen.CurrentAction = "Loading libraries...";
+                SplashScreen.CurrentAction = "Loading libraries...";
 
-                Assembly ass = Assembly.GetEntryAssembly();
-                string root_dir = FileName.Directory(ass.Location);
-
-                string lib_dir = root_dir + "Libraries\\";
-                if (!Directory.Exists(lib_dir))
-                    Directory.CreateDirectory(lib_dir);
-
-                // Move libraries from root directory
-                string[] files = Directory.GetFiles(root_dir, "*.library");
-                foreach (string filename in files)
+                if (!IsInstalled)
                 {
-					try
-					{
-						string lib_name = lib_dir + FileName.Name(filename) + ".library";
-
-						if (!File.Exists(lib_name))
-							File.Move(filename, lib_name);
-					}
-					catch (Exception ex)
-					{
-						LogSystem.Trace(ex);
-					}
+                    load_libraries(RootDirectory);
                 }
 
-                // Load libraries
-                string[] libraries = Directory.GetFiles(lib_dir, "*.library");
-				SplashScreen.Actions = libraries.Length;
-                foreach (string filename in libraries)
-					Session.LoadLibrary(filename);
+                if (Directory.Exists(UserDirectory) || IsInstalled)
+                {
+                    load_libraries(UserDirectory);
+                }
 
                 Session.Libraries.Sort();
             }
@@ -149,13 +146,46 @@ namespace Masterplan
             }
 		}
 
+        private static void load_libraries(string root_dir)
+        {
+            string lib_dir = Path.Combine(root_dir, "Libraries");
+            if (!Directory.Exists(lib_dir))
+                Directory.CreateDirectory(lib_dir);
+
+            // Move libraries from root directory
+            string[] files = Directory.GetFiles(root_dir, "*.library");
+            foreach (string filename in files)
+            {
+                try
+                {
+                    string lib_name = Path.Combine(lib_dir, FileName.Name(filename) + ".library");
+
+                    if (!File.Exists(lib_name))
+                        File.Move(filename, lib_name);
+                }
+                catch (Exception ex)
+                {
+                    LogSystem.Trace(ex);
+                }
+            }
+
+            // Load libraries
+            string[] libraries = Directory.GetFiles(lib_dir, "*.library");
+            SplashScreen.Actions = libraries.Length;
+            foreach (string filename in libraries)
+                Session.LoadLibrary(filename);
+        }
+
         static void load_preferences()
         {
             try
             {
-                Assembly ass = Assembly.GetEntryAssembly();
-                string root_dir = FileName.Directory(ass.Location);
-                string filename = root_dir + "Preferences.xml";
+                string root_dir;
+                if (IsInstalled)
+                    root_dir = UserDirectory;
+                else
+                    root_dir = RootDirectory;
+                string filename = Path.Combine(root_dir, "Preferences.xml");
 
                 if (File.Exists(filename))
                 {
@@ -176,10 +206,12 @@ namespace Masterplan
         {
             try
             {
-                Assembly ass = Assembly.GetEntryAssembly();
-                string root_dir = FileName.Directory(ass.Location);
-                string filename = root_dir + "Preferences.xml";
-
+                string root_dir;
+                if (IsInstalled)
+                    root_dir = UserDirectory;
+                else
+                    root_dir = RootDirectory;
+                string filename = Path.Combine(root_dir, "Preferences.xml");
                 Serialisation<Preferences>.Save(filename, Session.Preferences, SerialisationMode.XML);
             }
             catch (Exception ex)
@@ -256,9 +288,9 @@ namespace Masterplan
 			Process.Start(logdir);
 		}
 
-		#endregion
+#endregion
 
-		#region Stats
+#region Stats
 
 		private static void run_creature_stats()
 		{
@@ -427,7 +459,7 @@ namespace Masterplan
 			return list;
 		}
 
-		#endregion
+#endregion
 
 		internal static void SetResolution(Image img)
 		{
@@ -450,7 +482,7 @@ namespace Masterplan
 
         public static ProgressScreen SplashScreen = null;
 
-		#region File filters
+#region File filters
 
 		public static string ProjectFilter = "Masterplan Project|*.masterplan";
 		public static string LibraryFilter = "Masterplan Library|*.library";
@@ -475,6 +507,6 @@ namespace Masterplan
 		public static string HTMLFilter = "HTML File|*.htm";
 		public static string ImageFilter = "Image File|*.bmp;*.jpg;*.jpeg;*.gif;*.png;*.tga";
 
-		#endregion
+#endregion
 	}
 }

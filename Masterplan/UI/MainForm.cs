@@ -649,14 +649,11 @@ namespace Masterplan.UI
 
 				if ((Session.Project == null) && (Session.Creatures.Count == 0))
 				{
-					string mp_dir = FileName.Directory(Application.ExecutablePath);
-					if (mp_dir.Contains("Program Files"))
+					if (Program.IsInstalled)
 					{
 						string str = "You're running Masterplan from the Program Files folder.";
 						str += Environment.NewLine + Environment.NewLine;
-						str += "Although Masterplan will run, this is a protected folder, and Masterplan won't be able to save any changes that you make to your libraries.";
-						str += Environment.NewLine + Environment.NewLine;
-						str += "If you move Masterplan to a new location (like My Documents or the Desktop), you won't have this problem.";
+						str += "Masterplan will save your libraries to the Documents folder.";
 
 						MessageBox.Show(str, "Masterplan", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}

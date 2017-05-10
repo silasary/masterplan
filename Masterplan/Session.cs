@@ -1097,38 +1097,42 @@ namespace Masterplan
 
 		#region Project Backup
 
+        private static string BackupFile(string filename)
+        {
+            string base_dir;
+            if (Program.IsInstalled)
+                base_dir = Program.UserDirectory;
+            else
+                base_dir = Program.RootDirectory;
+            string dir = Path.Combine(base_dir, "Backup");
+
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            string new_name = Path.Combine(dir, Utils.FileName.Name(filename));
+            return new_name;
+        }
+
 		public static void CreateBackup(string filename)
 		{
 			try
-			{
-				Assembly ass = Assembly.GetEntryAssembly();
-				string dir = Utils.FileName.Directory(ass.Location) + "Backup\\";
-
-				if (!Directory.Exists(dir))
-					Directory.CreateDirectory(dir);
-
-				string new_name = dir + Utils.FileName.Name(filename);
-				File.Copy(filename, new_name, true);
-			}
-			catch (Exception ex)
+            {
+                string new_name = BackupFile(filename);
+                File.Copy(filename, new_name, true);
+            }
+            catch (Exception ex)
 			{
 				LogSystem.Trace(ex);
 			}
 		}
 
-		public static Project LoadBackup(string filename)
+        public static Project LoadBackup(string filename)
 		{
 			Project p = null;
 
 			try
 			{
-				Assembly ass = Assembly.GetEntryAssembly();
-				string dir = Utils.FileName.Directory(ass.Location) + "Backup\\";
-
-				if (!Directory.Exists(dir))
-					Directory.CreateDirectory(dir);
-
-				string backup_name = dir + Utils.FileName.Name(filename);
+                string backup_name = BackupFile(filename);
 				if (File.Exists(backup_name))
 				{
 					p = Serialisation<Project>.Load(backup_name, SerialisationMode.Binary);

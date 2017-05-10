@@ -19,9 +19,12 @@ namespace Masterplan.Extensibility
 		{
 			fMainForm = main_form;
 
-			// Find application directory
-			string dir = Application.StartupPath + "\\AddIns";
-			Load(dir);
+            // Search in application directory
+            Load(Path.Combine(Program.RootDirectory, "AddIns"));
+
+            // Search in user directory
+            Load(Path.Combine(Program.UserDirectory, "AddIns"));
+
 		}
 
 		MainForm fMainForm = null;
