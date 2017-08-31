@@ -5779,10 +5779,8 @@ namespace Masterplan.UI
 			try
 			{
 				string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-				if (!desktop.EndsWith("\\"))
-					desktop += "\\";
 
-				string filename = desktop + att.Name;
+				string filename = Path.Combine(desktop, att.Name);
 
 				// Work out unique filename
 				int n = 1;
@@ -5790,7 +5788,7 @@ namespace Masterplan.UI
 				while (File.Exists(unique_file))
 				{
 					n += 1;
-					unique_file = desktop + FileName.Name(filename) + " " + n + "." + FileName.Extension(filename);
+					unique_file = Path.Combine(desktop, Path.GetFileNameWithoutExtension(filename) + " " + n + Path.GetExtension(filename));
 				}
 
 				// Create file

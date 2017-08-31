@@ -8,12 +8,13 @@ namespace Utils
 	/// </summary>
 	public static class FileName
 	{
-		/// <summary>
-		/// Returns the name part of a filename, removing the directory and extension.
-		/// </summary>
-		/// <param name="filename">The full filename.</param>
-		/// <returns>Returns the name of the file.</returns>
-		public static string Name(string filename)
+        /// <summary>
+        /// Returns the name part of a filename, removing the directory and extension.
+        /// </summary>
+        /// <param name="filename">The full filename.</param>
+        /// <returns>Returns the name of the file.</returns>
+        [Obsolete("Use System.IO.Path instead")]
+        public static string Name(string filename)
 		{
 			if (filename == "")
 				return "";
@@ -34,6 +35,7 @@ namespace Utils
 		/// </summary>
 		/// <param name="filename">The full filename.</param>
 		/// <returns>Returns the extension.</returns>
+        [Obsolete("Use System.IO.Path instead")]
 		public static string Extension(string filename)
 		{
 			if (filename == "")
@@ -53,6 +55,7 @@ namespace Utils
 		/// </summary>
 		/// <param name="filename">The full filename.</param>
 		/// <returns>Returns the path of the directory.</returns>
+        [Obsolete("Use System.IO.Path instead")]
 		public static string Directory(string filename)
 		{
 			if (filename == "")
