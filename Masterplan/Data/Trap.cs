@@ -191,28 +191,32 @@ namespace Masterplan.Data
 		{
 			get
 			{
-				int xp = 0;
+				var xp = 0;
 
-				if (fRole is Minion)
+                if (fRole is Minion)
 				{
-					float experience = (float)Experience.GetCreatureXP(fLevel) / 4;
-					xp = (int)Math.Round(experience, MidpointRounding.AwayFromZero);
+					var experience = (float)Experience.GetCreatureXP(fLevel) / 4;
+                    xp = (int)Math.Round(experience, MidpointRounding.AwayFromZero);
 				}
 				else
 				{
-					ComplexRole role = fRole as ComplexRole;
+					var role = fRole as ComplexRole;
 
-					xp = Experience.GetCreatureXP(fLevel);
-					switch (role.Flag)
-					{
-						case RoleFlag.Elite:
-							xp *= 2;
-							break;
-						case RoleFlag.Solo:
-							xp *= 5;
-							break;
-					}
-				}
+                    xp = Experience.GetCreatureXP(fLevel);
+                    switch (role.Flag)
+                    {
+                        case RoleFlag.Elite:
+                            xp *= 2;
+                            break;
+                        case RoleFlag.Solo:
+                            xp *= 5;
+                            break;
+                        case RoleFlag.Standard:
+                            break;
+                        default:
+                            throw new Exception("Unexpected Case");
+                    }
+                }
 
 				if (Session.Project != null)
 				{
@@ -237,42 +241,43 @@ namespace Masterplan.Data
 		/// </summary>
 		/// <returns>Returns the copy.</returns>
 		public Trap Copy()
-		{
-			Trap t = new Trap();
+        {
+            var t = new Trap
+            {
+                ID = fID,
+                Type = fType,
+                Name = fName,
+                Level = fLevel,
+                Role = fRole.Copy(),
+                ReadAloud = fReadAloud,
+                Description = fDescription,
+                Details = fDetails
+            };
 
-			t.ID = fID;
-			t.Type = fType;
-			t.Name = fName;
-			t.Level = fLevel;
-			t.Role = fRole.Copy();
-			t.ReadAloud = fReadAloud;
-			t.Description = fDescription;
-			t.Details = fDetails;
+            foreach (TrapSkillData tsd in fSkills)
+                t.Skills.Add(tsd.Copy());
 
-			foreach (TrapSkillData tsd in fSkills)
-				t.Skills.Add(tsd.Copy());
+            t.Initiative = fInitiative;
+            t.Trigger = fTrigger;
 
-			t.Initiative = fInitiative;
-			t.Trigger = fTrigger;
+            t.Attack = fAttack != null ? fAttack.Copy() : null;
 
-			t.Attack = fAttack != null ? fAttack.Copy() : null;
+            foreach (TrapAttack ta in fAttacks)
+                t.Attacks.Add(ta.Copy());
 
-			foreach (TrapAttack ta in fAttacks)
-				t.Attacks.Add(ta.Copy());
+            foreach (string cm in fCountermeasures)
+                t.Countermeasures.Add(cm);
 
-			foreach (string cm in fCountermeasures)
-				t.Countermeasures.Add(cm);
+            t.URL = fURL;
 
-			t.URL = fURL;
+            return t;
+        }
 
-			return t;
-		}
-
-		/// <summary>
-		/// Returns the name.
-		/// </summary>
-		/// <returns></returns>
-		public override string ToString()
+        /// <summary>
+        /// Returns the name.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
 		{
 			return fName;
 		}
@@ -358,38 +363,38 @@ namespace Masterplan.Data
 					ta.Attack.Bonus = Math.Max(1, ta.Attack.Bonus);
 				}
 
-				string hit_dmg = AI.ExtractDamage(ta.OnHit);
-				if (hit_dmg != "")
+				var hit_dmg = AI.ExtractDamage(ta.OnHit);
+                if (hit_dmg != "")
 				{
-					DiceExpression exp = DiceExpression.Parse(hit_dmg);
-					if (exp != null)
+					var exp = DiceExpression.Parse(hit_dmg);
+                    if (exp != null)
 					{
-						DiceExpression exp_adj = exp.Adjust(delta);
-						if ((exp_adj != null) && (exp.ToString() != exp_adj.ToString()))
+						var exp_adj = exp.Adjust(delta);
+                        if ((exp_adj != null) && (exp.ToString() != exp_adj.ToString()))
 							ta.OnHit = ta.OnHit.Replace(hit_dmg, exp_adj + " damage");
 					}
 				}
 
-				string miss_dmg = AI.ExtractDamage(ta.OnMiss);
-				if (miss_dmg != "")
+				var miss_dmg = AI.ExtractDamage(ta.OnMiss);
+                if (miss_dmg != "")
 				{
-					DiceExpression exp = DiceExpression.Parse(miss_dmg);
-					if (exp != null)
+					var exp = DiceExpression.Parse(miss_dmg);
+                    if (exp != null)
 					{
-						DiceExpression exp_adj = exp.Adjust(delta);
-						if ((exp_adj != null) && (exp.ToString() != exp_adj.ToString()))
+						var exp_adj = exp.Adjust(delta);
+                        if ((exp_adj != null) && (exp.ToString() != exp_adj.ToString()))
 							ta.OnMiss = ta.OnMiss.Replace(miss_dmg, exp_adj + " damage");
 					}
 				}
 
-				string effect_dmg = AI.ExtractDamage(ta.Effect);
-				if (effect_dmg != "")
+				var effect_dmg = AI.ExtractDamage(ta.Effect);
+                if (effect_dmg != "")
 				{
-					DiceExpression exp = DiceExpression.Parse(effect_dmg);
-					if (exp != null)
+					var exp = DiceExpression.Parse(effect_dmg);
+                    if (exp != null)
 					{
-						DiceExpression exp_adj = exp.Adjust(delta);
-						if ((exp_adj != null) && (exp.ToString() != exp_adj.ToString()))
+						var exp_adj = exp.Adjust(delta);
+                        if ((exp_adj != null) && (exp.ToString() != exp_adj.ToString()))
 							ta.Effect = ta.Effect.Replace(effect_dmg, exp_adj + " damage");
 					}
 				}
@@ -469,24 +474,25 @@ namespace Masterplan.Data
 		/// </summary>
 		/// <returns>Returns the copy.</returns>
 		public TrapSkillData Copy()
-		{
-			TrapSkillData tsd = new TrapSkillData();
+        {
+            var tsd = new TrapSkillData
+            {
+                ID = fID,
+                SkillName = fSkillName,
+                DC = fDC,
+                Details = fDetails
+            };
 
-			tsd.ID = fID;
-			tsd.SkillName = fSkillName;
-			tsd.DC = fDC;
-			tsd.Details = fDetails;
+            return tsd;
+        }
 
-			return tsd;
-		}
-
-		/// <summary>
-		/// Sorts Perception first, then other skills alphabetically.
-		/// Skills with the same name are sorted by ascending DC.
-		/// </summary>
-		/// <param name="rhs">The other TrapSkillData object.</param>
-		/// <returns>Returns -1 if this object should be sorted before rhs, +1 if rhs should be sorted before this, 0 otherwise.</returns>
-		public int CompareTo(TrapSkillData rhs)
+        /// <summary>
+        /// Sorts Perception first, then other skills alphabetically.
+        /// Skills with the same name are sorted by ascending DC.
+        /// </summary>
+        /// <param name="rhs">The other TrapSkillData object.</param>
+        /// <returns>Returns -1 if this object should be sorted before rhs, +1 if rhs should be sorted before this, 0 otherwise.</returns>
+        public int CompareTo(TrapSkillData rhs)
 		{
 			if (fSkillName != rhs.SkillName)
 			{
@@ -658,27 +664,28 @@ namespace Masterplan.Data
 		/// </summary>
 		/// <returns>Returns the copy.</returns>
 		public TrapAttack Copy()
-		{
-			TrapAttack ta = new TrapAttack();
+        {
+            var ta = new TrapAttack
+            {
+                ID = fID,
+                Name = fName,
+                Trigger = fTrigger,
+                Action = fAction,
+                Keywords = fKeywords,
+                Range = fRange,
+                Target = fTarget,
+                HasInitiative = fHasInitiative,
+                Initiative = fInitiative,
+                Attack = fAttack.Copy(),
+                OnHit = fOnHit,
+                OnMiss = fOnMiss,
+                Effect = fEffect,
+                Notes = fNotes
+            };
 
-			ta.ID = fID;
-			ta.Name = fName;
-			ta.Trigger = fTrigger;
-			ta.Action = fAction;
-			ta.Keywords = fKeywords;
-			ta.Range = fRange;
-			ta.Target = fTarget;
-			ta.HasInitiative = fHasInitiative;
-			ta.Initiative = fInitiative;
-			ta.Attack = fAttack.Copy();
-			ta.OnHit = fOnHit;
-			ta.OnMiss = fOnMiss;
-			ta.Effect = fEffect;
-			ta.Notes = fNotes;
-
-			return ta;
-		}
-	}
+            return ta;
+        }
+    }
 
 	/// <summary>
 	/// Wrapper class to enable traps to be added to plot points.
@@ -741,14 +748,15 @@ namespace Masterplan.Data
 		/// </summary>
 		/// <returns>Returns the copy.</returns>
 		public IElement Copy()
-		{
-			TrapElement te = new TrapElement();
+        {
+            var te = new TrapElement
+            {
+                Trap = fTrap.Copy(),
+                MapID = fMapID,
+                MapAreaID = fMapAreaID
+            };
 
-			te.Trap = fTrap.Copy();
-            te.MapID = fMapID;
-            te.MapAreaID = fMapAreaID;
-
-			return te;
-		}
-	}
+            return te;
+        }
+    }
 }

@@ -84,19 +84,23 @@ namespace Masterplan.Controls
 				}
 
 				if (e.Url.LocalPath == "exodus")
-				{
-					CreatureTemplate ct = new CreatureTemplate();
-					ct.Name = "New Template";
+                {
+                    CreatureTemplate ct = new CreatureTemplate
+                    {
+                        Name = "New Template"
+                    };
 
-					Masterplan.UI.CreatureTemplateBuilderForm dlg = new Masterplan.UI.CreatureTemplateBuilderForm(ct);
-					dlg.ShowDialog();
-				}
+                    Masterplan.UI.CreatureTemplateBuilderForm dlg = new Masterplan.UI.CreatureTemplateBuilderForm(ct);
+                    dlg.ShowDialog();
+                }
 
-				if (e.Url.LocalPath == "minos")
+                if (e.Url.LocalPath == "minos")
 				{
-					Trap trap = new Trap();
-					trap.Name = "New Trap";
-					trap.Attacks.Add(new TrapAttack());
+                    Trap trap = new Trap
+                    {
+                        Name = "New Trap"
+                    };
+                    trap.Attacks.Add(new TrapAttack());
 
 					Masterplan.UI.TrapBuilderForm dlg = new Masterplan.UI.TrapBuilderForm(trap);
 					dlg.ShowDialog();
@@ -274,7 +278,7 @@ namespace Masterplan.Controls
 
 			lines.Add("<P class=table>");
 			lines.Add("<TABLE>");
-			
+
 			lines.Add("<TR class=heading>");
 			lines.Add("<TD>");
 			lines.Add("<B>Getting Started</B>");
@@ -532,7 +536,7 @@ namespace Masterplan.Controls
 		string get_manual_filename()
 		{
 			Assembly ass = Assembly.GetEntryAssembly();
-			return Utils.FileName.Directory(ass.FullName) + "Manual.pdf";
+			return Path.Combine(Path.GetDirectoryName(ass.FullName), "Manual.pdf");
 		}
     }
 }

@@ -21,8 +21,14 @@ namespace Utils
 		/// <summary>
 		/// XML text format.
 		/// </summary>
-		XML
-	}
+		XML,
+
+        /// <summary>
+        /// Protobuffer file format.
+        /// Faster and more compact than XML, but more change-resistant than Binary
+        /// </summary>
+        Protobuf
+    }
 
 	/// <summary>
 	/// Class containing static methods for serialising (loading and saving) an object.
@@ -128,10 +134,12 @@ namespace Utils
 						break;
 					case SerialisationMode.XML:
 						{
-							XmlTextWriter writer = new XmlTextWriter(temp_filename, Encoding.UTF8);
-							writer.Formatting = Formatting.Indented;
+                            XmlTextWriter writer = new XmlTextWriter(temp_filename, Encoding.UTF8)
+                            {
+                                Formatting = Formatting.Indented
+                            };
 
-							try
+                            try
 							{
 								XmlSerializer s = new XmlSerializer(typeof(T));
 								s.Serialize(writer, obj);
@@ -148,6 +156,15 @@ namespace Utils
 							writer.Close();
 						}
 						break;
+                    case SerialisationMode.Protobuf:
+                        {
+                            using (var file = File.Create(temp_filename))
+                            {
+                                ProtoBuf.Serializer.Serialize(file, obj);
+                            }
+                            ok = true;
+                        }
+                        break;
 				}
 			}
 			catch (Exception)

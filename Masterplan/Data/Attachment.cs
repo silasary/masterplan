@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 using Utils;
 
 namespace Masterplan.Data
@@ -81,56 +81,41 @@ namespace Masterplan.Data
 		/// </summary>
 		public AttachmentType Type
 		{
-			get
-			{
-				string ext = FileName.Extension(fName).ToLower();
+            get
+            {
+                var ext = Path.GetExtension(fName).ToLower();
 
-				#region Text
+                switch (ext)
+                {
+                    // Text
 
-				if (ext == "txt")
-					return AttachmentType.PlainText;
+                    case ".txt":
+                        return AttachmentType.PlainText;
+                    case ".rtf":
+                        return AttachmentType.RichText;
 
-				if (ext == "rtf")
-					return AttachmentType.RichText;
+                    // Images
 
-				#endregion
+                    case ".bmp":
+                    case ".jpg":
+                    case ".jpeg":
+                    case ".gif":
+                    case ".tga":
+                    case ".png":
+                        return AttachmentType.Image;
 
-				#region Images
+                    // Web
 
-				if (ext == "bmp")
-					return AttachmentType.Image;
+                    case ".url":
+                        return AttachmentType.URL;
 
-				if (ext == "jpg")
-					return AttachmentType.Image;
+                    case ".htm":
+                    case ".html":
+                        return AttachmentType.HTML;
 
-				if (ext == "jpeg")
-					return AttachmentType.Image;
-
-				if (ext == "gif")
-					return AttachmentType.Image;
-
-				if (ext == "tga")
-					return AttachmentType.Image;
-
-				if (ext == "png")
-					return AttachmentType.Image;
-
-				#endregion
-
-				#region Web
-
-				if (ext == "url")
-					return AttachmentType.URL;
-
-				if (ext == "htm")
-					return AttachmentType.HTML;
-
-				if (ext == "html")
-					return AttachmentType.HTML;
-
-				#endregion
-
-				return AttachmentType.Miscellaneous;
+                    default:
+                        return AttachmentType.Miscellaneous;
+                }
 			}
 		}
 
@@ -139,30 +124,32 @@ namespace Masterplan.Data
 		/// </summary>
 		/// <returns>Returns the copy.</returns>
 		public Attachment Copy()
+        {
+            var h = new Attachment
+            {
+
+                ID = fID,
+                Name = fName,
+
+                Contents = new byte[fContents.Length]
+            };
+            for (int index = 0; index != fContents.Length; ++index)
+                h.Contents[index] = fContents[index];
+
+            return h;
+        }
+
+        /// <summary>
+        /// Compares this attachment to another.
+        /// </summary>
+        /// <param name="rhs">The other attachment.</param>
+        /// <returns>Returns -1 if this attachment should be sorted before the other, +1 if the other should be sorted before this; 0 otherwise.</returns>
+        public int CompareTo(Attachment rhs)
 		{
-			Attachment h = new Attachment();
+			var lhs_name = Path.GetFileNameWithoutExtension(fName);
+            var rhs_name = Path.GetFileNameWithoutExtension(rhs.Name);
 
-			h.ID = fID;
-			h.Name = fName;
-
-			h.Contents = new byte[fContents.Length];
-			for (int index = 0; index != fContents.Length; ++index)
-				h.Contents[index] = fContents[index];
-
-			return h;
-		}
-
-		/// <summary>
-		/// Compares this attachment to another.
-		/// </summary>
-		/// <param name="rhs">The other attachment.</param>
-		/// <returns>Returns -1 if this attachment should be sorted before the other, +1 if the other should be sorted before this; 0 otherwise.</returns>
-		public int CompareTo(Attachment rhs)
-		{
-			string lhs_name = FileName.Name(fName);
-			string rhs_name = FileName.Name(rhs.Name);
-
-			return lhs_name.CompareTo(rhs_name);
+            return lhs_name.CompareTo(rhs_name);
 		}
 	}
 }

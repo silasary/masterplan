@@ -176,7 +176,7 @@ namespace Masterplan.Controls
 			get { return fBackgroundMap; }
 			set
 			{
-				fBackgroundMap = (value != null) ? value.Copy() : null;
+				fBackgroundMap = value?.Copy();
 				fLayoutData = null;
 
 				Invalidate();

@@ -31,13 +31,11 @@ namespace Masterplan
         static bool fIsBeta = false;
 #endif
 
-        public static bool IsInstalled { get => fIsInstalled; }
-
-        private static bool fIsInstalled = typeof(Program).Assembly.Location.Contains(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+        public static bool IsInstalled { get; } = typeof(Program).Assembly.Location.Contains(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
         public static string RootDirectory { get; } = Path.GetDirectoryName(typeof(Program).Assembly.Location);
 
-        public static string UserDirectory { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Masterplan");
+        public static string UserDirectory { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), nameof(Masterplan));
 
         [STAThread]
 		static void Main(string[] args)
@@ -46,46 +44,48 @@ namespace Masterplan
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			try
-			{
-				init_logging();
+            {
+                init_logging();
 
-                SplashScreen = new ProgressScreen("Masterplan", 0);
-                SplashScreen.CurrentAction = "Loading...";
+                SplashScreen = new ProgressScreen("Masterplan", 0)
+                {
+                    CurrentAction = "Loading..."
+                };
                 SplashScreen.Show();
 
                 load_preferences();
-				load_libraries();
+                load_libraries();
 
-				//handle_arg("-creaturestats");
+                //handle_arg("-creaturestats");
 
-				foreach (string arg in args)
-					handle_arg(arg);
+                foreach (string arg in args)
+                    handle_arg(arg);
 
-				SplashScreen.CurrentAction = "Starting Masterplan...";
-				SplashScreen.Actions = 0;
+                SplashScreen.CurrentAction = "Starting Masterplan...";
+                SplashScreen.Actions = 0;
 
-				try
-				{
-					MainForm main_form = new MainForm();
-					Application.Run(main_form);
-				}
-				catch (Exception ex)
-				{
-					LogSystem.Trace(ex);
-				}
+                try
+                {
+                    var main_form = new MainForm();
+                    Application.Run(main_form);
+                }
+                catch (Exception ex)
+                {
+                    LogSystem.Trace(ex);
+                }
 
-				List<Form> forms = new List<Form>();
-				foreach (Form form in Application.OpenForms)
-					forms.Add(form);
-				foreach (Form form in forms)
-					form.Close();
+                var forms = new List<Form>();
+                foreach (Form form in Application.OpenForms)
+                    forms.Add(form);
+                foreach (Form form in forms)
+                    form.Close();
 
                 save_preferences();
 
-				if (IsBeta)
-					check_for_logs();
-			}
-			catch (Exception ex)
+                if (IsBeta)
+                    check_for_logs();
+            }
+            catch (Exception ex)
 			{
 				LogSystem.Trace(ex);
 			}
@@ -105,17 +105,17 @@ namespace Masterplan
                     mp_dir = RootDirectory;
 
 				// Make sure the log directory exists
-				string logdir = Path.Combine(mp_dir, "Log");
-				if (!Directory.Exists(logdir))
+				var logdir = Path.Combine(mp_dir, "Log");
+                if (!Directory.Exists(logdir))
 				{
-					DirectoryInfo di = Directory.CreateDirectory(logdir);
-					if (di == null)
+					var di = Directory.CreateDirectory(logdir);
+                    if (di == null)
 						throw new UnauthorizedAccessException();
 				}
 
                 // Begin logging
-                string logfile = Path.Combine(logdir, DateTime.Now.Ticks + ".log");
-				LogSystem.LogFile = logfile;
+                var logfile = Path.Combine(logdir, DateTime.Now.Ticks + ".log");
+                LogSystem.LogFile = logfile;
 			}
 			catch
 			{
@@ -148,17 +148,17 @@ namespace Masterplan
 
         private static void load_libraries(string root_dir)
         {
-            string lib_dir = Path.Combine(root_dir, "Libraries");
+            var lib_dir = Path.Combine(root_dir, "Libraries");
             if (!Directory.Exists(lib_dir))
                 Directory.CreateDirectory(lib_dir);
 
             // Move libraries from root directory
-            string[] files = Directory.GetFiles(root_dir, "*.library");
+            var files = Directory.GetFiles(root_dir, "*.library");
             foreach (string filename in files)
             {
                 try
                 {
-                    string lib_name = Path.Combine(lib_dir, FileName.Name(filename) + ".library");
+                    var lib_name = Path.Combine(lib_dir, Path.GetFileNameWithoutExtension(filename) + ".library");
 
                     if (!File.Exists(lib_name))
                         File.Move(filename, lib_name);
@@ -170,9 +170,9 @@ namespace Masterplan
             }
 
             // Load libraries
-            string[] libraries = Directory.GetFiles(lib_dir, "*.library");
+            var libraries = Directory.GetFiles(lib_dir, "*.library");
             SplashScreen.Actions = libraries.Length;
-            foreach (string filename in libraries)
+            foreach (var filename in libraries)
                 Session.LoadLibrary(filename);
         }
 
@@ -185,13 +185,13 @@ namespace Masterplan
                     root_dir = UserDirectory;
                 else
                     root_dir = RootDirectory;
-                string filename = Path.Combine(root_dir, "Preferences.xml");
+                var filename = Path.Combine(root_dir, "Preferences.xml");
 
                 if (File.Exists(filename))
                 {
                     SplashScreen.CurrentAction = "Loading user preferences";
 
-                    Preferences prefs = Serialisation<Preferences>.Load(filename, SerialisationMode.XML);
+                    var prefs = Serialisation<Preferences>.Load(filename, SerialisationMode.XML);
                     if (prefs != null)
                         Session.Preferences = prefs;
                 }
@@ -239,14 +239,14 @@ namespace Masterplan
 					run_creature_stats();
 				}
 
-				FileInfo fi = new FileInfo(arg);
-				if (fi.Exists)
+				var fi = new FileInfo(arg);
+                if (fi.Exists)
 				{
 					SplashScreen.CurrentAction = "Loading project...";
-					SplashScreen.CurrentSubAction = FileName.Name(fi.Name);
+					SplashScreen.CurrentSubAction = Path.GetFileNameWithoutExtension(fi.Name);
 
 					// Load file
-					Project p = Serialisation<Project>.Load(arg, SerialisationMode.Binary);
+					var p = Serialisation<Project>.Load(arg, SerialisationMode.Binary);
 					if (p != null)
 					{
 						Session.CreateBackup(arg);
@@ -284,7 +284,7 @@ namespace Masterplan
 			if (!File.Exists(logfile))
 				return;
 
-			string logdir = FileName.Directory(logfile);
+			string logdir = Path.GetDirectoryName(logfile);
 			Process.Start(logdir);
 		}
 
@@ -364,10 +364,10 @@ namespace Masterplan
 
 									foreach (string condition in Conditions.GetConditions())
 									{
-										int count = 0;
+										var count = 0;
 
-										string str = condition.ToLower();
-										foreach (CreaturePower power in powers)
+                                        var str = condition.ToLower();
+                                        foreach (CreaturePower power in powers)
 											if (power.Details.ToLower().Contains(str))
 												count += 1;
 
@@ -380,10 +380,10 @@ namespace Masterplan
 
 									foreach (DamageType damage in Enum.GetValues(typeof(DamageType)))
 									{
-										int count = 0;
+										var count = 0;
 
-										string str = damage.ToString().ToLower();
-										foreach (CreaturePower power in powers)
+                                        var str = damage.ToString().ToLower();
+                                        foreach (CreaturePower power in powers)
 											if (power.Details.ToLower().Contains(str))
 												count += 1;
 
@@ -413,30 +413,30 @@ namespace Masterplan
 
 		private static List<Creature> get_creatures(List<Creature> creatures, int level, bool is_minion, bool is_leader, RoleType role, RoleFlag flag)
 		{
-			List<Creature> list = new List<Creature>();
+			var list = new List<Creature>();
 
-			foreach (Creature c in creatures)
+            foreach (Creature c in creatures)
 			{
 				if (c.Level != level)
 					continue;
 
-				ComplexRole cr = c.Role as ComplexRole;
-				Minion m = c.Role as Minion;
+				var cr = c.Role as ComplexRole;
+                var m = c.Role as Minion;
 
-				if ((m != null) && (!m.HasRole))
+                if ((m != null) && (!m.HasRole))
 					continue;
 
-				bool minion = m != null;
-				if (minion != is_minion)
+				var minion = m != null;
+                if (minion != is_minion)
 					continue;
 
-				bool leader = ((cr != null) && (cr.Leader));
-				if (leader != is_leader)
+				var leader = ((cr != null) && (cr.Leader));
+                if (leader != is_leader)
 					continue;
 
-				RoleType rt = RoleType.Blaster;
-				RoleFlag rf = RoleFlag.Standard;
-				if (cr != null)
+				var rt = RoleType.Blaster;
+                var rf = RoleFlag.Standard;
+                if (cr != null)
 				{
 					rt = cr.Type;
 					rf = cr.Flag;
@@ -463,22 +463,21 @@ namespace Masterplan
 
 		internal static void SetResolution(Image img)
 		{
-			Bitmap bmp = img as Bitmap;
-			if (bmp != null)
-			{
-				try
-				{
-					float x_dpi = Math.Min(bmp.HorizontalResolution, 96);
-					float y_dpi = Math.Min(bmp.VerticalResolution, 96);
+            if (img is Bitmap bmp)
+            {
+                try
+                {
+                    float x_dpi = Math.Min(bmp.HorizontalResolution, 96);
+                    float y_dpi = Math.Min(bmp.VerticalResolution, 96);
 
-					bmp.SetResolution(x_dpi, y_dpi);
-				}
-				catch
-				{
-					// Didn't set anything
-				}
-			}
-		}
+                    bmp.SetResolution(x_dpi, y_dpi);
+                }
+                catch
+                {
+                    // Didn't set anything
+                }
+            }
+        }
 
         public static ProgressScreen SplashScreen = null;
 

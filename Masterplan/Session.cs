@@ -79,8 +79,8 @@ namespace Masterplan
 		{
 			get
 			{
-				Assembly ass = Assembly.GetEntryAssembly();
-				return Utils.FileName.Directory(ass.Location) + "Libraries\\";
+				var ass = Assembly.GetEntryAssembly();
+                return Path.Combine(Path.GetDirectoryName(ass.Location), "Libraries") + Path.DirectorySeparatorChar;
 			}
 		}
 
@@ -88,23 +88,23 @@ namespace Masterplan
 
 		public static string GetLibraryFilename(Library lib)
 		{
-			DirectoryInfo di = new DirectoryInfo(LibraryFolder);
+			var di = new DirectoryInfo(LibraryFolder);
 
-			string filename = Utils.FileName.TrimInvalidCharacters(lib.Name);
+            var filename = Utils.FileName.TrimInvalidCharacters(lib.Name);
 
-			return di + filename + ".library";
+            return di + filename + ".library";
 		}
 
 		public static Library FindLibrary(string name)
 		{
-			string filename = Utils.FileName.TrimInvalidCharacters(name);
+			var filename = Utils.FileName.TrimInvalidCharacters(name);
 
-			foreach (Library lib in Libraries)
+            foreach (Library lib in Libraries)
 			{
 				if (lib.Name == name)
 					return lib;
 
-				string lib_filename = Utils.FileName.TrimInvalidCharacters(lib.Name);
+				var lib_filename = Utils.FileName.TrimInvalidCharacters(lib.Name);
 				if (lib_filename == filename)
 					return lib;
 			}
@@ -118,20 +118,20 @@ namespace Masterplan
 			{
 				if (Program.SplashScreen != null)
 				{
-					Program.SplashScreen.CurrentSubAction = Utils.FileName.Name(filename);
+					Program.SplashScreen.CurrentSubAction = Path.GetFileNameWithoutExtension(filename);
 					Program.SplashScreen.Progress += 1;
 				}
 
 				Library lib = Serialisation<Library>.Load(filename, SerialisationMode.Binary);
 				if (lib != null)
 				{
-					lib.Name = Utils.FileName.Name(filename);
+					lib.Name = Path.GetFileNameWithoutExtension(filename);
 					lib.Update();
 					Session.Libraries.Add(lib);
 				}
 				else
 				{
-					LogSystem.Trace("Could not load " + Utils.FileName.Name(filename));
+					LogSystem.Trace("Could not load " + Path.GetFileNameWithoutExtension(filename));
 				}
 
 				return lib;

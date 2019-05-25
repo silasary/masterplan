@@ -25,7 +25,7 @@ namespace Utils
                 // If the event's target is a Control (or Form).
                 if (subscriber.Target is Control)
                 {
-                    Control control = subscriber.Target as Control;
+                    var control = subscriber.Target as Control;
                     // If it's been disposed, detach it.
                     if (control.IsDisposed)
                     {

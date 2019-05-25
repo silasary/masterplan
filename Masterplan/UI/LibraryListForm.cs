@@ -435,84 +435,90 @@ namespace Masterplan.UI
 
 		private void FileNew_Click(object sender, EventArgs e)
 		{
-			Library lib = new Library();
-			lib.Name = "New Library";
+            var lib = new Library
+            {
+                Name = "New Library"
+            };
 
-			LibraryForm dlg = new LibraryForm(lib);
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				Session.Libraries.Add(dlg.Library);
-				Session.Libraries.Sort();
+            using (LibraryForm dlg = new LibraryForm(lib))
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Session.Libraries.Add(dlg.Library);
+                    Session.Libraries.Sort();
 
-				save(dlg.Library);
-				fModified[dlg.Library] = true;
+                    save(dlg.Library);
+                    fModified[dlg.Library] = true;
 
-				update_libraries();
+                    update_libraries();
 
-				SelectedLibrary = dlg.Library;
-				update_content(true);
-			}
-		}
+                    SelectedLibrary = dlg.Library;
+                    update_content(true);
+                }
+            }
+        }
 
 		private void FileOpen_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog dlg = new OpenFileDialog();
-			dlg.Filter = Program.LibraryFilter;
-			dlg.Multiselect = true;
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                dlg.Filter = Program.LibraryFilter;
+                dlg.Multiselect = true;
 
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				// If any are not in the Libraries folder, offer to copy them
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    // If any are not in the Libraries folder, offer to copy them
 
-				string lib_folder = Session.LibraryFolder;
+                    string lib_folder = Session.LibraryFolder;
 
-				List<string> foreign_files = new List<string>();
-				foreach (string filename in dlg.FileNames)
-				{
-					string dir = FileName.Directory(filename);
-					if (!dir.Contains(lib_folder))
-						foreign_files.Add(filename);
-				}
-				if (foreign_files.Count != 0)
-				{
-					string msg = "Do you want to move these libraries into the Libraries folder?";
-					msg += Environment.NewLine;
-					msg += "They will then be loaded automatically the next time Masterplan starts up.";
+                    List<string> foreign_files = new List<string>();
+                    foreach (string filename in dlg.FileNames)
+                    {
+                        string dir = FileName.Directory(filename);
+                        if (!dir.Contains(lib_folder))
+                            foreign_files.Add(filename);
+                    }
+                    if (foreign_files.Count != 0)
+                    {
+                        string msg = "Do you want to move these libraries into the Libraries folder?";
+                        msg += Environment.NewLine;
+                        msg += "They will then be loaded automatically the next time Masterplan starts up.";
 
-					DialogResult dr = MessageBox.Show(msg, "Masterplan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-					if (dr == DialogResult.Yes)
-					{
-						foreach (string filename in foreign_files)
-						{
-							string new_filename = lib_folder + FileName.Name(filename) + ".library";
-							File.Copy(filename, new_filename);
-						}
-					}
-				}
+                        DialogResult dr = MessageBox.Show(msg, "Masterplan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            foreach (string filename in foreign_files)
+                            {
+                                string new_filename = lib_folder + FileName.Name(filename) + ".library";
+                                File.Copy(filename, new_filename);
+                            }
+                        }
+                    }
 
-				foreach (string filename in dlg.FileNames)
-				{
-					if (foreign_files.Contains(filename))
-						continue;
+                    foreach (string filename in dlg.FileNames)
+                    {
+                        if (foreign_files.Contains(filename))
+                            continue;
 
-					Library lib = Session.LoadLibrary(filename);
-					fModified[lib] = false;
-				}
+                        Library lib = Session.LoadLibrary(filename);
+                        fModified[lib] = false;
+                    }
 
-				foreach (string filename in foreign_files)
-				{
-					Library lib = Session.LoadLibrary(filename);
-					fModified[lib] = false;
-				}
+                    foreach (string filename in foreign_files)
+                    {
+                        Library lib = Session.LoadLibrary(filename);
+                        fModified[lib] = false;
+                    }
 
-				if (Session.Project != null)
-					Session.Project.SimplifyProjectLibrary();
+                    if (Session.Project != null)
+                        Session.Project.SimplifyProjectLibrary();
 
-				Session.Libraries.Sort();
-				update_libraries();
-				update_content(true);
-			}
-		}
+                    Session.Libraries.Sort();
+                    update_libraries();
+                    update_content(true);
+                }
+            }
+        }
 
 		private void FileClose_Click(object sender, EventArgs e)
 		{
@@ -599,28 +605,30 @@ namespace Masterplan.UI
 
 		private void LibraryMergeBtn_Click(object sender, EventArgs e)
 		{
-			MergeLibrariesForm dlg = new MergeLibrariesForm();
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				Library newlib = new Library();
-				newlib.Name = dlg.LibraryName;
+            using (MergeLibrariesForm dlg = new MergeLibrariesForm())
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Library newlib = new Library();
+                    newlib.Name = dlg.LibraryName;
 
-				foreach (Library lib in dlg.SelectedLibraries)
-				{
-					newlib.Import(lib);
-					Session.DeleteLibrary(lib);
-				}
+                    foreach (Library lib in dlg.SelectedLibraries)
+                    {
+                        newlib.Import(lib);
+                        Session.DeleteLibrary(lib);
+                    }
 
-				Session.Libraries.Add(newlib);
-				Session.Libraries.Sort();
+                    Session.Libraries.Add(newlib);
+                    Session.Libraries.Sort();
 
-				save(newlib);
-				update_libraries();
+                    save(newlib);
+                    update_libraries();
 
-				SelectedLibrary = newlib;
-				update_content(true);
-			}
-		}
+                    SelectedLibrary = newlib;
+                    update_content(true);
+                }
+            }
+        }
 
 		private void LibraryTree_AfterSelect(object sender, TreeViewEventArgs e)
 		{
@@ -1050,66 +1058,72 @@ namespace Masterplan.UI
 		bool fShowUncategorised = true;
 
 		private void CreatureAddBtn_Click(object sender, EventArgs e)
-		{
-			Creature c = new Creature();
-			c.Name = "New Creature";
+        {
+            var c = new Creature
+            {
+                Name = "New Creature"
+            };
 
-			CreatureBuilderForm dlg = new CreatureBuilderForm(c);
-			if (dlg.ShowDialog() == DialogResult.OK)
-			{
-				SelectedLibrary.Creatures.Add(dlg.Creature as Creature);
-				fModified[SelectedLibrary] = true;
+            using (CreatureBuilderForm dlg = new CreatureBuilderForm(c))
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    SelectedLibrary.Creatures.Add(dlg.Creature as Creature);
+                    fModified[SelectedLibrary] = true;
 
-				update_content(true);
-			}
-		}
+                    update_content(true);
+                }
+            }
+        }
 
-		private void CreatureImport_Click(object sender, EventArgs e)
+        private void CreatureImport_Click(object sender, EventArgs e)
 		{
 			if (SelectedLibrary != null)
-			{
-				if ((Session.Project != null) && (SelectedLibrary == Session.Project.Library))
-					return;
+            {
+                if ((Session.Project != null) && (SelectedLibrary == Session.Project.Library))
+                    return;
 
-				OpenFileDialog dlg = new OpenFileDialog();
-				dlg.Filter = Program.CreatureAndMonsterFilter;
-				dlg.Multiselect = true;
+                OpenFileDialog dlg = new OpenFileDialog
+                {
+                    Filter = Program.CreatureAndMonsterFilter,
+                    Multiselect = true
+                };
 
-				if (dlg.ShowDialog() == DialogResult.OK)
-				{
-					foreach (string filename in dlg.FileNames)
-					{
-						Creature c = null;
-						if (filename.EndsWith("creature"))
-						{
-							c = Serialisation<Creature>.Load(filename, SerialisationMode.Binary);
-						}
-						if (filename.EndsWith("monster"))
-						{
-							string xml = File.ReadAllText(filename);
-							c = AppImport.ImportCreature(xml);
-						}
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (string filename in dlg.FileNames)
+                    {
+                        Creature c = null;
+                        if (filename.EndsWith("creature"))
+                        {
+                            c = Serialisation<Creature>.Load(filename, SerialisationMode.Binary);
+                        }
+                        if (filename.EndsWith("monster"))
+                        {
+                            string xml = File.ReadAllText(filename);
+                            c = AppImport.ImportCreature(xml);
+                        }
 
-						if (c != null)
-						{
-							Creature previous = SelectedLibrary.FindCreature(c.Name, c.Level);
-							if (previous != null)
-							{
-								c.ID = previous.ID;
-								c.Category = previous.Category;
+                        if (c != null)
+                        {
+                            Creature previous = SelectedLibrary.FindCreature(c.Name, c.Level);
+                            if (previous != null)
+                            {
+                                c.ID = previous.ID;
+                                c.Category = previous.Category;
 
-								SelectedLibrary.Creatures.Remove(previous);
-							}
+                                SelectedLibrary.Creatures.Remove(previous);
+                            }
 
-							SelectedLibrary.Creatures.Add(c);
-							fModified[SelectedLibrary] = true;
+                            SelectedLibrary.Creatures.Add(c);
+                            fModified[SelectedLibrary] = true;
 
-							update_content(true);
-						}
-					}
-				}
-			}
-		}
+                            update_content(true);
+                        }
+                    }
+                }
+            }
+        }
 
 		private void OppRemoveBtn_Click(object sender, EventArgs e)
 		{
@@ -1583,40 +1597,42 @@ namespace Masterplan.UI
 				if ((Session.Project != null) && (SelectedLibrary == Session.Project.Library))
 					return;
 
-				OpenFileDialog dlg = new OpenFileDialog();
-				dlg.Filter = Program.CreatureTemplateAndThemeFilter;
-				dlg.Multiselect = true;
+                using (OpenFileDialog dlg = new OpenFileDialog())
+                {
+                    dlg.Filter = Program.CreatureTemplateAndThemeFilter;
+                    dlg.Multiselect = true;
 
-				if (dlg.ShowDialog() == DialogResult.OK)
-				{
-					foreach (string filename in dlg.FileNames)
-					{
-						if (filename.EndsWith("creaturetemplate"))
-						{
-							CreatureTemplate ct = Serialisation<CreatureTemplate>.Load(filename, SerialisationMode.Binary);
-							if (ct != null)
-							{
-								SelectedLibrary.Templates.Add(ct);
-								fModified[SelectedLibrary] = true;
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (string filename in dlg.FileNames)
+                        {
+                            if (filename.EndsWith("creaturetemplate"))
+                            {
+                                CreatureTemplate ct = Serialisation<CreatureTemplate>.Load(filename, SerialisationMode.Binary);
+                                if (ct != null)
+                                {
+                                    SelectedLibrary.Templates.Add(ct);
+                                    fModified[SelectedLibrary] = true;
 
-								update_content(true);
-							}
-						}
+                                    update_content(true);
+                                }
+                            }
 
-						if (filename.EndsWith("theme"))
-						{
-							MonsterTheme theme = Serialisation<MonsterTheme>.Load(filename, SerialisationMode.Binary);
-							if (theme != null)
-							{
-								SelectedLibrary.Themes.Add(theme);
-								fModified[SelectedLibrary] = true;
+                            if (filename.EndsWith("theme"))
+                            {
+                                MonsterTheme theme = Serialisation<MonsterTheme>.Load(filename, SerialisationMode.Binary);
+                                if (theme != null)
+                                {
+                                    SelectedLibrary.Themes.Add(theme);
+                                    fModified[SelectedLibrary] = true;
 
-								update_content(true);
-							}
-						}
-					}
-				}
-			}
+                                    update_content(true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 		}
 
 		private void TemplateRemoveBtn_Click(object sender, EventArgs e)
@@ -2424,36 +2440,38 @@ namespace Masterplan.UI
 				if ((Session.Project != null) && (SelectedLibrary == Session.Project.Library))
 					return;
 
-				OpenFileDialog dlg = new OpenFileDialog();
-				dlg.Filter = Program.MagicItemFilter;
-				dlg.Multiselect = true;
+                using (OpenFileDialog dlg = new OpenFileDialog())
+                {
+                    dlg.Filter = Program.MagicItemFilter;
+                    dlg.Multiselect = true;
 
-				if (dlg.ShowDialog() == DialogResult.OK)
-				{
-					foreach (string filename in dlg.FileNames)
-					{
-						List<MagicItem> list = Serialisation<List<MagicItem>>.Load(filename, SerialisationMode.Binary);
-						foreach (MagicItem mi in list)
-						{
-							if (mi != null)
-							{
-								MagicItem previous = SelectedLibrary.FindMagicItem(mi.Name, mi.Level);
-								if (previous != null)
-								{
-									mi.ID = previous.ID;
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (string filename in dlg.FileNames)
+                        {
+                            List<MagicItem> list = Serialisation<List<MagicItem>>.Load(filename, SerialisationMode.Binary);
+                            foreach (MagicItem mi in list)
+                            {
+                                if (mi != null)
+                                {
+                                    MagicItem previous = SelectedLibrary.FindMagicItem(mi.Name, mi.Level);
+                                    if (previous != null)
+                                    {
+                                        mi.ID = previous.ID;
 
-									SelectedLibrary.MagicItems.Remove(previous);
-								}
+                                        SelectedLibrary.MagicItems.Remove(previous);
+                                    }
 
-								SelectedLibrary.MagicItems.Add(mi);
-								fModified[SelectedLibrary] = true;
+                                    SelectedLibrary.MagicItems.Add(mi);
+                                    fModified[SelectedLibrary] = true;
 
-								update_content(true);
-							}
-						}
-					}
-				}
-			}
+                                    update_content(true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 		}
 
 		private void MagicItemRemoveBtn_Click(object sender, EventArgs e)
