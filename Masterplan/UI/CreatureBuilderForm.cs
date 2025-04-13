@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 using Masterplan.Data;
@@ -67,19 +68,42 @@ namespace Masterplan.UI
 			Application.Idle -= Application_Idle;
 		}
 
-		void Application_Idle(object sender, EventArgs e)
-		{
-			PicturePasteBtn.Enabled = Clipboard.ContainsImage();
-			PictureClearBtn.Enabled = (fCreature.Image != null);
+        void Application_Idle(object sender, EventArgs e)
+        {
+            if (PicturePasteBtn != null)
+            {
+                PicturePasteBtn.Enabled = Clipboard.ContainsImage();
+            }
 
-			AdviceBtn.Checked = fSidebar == SidebarType.Advice;
-			PowersBtn.Checked = fSidebar == SidebarType.Powers;
-			PreviewBtn.Checked = fSidebar == SidebarType.Preview;
+            if (PictureClearBtn != null)
+            {
+                PictureClearBtn.Enabled = (fCreature.Image != null);
+            }
 
-			LevelDownBtn.Enabled = (fCreature.Level > 1);
-		}
+            if (AdviceBtn != null)
+            {
+                AdviceBtn.Checked = fSidebar == SidebarType.Advice;
+            }
 
-		public ICreature Creature
+            if (PowersBtn != null)
+            {
+                PowersBtn.Checked = fSidebar == SidebarType.Powers;
+            }
+
+            if (PreviewBtn != null)
+            {
+                PreviewBtn.Checked = fSidebar == SidebarType.Preview;
+            }
+
+            if (LevelDownBtn != null)
+            {
+                LevelDownBtn.Enabled = (fCreature.Level > 1);
+            }
+
+        }
+
+
+        public ICreature Creature
 		{
 			get { return fCreature; }
 		}
@@ -1169,51 +1193,87 @@ namespace Masterplan.UI
 		{
 			CreaturePower cp = power.Copy();
 
-			if (!string.IsNullOrEmpty(original_name) && !replacement.Contains(original_name))
-			{
-				cp.Details = replace_text(cp.Details, original_name, replacement);
-				cp.Description = replace_text(cp.Description, original_name, replacement);
-				cp.Condition = replace_text(cp.Condition, original_name, replacement);
-				cp.Range = replace_text(cp.Range, original_name, replacement);
-			}
+            if (!string.IsNullOrEmpty(original_name) && !replacement.Contains(original_name))
+            {
+                cp.Details = replace_text(cp.Details, original_name, replacement, StringComparison.OrdinalIgnoreCase);
+                cp.Description = replace_text(cp.Description, original_name, replacement, StringComparison.OrdinalIgnoreCase);
+                cp.Condition = replace_text(cp.Condition, original_name, replacement, StringComparison.OrdinalIgnoreCase);
+                cp.Range = replace_text(cp.Range, original_name, replacement, StringComparison.OrdinalIgnoreCase);
 
-			if (!string.IsNullOrEmpty(original_category) && !replacement.Contains(original_category))
-			{
-				cp.Details = replace_text(cp.Details, original_category, replacement);
-				cp.Description = replace_text(cp.Description, original_category, replacement);
-				cp.Condition = replace_text(cp.Condition, original_category, replacement);
-				cp.Range = replace_text(cp.Range, original_category, replacement);
-			}
+            }
 
-			return cp;
+            if (!string.IsNullOrEmpty(original_category) && !replacement.Contains(original_category))
+            {
+                cp.Details = replace_text(cp.Details, original_category, replacement, StringComparison.OrdinalIgnoreCase);
+                cp.Description = replace_text(cp.Description, original_category, replacement, StringComparison.OrdinalIgnoreCase);
+                cp.Condition = replace_text(cp.Condition, original_category, replacement, StringComparison.OrdinalIgnoreCase);
+                cp.Range = replace_text(cp.Range, original_category, replacement, StringComparison.OrdinalIgnoreCase);
+
+            }
+
+            return cp;
 		}
 
-		string replace_text(string source, string original, string replacement)
-		{
-			if ((source == null) || (original == null) || (replacement == null))
-				return source;
+        // Rewritten replace_text function with code for string replace originally from Stack Overflow
+        string replace_text(string source, string original, string replacement, StringComparison comparisonType)
+        {
+			// comparisonType OrdinalIgnoreCase will help with replacing the text no matter the case
 
-			// Make sure we don't get into an infinite loop
-			if (replacement.Contains(original))
-				return source;
-
-			string str = source;
-
-			while (true)
+			// Validate inputs to prevent null exceptions
+			if ((source == null) || (original == null) || (replacement == null) || (original.Length == 0) || (source.Length == 0))
 			{
-				int index = str.ToLower().IndexOf(original.ToLower());
-				if (index == -1)
-					break;
-
-				string prefix = str.Substring(0, index);
-				string suffix = str.Substring(index + original.Length);
-				str = prefix + replacement.ToLower() + suffix;
+				return source;
 			}
 
-			return str;
-		}
+            // Use StringBuilder for better performance
+            StringBuilder resultStringBuilder = new StringBuilder(source.Length);
 
-		void import_creature()
+            // Analyze the replacement: replace or remove.
+            bool isReplacementNullOrEmpty = string.IsNullOrEmpty(replacement);
+
+            // Replace all values.
+            const int valueNotFound = -1;
+            int foundAt;
+            int startSearchFromIndex = 0;
+            while ((foundAt = source.IndexOf(original, startSearchFromIndex, comparisonType)) != valueNotFound)
+            {
+
+                // Append all characters until the found replacement.
+                int charsUntilReplacment = foundAt - startSearchFromIndex;
+                bool isNothingToAppend = charsUntilReplacment == 0;
+                if (!isNothingToAppend)
+                {
+                    resultStringBuilder.Append(source, startSearchFromIndex, charsUntilReplacment);
+                }
+
+                // Process the replacement.
+                if (!isReplacementNullOrEmpty)
+                {
+                    resultStringBuilder.Append(replacement);
+                }
+
+                // Prevent infinite loop by continuing the search from
+				// where the it ended instead of the start of the string
+                startSearchFromIndex = foundAt + original.Length;
+                if (startSearchFromIndex == source.Length)
+                {
+                    return resultStringBuilder.ToString();
+                }
+            }
+
+            // Append the last part to the result.
+            int charsUntilStringEnd = source.Length - startSearchFromIndex;
+            resultStringBuilder.Append(source, startSearchFromIndex, charsUntilStringEnd);
+
+
+            return resultStringBuilder.ToString();
+
+        }
+        //END of replace_text Rewrite
+
+
+
+        void import_creature()
 		{
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter = Program.MonsterFilter;
