@@ -89,9 +89,32 @@ namespace Masterplan.Tools
 
 		public static void UpdatePowerRange(ICreature c, CreaturePower power)
 		{
-			if ((power.Range != null) && (power.Range != ""))
+			// DB Cleanup - change any existing entry in the range field from Self to Personal
+            if (power.Range.Contains("Self") || power.Range.Contains("self"))
+            {
+                if (power.Range.Contains("self"))
+                {
+                    if (power.Range == "self")
+                    { power.Range = "Personal"; }
+                    return;
+                }
+				power.Range = "Personal";
+                return;
+            }
+
+			// If the range field is not empty - do nothing
+            if ((power.Range != null) && (power.Range != ""))
 				return;
 
+			// Malformed details will impact parsing
+			// in that case send back - do nothing
+			if (!power.Details.Contains(";"))
+				return;
+
+			// Start the parsing process to derive the
+			// range of an attack from text on details field
+
+			// Define the 5 ranges to be parsed.
 			List<string> ranges = new List<string>();
 			ranges.Add("close blast");
 			ranges.Add("close burst");
@@ -99,35 +122,42 @@ namespace Masterplan.Tools
 			ranges.Add("melee");
 			ranges.Add("ranged");
 
-			string details = "";
+            // setup a hold variable to keep the original power.Details field
+            string originalDetails = power.Details;
 
+			// split the details on the ";" delimiter for parsing
 			string[] clauses = power.Details.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string clause in clauses)
 			{
-				bool is_range_clause = false;
-				foreach (string range in ranges)
+                foreach (string range in ranges)
 				{
 					if (clause.ToLower().Contains(range))
 					{
-						is_range_clause = true;
-						break;
+						try
+						{
+							int startIndex = clause.ToLower().IndexOf(range);
+							int endIndex = clause.Length;
+							power.Range = clause.Substring(startIndex, (endIndex - startIndex));
+
+							// if the details call out a basic attack, update the power to make it a basic attack
+							// exclude anything that is not an At Will attack							
+							bool is_basic = power.Range.IndexOf("basic", StringComparison.OrdinalIgnoreCase) >= 0;
+							if (is_basic && (power.Action.Use == PowerUseType.AtWill || power.Action.Use == PowerUseType.Basic))
+							{
+								power.Action.Use = PowerUseType.Basic;
+							}
+
+                            break;
+						}
+						catch { } // Error Handling
+						
 					}
 				}
-
-				if (is_range_clause)
-				{
-					power.Range = clause;
-				}
-				else
-				{
-					if (details != "")
-						details += "; ";
-
-					details += clause;
-				}
 			}
-
-			power.Details = details;
+            // Retain the details for verification
+            // string parsing can be inaccurate mostly due
+            // to non-standard entries in details field
+            power.Details = originalDetails;
 		}
 
 		public static Aura FindAura(ICreature c, string name)

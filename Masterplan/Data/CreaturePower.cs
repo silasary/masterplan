@@ -768,20 +768,23 @@ namespace Masterplan.Data
 		/// </summary>
 		public void ExtractAttackDetails()
 		{
-			if (fAttack != null)
+			// If the attack field is not empty or fDetails does not have "vs" - do nothing
+			if (fAttack != null || !fDetails.Contains("vs"))
 				return;
+			// set originalDetails to hold the original before modifications and trim
+			string originalDetails = fDetails.Trim();
 
-			if (!fDetails.Contains("vs"))
-				return;
-
+			// split the details using ";" as a delimiter
 			string[] sections = fDetails.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+			//clear fDetails for manipulation
 			fDetails = "";
 
+			// parse through each section to find the Attack Bonus and the target Defence
 			foreach (string section in sections)
 			{
+				// trim the section to parse
 				string str = section.Trim();
-
-				bool added_attack = false;
 
 				int index = str.IndexOf("vs");
 				if ((index != -1) && (fAttack == null))
@@ -789,6 +792,7 @@ namespace Masterplan.Data
 					string prefix = str.Substring(0, index);
 					string suffix = str.Substring(index);
 
+					// Find the last digit of the bonus
 					string digits = "1234567890";
 					int start = prefix.LastIndexOfAny(digits.ToCharArray());
 					if (start != -1)
@@ -798,26 +802,11 @@ namespace Masterplan.Data
 						bool found_bonus = false;
 						bool found_defence = false;
 
-						if (suffix.Contains("AC"))
-						{
-							defence = DefenceType.AC;
-							found_defence = true;
-						}
-						if (suffix.Contains("Fort"))
-						{
-							defence = DefenceType.Fortitude;
-							found_defence = true;
-						}
-						if (suffix.Contains("Ref"))
-						{
-							defence = DefenceType.Reflex;
-							found_defence = true;
-						}
-						if (suffix.Contains("Will"))
-						{
-							defence = DefenceType.Will;
-							found_defence = true;
-						}
+						// rewrite the nested ifs for readability
+						if (suffix.Contains("AC")) { defence = DefenceType.AC; found_defence = true; }
+						else if (suffix.Contains("Fort")) { defence = DefenceType.Fortitude; found_defence = true; }
+						else if (suffix.Contains("Ref")) { defence = DefenceType.Reflex; found_defence = true; }
+						else if (suffix.Contains("Will")) { defence = DefenceType.Will; found_defence = true;}
 
 						if (found_defence)
 						{
@@ -839,21 +828,15 @@ namespace Masterplan.Data
 							fAttack = new PowerAttack();
 							fAttack.Bonus = bonus;
 							fAttack.Defence = defence;
-
-							added_attack = true;
 						}
 
 					}
 				}
 
-				if (!added_attack)
-				{
-					if (fDetails != "")
-						fDetails += "; ";
-
-					fDetails += str;
-				}
 			}
+			// This is not needed since we do 
+			// not modify the fDetails field
+			fDetails = originalDetails;
 		}
 	}
 
